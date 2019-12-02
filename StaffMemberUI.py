@@ -1,41 +1,41 @@
 
 class StaffMemberUI():
 
-    def show_staff_member_info():
+    def show_staff_member_info(self):
         pass
 
-    def show_pilots():
+    def show_pilots(self):
         pass
 
-    def show_all_pilots():
+    def show_all_pilots(self):
         pass
 
-    def show_all_flight_attendants():
+    def show_all_flight_attendants(self):
         pass
 
-    def show_all_staff():
+    def show_all_staff(self):
         pass
 
-    def show_pilots_by_license():
+    def show_pilots_by_license(self):
         pass
 
-    def show_pilots_by_one_license():
+    def show_pilots_by_one_license(self):
         pass
 
-    def show_pilots_by_all_licenses():
+    def show_pilots_by_all_licenses(self):
         pass
 
-    def create_staff_members():
+    def create_staff_members(self):
         pass
 
-    def change_staff_member_info():
+    def change_staff_member_info(self):
         pass
 
-    def show_all_working():
+    def show_all_working(self):
         pass
 
-    def show_all_not_working():
+    def show_all_not_working(self):
         pass
 
-    def show_staff_member_schedule():
+    def show_staff_member_schedule(self):
         pass
