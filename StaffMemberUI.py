@@ -1,3 +1,4 @@
+from LLAPI import LLAPI
 
 class StaffMemberUI():
 
@@ -14,7 +15,8 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
-        a_list = []
+        LLAPI_temp = LLAPI()
+        a_list = LLAPI_temp.get_all_staff()
         for element in a_list:
             print(element)
 
@@ -41,3 +43,7 @@ class StaffMemberUI():
 
     def show_staff_member_schedule(self):
         pass
+
+staff = StaffMemberUI()
+
+staff.show_all_staff()
