@@ -1,5 +1,6 @@
 
-class UIManager:
+
+class UIManager():
     def start(self):
         self.mainLoop()
         
@@ -9,8 +10,17 @@ class UIManager:
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
             if var == "1":
-                print("amazing choice m8")
-            if var != "1" or "2" or "3" or "4":
+                print("")
+            elif var == "2":
+                pass
+            elif var == "3":
+                pass
+            elif var == "4":
+                pass
+            elif var == "q":
+                break
+            else:
                 print("invalid choice")
 
-
+UIManager = UIManager()
+UIManager.start()
