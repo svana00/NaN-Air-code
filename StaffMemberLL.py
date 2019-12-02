@@ -1,3 +1,6 @@
+
+
+
 class StaffMemberLL():
 
     def get_staff_member_info(self):
@@ -13,7 +16,7 @@ class StaffMemberLL():
         pass
 
     def get_all_staff(self):
-        return IOAPI.load_all_staff_from_file()
+        pass
 
     def get_pilots_by_license(self):
         pass
