@@ -2,6 +2,7 @@ import csv
 from models import StaffMember
 
 class StaffMemberIO:
+    
     def load_all_staff_from_file(self):
         staff_list = []
         with open("Staff_Members.csv", "r") as file:
