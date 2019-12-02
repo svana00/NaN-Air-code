@@ -14,7 +14,9 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
-        pass
+        a_list = []
+        for element in a_list:
+            print(element)
 
     def show_pilots_by_license(self):
         pass
