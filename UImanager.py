@@ -1,4 +1,9 @@
 
+from StaffMemberUI import StaffMemberUI
+from DestinationUI import DestinationUI
+from AirplanesUI import AirplanensUI
+from VoyageUI import VoyageUI
+
 
 class UIManager():
     def start(self):
@@ -21,6 +26,3 @@ class UIManager():
                 break
             else:
                 print("invalid choice")
-
-UIManager = UIManager()
-UIManager.start()
