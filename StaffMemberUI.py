@@ -37,5 +37,5 @@ class StaffMemberUI():
     def show_all_not_working():
         pass
 
-    def show_staf_member_schedule():
+    def show_staff_member_schedule():
         pass
