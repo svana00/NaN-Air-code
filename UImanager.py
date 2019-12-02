@@ -15,7 +15,8 @@ class UIManager():
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
             if var == "1":
-                print("")
+                tilvik = StaffMemberUI()
+                tilvik.show_all_staff()
             elif var == "2":
                 pass
             elif var == "3":
