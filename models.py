@@ -1,13 +1,16 @@
 class StaffMember():
     def __init__(self, staff_id, name, role, rank, licence, address, phone_number):
-        self.staff_id = staff_id
-        self.name = name
+        self.__staff_id = staff_id
+        self.__name = name
         self.role = role
         self.rank = rank
         self.licence = licence
         self.address = address
         self.phone_number = phone_number
 
+    def __str__(self):
+        return "{}".format(self.__name)
+    
 class Airplane():
     def __init__(self, plane_id, type_id, seat_number):
         self.id = plane_id
