@@ -1,10 +1,10 @@
 class DestinationUI():
 
-    def show_destinations():
+    def show_destinations(self):
         pass
 
-    def create_destination():
+    def create_destination(self):
         pass
 
-    def change_destination_info():
+    def change_destination_info(self):
         pass
