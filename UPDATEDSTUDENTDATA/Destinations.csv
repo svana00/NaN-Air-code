@@ -1,7 +1,7 @@
-dest_id,city
-LYR,Longyearbyean
-GOH,Nuuk
-KUS,Kulusuk
-FAE,Thorshavn
-LWK,Tingwall
-KEF,Keflavik
+dest_id,country,city,airport,flight_time,distance,contact,emergency_number
+LYR,Svalbard,Longyearbyean,Svalbard Airport,10,2018,8495039
+GOH,Nuuk,Greenland,Nuuk Airport,4,1402,Kuupik Kleist,5861483
+KUS,Kulusuk,Greenland,Kulusuk Airport,2,712,Rasmus Lerdorf,5960395
+FAE,Thorshavn,Faroe Islands,Thorshavn Airport,2,824,Ebba Hentze,5860385
+LWK,Tingwall,Scotland,Tingwall Airport,3,1654,Jamie Fraser,5968292
+KEF,Keflavik,Iceland,Keflavík Airport,0,0,Karl Karlsson,7958392
