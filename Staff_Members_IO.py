@@ -17,7 +17,6 @@ class StaffMemberIO:
 
                 staff = StaffMember(staff_id, name, role, rank, licence, address, phone_number)
                 staff_list.append(staff)
-            
             return staff_list
 
 
