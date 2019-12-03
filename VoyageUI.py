@@ -52,9 +52,19 @@ class VoyageUI():
     def show_all_voyages(self):
         pass
 
-    def create_voyage(self):
+    def add_voyage_menu(self):
         self.header("*"," VOYAGES ")
         print("1. ADD VOYAGE\n2. ADD FROM EXISTING VOYAGES")
+        menu_choice = input("Input command here: ")
+        if menu_choice == "1":
+            self.create_voyage
+        elif menu_choice == "2":
+            self.copy_voyage
+        else:
+            print("Invalid choice\nPlease try again")
+
+    def create_voyage(self):
+        pass
 
     def copy_voyage(self):
 

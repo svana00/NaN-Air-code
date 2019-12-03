@@ -29,6 +29,42 @@ class AirplaneUI():
         pass
 
     def create_airplane(self):
+        ###### initializing the values for the new object and the list that will contain them ###3
+        ID_str = ""
+        state_str = ""
+        airplane_type_str = ""
+        airplane_seat_number_str = ""
+        airplane_info_list = ["","","","","","",""]
+        
+        #printing out the menu
         self.header("-", " ADD AIRPLANE ")
-        print("1. STATE: \n2. ID: \n3. TYPE: \n4. SEAT INFO: ")
-        choice = input("Input a command: ")
+        print("1. ID: {}\n2. STATE: {}\n3. TYPE: {}\n4. SEAT INFO: {}".format(ID_str, state_str, airplane_type_str, airplane_seat_number_str))
+
+        choice = input("\n"+"Input what you want to add: ")
+        
+        VALID_LIST = ["1","2","3","4","confirm"] #all of the valid options within the menu
+
+        while choice in VALID_LIST:
+            if choice == "1":
+                ID_str = input("\nEnter new ID: ")
+                airplane_info_list[0] = ID_str
+
+            elif choice == "2":
+                state_str = input("Enter state: ")
+                airplane_info_list[1] = state_str
+                
+            elif choice == "3":
+                airplane_type_str = input("Enter new airport: ")
+                airplane_info_list[2] = airplane_type_str
+                
+            elif choice == "4":
+                airplane_seat_number_str = input("Enter number of airplane seats: ")
+                airplane_info_list[3] = airplane_seat_number_str
+
+
+            self.header("-", " ADD AIRPLANE ")
+            print("1. ID: {}\n2. STATE: {}\n3. TYPE: {}\n4. SEAT INFO: {}".format(ID_str, state_str, airplane_type_str, airplane_seat_number_str))
+            choice = input("\nInput what you want to add: ")
+        
+        
+        return airplane_info_list
