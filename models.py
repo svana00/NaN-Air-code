@@ -13,10 +13,10 @@ class StaffMember():
         return "{}".format(self.__name)
     
 class Airplane():
-    def __init__(self, plane_id, type_id, seat_number):
+    def __init__(self, plane_id, type_id, capacity):
         self.id = plane_id
         self.type = type_id
-        self.seat_number = seat_number
+        self.capacity = capacity
 
 class AirplaneType():
     def __init__(self, plane_type_id, manufacturer, model, capacity):
