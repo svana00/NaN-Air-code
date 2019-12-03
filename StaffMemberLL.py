@@ -1,6 +1,3 @@
-
-
-
 class StaffMemberLL():
 
     def get_staff_member_info(self):

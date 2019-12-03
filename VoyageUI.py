@@ -1,3 +1,5 @@
+from LLAPI import LLAPI
+
 class VoyageUI():
 
     def show_voyages_by_date(self):

@@ -1,3 +1,5 @@
+from LLAPI import LLAPI
+
 class AirplanensUI():
 
     def show_all_airplane_types(self):
