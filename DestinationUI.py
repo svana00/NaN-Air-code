@@ -11,11 +11,11 @@ class DestinationUI():
         print("1. CHANGE\n2. GET\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
-            pass
+            self.change_destination_info()
         elif var == "2":
             self.show_destinations()
         elif var == "3":
-            pass
+            self.create_destination()
 
     def show_destinations(self):
         counter = 0
