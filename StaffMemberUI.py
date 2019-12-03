@@ -31,11 +31,15 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
+        counter = 0
         self.header("*", " ALL STAFF MEMBERS ")
         LLAPI_temp = LLAPI()
-        a_list = LLAPI_temp.get_all_staff_info()
-        for element in a_list:
-            print(element)
+        staff_info_list = LLAPI_temp.get_all_staff_info()
+        for element in staff_info_list:
+            ssn = element[0]
+            name = element[1]
+            counter +=1
+            print("{}. {}".format(counter, name))
 
     def show_pilots_by_license(self):
         pass
