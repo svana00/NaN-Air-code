@@ -6,6 +6,7 @@ class StaffMemberLL():
         pass
 
     def get_pilots(self):
+        
         pass
 
     def get_all_pilots(self):
@@ -14,8 +15,8 @@ class StaffMemberLL():
     def get_all_flight_attendants(self):
         pass
 
-    def get_all_staff_info(self):
-        ''' Returns a list of staff member names '''
+    def get_all_staff(self):
+        ''' Returns a list of tuples with names and ssn of all staff members '''
         IOAPI_temp = IOAPI()
         staff_list = IOAPI_temp.load_all_staff_from_file()
         staff_info_list = []
@@ -52,5 +53,5 @@ class StaffMemberLL():
         pass
 
 staff = StaffMemberLL()
-a_list = staff.get_all_staff_info()
+a_list = staff.get_all_staff()
 print(a_list)
