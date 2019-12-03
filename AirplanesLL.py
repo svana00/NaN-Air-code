@@ -1,6 +1,7 @@
 from models import Airplane
 
 class AirplanesLL():
+    
     def getallAirplaneTypes(self):
         pass
 
