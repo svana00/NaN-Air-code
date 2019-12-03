@@ -1,6 +1,7 @@
 from IOAPI import IOAPI
 
 class StaffMemberLL():
+    IOAPI_temp = IOAPI()
 
     def get_staff_member_info(self):
         pass
@@ -17,8 +18,7 @@ class StaffMemberLL():
 
     def get_all_staff(self):
         ''' Returns a list of tuples with names and ssn of all staff members '''
-        IOAPI_temp = IOAPI()
-        staff_list = IOAPI_temp.load_all_staff_from_file()
+        staff_list = self.IOAPI_temp.load_all_staff_from_file()
         staff_info_list = []
 
         for staff_member in staff_list:
