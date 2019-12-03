@@ -61,12 +61,6 @@ class StaffMemberLL():
         pilots_list = self.get_pilots()
         pilots_info_list = []
 
-    def create_staff_members(self):
-        pass
-
-    def change_staff_member_info(self):
-        pass
-
     def get_all_working(self):
         pass
 
@@ -74,6 +68,12 @@ class StaffMemberLL():
         pass
 
     def get_staff_member_schedule(self):
+        pass
+
+    def create_staff_members(self):
+        pass
+
+    def change_staff_member_info(self):
         pass
 
 #staff = StaffMemberLL()
