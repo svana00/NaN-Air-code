@@ -13,9 +13,6 @@ class VoyageUI():
         elif var == "3":
             print("")
 
-    def another_sub_menu(self):
-        pass
-
 
     def show_voyages_by_date(self):
         pass
@@ -24,6 +21,9 @@ class VoyageUI():
         pass
 
     def show_one_voyage(self):
+        pass
+
+    def show_all_voyage(self):
         pass
 
     def create_voyage(self):
