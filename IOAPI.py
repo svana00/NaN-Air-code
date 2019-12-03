@@ -8,5 +8,5 @@ class IOAPI():
         return StaffMemberIO_temp.load_all_staff_from_file()
 
     def load_all_dest_from_file(self):
-        DestinationsLL_temp = DestinationsLL()
-        return DestinationsLL.getDestinations()
+        DestinationIO_temp = DestinationIO()
+        return DestinationIO_temp.load_all_dest_from_file()
