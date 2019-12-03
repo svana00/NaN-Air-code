@@ -3,7 +3,7 @@ from LLAPI import LLAPI
 class StaffMemberUI():
 
     def display_staff_menu(self):
-        print("*"*26 + "\n\t STAFF \n"+"*"*26)
+        print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. GET\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
@@ -27,7 +27,7 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
-        print("*"*8 + " ALL STAFF "+"*"*8)
+        print("\n\n" + "*"*8 + " ALL STAFF "+"*"*8)
         LLAPI_temp = LLAPI()
         a_list = LLAPI_temp.get_all_staff()
         for element in a_list:
@@ -58,16 +58,16 @@ class StaffMemberUI():
         pass
 
     def pick_staff_sub_menu(self):
-        print("-"*7 + "CHOOSE STAFF" + "-"*7)
+        print("\n\n" + "-"*7 + "CHOOSE STAFF" + "-"*7)
         print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
-        pick_staff = input("please enter a command: ")
+        pick_staff = input("\nInput a comamand: ")
         if pick_staff == "3":
             self.show_all_staff()
 
     def choose_in_staff(self):
-        print("-"*8 + "STAFF" + "-"*8)
+        print("\n\n" + "-"*10 + "STAFF" + "-"*10)
         print("1. STAFF \n2. WORK SCHEDULE")
-        choose_between = input("please enter a command: ")
+        choose_between = input("\nInput a command: ")
         if choose_between == "1":
             self.pick_staff_sub_menu()
         elif choose_between == "2":
