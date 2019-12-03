@@ -2,14 +2,14 @@ from LLAPI import LLAPI
 
 class StaffMemberUI():
 
-    def DisplayStaffMainMenu(self):
+    def display_sub_menu(self):
         print("*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. GET\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
             pass
         elif var == "2":
-            
+            pass
         elif var == "3":
             pass
 
