@@ -38,7 +38,14 @@ class StaffMemberUI():
             print("{}. {}".format(counter, name))
 
     def show_all_flight_attendants(self):
-        pass
+        counter = 0
+        self.header("*", " ALL FLIGHT ATTENDANTS ")
+        LLAPI_temp = LLAPI()
+        flight_attendants_info_list = LLAPI_temp.get_all_flight_attendants()
+        for element in flight_attendants_info_list:
+            ssn = element[0]
+            name = element[1]
+            print("{}. {}".format(counter, name))
 
     def show_all_staff(self):
         counter = 0
@@ -82,7 +89,7 @@ class StaffMemberUI():
         if pick_staff == "1":
             self.pilot_sub_menu()
         elif pick_staff == "2":
-            pass
+            self.show_all_flight_attendants()
         elif pick_staff == "3":
             self.show_all_staff()
         else:
