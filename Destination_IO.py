@@ -20,9 +20,7 @@ class DestinationIO:
             return dest_list
 
     def storeNewDestinationtoFile(self):
-        ''' Stores new destination to the existing file '''
         pass
 
     def storeDestinationInfo(self):
-        ''' Changes/adds info to an existing destination '''
         pass
