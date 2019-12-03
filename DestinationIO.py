@@ -7,7 +7,7 @@ class DestinationIO:
         with open("Destinations.csv", "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
-                dest_id = row[dest_id]
+                dest_id = row["dest_id"]
                 dest_country = row["country"]
                 dest_city = row["city"]
                 dest_airport = row["airport"]
