@@ -8,7 +8,7 @@ class StaffMemberUI():
 
     def display_staff_menu(self):
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
-        print("1. CHANGE\n2. GET\n3. ADD")
+        print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
         if var == "1":
             pass
@@ -31,11 +31,15 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
+        counter = 0
         self.header("*", " ALL STAFF MEMBERS ")
         LLAPI_temp = LLAPI()
-        a_list = LLAPI_temp.get_all_staff()
-        for element in a_list:
-            print(element)
+        staff_info_list = LLAPI_temp.get_all_staff()
+        for element in staff_info_list:
+            ssn = element[0]
+            name = element[1]
+            counter +=1
+            print("{}. {}".format(counter, name))
 
     def show_pilots_by_license(self):
         pass
