@@ -7,24 +7,26 @@ class DestinationUI():
         print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
 
     def display_dest_menu(self):
-        print("*"*26 + "\n\t Destinations \n"+"*"*26)
+        print("\n\n" + "*"*26 + "\n\t Destinations \n"+"*"*26)
         print("1. CHANGE\n2. GET\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
             pass
         elif var == "2":
-            self.show_destinations()        #tralalalal
+            self.show_destinations()
         elif var == "3":
             pass
 
     def show_destinations(self):
+        counter = 0
         self.header("-", " ALL DESTINATIONS ")
         LLAPI_temp = LLAPI()
         dest_list = LLAPI_temp.get_all_dest()
         for destination in dest_list:
             city = destination[0]
             country = destination[1]
-            print("{}: {}".format(country, city))
+            counter += 1
+            print("{}. {}: {}".format(counter,country, city))
 
     def create_destination(self):
         pass
