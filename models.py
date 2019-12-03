@@ -26,10 +26,13 @@ class Airplane():
 
 class AirplaneType():
     def __init__(self, plane_type_id, manufacturer, model, capacity):
-        self.plane_type_id = plane_type_id
+        self.__plane_type_id = plane_type_id
         self.manufacturer = manufacturer
         self.model = model
         self.capacity = capacity
+
+    def get_plane_type_id(self):
+        return self.__plane_type_id
 
 class Destination():
     def __init__(self, dest_id, country, city, airport, flight_time, distance, contact, emergency_number):
