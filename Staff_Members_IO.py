@@ -12,3 +12,12 @@ class StaffMemberIO:
 
                 name_list.append(name)
             return name_list
+
+    def loadallStaffMembersfromFile(self):
+        pass
+
+    def storeNewStaffMember(self):
+        pass
+
+    def storeStaffMemberInfo(self):
+        pass
