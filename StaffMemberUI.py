@@ -69,7 +69,7 @@ class StaffMemberUI():
             self.show_all_staff()
 
     def choose_in_staff(self):
-        print("\n\n" + "-"*10 + "STAFF" + "-"*10)
+        self.header("*", " PICK STAFF ")
         print("1. STAFF \n2. WORK SCHEDULE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
@@ -79,7 +79,6 @@ class StaffMemberUI():
         else:
             print("invalid choice")
 
-    
 
 """
 staff = StaffMemberUI()
