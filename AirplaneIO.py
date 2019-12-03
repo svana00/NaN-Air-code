@@ -12,15 +12,15 @@ class AirplaneIO:
         type_reader = csv.DictReader(planeType_file)
 
         for row in planes_reader:
-            name = row["name"]
+            plane_name = row["name"]
             plane_id = row["planeId"]
             plane_type = row["planeTypeId"]
 
             for row2 in type_reader:
                 if plane_type == row2["planeTypeId"]:
-                    capacity = row2["capacity"]
+                    plane_capacity = row2["capacity"]
             
-            airplane = Airplane(name, plane_id, plane_type, capacity)
+            airplane = Airplane(plane_name, plane_id, plane_type, plane_capacity)
             airplanes_list.append(airplane)
 
         return airplanes_list
