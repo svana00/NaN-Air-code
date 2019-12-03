@@ -27,7 +27,15 @@ class StaffMemberUI():
         pass
 
     def show_all_pilots(self):
-        pass
+        counter = 0
+        self.header("*", " ALL PILOTS ")
+        LLAPI_temp = LLAPI()
+        pilots_info_list = LLAPI_temp.get_all_pilots()
+        for element in pilots_info_list:
+            ssn = element[0]
+            name = element[1]
+            counter += 1
+            print("{}. {}".format(counter, name))
 
     def show_all_flight_attendants(self):
         pass
