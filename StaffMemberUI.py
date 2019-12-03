@@ -2,7 +2,14 @@ from LLAPI import LLAPI
 
 class StaffMemberUI():
 
-    def show_staff_member_info(self):
+    def DisplayStaffMainMenu(self):
+        print("*"*26 + "\n\t STAFF \n"+"*"*26)
+        print("1. CHANGE\n2. GET\n3. ADD")
+        var = input("\nInput a command: ")
+
+
+    def show_staff_member_info(self): 
+        print("* SHOW ALL STAFF * ")
         pass
 
     def show_pilots(self):
@@ -15,6 +22,7 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
+        print("*"*8 + " ALL STAFF "+"*"*8)
         LLAPI_temp = LLAPI()
         a_list = LLAPI_temp.get_all_staff()
         for element in a_list:

@@ -1,12 +1,13 @@
 class StaffMember():
-    def __init__(self, staff_id, name, role, rank, licence, address, phone_number):
-        self.__staff_id = staff_id
+    def __init__(self, ssn, name, role, rank, licence, address, phone_number, email):
+        self.__ssn = ssn
         self.__name = name
         self.role = role
         self.rank = rank
         self.licence = licence
         self.address = address
         self.phone_number = phone_number
+        self.email = email
 
     def __str__(self):
         return "{}".format(self.__name)
