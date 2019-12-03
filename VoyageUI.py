@@ -2,6 +2,9 @@ from LLAPI import LLAPI
 
 class VoyageUI():
 
+    def header(self, form, string):
+        print(form*(13 - len(string)) + string + form*(13 - len(string)))
+
     def display_voyages_menu(self):
         print("*"*26 + "\n\t VOYAGES \n"+"*"*26)
         print("1. CHANGE\n2. GET\n3. ADD")
@@ -26,8 +29,9 @@ class VoyageUI():
     def show_all_voyage(self):
         pass
 
-    def create_voyage(self):
-        print("-"*9 + " VOYAGES "+"-"*9 + "\n1. ADD NEW VOYAGE\n2. ADD FROM EXISTING VOYAGES")
+    def create_voyage(self, header):
+        header("*"," VOYAGES ")
+        print("1. ADD VOYAGE\n2. ADD FROM EXISTING VOYAGES")
 
     def copy_voyage(self):
 
