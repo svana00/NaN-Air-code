@@ -1,6 +1,6 @@
 class StaffMember():
-    def __init__(self, staff_id, name, role, rank, licence, address, phone_number):
-        self.__staff_id = staff_id
+    def __init__(self, ssn, name, role, rank, licence, address, phone_number):
+        self.__ssn = ssn
         self.__name = name
         self.role = role
         self.rank = rank
