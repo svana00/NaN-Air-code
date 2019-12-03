@@ -8,7 +8,7 @@ class DestinationUI():
 
     def display_dest_menu(self):
         print("\n\n" + "*"*26 + "\n\t Destinations \n"+"*"*26)
-        print("1. CHANGE\n2. GET\n3. ADD")
+        print("1. CHANGE\n2. OVERVIEW\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
             self.change_destination_info()
@@ -30,6 +30,7 @@ class DestinationUI():
 
     def create_destination(self):
         self.header("-", " ADD DESTINATION ")
+        print("")
 
 
     def change_destination_info(self):

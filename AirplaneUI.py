@@ -14,7 +14,7 @@ class AirplanesUI():
         if user_choice == "1":
             pass
         elif user_choice == "2":
-            pass
+            self.create_airplane()
         else:
             print("invalid choice\nPlease try again")
             self.display_airplane_menu()
@@ -28,3 +28,4 @@ class AirplanesUI():
     def create_airplane(self):
         self.header("-", " ADD AIRPLANE ")
         print("1. STATE: \n2. ID: \n3. TYPE: \n4. SEAT INFO: ")
+        choice = input("Input a command: ")
