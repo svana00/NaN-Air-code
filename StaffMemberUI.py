@@ -36,7 +36,7 @@ class StaffMemberUI():
         counter = 0
         self.header("*", " ALL STAFF MEMBERS ")
         LLAPI_temp = LLAPI()
-        staff_info_list = LLAPI_temp.get_all_staff_info()
+        staff_info_list = LLAPI_temp.get_all_staff()
         for element in staff_info_list:
             ssn = element[0]
             name = element[1]

@@ -1,11 +1,13 @@
 from IOAPI import IOAPI
 
 class StaffMemberLL():
+    IOAPI_temp = IOAPI()
 
     def get_staff_member_info(self):
         pass
 
     def get_pilots(self):
+        
         pass
 
     def get_all_pilots(self):
@@ -14,10 +16,9 @@ class StaffMemberLL():
     def get_all_flight_attendants(self):
         pass
 
-    def get_all_staff_info(self):
-        ''' Returns a list of staff member names '''
-        IOAPI_temp = IOAPI()
-        staff_list = IOAPI_temp.load_all_staff_from_file()
+    def get_all_staff(self):
+        ''' Returns a list of tuples with names and ssn of all staff members '''
+        staff_list = self.IOAPI_temp.load_all_staff_from_file()
         staff_info_list = []
 
         for staff_member in staff_list:
@@ -52,5 +53,5 @@ class StaffMemberLL():
         pass
 
 staff = StaffMemberLL()
-a_list = staff.get_all_staff_info()
+a_list = staff.get_all_staff()
 print(a_list)
