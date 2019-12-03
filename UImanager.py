@@ -1,7 +1,7 @@
 
 from StaffMemberUI import StaffMemberUI
 from DestinationUI import DestinationUI
-from AirplaneUI import AirplanensUI
+from AirplaneUI import AirplanesUI
 from VoyageUI import VoyageUI
 
 
@@ -18,7 +18,8 @@ class UIManager():
                 Staff_member_UI = StaffMemberUI()
                 Staff_member_UI.display_staff_menu()
             elif var == "2":
-                pass
+                AirplaneUI_temp = AirplanesUI()
+                AirplaneUI_temp.display_airplane_menu()
             elif var == "3":
                 Voyage_UI_temp = VoyageUI()
                 Voyage_UI_temp.display_voyages_menu()
