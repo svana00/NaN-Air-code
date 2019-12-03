@@ -9,6 +9,12 @@ class StaffMember():
         self.phone_number = phone_number
         self.email = email
 
+    def get_ssn(self):
+        return self.__ssn
+
+    def get_name(self):
+        return self.__name
+
     def __str__(self):
         return "{}".format(self.__name)
     
@@ -35,6 +41,9 @@ class Destination():
         self.__distance = distance
         self.contact = contact
         self.emergency_number = emergency_number
+
+    def get_id(self):
+        return self.__id
 
     def get_country(self):
         return self.__country
