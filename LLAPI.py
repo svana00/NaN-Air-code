@@ -7,7 +7,7 @@ class LLAPI():
 
     def get_all_staff(self):
         Staff_Member_LL = StaffMemberLL()
-        return Staff_Member_LL.get_all_staff()
+        return Staff_Member_LL.get_all_staff_names()
 
     def get_all_dest(self):
         Destination_LL = DestinationLL()
