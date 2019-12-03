@@ -3,6 +3,7 @@ from models import Destination
 
 class DestinationIO: 
     def load_all_dest_from_file(self):
+        ''' Returns a list of all destination instances '''
         dest_list = []
         with open("Destinations.csv", "r") as file:
             reader = csv.DictReader(file)
@@ -13,7 +14,9 @@ class DestinationIO:
             return dest_list
 
     def storeNewDestinationtoFile(self):
+        ''' Stores new destination to the existing file '''
         pass
 
     def storeDestinationInfo(self):
+        ''' Changes/adds info to an existing destination '''
         pass
