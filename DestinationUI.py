@@ -2,7 +2,7 @@ from LLAPI import LLAPI
 
 class DestinationUI():
 
-    def display_destination_menu(self):
+    def display_dest_menu(self):
         print("*"*26 + "\n\t Destinations \n"+"*"*26)
         print("1. CHANGE\n2. GET\n3. ADD")
         var = input("\nInput a command: ")
