@@ -17,8 +17,8 @@ class StaffMemberUI():
         elif var == "3":
             pass
 
-    def show_staff_member_info(self): 
-        
+    def show_staff_member_info(self):
+
         pass
 
     def show_pilots(self):

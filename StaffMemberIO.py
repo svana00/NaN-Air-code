@@ -9,9 +9,15 @@ class StaffMemberIO:
         with open("Staff_Members.csv", "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
+                ssn = row["ssn"]
                 name = row["name"]
-
-                name_list.append(name)
+                role = row["role"]
+                rank = ["rank"]
+                licence = ["license"]
+                address = ["address"]
+                phone_number = ["phone_number"]
+                staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number)
+                name_list.append(staff_member)
             return name_list
 
     def loadStaffMemberfromFile(self):
