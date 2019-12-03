@@ -1,11 +1,18 @@
-
 from StaffMemberUI import StaffMemberUI
 from DestinationUI import DestinationUI
-from AirplaneUI import AirplanesUI
+from AirplaneUI import AirplaneUI
 from VoyageUI import VoyageUI
-
+from LLAPI import LLAPI
 
 class UIManager():
+
+    def __init__(self):
+        self.llAPI = LLAPI()
+        self.staffUI = StaffMemberUI(self.llAPI)
+        self.destUI = DestinationUI(self.llAPI)
+        self.airplaneUI = AirplaneUI(self.llAPI)
+        self.voyageUI = VoyageUI(self.llAPI)
+        
     def start(self):
         self.mainLoop()
         
@@ -15,17 +22,13 @@ class UIManager():
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
             if var == "1":
-                Staff_member_UI = StaffMemberUI()
-                Staff_member_UI.display_staff_menu()
+                self.staffUI.display_staff_menu()
             elif var == "2":
-                AirplaneUI_temp = AirplanesUI()
-                AirplaneUI_temp.display_airplane_menu()
+                self.airplaneUI.display_airplane_menu()
             elif var == "3":
-                Voyage_UI_temp = VoyageUI()
-                Voyage_UI_temp.display_voyages_menu()
+                self.voyageUI.display_voyages_menu()
             elif var == "4":
-                Dest_UI = DestinationUI()
-                Dest_UI.display_dest_menu()
+                self.destUI.display_dest_menu()
             elif var == "q":
                 break
             else:

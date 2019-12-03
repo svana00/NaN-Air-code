@@ -2,7 +2,7 @@ import csv
 from models import Airplane
 from models import AirplaneType
 
-class AirplaneIO:
+class AirplaneIO():
     def load_all_airplanes(self):
         airplanes_list = []
         

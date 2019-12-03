@@ -2,26 +2,30 @@ from StaffMemberLL import StaffMemberLL
 from VoyageLL import VoyageLL
 from AirplaneLL import AirplaneLL
 from DestinationLL import DestinationLL
+from IOAPI import IOAPI
 
 class LLAPI():
 
+    def __init__(self):
+        self.ioAPI = IOAPI()
+        self.destLL = DestinationLL(self.ioAPI)
+        self.staffLL = StaffMemberLL(self.ioAPI)
+        self.voyageLL = VoyageLL(self.ioAPI)
+        self.airplaneLL = AirplaneLL(self.ioAPI)
+
     def get_all_staff(self):
-        Staff_Member_LL = StaffMemberLL()
-        return Staff_Member_LL.get_all_staff()
+        return self.staffLL.get_all_staff()
 
     def get_all_dest(self):
-        Destination_LL = DestinationLL()
-        return Destination_LL.getDestinations()
+        return self.destLL.get_destinations()
 
     def new_destination(self, dest_list):
         pass
     
     def get_all_pilots(self):
-        Staff_Member_LL = StaffMemberLL()
-        return Staff_Member_LL.get_all_pilots()
+        return self.staffLL.get_all_pilots()
     
     def get_all_flightattendants(self):
-        Staff_MemberLL = StaffMemberLL()
-        return Staff_MemberLL.get_all_flight_attendants
+        return self.staffLL.get_all_flight_attendants
         
         

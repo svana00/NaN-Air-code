@@ -1,6 +1,10 @@
 from models import Voyage
 
 class VoyageLL():
+
+    def __init__(self, ioAPI):
+        self.ioAPI = ioAPI
+        
     def assignStaff(self):
         pass
 

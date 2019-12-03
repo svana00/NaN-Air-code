@@ -1,6 +1,8 @@
-from LLAPI import LLAPI
 
 class StaffMemberUI():
+
+    def __init__(self, llAPI):
+        self.llAPI = llAPI
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
@@ -29,8 +31,7 @@ class StaffMemberUI():
     def show_all_pilots(self):
         counter = 0
         self.header("*", " ALL PILOTS ")
-        LLAPI_temp = LLAPI()
-        pilots_info_list = LLAPI_temp.get_all_pilots()
+        pilots_info_list = self.llAPI.get_all_pilots()
         for element in pilots_info_list:
             ssn = element[0]
             name = element[1]
@@ -38,13 +39,18 @@ class StaffMemberUI():
             print("{}. {}".format(counter, name))
 
     def show_all_flight_attendants(self):
-        pass
+        counter = 0
+        self.header("*", " ALL FLIGHT ATTENDANTS ")
+        flight_attendants_info_list = self.llAPI.get_all_flight_attendants()
+        for element in flight_attendants_info_list:
+            ssn = element[0]
+            name = element[1]
+            print("{}. {}".format(counter, name))
 
     def show_all_staff(self):
         counter = 0
         self.header("*", " ALL STAFF MEMBERS ")
-        LLAPI_temp = LLAPI()
-        staff_info_list = LLAPI_temp.get_all_staff()
+        staff_info_list = self.llAPI.get_all_staff()
         for element in staff_info_list:
             ssn = element[0]
             name = element[1]

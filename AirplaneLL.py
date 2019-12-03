@@ -1,6 +1,9 @@
 from models import Airplane
 
 class AirplaneLL():
+
+    def __init__(self, ioAPI):
+        self.ioAPI = ioAPI
     
     def getallAirplaneTypes(self):
         pass

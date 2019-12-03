@@ -1,7 +1,7 @@
 from models import Voyage
 from models import Airplane
 
-class VoyagesIO():
+class VoyageIO():
     def loadVoyagefromFile(self):
         pass
 

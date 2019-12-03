@@ -1,13 +1,14 @@
 from models import Destination
-from IOAPI import IOAPI
 
 class DestinationLL():
-    
-    def get_destinations(self):
-        IOAPI_temp = IOAPI()
-        dest_list = IOAPI_temp.load_all_dest_from_file()
-        dest_info_list = []
 
+    def __init__(self, ioAPI):
+        self.ioAPI = ioAPI
+   
+    def get_destinations(self):
+        dest_list = self.ioAPI.load_all_dest_from_file()
+        dest_info_list = []
+    
         for dest in dest_list:
             dest_country = dest.get_country()
             dest_city = dest.get_city()
