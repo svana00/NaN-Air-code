@@ -6,7 +6,9 @@ from DestinationLL import DestinationLL
 class LLAPI():
 
     def get_all_staff(self):
-        return StaffMemberLL.get_all_staff(self)
+        Staff_Member_LL = StaffMemberLL()
+        return Staff_Member_LL.get_all_staff()
 
     def get_all_dest(self):
-        return DestinationLL.getDestinations(self)
+        Destination_LL = DestinationLL()
+        return Destination_LL.getDestinations()

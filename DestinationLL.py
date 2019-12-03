@@ -2,8 +2,10 @@ from models import Destination
 from IOAPI import IOAPI
 
 class DestinationLL():
+    
     def getDestinations(self):
-        return IOAPI.load_all_dest_from_file()
+        IOAPI_temp = IOAPI()
+        return IOAPI_temp.load_all_dest_from_file()
     
     def makeDestination(self):
         pass
