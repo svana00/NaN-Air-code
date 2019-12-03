@@ -1,14 +1,14 @@
-from IOAPI import IOAPI
 
 class StaffMemberLL():
-    IOAPI_temp = IOAPI()
+    def __init__(self, ioAPI):
+        self.ioAPI = ioAPI
 
     def get_staff_member_info(self):
         pass
 
     def get_all_staff(self):
         ''' Returns a list of tuples with names and ssn of all staff members '''
-        staff_list = self.IOAPI_temp.load_all_staff_from_file()
+        staff_list = self.ioAPI.load_all_staff_from_file()
         staff_info_list = []
 
         for staff_member in staff_list:
@@ -19,7 +19,7 @@ class StaffMemberLL():
         return staff_info_list
 
     def get_all_flight_attendants(self):
-        staff_list = self.IOAPI_temp.load_all_staff_from_file()
+        staff_list = self.ioAPI.load_all_staff_from_file()
         flight_attendants_info_list = []
 
         for flight_attendant in staff_list:
@@ -32,7 +32,7 @@ class StaffMemberLL():
 
     def get_pilots(self):
         ''' Returns a list of all instances of pilots '''
-        staff_list = self.IOAPI_temp.load_all_staff_from_file()
+        staff_list = self.ioAPI.load_all_staff_from_file()
         pilots_list = []
 
         for staff_member in staff_list:
@@ -55,7 +55,7 @@ class StaffMemberLL():
 
     def get_pilots_by_one_license(self,planeTypeId):
         pilots_list = self.get_pilots()
-        airplane_types_list = self.IOAPI_temp.load_airplane_types()
+        airplane_types_list = self.ioAPI.load_airplane_types()
         airplane_types_id = []
         pilots_info_list = []
 
@@ -87,6 +87,3 @@ class StaffMemberLL():
     def change_staff_member_info(self):
         pass
 
-staff = StaffMemberLL()
-a_list = staff.get_all_pilots()
-print(a_list)

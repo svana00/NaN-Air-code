@@ -1,6 +1,8 @@
-from LLAPI import LLAPI
 
 class VoyageUI():
+
+    def __init__(self, llAPI):
+        self.llAPI = llAPI
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """

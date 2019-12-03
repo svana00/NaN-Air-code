@@ -1,6 +1,8 @@
-from LLAPI import LLAPI
 
 class DestinationUI():
+
+    def __init__(self, llAPI):
+        self.llAPI = llAPI
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
@@ -20,8 +22,7 @@ class DestinationUI():
     def show_destinations(self):
         counter = 0
         self.header("-", " ALL DESTINATIONS ")
-        LLAPI_temp = LLAPI()
-        dest_list = LLAPI_temp.get_all_dest()
+        dest_list = self.llAPI.get_all_dest()
         for destination in dest_list:
             city = destination[0]
             country = destination[1]

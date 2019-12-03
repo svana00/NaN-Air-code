@@ -1,6 +1,5 @@
 import csv
 from models import Destination
-from DestinationLL import DestinationLL
 
 class DestinationIO: 
     def load_all_dest_from_file(self):
@@ -23,7 +22,7 @@ class DestinationIO:
             
         return dest_list
 
-    def storeNewDestinationtoFile(self, new_destinations):
+    def storeNewDestinationtoFile(self):
         ''' Stores new destination to the existing file '''
         pass
 

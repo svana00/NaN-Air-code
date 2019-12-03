@@ -1,8 +1,15 @@
 from StaffMemberIO import StaffMemberIO
 from DestinationIO import DestinationIO
 from AirplaneIO import AirplaneIO
+from VoyageIO import VoyageIO
 
-class IOAPI():
+class IOAPI:
+
+    def __init__(self):
+        self.staffIO = StaffMemberIO()
+        self.destIO = DestinationIO()
+        self.airplaneIO = AirplaneIO()
+        self.voyageIO = VoyageIO()
     
     def load_all_staff_from_file(self):
         StaffMemberIO_temp = StaffMemberIO()
