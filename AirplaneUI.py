@@ -26,4 +26,5 @@ class AirplanesUI():
         pass
 
     def create_airplane(self):
-        pass
+        self.header("-", " ADD AIRPLANE ")
+        print("1. STATE: \n2. ID: \n3. TYPE: \n4. SEAT INFO: ")
