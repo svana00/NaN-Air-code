@@ -9,7 +9,7 @@ class DestinationUI():
         if var == "1":
             pass
         elif var == "2":
-            choose_in_staff
+            pass
         elif var == "3":
             pass
 
