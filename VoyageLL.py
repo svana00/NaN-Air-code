@@ -1,6 +1,6 @@
 from models import Voyage
 
-class VoyagesLL():
+class VoyageLL():
     def assignStaff(self):
         pass
 

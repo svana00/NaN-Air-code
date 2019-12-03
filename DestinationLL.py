@@ -1,6 +1,6 @@
 from models import Destination
 
-class DestinationsLL():
+class DestinationLL():
     def getDestinations(self):
         pass
     

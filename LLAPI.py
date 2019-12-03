@@ -1,12 +1,12 @@
 from StaffMemberLL import StaffMemberLL
-from IOAPI import IOAPI
-
+from VoyageLL import VoyageLL
+from AirplaneLL import AirplaneLL
+from DestinationLL import DestinationLL
 
 class LLAPI():
-    IOAPI_temp = IOAPI()
 
     def get_all_staff(self):
-        return self.IOAPI_temp.load_all_staff_from_file()
+        return StaffMemberLL.get_all_staff()
 
     def get_all_dest(self):
-        return self.IOAPI_temp.load_all_dest_from_file()
+        return DestinationLL.getDestinations()
