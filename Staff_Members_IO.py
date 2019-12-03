@@ -13,7 +13,7 @@ class StaffMemberIO:
                 name_list.append(name)
             return name_list
 
-    def loadallStaffMembersfromFile(self):
+    def loadStaffMemberfromFile(self):
         pass
 
     def storeNewStaffMember(self):
