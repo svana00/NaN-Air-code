@@ -6,15 +6,29 @@ class StaffMemberLL():
     def get_staff_member_info(self):
         pass
 
-    def get_pilots(self):
-        
-        pass
-
     def get_all_pilots(self):
-        pass
+        staff_list = self.IOAPI_temp.load_all_staff_from_file()
+        pilots_info_list = []
+
+        for staff_member in staff_list:
+            if staff_member.role == "Pilot":
+                ssn = staff_member.get_ssn()
+                name = staff_member.get_name()
+                pilots_info_list.append((ssn, name))
+
+        return pilots_info_list
 
     def get_all_flight_attendants(self):
-        pass
+        staff_list = self.IOAPI_temp.load_all_staff_from_file()
+        pilots_info_list = []
+
+        for staff_member in staff_list:
+            if staff_member.role == "Flight attendant":
+                ssn = staff_member.get_ssn()
+                name = staff_member.get_name()
+                pilots_info_list.append((ssn, name))
+
+        return pilots_info_list
 
     def get_all_staff(self):
         ''' Returns a list of tuples with names and ssn of all staff members '''
@@ -52,6 +66,6 @@ class StaffMemberLL():
     def get_staff_member_schedule(self):
         pass
 
-staff = StaffMemberLL()
-a_list = staff.get_all_staff()
-print(a_list)
+#staff = StaffMemberLL()
+#a_list = staff.get_all_pilots()
+#print(a_list)
