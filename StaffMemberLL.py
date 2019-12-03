@@ -14,7 +14,8 @@ class StaffMemberLL():
     def get_all_flight_attendants(self):
         pass
 
-    def get_all_staff(self):
+    def get_all_staff_names(self):
+        ''' Returns a list of staff member names '''
         IOAPI_temp = IOAPI()
         staff_list = IOAPI_temp.load_all_staff_from_file()
         staff_names_list = []
