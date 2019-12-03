@@ -29,7 +29,9 @@ class DestinationUI():
             print("{}. {}: {}".format(counter,country, city))
 
     def create_destination(self):
-        pass
+        self.header("-", " ADD DESTINATION ")
+
 
     def change_destination_info(self):
-        pass
+        destination_name = ""
+        self.header("-", destination_name)
