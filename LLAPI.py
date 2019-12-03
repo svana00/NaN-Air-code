@@ -12,3 +12,7 @@ class LLAPI():
     def get_all_dest(self):
         Destination_LL = DestinationLL()
         return Destination_LL.getDestinations()
+
+    def get_all_pilots(self):
+        Staff_Member_LL = StaffMemberLL()
+        return Staff_Member_LL.get_all_pilots()
