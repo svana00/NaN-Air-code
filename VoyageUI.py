@@ -4,7 +4,7 @@ class VoyageUI():
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
-        print("\n\n"+form*(13 - (len(string)/2)) + string + form*(13 - (len(string)/2)))
+        print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
 
     def display_voyages_menu(self):
         """ displays the main menu for voyages giving the user 

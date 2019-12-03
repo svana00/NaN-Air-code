@@ -2,6 +2,10 @@ from LLAPI import LLAPI
 
 class StaffMemberUI():
 
+    def header(self, form, string):
+        """ creates a header with the form as decoration before the chosen string """
+        print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
+
     def display_staff_menu(self):
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. GET\n3. ADD")
@@ -14,7 +18,7 @@ class StaffMemberUI():
             pass
 
     def show_staff_member_info(self): 
-        print("* SHOW ALL STAFF * ")
+        
         pass
 
     def show_pilots(self):
@@ -27,7 +31,7 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
-        print("\n\n" + "*"*8 + " ALL STAFF "+"*"*8)
+        self.header("*", " ALL STAFF MEMBERS ")
         LLAPI_temp = LLAPI()
         a_list = LLAPI_temp.get_all_staff()
         for element in a_list:
@@ -58,14 +62,14 @@ class StaffMemberUI():
         pass
 
     def pick_staff_sub_menu(self):
-        print("\n\n" + "-"*7 + "CHOOSE STAFF" + "-"*7)
+        self.header("*", " PICK STAFF ")
         print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
-        pick_staff = input("\nInput a comamand: ")
+        pick_staff = input("\nInput a command: ")
         if pick_staff == "3":
             self.show_all_staff()
 
     def choose_in_staff(self):
-        print("\n\n" + "-"*10 + "STAFF" + "-"*10)
+        self.header("*", " PICK STAFF ")
         print("1. STAFF \n2. WORK SCHEDULE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
@@ -75,7 +79,6 @@ class StaffMemberUI():
         else:
             print("invalid choice")
 
-    
 
 """
 staff = StaffMemberUI()
