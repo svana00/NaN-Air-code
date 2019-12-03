@@ -11,3 +11,9 @@ class DestinationIO: #ekki fast nafn
                 dest_city = row["city"]
                 dest_list.append((dest_country, dest_city))
             return dest_list
+
+    def storeNewDestinationtoFile(self):
+        pass
+
+    def storeDestinationInfo(self):
+        pass
