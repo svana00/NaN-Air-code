@@ -11,11 +11,13 @@ class StaffMemberUI():
         print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
         if var == "1":
-            pass
+            return self.choose_in_staff()
         elif var == "2":
             return self.choose_in_staff()
         elif var == "3":
             pass
+        else:
+            print("Invalid choice")
 
     def show_staff_member_info(self):
 
@@ -69,8 +71,15 @@ class StaffMemberUI():
         self.header("*", " PICK STAFF ")
         print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
         pick_staff = input("\nInput a command: ")
-        if pick_staff == "3":
+        if pick_staff == "1":
+            pass
+        elif pick_staff == "2":
+            pass
+        elif pick_staff == "3":
             self.show_all_staff()
+        else:
+            print("Invalid choice")
+
 
     def choose_in_staff(self):
         self.header("*", " PICK STAFF ")
@@ -81,7 +90,7 @@ class StaffMemberUI():
         elif choose_between == "2":
             pass
         else:
-            print("invalid choice")
+            print("Invalid choice")
 
 
 """
