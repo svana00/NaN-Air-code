@@ -9,7 +9,7 @@ class DestinationUI():
         if var == "1":
             pass
         elif var == "2":
-            pass
+            self.show_destinations()
         elif var == "3":
             pass
 

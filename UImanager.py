@@ -20,8 +20,8 @@ class UIManager():
             elif var == "2":
                 pass
             elif var == "3":
-                Voyage_UI = VoyageUI()
-                Voyage_UI.display_voyages_menu()
+                Voyage_UI_temp = VoyageUI()
+                Voyage_UI_temp.display_voyages_menu()
             elif var == "4":
                 Dest_UI = DestinationUI()
                 Dest_UI.display_dest_menu()
