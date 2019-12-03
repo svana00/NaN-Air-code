@@ -7,6 +7,7 @@ class StaffMemberUI():
         print("1. CHANGE\n2. GET\n3. ADD")
         var = input("\nInput a command: ")
 
+
     def show_staff_member_info(self): 
         print("* SHOW ALL STAFF * ")
         pass
@@ -21,7 +22,7 @@ class StaffMemberUI():
         pass
 
     def show_all_staff(self):
-        print("This is the staff menu that you are in")
+        print("*"*8 + " ALL STAFF "+"*"*8)
         LLAPI_temp = LLAPI()
         a_list = LLAPI_temp.get_all_staff()
         for element in a_list:
