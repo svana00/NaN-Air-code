@@ -1,10 +1,10 @@
 from models import Destination
 from IOAPI import IOAPI
-from LLAPI import LLAPI
+
 
 class DestinationLL():
     
-    def getDestinations(self):
+    def get_destinations(self):
         IOAPI_temp = IOAPI()
         dest_list = IOAPI_temp.load_all_dest_from_file()
         dest_info_list = []
@@ -16,15 +16,15 @@ class DestinationLL():
         
         return dest_info_list
     
-    def createDestination(self):
-        IOAPI_temp = IOAPI()
-        dest_list = IOAPI_temp.load_all_dest_from_file()
-        LLAPI_temp = LLAPI()
-        new_input_dest_list = LLAPI.create_destination
-        joined_list = new_input_dest_list + dest_list
-        dest_str = ", ".join(joined_list)
-        return IOAPI_temp.storeNewDestinationtoFile(dest_str)
+    #def create_destination(self):
+    #    IOAPI_temp = IOAPI()
+    #    dest_list = IOAPI_temp.load_all_dest_from_file()
+    #    LLAPI_temp = LLAPI()
+    #    new_input_dest_list = LLAPI.create_destination()
+    #    joined_list = new_input_dest_list + dest_list
+    #    dest_str = ",".join(joined_list)
+    #    return IOAPI_temp.storeNewDestinationtoFile(dest_str)
 
 
-    def changeDestinationInfo(self):
+    def change_destinationInfo(self):
         pass

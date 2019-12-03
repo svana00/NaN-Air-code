@@ -25,7 +25,7 @@ class DestinationIO:
 
     def storeNewDestinationtoFile(self, new_destinations):
         ''' Stores new destination to the existing file '''
-        
+        pass
 
     def storeDestinationInfo(self):
         ''' Changes/adds info to an existing destination '''
