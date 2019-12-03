@@ -1,7 +1,7 @@
 
 from StaffMemberUI import StaffMemberUI
 from DestinationUI import DestinationUI
-from AirplanesUI import AirplanensUI
+from AirplaneUI import AirplanensUI
 from VoyageUI import VoyageUI
 
 
@@ -15,12 +15,12 @@ class UIManager():
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
             if var == "1":
-                All_Staff = StaffMemberUI()
-                All_Staff.show_all_staff()
+                Staff_member_UI = StaffMemberUI()
+                Staff_member_UI.display_staff_menu()
             elif var == "2":
                 pass
             elif var == "3":
-                pass
+                Voyage
             elif var == "4":
                 DestUI = DestinationUI()
                 DestUI.show_destinations()
