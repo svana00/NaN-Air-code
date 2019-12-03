@@ -1,4 +1,4 @@
-from Staff_Member_IO import StaffMemberIO
+from StaffMemberIO import StaffMemberIO
 from Destination_IO import DestinationIO
 
 class IOAPI():
