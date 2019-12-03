@@ -16,7 +16,8 @@ class StaffMemberIO:
                 licence = ["license"]
                 address = ["address"]
                 phone_number = ["phone_number"]
-                staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number)
+                email = ["email"]
+                staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number,email)
                 name_list.append(staff_member)
             return name_list
 
