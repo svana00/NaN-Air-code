@@ -72,7 +72,7 @@ class StaffMemberUI():
         print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
         pick_staff = input("\nInput a command: ")
         if pick_staff == "1":
-            pass
+            self.pilot_sub_menu()
         elif pick_staff == "2":
             pass
         elif pick_staff == "3":
@@ -91,6 +91,15 @@ class StaffMemberUI():
             pass
         else:
             print("Invalid choice")
+
+    def pilot_sub_menu(self):
+        self.header("*", " PICK SUBGROUP ")
+        print("1. ALL PILOTS \n2. PILOTS BY LICENSE")
+        choose_between = input("\nInput a command: ")
+        if choose_between == "1":
+            return self.show_all_pilots()
+        elif choose_between == "2":
+            pass
 
 
 """
