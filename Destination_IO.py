@@ -1,8 +1,8 @@
 import csv
 from models import Destination
 
-class DestinationIO: #ekki fast nafn
-    def load_all_dest_from_all(self):
+class DestinationIO: 
+    def load_all_dest_from_file(self):
         dest_list = []
         with open("Destinations.csv", "r") as file:
             reader = csv.DictReader(file)
