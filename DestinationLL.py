@@ -1,6 +1,5 @@
 from models import Destination
 from IOAPI import IOAPI
-from LLAPI import LLAPI
 
 class DestinationLL():
     
@@ -24,7 +23,6 @@ class DestinationLL():
         joined_list = new_input_dest_list + dest_list
         dest_str = ", ".join(joined_list)
         return IOAPI_temp.storeNewDestinationtoFile(dest_str)
-
 
     def changeDestinationInfo(self):
         pass
