@@ -9,7 +9,7 @@ class StaffMemberUI():
         if var == "1":
             pass
         elif var == "2":
-            return choose_in_staff
+            return choose_in_staff()
         elif var == "3":
             pass
 
@@ -57,28 +57,28 @@ class StaffMemberUI():
     def show_staff_member_schedule(self):
         pass
 
-    def choose_in_staff(self):
+    def choose_in_staff(self, pick_staff_sub_menu):
         print("-"*8 + "STAFF" + "-"*8)
         print("1. STAFF \n2. WORK SCHEDULE")
         choose_between = input("please enter a command: ")
         if choose_between == "1":
-            pick_staff_sub_menu(self)
+            pick_staff_sub_menu()
         elif choose_between == "2":
             pass
         else:
             print("invalid choice")
 
-    def pick_staff_sub_menu(self):
+    def pick_staff_sub_menu(self, show_all_staff):
         print("-"*7 + "CHOOSE STAFF" + "-"*7)
         print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
         pick_staff = input("please enter a command: ")
         if pick_staff == "3":
-            show_all_staff
+            show_all_staff()
 
-
+"""
 staff = StaffMemberUI()
-
 staff.show_all_staff()
 choose_in_staff = staff.choose_in_staff()
 staff.display_staff_menu(choose_in_staff)
 staff.pick_staff_sub_menu()
+"""
