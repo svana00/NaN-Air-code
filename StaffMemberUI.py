@@ -86,9 +86,9 @@ class StaffMemberUI():
         print("1. STAFF \n2. WORK SCHEDULE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
-            self.pick_staff_sub_menu()
+            return self.pick_staff_sub_menu()
         elif choose_between == "2":
-            pass
+            return self.work_schedule_sub_menu()
         else:
             print("Invalid choice")
 
@@ -99,8 +99,31 @@ class StaffMemberUI():
         if choose_between == "1":
             return self.show_all_pilots()
         elif choose_between == "2":
-            pass
+            return self.pilot_licence_sub_menu()
+        else:
+            print("Invalid choice")
 
+    def work_schedule_sub_menu(self):
+        self.header("*", " WORK SCHEDULE ")
+        print("1. SHOW ALL WORKING \n2. SHOW ALL NOT WORKING")
+        choose_between = input("\nInput a command: ")
+        if choose_between == "1":
+            pass
+        elif choose_between == "2":
+            pass
+        else:
+            print("Invalid choice")
+
+    def pilot_licence_sub_menu(self):
+        self.header("*", " PICK LICENSE SUBGROUP ")
+        print("1. OVERVIEW OF ALL LICENSES \n2. ONE PARTICULAR LICENSE")
+        choose_between = input("\nInput a command: ")
+        if choose_between == "1":
+            pass
+        elif choose_between == "2":
+            pass
+        else:
+            print("Invalid choice")
 
 """
 staff = StaffMemberUI()
