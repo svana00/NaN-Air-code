@@ -55,7 +55,7 @@ class StaffMemberLL():
 
     def get_pilots_by_one_license(self,planeTypeId):
         pilots_list = self.get_pilots()
-        airplane_types_list = load_airplane_types()
+        airplane_types_list = self.IOAPI_temp.load_airplane_types()
         airplane_types_id = []
         pilots_info_list = []
 
