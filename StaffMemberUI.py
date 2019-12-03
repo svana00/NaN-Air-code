@@ -6,7 +6,12 @@ class StaffMemberUI():
         print("*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. GET\n3. ADD")
         var = input("\nInput a command: ")
-
+        if var == "1":
+            pass
+        elif var == "2":
+            
+        elif var == "3":
+            pass
 
     def show_staff_member_info(self): 
         print("* SHOW ALL STAFF * ")
