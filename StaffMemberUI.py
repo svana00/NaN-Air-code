@@ -45,6 +45,7 @@ class StaffMemberUI():
         for element in flight_attendants_info_list:
             ssn = element[0]
             name = element[1]
+            counter += 1
             print("{}. {}".format(counter, name))
 
     def show_all_staff(self):
@@ -88,7 +89,7 @@ class StaffMemberUI():
         if pick_staff == "1":
             self.pilot_sub_menu()
         elif pick_staff == "2":
-            pass
+            self.show_all_flight_attendants()
         elif pick_staff == "3":
             self.show_all_staff()
         else:

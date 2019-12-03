@@ -25,7 +25,5 @@ class LLAPI():
     def get_all_pilots(self):
         return self.staffLL.get_all_pilots()
     
-    def get_all_flightattendants(self):
-        return self.staffLL.get_all_flight_attendants
-        
-        
+    def get_all_flight_attendants(self):
+        return self.staffLL.get_all_flight_attendants()
