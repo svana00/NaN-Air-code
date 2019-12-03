@@ -9,4 +9,4 @@ class IOAPI():
 
     def load_all_dest_from_file(self):
         DestinationIO_temp = DestinationIO()
-        return DestinationIO_temp.load_all_dest_from_all()
+        return DestinationIO_temp.load_all_dest_from_file()
