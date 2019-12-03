@@ -1,6 +1,9 @@
 from models import Destination
 from IOAPI import IOAPI
+<<<<<<< HEAD
 
+=======
+>>>>>>> d27ac2363876fd7024ccdfd838f26fa0606926f3
 
 class DestinationLL():
     
@@ -25,6 +28,10 @@ class DestinationLL():
     #    dest_str = ",".join(joined_list)
     #    return IOAPI_temp.storeNewDestinationtoFile(dest_str)
 
+<<<<<<< HEAD
 
     def change_destinationInfo(self):
+=======
+    def changeDestinationInfo(self):
+>>>>>>> d27ac2363876fd7024ccdfd838f26fa0606926f3
         pass
