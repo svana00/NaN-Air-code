@@ -33,7 +33,7 @@ class StaffMemberUI():
     def show_all_staff(self):
         self.header("*", " ALL STAFF MEMBERS ")
         LLAPI_temp = LLAPI()
-        a_list = LLAPI_temp.get_all_staff()
+        a_list = LLAPI_temp.get_all_staff_names()
         for element in a_list:
             print(element)
 
