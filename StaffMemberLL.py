@@ -53,13 +53,24 @@ class StaffMemberLL():
 
         return pilots_info_list
 
-    def get_pilots_by_one_license(self):
+    def get_pilots_by_one_license(self,planeTypeId):
         pilots_list = self.get_pilots()
+        airplane_types_list = load_airplane_types()
+        airplane_types_id = []
         pilots_info_list = []
 
+        for airplane_type in airplane_types_list:
+            airplane_type_id = airplane_type.get_plane_type_id()
+            airplane_types_id.append(airplane_type_id)
+
+        for pilot in pilots_list:
+            if pilot.licence == planeTypeId:
+                pilots_info_list.append(pilot)
+
     def get_pilots_by_all_licenses(self):
-        pilots_list = self.get_pilots()
-        pilots_info_list = []
+        #pilots_list = self.get_pilots()
+        #pilots_info_list = []
+        pass
 
     def get_all_working(self):
         pass
@@ -76,6 +87,6 @@ class StaffMemberLL():
     def change_staff_member_info(self):
         pass
 
-#staff = StaffMemberLL()
-#a_list = staff.get_all_pilots()
-#print(a_list)
+staff = StaffMemberLL()
+a_list = staff.get_all_pilots()
+print(a_list)
