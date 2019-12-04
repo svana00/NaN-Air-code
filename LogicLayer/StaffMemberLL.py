@@ -107,8 +107,9 @@ class StaffMemberLL():
     def get_staff_member_schedule(self):
         pass
 
-    def create_staff_members(self):
-        pass
+    def create_staff_member(self,staff_member_info_list):
+        staff_member_str = ",".join(staff_member_info_list)
+        return self.ioAPI.store_new_staff_member(staff_member_str)
 
     def change_staff_member_info(self):
         pass

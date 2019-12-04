@@ -86,8 +86,16 @@ class StaffMemberUI():
 
 
     def show_pilots_by_all_licences(self):
+        self.header("-", " PILOTS BY LICENCES ")
         pilots_by_licences_dict = self.llAPI.get_pilots_by_all_licences()
-        print(pilots_by_licences_dict)
+        for airplane_type, pilots_info_list in pilots_by_licences_dict.items():
+            print("\n{}".format(airplane_type))
+            counter = 1
+            for pilot_tuple in pilots_info_list:
+                ssn = pilot_tuple[0]
+                name = pilot_tuple[1]
+                print("\t{}. {}".format(counter, name))
+                counter += 1
 
     def create_staff_members(self):
         pass

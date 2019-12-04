@@ -31,12 +31,15 @@ class LLAPI():
     def create_new_destination(self, dest_list):
         self.dest_list = dest_list
         return self.destLL.create_new_destination(self.dest_list)
-    
+
     def get_all_pilots(self):
         return self.staffLL.get_all_pilots()
-    
+
     def get_all_flight_attendants(self):
         return self.staffLL.get_all_flight_attendants()
 
-    def get_all_voyages(self):
+    def create_staff_member(self, staff_member_info_list):
+        return self.staffLL.create_staff_member(staff_member_info_list)
+
+    def get_all_voyages():
         pass
