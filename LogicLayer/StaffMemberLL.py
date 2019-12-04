@@ -66,6 +66,7 @@ class StaffMemberLL():
         return pilots_info_list
 
     def get_all_airplane_types(self):
+        ''' Returns a list of all instances of airplane types '''
         airplane_types_list = self.ioAPI.load_airplane_types()
         airplane_types_info_list = []
 
@@ -76,9 +77,13 @@ class StaffMemberLL():
         return airplane_types_info_list
 
     def get_pilots_by_all_licenses(self):
-        #pilots_list = self.get_pilots()
-        #pilots_info_list = []
-        pass
+        ''' Returns a dictionary where the keys are an airplane type
+            and the value is a list of tuples for pilots that have the
+            licence for that type '''
+        pilots_list = self.get_pilots()
+        pilots_info_list = []
+
+        
 
     def get_all_working(self):
         pass
