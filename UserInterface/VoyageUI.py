@@ -23,10 +23,6 @@ class VoyageUI():
             self.create_voyage()
 
 
-
-
-
-
     def overview_options(self):
         """ menu for overview choices """
         self.header("-", " GET OVERVIEW ")
@@ -90,7 +86,54 @@ class VoyageUI():
             print("Invalid choice\nPlease try again")
 
     def create_voyage(self):
-        pass
+    ######initializing the values for the new object and the list that will contain them ##
+        voyage_info_list = ["" for i in range(11)]
+        a_dict = {}
+
+        flight_number_str = ""
+        departing_from_str = ""
+        arriving_at_str = ""
+        departure_str = ""
+        arrival_at_str = ""
+        aircraft_ID_str = ""
+        captain_str = ""
+        copilot_str = ""
+        fsm_str = ""
+        fa1_str = ""
+        fa2_str = ""
+
+        #prints out the menu
+        self.header("-", " ADD VOYAGE ")
+        print("1. FLIGHT NUMBER: {}\n2. DEPARTING FROM: {}\n 3. ARRIVING AT: {}\n4. DEPARTURE: {}\n5. ARRIVAL: {}\n6. AIRCRAFT: {}\n 7. CAPTAIN: {}\n8. COPILOT: {}\n9. FLIGHT SERVICE BADGE: {}\n10. FLIGHT ATTENDANT 1: {}\n11. FLIGHT ATTENDANT 2: {}".format(flight_number_str,departing_from_str,arriving_at_str,departure_str,arrival_at_str,aircraft_ID_str,captain_str,copilot_str,fsm_str,fa1_str,fa2_str))
+
+        choice = input("\n"+"Input what you want to add: ")
+        VALID_LIST  = [str(i+1) for i in range(len(voyage_info_list)) ]
+        
+        choice = input("\n"+"Input what you want to add: ")
+
+            
+    """
+        choice = input("\n"+"Input what you want to add: ")
+        
+        VALID_LIST = ["1","2","confirm"] #all of the valid options within the menu
+
+        while choice in VALID_LIST:
+            if choice == "1":
+                name_ID_str = input("\nEnter new ID: ")
+                airplane_info_list[0] = name_ID_str
+                
+            elif choice == "2":
+                airplane_type_str = input("Enter new airport: ")
+                airplane_info_list[2] = airplane_type_str
+           
+            self.header("-", " ADD AIRPLANE ")
+            print("1. ID: {}\n2. TYPE: {}".format(name_ID_str, airplane_type_str))
+            choice = input("\nInput what you want to add: ")
+        
+        return airplane_info_list
+
+
+    """
 
     def copy_voyage(self):
 
