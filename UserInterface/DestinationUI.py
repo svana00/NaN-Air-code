@@ -21,13 +21,19 @@ class DestinationUI():
 
     def show_destinations(self):
         counter = 0
+        a_dict = dict()
         self.header("-", " ALL DESTINATIONS ")
         dest_list = self.llAPI.get_all_dest()
         for destination in dest_list:
             city = destination[0]
             country = destination[1]
             counter += 1
+
             print("{}. {}: {}".format(counter,country, city))
+        input_choice = input("To choose a destination enter it's number to go back enter back")
+        if input_choice == "back":
+            return
+        
 
     def create_destination(self):
         destination_info_list = ["","","","","","",""]

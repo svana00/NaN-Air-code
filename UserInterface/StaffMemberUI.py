@@ -59,12 +59,24 @@ class StaffMemberUI():
             print("{}. {}".format(counter, name))
 
     def show_pilots_by_one_license(self):
+        airplane_type_dict = {}
         counter = 0
         self.header("*", " PICK ONE LICENSE ")
         airplane_types_info_list = self.llAPI.get_all_airplane_types()
+
         for element in airplane_types_info_list:
             counter += 1
+            airplane_type_dict[str(counter)] = element
             print("{}. {}".format(counter, element))
+
+        choose_between = input("\nInput a command: ")
+        for key, value in airplane_type_dict.items():
+            if key == choose_between:
+                airplane_type_id = value
+                self.header("*", " {} ".format(airplane_type_id))
+                pilots_info_list = self.llAPI.get_pilots_by_one_license(airplane_type_id)
+                print(pilots_info_list)
+
 
     def show_pilots_by_all_licenses(self):
         pass
