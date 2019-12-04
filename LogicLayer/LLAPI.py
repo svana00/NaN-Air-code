@@ -19,6 +19,8 @@ class LLAPI():
     def get_pilots_by_one_license(self,airplane_type_id):
         return self.staffLL.get_pilots_by_one_license(airplane_type_id)
 
+    def get_pilots_by_all_licences(self):
+
     def get_all_staff(self):
         return self.staffLL.get_all_staff()
 

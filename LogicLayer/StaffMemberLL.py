@@ -81,9 +81,15 @@ class StaffMemberLL():
             and the value is a list of tuples for pilots that have the
             licence for that type '''
         pilots_list = self.get_pilots()
-        pilots_info_list = []
+        pilots_by_licences_dict = {}
 
-        
+        for pilot in pilots_list:
+            if pilot.licence in pilots_by_licences_dict:
+                pilots_by_licences_dict[pilot.licence].append(pilot)
+            else:
+                pilots_by_licences_dict[pilot.licence] = [pilot]
+
+        return pilots_by_licences_dict
 
     def get_all_working(self):
         pass
