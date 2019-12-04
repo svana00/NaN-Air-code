@@ -60,8 +60,11 @@ class StaffMemberLL():
         pilots_info_list = []
 
         for pilot in pilots_list:
-            if pilot.licence == airplane_type_id:
-                pilots_info_list.append(pilot)
+            ssn = pilot.get_ssn()
+            name = pilot.get_name()
+            licence = pilot.licence
+            if licence == airplane_type_id:
+                pilots_info_list.append((ssn, name))
 
         return pilots_info_list
 

@@ -12,11 +12,11 @@ class StaffMemberIO:
                 ssn = row["ssn"]
                 name = row["name"]
                 role = row["role"]
-                rank = ["rank"]
-                licence = ["license"]
-                address = ["address"]
-                phone_number = ["phone_number"]
-                email = ["email"]
+                rank = row["rank"]
+                licence = row["licence"]
+                address = row["address"]
+                phone_number = row["phone_number"]
+                email = row["email"]
                 staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number,email)
                 name_list.append(staff_member)
             return name_list

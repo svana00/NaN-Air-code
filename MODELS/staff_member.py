@@ -14,6 +14,9 @@ class StaffMember():
 
     def get_name(self):
         return self.__name
+    
+    def get_licence(self):
+        return self.licence
 
     def __str__(self):
         return "{}".format(self.__name)
