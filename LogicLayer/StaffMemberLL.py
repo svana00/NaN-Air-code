@@ -55,6 +55,8 @@ class StaffMemberLL():
         return pilots_info_list
 
     def get_pilots_by_one_license(self,airplane_type_id):
+        ''' Returns a list of tuples with names and ssn of all pilots 
+            with a specific licence '''
         pilots_list = self.get_pilots()
         pilots_info_list = []
 

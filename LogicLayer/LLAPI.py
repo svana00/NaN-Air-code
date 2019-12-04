@@ -13,6 +13,12 @@ class LLAPI():
         self.voyageLL = VoyageLL(self.ioAPI)
         self.airplaneLL = AirplaneLL(self.ioAPI)
 
+    def get_all_airplane_types(self):
+        return self.staffLL.get_all_airplane_types()
+
+    def get_pilots_by_one_license(self,airplane_type_id):
+        return self.staffLL.get_pilots_by_one_license(airplane_type_id)
+
     def get_all_staff(self):
         return self.staffLL.get_all_staff()
 
