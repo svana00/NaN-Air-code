@@ -1,10 +1,10 @@
 import csv
-from models import Destination
+from MODELS.destination import Destination
 
 class DestinationIO: 
     def load_all_dest_from_file(self):
         dest_list = []
-        dest_file = open("Destinations.csv", "r")
+        dest_file = open("csv_files/Destinations.csv", "r")
         reader = csv.DictReader(dest_file)
 
         for row in reader:
@@ -24,7 +24,7 @@ class DestinationIO:
 
     def storeNewDestinationtoFile(self,dest_str):
         ''' Stores new destination to the existing file '''
-        dest_file = open("Destinations.csv", "a+")
+        dest_file = open("csv_files/Destinations.csv", "a+")
         dest_file.write(dest_str)
         return dest_file
 

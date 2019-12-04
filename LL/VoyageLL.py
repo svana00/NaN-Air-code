@@ -1,4 +1,4 @@
-from models import Voyage
+from MODELS.voyage import Voyage
 
 class VoyageLL():
 

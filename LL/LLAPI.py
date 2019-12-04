@@ -1,8 +1,8 @@
-from StaffMemberLL import StaffMemberLL
-from VoyageLL import VoyageLL
-from AirplaneLL import AirplaneLL
-from DestinationLL import DestinationLL
-from IOAPI import IOAPI
+from LL.StaffMemberLL import StaffMemberLL
+from LL.VoyageLL import VoyageLL
+from LL.AirplaneLL import AirplaneLL
+from LL.DestinationLL import DestinationLL
+from IO.IOAPI import IOAPI
 
 class LLAPI():
 

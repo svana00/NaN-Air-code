@@ -1,7 +1,7 @@
-from StaffMemberIO import StaffMemberIO
-from DestinationIO import DestinationIO
-from AirplaneIO import AirplaneIO
-from VoyageIO import VoyageIO
+from IO.StaffMemberIO import StaffMemberIO
+from IO.DestinationIO import DestinationIO
+from IO.AirplaneIO import AirplaneIO
+from IO.VoyageIO import VoyageIO
 
 class IOAPI:
 
@@ -12,7 +12,7 @@ class IOAPI:
         self.voyageIO = VoyageIO()
     
     def load_all_staff_from_file(self):
-        return staffIO.load_all_staff_from_file()
+        return self.staffIO.load_all_staff_from_file()
 
     def load_all_dest_from_file(self):
         return self.destIO.load_all_dest_from_file()

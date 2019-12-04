@@ -1,12 +1,12 @@
 import csv
-from models import StaffMember
+from MODELS.staff_member import StaffMember
 
 class StaffMemberIO:
     
     def load_all_staff_from_file(self):
         ''' Returns a list of instances of all staff members '''
         name_list = []
-        with open("Staff_Members.csv", "r") as file:
+        with open("csv_files/Staff_Members.csv", "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
                 ssn = row["ssn"]

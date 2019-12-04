@@ -1,5 +1,5 @@
-from models import Voyage
-from models import Airplane
+from MODELS.voyage import Voyage
+from MODELS.airplane import Airplane
 
 class VoyageIO():
     def loadVoyagefromFile(self):

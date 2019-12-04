@@ -1,13 +1,13 @@
 import csv
-from models import Airplane
-from models import AirplaneType
+from MODELS.airplane import Airplane
+from MODELS.airplane_type import AirplaneType
 
 class AirplaneIO():
     def load_all_airplanes(self):
         airplanes_list = []
         
-        airplanes_file = open("Aircraft.csv", "r")
-        planeType_file = open("AircraftType.csv", "r")
+        airplanes_file = open("csv_files/Aircraft.csv", "r")
+        planeType_file = open("csv_files/AircraftType.csv", "r")
 
         planes_reader = csv.DictReader(airplanes_file)
         type_reader = csv.DictReader(planeType_file)
@@ -29,7 +29,7 @@ class AirplaneIO():
     def load_airplane_types(self):
         types_list = []
 
-        planeType_file = open("AirplaneType.csv", "r")
+        planeType_file = open("csv_files/AirplaneType.csv", "r")
         type_reader = csv.DictReader(planeType_file)
 
         for row in type_reader:

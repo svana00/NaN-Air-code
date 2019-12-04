@@ -1,8 +1,8 @@
-from StaffMemberUI import StaffMemberUI
-from DestinationUI import DestinationUI
-from AirplaneUI import AirplaneUI
-from VoyageUI import VoyageUI
-from LLAPI import LLAPI
+from UI.StaffMemberUI import StaffMemberUI
+from UI.DestinationUI import DestinationUI
+from UI.AirplaneUI import AirplaneUI
+from UI.VoyageUI import VoyageUI
+from LL.LLAPI import LLAPI
 
 class UIManager():
 
