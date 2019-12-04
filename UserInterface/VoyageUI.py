@@ -87,9 +87,7 @@ class VoyageUI():
 
     def create_voyage(self):
     ######initializing the values for the new object and the list that will contain them ##
-        voyage_info_list = ["" for i in range(11)]
-        a_dict = {}
-
+        
         flight_number_str = ""
         departing_from_str = ""
         arriving_at_str = ""
@@ -102,16 +100,20 @@ class VoyageUI():
         fa1_str = ""
         fa2_str = ""
 
-        #prints out the menu
-        self.header("-", " ADD VOYAGE ")
-        print("1. FLIGHT NUMBER: {}\n2. DEPARTING FROM: {}\n 3. ARRIVING AT: {}\n4. DEPARTURE: {}\n5. ARRIVAL: {}\n6. AIRCRAFT: {}\n 7. CAPTAIN: {}\n8. COPILOT: {}\n9. FLIGHT SERVICE BADGE: {}\n10. FLIGHT ATTENDANT 1: {}\n11. FLIGHT ATTENDANT 2: {}".format(flight_number_str,departing_from_str,arriving_at_str,departure_str,arrival_at_str,aircraft_ID_str,captain_str,copilot_str,fsm_str,fa1_str,fa2_str))
+        a_dict_list = [flight_number_str,departing_from_str,arriving_at_str,departure_str,arrival_at_str,aircraft_ID_str,captain_str,copilot_str,fsm_str,fa1_str,fa2_str]
+        test_list = ["flight number","departing from","arriving at", "departure", "arrival", "aircraft", "captain", "copilot", "fsm", "fa1", "fa2"]
+        insert_list = ["\nplease enter new {}: ".format(test_list[i]) for i in range(len(test_list))]
 
-        choice = input("\n"+"Input what you want to add: ")
-        VALID_LIST  = [str(i+1) for i in range(len(voyage_info_list)) ]
-        
-        choice = input("\n"+"Input what you want to add: ")
+        voyages_dict = { (i+1) : a_dict_list[i] for i in range(0, len(a_dict_list) ) }
 
-            
+        i = input("enter number here: ")
+
+        while int(i) in voyages_dict.keys():
+            choice = input(insert_list[int(i)- 1])
+            voyages_dict[int(i)] = choice
+            print(voyages_dict)
+            i = input("enter number here: ")
+
     """
         choice = input("\n"+"Input what you want to add: ")
         
@@ -131,8 +133,6 @@ class VoyageUI():
             choice = input("\nInput what you want to add: ")
         
         return airplane_info_list
-
-
     """
 
     def copy_voyage(self):
