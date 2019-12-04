@@ -53,7 +53,7 @@ class StaffMemberLL():
 
         return pilots_info_list
 
-    def get_pilots_by_one_license(self,airplane_type_id):
+    def get_pilots_by_one_licence(self,airplane_type_id):
         ''' Returns a list of tuples with names and ssn of all pilots
             with a specific licence '''
         pilots_list = self.get_pilots()
@@ -79,7 +79,7 @@ class StaffMemberLL():
 
         return airplane_types_info_list
 
-    def get_pilots_by_all_licenses(self):
+    def get_pilots_by_all_licences(self):
         ''' Returns a dictionary where the keys are an airplane type
             and the value is a list of tuples for pilots that have the
             licence for that type '''
