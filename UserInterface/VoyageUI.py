@@ -106,13 +106,29 @@ class VoyageUI():
 
         voyages_dict = { (i+1) : a_dict_list[i] for i in range(0, len(a_dict_list) ) }
 
-        i = input("enter number here: ")
 
-        while int(i) in voyages_dict.keys():
-            choice = input(insert_list[int(i)- 1])
-            voyages_dict[int(i)] = choice
+
+        #### the header and main body
+        self.header("-", " ADD VOYAGE ")
+        for i in range(len(a_dict_list)):
+            print("{}. {}".format(i, test_list[i]))
+
+        input_number_str = input("\nInput what you want to add: ")
+        #######
+
+
+
+        while int(input_number_str) in voyages_dict.keys():
+            choice = input(insert_list[int(input_number_str)- 1])
+            voyages_dict[int(input_number_str)] = choice
             print(voyages_dict)
-            i = input("enter number here: ")
+            self.header("-", " ADD VOYAGE ")
+            for i in range(len(a_dict_list)):
+                print("{}. {}".format((i+1), test_list[i]))
+            print("To confirm changes enter confirm")
+
+            input_number_str = input("\nInput what you want to add: ")
+
 
     """
         choice = input("\n"+"Input what you want to add: ")
