@@ -58,10 +58,10 @@ class StaffMemberUI():
             counter +=1
             print("{}. {}".format(counter, name))
 
-    def show_pilots_by_one_license(self):
+    def show_pilots_by_one_licence(self):
         airplane_type_dict = {}
         counter = 0
-        self.header("-", " PICK ONE LICENSE ")
+        self.header("-", " PICK ONE LICENCE ")
         airplane_types_info_list = self.llAPI.get_all_airplane_types()
 
         for element in airplane_types_info_list:
@@ -74,7 +74,7 @@ class StaffMemberUI():
             if key == choose_between:
                 airplane_type_id = value
                 self.header("-", " {} ".format(airplane_type_id))
-                pilots_info_list = self.llAPI.get_pilots_by_one_license(airplane_type_id)
+                pilots_info_list = self.llAPI.get_pilots_by_one_licence(airplane_type_id)
                 
         counter_2 = 0
 
@@ -85,8 +85,8 @@ class StaffMemberUI():
             print("{}. {}".format(counter_2, name))
 
 
-    def show_pilots_by_all_licenses(self):
-        pass
+    def show_pilots_by_all_licences(self):
+        pilots_by_licences_dict = self.get_pilots_by_all_licences
 
     def create_staff_members(self):
         pass
@@ -130,7 +130,7 @@ class StaffMemberUI():
 
     def pilot_sub_menu(self):
         self.header("-", " PICK SUBGROUP ")
-        print("1. ALL PILOTS \n2. PILOTS BY LICENSE")
+        print("1. ALL PILOTS \n2. PILOTS BY licence")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
             return self.show_all_pilots()
@@ -151,13 +151,13 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def pilot_licence_sub_menu(self):
-        self.header("-", " PICK LICENSE SUBGROUP ")
-        print("1. OVERVIEW OF ALL LICENSES \n2. ONE PARTICULAR LICENSE")
+        self.header("-", " PICK LICENCE SUBGROUP ")
+        print("1. OVERVIEW OF ALL LICENCES \n2. ONE PARTICULAR LICENCE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
-            return self.show_pilots_by_all_licenses()
+            return self.show_pilots_by_all_licences()
         elif choose_between == "2":
-            return self.show_pilots_by_one_license()
+            return self.show_pilots_by_one_licence()
         else:
             print("Invalid choice")
 
