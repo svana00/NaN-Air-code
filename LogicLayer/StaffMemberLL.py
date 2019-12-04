@@ -19,6 +19,7 @@ class StaffMemberLL():
         return staff_info_list
 
     def get_all_flight_attendants(self):
+        ''' Returns a list of tuples with names and ssn of all flight attendants '''
         staff_list = self.ioAPI.load_all_staff_from_file()
         flight_attendants_info_list = []
 
@@ -42,7 +43,7 @@ class StaffMemberLL():
         return pilots_list
 
     def get_all_pilots(self):
-        ''' Returns a list of tuples for each pilot, the tuple contains their ssn and name '''
+        ''' Returns a list of tuples with names and ssn of all pilots '''
         pilots_list = self.get_pilots()
         pilots_info_list = []
 
@@ -53,19 +54,25 @@ class StaffMemberLL():
 
         return pilots_info_list
 
-    def get_pilots_by_one_license(self,planeTypeId):
+    def get_pilots_by_one_license(self,airplane_type_id):
         pilots_list = self.get_pilots()
-        airplane_types_list = self.ioAPI.load_airplane_types()
-        airplane_types_id = []
         pilots_info_list = []
+
+        for pilot in pilots_list:
+            if pilot.licence == airplane_type_id:
+                pilots_info_list.append(pilot)
+
+        return pilots_info_list
+
+    def get_all_airplane_types(self):
+        airplane_types_list = self.ioAPI.load_airplane_types()
+        airplane_types_info_list = []
 
         for airplane_type in airplane_types_list:
             airplane_type_id = airplane_type.get_plane_type_id()
-            airplane_types_id.append(airplane_type_id)
+            airplane_types_info_list.append(airplane_type_id)
 
-        for pilot in pilots_list:
-            if pilot.licence == planeTypeId:
-                pilots_info_list.append(pilot)
+        return airplane_types_info_list
 
     def get_pilots_by_all_licenses(self):
         #pilots_list = self.get_pilots()
