@@ -75,7 +75,14 @@ class StaffMemberUI():
                 airplane_type_id = value
                 self.header("-", " {} ".format(airplane_type_id))
                 pilots_info_list = self.llAPI.get_pilots_by_one_license(airplane_type_id)
-                print(pilots_info_list)
+                
+        counter_2 = 0
+
+        for list_thang in pilots_info_list:
+            ssn = list_thang[0]
+            name = list_thang[1]
+            counter_2 += 1
+            print("{}. {}".format(counter_2, name))
 
 
     def show_pilots_by_all_licenses(self):
