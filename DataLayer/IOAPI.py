@@ -1,7 +1,7 @@
-from IO.StaffMemberIO import StaffMemberIO
-from IO.DestinationIO import DestinationIO
-from IO.AirplaneIO import AirplaneIO
-from IO.VoyageIO import VoyageIO
+from DataLayer.StaffMemberIO import StaffMemberIO
+from DataLayer.DestinationIO import DestinationIO
+from DataLayer.AirplaneIO import AirplaneIO
+from DataLayer.VoyageIO import VoyageIO
 
 class IOAPI:
 
@@ -18,8 +18,7 @@ class IOAPI:
         return self.destIO.load_all_dest_from_file()
 
     def create_new_destination(self, dest_str):
-            self.dest_str = dest_str
-            return self.destIO.storeNewDestinationtoFile(self.dest_str)
+        return self.destIO.storeNewDestinationtoFile(dest_str)
     
     def load_all_airplanes(self):
         return self.airplaneIO.load_all_airplanes()
