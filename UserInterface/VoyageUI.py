@@ -22,6 +22,11 @@ class VoyageUI():
         elif var == "3":
             self.create_voyage()
 
+
+
+
+
+
     def overview_options(self):
         """ menu for overview choices """
         self.header("-", " GET OVERVIEW ")
@@ -50,7 +55,59 @@ class VoyageUI():
         pass
 
     def show_all_voyages(self):
-        pass
+        counter = 0
+        voyages_dict = {}
+        self.header("-", " ALL VOYAGES ")
+        voyage_list = self.llAPI.get_all_voyages()
+        for voyage in voyage_list:
+            voyage_name = voyage_list[0]
+            counter += 1
+            voyages_dict[str(counter)] = voyage
+            print("{}. {}".format(counter,voyage_name))
+
+        ###### option to choose a specific destination
+        input_choice = input("To choose a specific voyage enter it's number: ")
+        if input_choice in voyages_dict:
+            self.display_voyage(voyages_dict[input_choice])
+
+
+    def display_destination(self, a_voyage_info_list):
+        self.header("*", " {} ".format(a_voyage_info_list[0]))
+        counter = 0
+        for info in a_voyage_info_list:
+            counter += 1
+            print("{}. {}".format(counter, info))
+"""
+    def show_destinations(self):
+        counter = 0
+        a_dict = dict()
+        self.header("-", " ALL DESTINATIONS ")
+        dest_list = self.llAPI.get_all_dest()
+        for destination in dest_list:
+            city = destination[0]
+            country = destination[1]
+            counter += 1
+            a_dict[str(counter)] = destination
+            print("{}. {}: {}".format(counter,country, city))
+        
+        ########  option to choose a specific destination
+        input_choice = input("To choose a destination enter it's number: ")
+        if input_choice in a_dict:
+            self.display_destination(a_dict[input_choice])
+
+    def display_destination(self, a_dest_info_list):
+        self.header("*", " {} ".format(a_dest_info_list[0]))
+        counter = 0
+        for info in a_dest_info_list:
+            counter += 1
+            print("{}. {}".format(counter, info))
+"""
+
+
+
+
+
+
 
     def add_voyage_menu(self):
         self.header("*"," VOYAGES ")

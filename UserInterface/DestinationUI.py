@@ -28,17 +28,26 @@ class DestinationUI():
             city = destination[0]
             country = destination[1]
             counter += 1
-
+            a_dict[str(counter)] = destination
             print("{}. {}: {}".format(counter,country, city))
-        input_choice = input("To choose a destination enter it's number to go back enter back")
-        if input_choice == "back":
-            return
         
+        ########  option to choose a specific destination
+        input_choice = input("To choose a destination enter it's number: ")
+        if input_choice in a_dict:
+            self.display_destination(a_dict[input_choice])
+
+    def display_destination(self, a_dest_info_list):
+        self.header("*", " {} ".format(a_dest_info_list[0]))
+        counter = 0
+        for info in a_dest_info_list:
+            counter += 1
+            print("{}. {}".format(counter, info))
+            
+
 
     def create_destination(self):
         destination_info_list = ["","","","","","",""]
         self.header("-", " ADD DESTINATION ")
-        counter = 0
         country_str = ""
         city_str = ""
         airport_str = ""
@@ -89,10 +98,7 @@ class DestinationUI():
             print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
             print("To confirm changes enter confirm")
             choice = input("\nInput what you want to add: ")
-        
         return 
-
-
 
 
     def change_destination_info(self):

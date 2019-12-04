@@ -34,3 +34,6 @@ class LLAPI():
     
     def get_all_flight_attendants(self):
         return self.staffLL.get_all_flight_attendants()
+
+    def get_all_voyages(self):
+        pass
