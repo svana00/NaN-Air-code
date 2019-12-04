@@ -1,4 +1,4 @@
-from UI.UImanager import UIManager
+from UserInterface.UImanager import UIManager
 
 uim = UIManager()
 uim.start()
