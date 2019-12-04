@@ -62,6 +62,7 @@ class StaffMemberUI():
         counter = 0
         self.header("*", " PICK ONE LICENSE ")
         airplane_types_info_list = self.LLAPI.get_all_airplane_types()
+        print(airplane_types_info_list)
 
     def show_pilots_by_all_licenses(self):
         pass
