@@ -17,7 +17,7 @@ class StaffMemberUI():
         elif var == "2":
             return self.choose_in_staff()
         elif var == "3":
-            pass
+            return self.create_staff_members()
         else:
             print("Invalid choice")
 
@@ -98,7 +98,20 @@ class StaffMemberUI():
                 counter += 1
 
     def create_staff_members(self):
-        pass
+        staff_info_list = ["","","","","","","",""]
+        self.header("-", " ADD NEW STAFF MEMBER ")
+        ssn = ""
+        name = ""
+        role = ""
+        rank = ""
+        licence = ""
+        address = ""
+        phone_number = ""
+        email = ""
+        
+        print("\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENCE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL: {}".format(ssn, name, role, rank, licence, address, phone_number, email))
+        choice = input("\n"+"Input what you want to add: ")
+        VALID_LIST = ["1","2","3","4","5","6","7","8", "confirm"]
 
     def change_staff_member_info(self):
         pass
