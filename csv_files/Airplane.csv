@@ -1,10 +1,10 @@
 name,planeId,planeTypeId
-Hekla,TF-EPG,NAFokkerF100
-Katla,TF-UVR,NAFokkerF28
-Hallgerdur Langbrok,TF-XZR,NABAE146
-Gunnhildur,TF-XZM,NABAE146
-Salka Valka,TF-IZE,NAFokkerF100
-Bergthora Njalsdottir,TF-PGK,NABAE146
-Korka,TF-TYQ,NAFokkerF100
-Bukolla,TF-LNQ,NABAE146
-Gilitrutt,TF-XUP,NAFokkerF100
+Hekla,TF-HEK,NAFokkerF100
+Katla,TF-KAT,NAFokkerF28
+Hallgerdur Langbrok,TF-HLB,NABAE146
+Gunnhildur,TF-GHL,NABAE146
+Salka Valka,TF-SAL,NAFokkerF100
+Bergthora Njalsdottir,TF-BRG,NABAE146
+Korka,TF-KOR,NAFokkerF100
+Bukolla,TF-BKL,NABAE146
+Gilitrutt,TF-GLT,NAFokkerF100
