@@ -74,12 +74,14 @@ class DestinationUI():
                 emergency_number_str = input("Enter emergency phone number: ")
                 destination_info_list[6] = emergency_number_str
 
+            elif choice == "confirm":
+                break
             self.header("-", " ADD DESTINATION ")
             print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
             choice = input("\nInput what you want to add: ")
         
         
-        return destination_info_list
+        return self.llAPI.create_new_destination(destination_info_list)
 
 
 

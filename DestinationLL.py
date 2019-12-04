@@ -16,15 +16,9 @@ class DestinationLL():
         
         return dest_info_list
     
-    #def create_destination(self):
-    #    IOAPI_temp = IOAPI()
-    #    dest_list = IOAPI_temp.load_all_dest_from_file()
-    #    LLAPI_temp = LLAPI()
-    #    new_input_dest_list = LLAPI.create_destination()
-    #    joined_list = new_input_dest_list + dest_list
-    #    dest_str = ",".join(joined_list)
-    #    return IOAPI_temp.storeNewDestinationtoFile(dest_str)
-
+    def create_new_destination(self, dest_info_list):
+        dest_str = ",".join(dest_info_list)
+        return self.ioAPI.create_new_destination(dest_str)
 
     def change_destinationInfo(self):
         pass

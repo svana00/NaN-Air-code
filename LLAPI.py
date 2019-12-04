@@ -19,8 +19,9 @@ class LLAPI():
     def get_all_dest(self):
         return self.destLL.get_destinations()
 
-    def new_destination(self, dest_list):
-        pass
+    def create_new_destination(self, dest_list):
+        self.dest_list = dest_list
+        return self.destLL.create_new_destination(self.dest_list)
     
     def get_all_pilots(self):
         return self.staffLL.get_all_pilots()

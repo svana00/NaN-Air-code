@@ -22,9 +22,11 @@ class DestinationIO:
             
         return dest_list
 
-    def storeNewDestinationtoFile(self):
+    def storeNewDestinationtoFile(self,dest_str):
         ''' Stores new destination to the existing file '''
-        pass
+        dest_file = open("Destinations.csv", "a+")
+        dest_file.write(dest_str)
+        return dest_file
 
     def storeDestinationInfo(self):
         ''' Changes/adds info to an existing destination '''
