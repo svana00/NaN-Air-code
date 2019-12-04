@@ -87,10 +87,14 @@ class StaffMemberLL():
         pilots_by_licences_dict = {}
 
         for pilot in pilots_list:
-            if pilot.licence in pilots_by_licences_dict:
-                pilots_by_licences_dict[pilot.licence].append(pilot)
+            ssn = pilot.get_ssn()
+            name = pilot.get_name()
+            licence = pilot.get_licence()
+
+            if licence in pilots_by_licences_dict:
+                pilots_by_licences_dict[licence].append((ssn, name))
             else:
-                pilots_by_licences_dict[pilot.licence] = [pilot]
+                pilots_by_licences_dict[licence] = [(ssn, name)]
 
         return pilots_by_licences_dict
 
