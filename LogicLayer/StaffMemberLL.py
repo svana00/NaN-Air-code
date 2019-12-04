@@ -15,11 +15,10 @@ class StaffMemberLL():
             ssn = staff_member.get_ssn()
             name = staff_member.get_name()
             staff_info_list.append((ssn, name))
-        
+
         return staff_info_list
 
     def get_all_flight_attendants(self):
-        ''' Returns a list of tuples with names and ssn of all flight attendants '''
         staff_list = self.ioAPI.load_all_staff_from_file()
         flight_attendants_info_list = []
 
@@ -39,11 +38,11 @@ class StaffMemberLL():
         for staff_member in staff_list:
             if staff_member.role == "Pilot":
                 pilots_list.append(staff_member)
-            
+
         return pilots_list
 
     def get_all_pilots(self):
-        ''' Returns a list of tuples with names and ssn of all pilots '''
+        ''' Returns a list of tuples for each pilot, the tuple contains their ssn and name '''
         pilots_list = self.get_pilots()
         pilots_info_list = []
 
@@ -55,26 +54,20 @@ class StaffMemberLL():
         return pilots_info_list
 
     def get_pilots_by_one_license(self,airplane_type_id):
-        ''' Returns a list of tuples with names and ssn of all pilots 
+        ''' Returns a list of tuples with names and ssn of all pilots
             with a specific licence '''
         pilots_list = self.get_pilots()
-        pilots_info_list = []
-
-        for pilot in pilots_list:
-            if pilot.licence == airplane_type_id:
-                pilots_info_list.append(pilot)
-
-        return pilots_info_list
-
-    def get_all_airplane_types(self):
         airplane_types_list = self.ioAPI.load_airplane_types()
-        airplane_types_info_list = []
+        airplane_types_id = []
+        pilots_info_list = []
 
         for airplane_type in airplane_types_list:
             airplane_type_id = airplane_type.get_plane_type_id()
-            airplane_types_info_list.append(airplane_type_id)
+            airplane_types_id.append(airplane_type_id)
 
-        return airplane_types_info_list
+        for pilot in pilots_list:
+            if pilot.licence == planeTypeId:
+                pilots_info_list.append(pilot)
 
     def get_pilots_by_all_licenses(self):
         #pilots_list = self.get_pilots()

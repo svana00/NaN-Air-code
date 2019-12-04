@@ -58,11 +58,10 @@ class StaffMemberUI():
             counter +=1
             print("{}. {}".format(counter, name))
 
-    def show_pilots_by_license(self):
-        pass
-    
     def show_pilots_by_one_license(self):
-        pass
+        counter = 0
+        self.header("*", " PICK ONE LICENSE ")
+        airplane_types_info_list = self.LLAPI.get_all_airplane_types()
 
     def show_pilots_by_all_licenses(self):
         pass
@@ -134,9 +133,9 @@ class StaffMemberUI():
         print("1. OVERVIEW OF ALL LICENSES \n2. ONE PARTICULAR LICENSE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
-            pass
+            return self.show_pilots_by_all_licenses
         elif choose_between == "2":
-            pass
+            return self.show_pilots_by_one_license
         else:
             print("Invalid choice")
 
