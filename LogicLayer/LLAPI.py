@@ -40,3 +40,6 @@ class LLAPI():
 
     def create_staff_member(self, staff_member_info_list):
         return self.staffLL.create_staff_member(staff_member_info_list)
+
+    def get_all_voyages():
+        pass
