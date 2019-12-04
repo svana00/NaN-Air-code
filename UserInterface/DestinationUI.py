@@ -42,8 +42,6 @@ class DestinationUI():
         for info in a_dest_info_list:
             counter += 1
             print("{}. {}".format(counter, info))
-            
-
 
     def create_destination(self):
         destination_info_list = ["","","","","","",""]
