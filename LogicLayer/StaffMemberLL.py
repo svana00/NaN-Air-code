@@ -72,7 +72,6 @@ class StaffMemberLL():
         for airplane_type in airplane_types_list:
             airplane_type_id = airplane_type.get_plane_type_id()
             airplane_types_info_list.append(airplane_type_id)
-            airplane_types_info_list.append(airplane_type_id)
 
         return airplane_types_info_list
 
