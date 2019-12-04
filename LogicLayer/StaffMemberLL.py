@@ -53,15 +53,18 @@ class StaffMemberLL():
 
         return pilots_info_list
 
-    def get_pilots_by_one_license(self,airplane_type_id):
+    def get_pilots_by_one_licence(self,airplane_type_id):
         ''' Returns a list of tuples with names and ssn of all pilots
             with a specific licence '''
         pilots_list = self.get_pilots()
         pilots_info_list = []
 
         for pilot in pilots_list:
-            if pilot.licence == airplane_type_id:
-                pilots_info_list.append(pilot)
+            ssn = pilot.get_ssn()
+            name = pilot.get_name()
+            licence = pilot.licence
+            if licence == airplane_type_id:
+                pilots_info_list.append((ssn, name))
 
         return pilots_info_list
 
@@ -76,14 +79,24 @@ class StaffMemberLL():
 
         return airplane_types_info_list
 
-    def get_pilots_by_all_licenses(self):
+    def get_pilots_by_all_licences(self):
         ''' Returns a dictionary where the keys are an airplane type
             and the value is a list of tuples for pilots that have the
             licence for that type '''
         pilots_list = self.get_pilots()
-        pilots_info_list = []
+        pilots_by_licences_dict = {}
 
-        
+        for pilot in pilots_list:
+            ssn = pilot.get_ssn()
+            name = pilot.get_name()
+            licence = pilot.get_licence()
+
+            if licence in pilots_by_licences_dict:
+                pilots_by_licences_dict[licence].append((ssn, name))
+            else:
+                pilots_by_licences_dict[licence] = [(ssn, name)]
+
+        return pilots_by_licences_dict
 
     def get_all_working(self):
         pass
