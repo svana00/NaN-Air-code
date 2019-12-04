@@ -30,7 +30,7 @@ class StaffMemberUI():
 
     def show_all_pilots(self):
         counter = 0
-        self.header("*", " ALL PILOTS ")
+        self.header("-", " ALL PILOTS ")
         pilots_info_list = self.llAPI.get_all_pilots()
         for element in pilots_info_list:
             ssn = element[0]
@@ -40,7 +40,7 @@ class StaffMemberUI():
 
     def show_all_flight_attendants(self):
         counter = 0
-        self.header("*", " ALL FLIGHT ATTENDANTS ")
+        self.header("-", " ALL FLIGHT ATTENDANTS ")
         flight_attendants_info_list = self.llAPI.get_all_flight_attendants()
         for element in flight_attendants_info_list:
             ssn = element[0]
@@ -50,7 +50,7 @@ class StaffMemberUI():
 
     def show_all_staff(self):
         counter = 0
-        self.header("*", " ALL STAFF MEMBERS ")
+        self.header("-", " ALL STAFF MEMBERS ")
         staff_info_list = self.llAPI.get_all_staff()
         for element in staff_info_list:
             ssn = element[0]
@@ -61,7 +61,7 @@ class StaffMemberUI():
     def show_pilots_by_one_license(self):
         airplane_type_dict = {}
         counter = 0
-        self.header("*", " PICK ONE LICENSE ")
+        self.header("-", " PICK ONE LICENSE ")
         airplane_types_info_list = self.llAPI.get_all_airplane_types()
 
         for element in airplane_types_info_list:
@@ -73,7 +73,7 @@ class StaffMemberUI():
         for key, value in airplane_type_dict.items():
             if key == choose_between:
                 airplane_type_id = value
-                self.header("*", " {} ".format(airplane_type_id))
+                self.header("-", " {} ".format(airplane_type_id))
                 pilots_info_list = self.llAPI.get_pilots_by_one_license(airplane_type_id)
                 print(pilots_info_list)
 
@@ -97,7 +97,7 @@ class StaffMemberUI():
         pass
 
     def pick_staff_sub_menu(self):
-        self.header("*", " PICK STAFF ")
+        self.header("-", " PICK STAFF ")
         print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
         pick_staff = input("\nInput a command: ")
         if pick_staff == "1":
@@ -111,7 +111,7 @@ class StaffMemberUI():
 
 
     def choose_in_staff(self):
-        self.header("*", " PICK STAFF ")
+        self.header("-", " PICK STAFF ")
         print("1. STAFF \n2. WORK SCHEDULE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
@@ -122,7 +122,7 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def pilot_sub_menu(self):
-        self.header("*", " PICK SUBGROUP ")
+        self.header("-", " PICK SUBGROUP ")
         print("1. ALL PILOTS \n2. PILOTS BY LICENSE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
@@ -133,7 +133,7 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def work_schedule_sub_menu(self):
-        self.header("*", " WORK SCHEDULE ")
+        self.header("-", " WORK SCHEDULE ")
         print("1. SHOW ALL WORKING \n2. SHOW ALL NOT WORKING")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
@@ -144,7 +144,7 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def pilot_licence_sub_menu(self):
-        self.header("*", " PICK LICENSE SUBGROUP ")
+        self.header("-", " PICK LICENSE SUBGROUP ")
         print("1. OVERVIEW OF ALL LICENSES \n2. ONE PARTICULAR LICENSE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
