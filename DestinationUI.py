@@ -83,9 +83,6 @@ class DestinationUI():
         
         return self.llAPI.create_new_destination(destination_info_list)
 
-
-
-
     def change_destination_info(self):
         destination_name = ""
         self.header("-", destination_name)
