@@ -7,6 +7,7 @@ class StaffMemberIO:
         ''' Returns a list of instances of all staff members '''
         name_list = []
         staff_file = open("csv_files/Staff_Members.csv", "r")
+
         reader = csv.DictReader(staff_file)
         for row in reader:
             ssn = row["ssn"]
@@ -19,6 +20,7 @@ class StaffMemberIO:
             email = row["email"]
             staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number,email)
             name_list.append(staff_member)
+            
         return name_list
 
     def loadStaffMemberfromFile(self):
