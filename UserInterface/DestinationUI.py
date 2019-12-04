@@ -21,13 +21,19 @@ class DestinationUI():
 
     def show_destinations(self):
         counter = 0
+        a_dict = dict()
         self.header("-", " ALL DESTINATIONS ")
         dest_list = self.llAPI.get_all_dest()
         for destination in dest_list:
             city = destination[0]
             country = destination[1]
             counter += 1
+
             print("{}. {}: {}".format(counter,country, city))
+        input_choice = input("To choose a destination enter it's number to go back enter back")
+        if input_choice == "back":
+            return
+        
 
     def create_destination(self):
         destination_info_list = ["","","","","","",""]
@@ -46,8 +52,7 @@ class DestinationUI():
         VALID_LIST = ["1","2","3","4","5","6","7", "confirm"]
 
         while choice in VALID_LIST:
-            if counter < 0:
-                print("To confirm changes enter confirm")
+            
             if choice == "1":
                 country_str = input("\nEnter new country: ")
                 destination_info_list[0] = country_str
@@ -77,14 +82,15 @@ class DestinationUI():
                 destination_info_list[6] = emergency_number_str
 
             elif choice == "confirm":
-                break
-            counter += 1
+                print("Changes have been confirmed")
+                return self.llAPI.create_new_destination(destination_info_list)
+
             self.header("-", " ADD DESTINATION ")
             print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
+            print("To confirm changes enter confirm")
             choice = input("\nInput what you want to add: ")
         
-        
-        return self.llAPI.create_new_destination(destination_info_list)
+        return 
 
 
 
