@@ -1,3 +1,4 @@
+import csv
 from MODELS.voyage import Voyage
 from MODELS.airplane import Airplane
 
