@@ -86,7 +86,8 @@ class StaffMemberUI():
 
 
     def show_pilots_by_all_licences(self):
-        pilots_by_licences_dict = self.get_pilots_by_all_licences
+        pilots_by_licences_dict = self.llAPI.get_pilots_by_all_licences()
+        print(pilots_by_licences_dict)
 
     def create_staff_members(self):
         pass
@@ -130,7 +131,7 @@ class StaffMemberUI():
 
     def pilot_sub_menu(self):
         self.header("-", " PICK SUBGROUP ")
-        print("1. ALL PILOTS \n2. PILOTS BY licence")
+        print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
         choose_between = input("\nInput a command: ")
         if choose_between == "1":
             return self.show_all_pilots()
