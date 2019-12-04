@@ -27,9 +27,11 @@ class StaffMemberIO:
         ''' Returns an instance of a specific staff member '''
         pass
 
-    def storeNewStaffMember(self):
+    def store_new_staff_member(self,staff_member_str):
         ''' Stores new staff member to existing file '''
-        pass
+        staff_member_file = open("csv_files/StaffMember.csv", "a+")
+        staff_member_file.write(staff_member_str)
+        return staff_member_file
 
     def storeStaffMemberInfo(self):
         ''' Changes/adds info on a specific staff member '''

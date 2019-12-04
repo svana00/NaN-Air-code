@@ -26,3 +26,6 @@ class IOAPI:
     def load_airplane_types(self):
 
         return self.airplaneIO.load_airplane_types()
+
+    def store_new_staff_member(self,staff_member_str):
+        return self.staffIO.store_new_staff_member(self,staff_member_str)
