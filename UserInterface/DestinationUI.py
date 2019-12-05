@@ -25,23 +25,24 @@ class DestinationUI():
         self.header("-", " ALL DESTINATIONS ")
         dest_list = self.llAPI.get_all_dest()
         for destination in dest_list:
+            city = destination[0]
             country = destination[1]
-            city = destination[2]
             counter += 1
             a_dict[str(counter)] = destination
             print("{}. {}: {}".format(counter,country, city))
         
         ########  option to choose a specific destination
-        input_choice = input("To choose a destination enter it's number: ")
+        input_choice = input("\nTo choose a destination enter it's number: ")
         if input_choice in a_dict:
             self.display_destination(a_dict[input_choice])
 
     def display_destination(self, a_dest_info_list):
-        self.header("*", " {} ".format(a_dest_info_list[0]))
+        self.header("*", " {} ".format(a_dest_info_list[1]))
         counter = 0
-        for info in a_dest_info_list:
+        display_string = ["DESTINATION ID: ","CITY: ","COUNTRY: ", "AIRPORT: ", "FLIGHT TIME: ", "DISTANCE: ","NAME OF CONTACT PERSONEL: ", "EMERGENCY PHONE NUMBER: "]
+        for i in range(len(a_dest_info_list)):
             counter += 1
-            print("{}. {}".format(counter, info))
+            print("{}. {} {}".format(counter, display_string[i] ,a_dest_info_list[i]))
 
     def create_destination(self):
         country_str = ""
@@ -52,7 +53,7 @@ class DestinationUI():
         name_of_contact_str = ""
         emergency_number_str = ""
         destination_dict_values_list = [country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str]
-        destination_info_str = ["country", "city", "airport", "flight time", "distance", "name of contact", "emergency phone number"]
+        destination_info_str = ["COUNTRY", "CITY", "AIRPORT", "FLIGHT TIME", "DISTANCE", "NAME OF CONTACT", "EMERGENCY PHONE NUMBER"]
         input_text_list = [ "please enter new {}: ".format(destination_info_str[i]) for i in range(len(destination_info_str)) ]
         destination_dict = { str(i+1) : destination_dict_values_list[i] for i in range(0, len(destination_dict_values_list) ) }
 
