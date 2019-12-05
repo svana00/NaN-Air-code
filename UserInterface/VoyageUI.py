@@ -100,12 +100,11 @@ class VoyageUI():
         fa1_str = ""
         fa2_str = ""
 
-        a_dict_list = [flight_number_str,departing_from_str,arriving_at_str,departure_str,arrival_at_str,aircraft_ID_str,captain_str,copilot_str,fsm_str,fa1_str,fa2_str]
-        test_list = ["flight number","departing from","arriving at", "departure", "arrival", "aircraft", "captain", "copilot", "fsm", "fa1", "fa2"]
+        a_dict_list = [flight_number_str,departing_from_str,arriving_at_str,departure_str,arrival_at_str,aircraft_ID_str,captain_str,copilot_str,fsm_str,fa1_str,fa2_str] # lists all the functionality and things needed to add a voyage
+        test_list = ["flight number","departing from","arriving at", "departure", "arrival", "aircraft", "captain", "copilot", "fsm", "fa1", "fa2"] 
         insert_list = ["\nplease enter new {}: ".format(test_list[i]) for i in range(len(test_list))]
 
         voyages_dict = { str(i+1) : a_dict_list[i] for i in range(0, len(a_dict_list) ) }
-        print(voyages_dict)
 
         #### the header and main body
         self.header("-", " ADD VOYAGE ")
@@ -118,39 +117,17 @@ class VoyageUI():
         while input_number_str in voyages_dict.keys() :
             choice = input(insert_list[int(input_number_str) - 1]) # prints out the corresponding text to what the user wants to change and takes in the input
             voyages_dict[input_number_str] = choice # changes the value in the dict to the entered value
-            print(voyages_dict)
 
+            #### printing the header and modified main body ##
             self.header("-", " ADD VOYAGE ")
             for i in range(len(a_dict_list)):
                 print("{}. {}: {}".format((i+1), test_list[i], voyages_dict[str(i+1)]))
             print("To confirm changes enter confirm")
-            print(voyages_dict[str(1)])
+            #######3
 
             input_number_str = input("\nInput what you want to add: ")
         if input_number_str == "confirm":
-            print(voyages_dict.values())
-
-
-    """
-        choice = input("\n"+"Input what you want to add: ")
-        
-        VALID_LIST = ["1","2","confirm"] #all of the valid options within the menu
-
-        while choice in VALID_LIST:
-            if choice == "1":
-                name_ID_str = input("\nEnter new ID: ")
-                airplane_info_list[0] = name_ID_str
-                
-            elif choice == "2":
-                airplane_type_str = input("Enter new airport: ")
-                airplane_info_list[2] = airplane_type_str
-           
-            self.header("-", " ADD AIRPLANE ")
-            print("1. ID: {}\n2. TYPE: {}".format(name_ID_str, airplane_type_str))
-            choice = input("\nInput what you want to add: ")
-        
-        return airplane_info_list
-    """
+            return 0 ### need to find a way to return the list of values from the dict
 
     def copy_voyage(self):
 
