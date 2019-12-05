@@ -25,8 +25,8 @@ class DestinationUI():
         self.header("-", " ALL DESTINATIONS ")
         dest_list = self.llAPI.get_all_dest()
         for destination in dest_list:
-            city = destination[0]
             country = destination[1]
+            city = destination[2]
             counter += 1
             a_dict[str(counter)] = destination
             print("{}. {}: {}".format(counter,country, city))

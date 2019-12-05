@@ -12,7 +12,13 @@ class DestinationLL():
         for dest in dest_list:
             dest_country = dest.get_country()
             dest_city = dest.get_city()
-            dest_info_list.append((dest_country, dest_city))
+            dest_id = dest.get_id()
+            dest_airport = dest.get_airport()
+            dest_flight_time = dest.get_flight_time()
+            dest_distance = dest.get_distance()
+            dest_contact = dest.get_contact()
+            dest_emergency_number = dest.get_emergency_number()
+            dest_info_list.append((dest_id, dest_country, dest_city, dest_airport, dest_flight_time, dest_distance, dest_contact , dest_emergency_number))
         
         return dest_info_list
     

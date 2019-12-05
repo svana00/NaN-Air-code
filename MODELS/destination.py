@@ -6,8 +6,8 @@ class Destination():
         self.__airport = airport
         self.__flight_time = flight_time
         self.__distance = distance
-        self.contact = contact
-        self.emergency_number = emergency_number
+        self.__contact = contact
+        self.__emergency_number = emergency_number
 
     def get_id(self):
         return self.__id
@@ -17,3 +17,18 @@ class Destination():
 
     def get_city(self):
         return self.__city
+
+    def get_airport(self):
+        return self.__airport
+    
+    def get_flight_time(self):
+        return self.__flight_time
+
+    def get_distance(self):
+        return self.__distance
+    
+    def get_contact(self):
+        return self.__contact
+
+    def get_emergency_number(self):
+        return self.__emergency_number

@@ -12,10 +12,10 @@ class DestinationIO:
             dest_country = row["country"]
             dest_city = row["city"]
             dest_airport = row["airport"]
-            dest_flight_time = ["flight_time"]
-            dest_distance = ["distance"]
-            dest_contact = ["contact"]
-            dest_emergency_number = ["emergency_number"]
+            dest_flight_time = row["flight_time"]
+            dest_distance = row["distance"]
+            dest_contact = row["contact"]
+            dest_emergency_number = row["emergency_number"]
 
             destination = Destination(dest_id, dest_country, dest_city, dest_airport, dest_flight_time, dest_distance, dest_contact, dest_emergency_number)
             dest_list.append(destination)
