@@ -42,3 +42,10 @@ class AirplaneIO():
             types_list.append(airplaneType)
 
         return types_list
+
+    def store_new_airplane_into_file(self, airplane_str):
+        ''' Stores new airplane to the existing file '''
+        airplane_file = open("csv_files/Airplane.csv", "a")
+        airplane_file.write(airplane_str)
+        airplane_file.write("\n")
+        return airplane_file

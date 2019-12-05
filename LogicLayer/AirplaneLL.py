@@ -11,5 +11,6 @@ class AirplaneLL():
     def getAirplaneState(self):
         pass
 
-    def makeAirplane(self):
-        pass
+    def makeAirplane(self, new_airplane_list):
+        airplane_str = ",".join(new_airplane_list)
+        return self.ioAPI.create_new_airplane(airplane_str)

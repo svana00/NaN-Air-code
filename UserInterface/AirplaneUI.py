@@ -31,7 +31,7 @@ class AirplaneUI():
         ###### initializing the values for the new object and the list that will contain them ###3
         name_ID_str = ""
         airplane_type_str = ""
-        airplane_info_list = []
+        airplane_info_list = ["" for i in range(3)]
         
         #printing out the menu
         self.header("-", " ADD AIRPLANE ")
@@ -43,15 +43,19 @@ class AirplaneUI():
 
         while choice in VALID_LIST:
             if choice == "1":
-                name_ID_str = input("\nEnter new ID: ")
+                name_ID_str = input("\nEnter airplane name: ")
                 airplane_info_list[0] = name_ID_str
                 
             elif choice == "2":
-                airplane_type_str = input("Enter new airport: ")
+                airplane_type_str = input("Enter airplane type: ")
                 airplane_info_list[2] = airplane_type_str
+            
+            elif choice == "confirm":
+                break
            
             self.header("-", " ADD AIRPLANE ")
             print("1. ID: {}\n2. TYPE: {}".format(name_ID_str, airplane_type_str))
             choice = input("\nInput what you want to add: ")
-        
-        return airplane_info_list
+
+        return self.llAPI.create_new_airplane(airplane_info_list)
+            

@@ -43,3 +43,7 @@ class LLAPI():
 
     def get_all_voyages():
         pass
+
+    def create_new_airplane(self, airplane_str):
+        self.airplane_str = airplane_str
+        return self.airplaneLL.makeAirplane(airplane_str)
