@@ -77,9 +77,12 @@ class DestinationUI():
 
             choice = input("\nInput what you want to add: ")
         if choice == "confirm":
+        
             return 0 ### need to find a way to return the list of values from the dict
 
         """
+        #the worse but it works way to do this: 
+
         while choice in VALID_LIST:
             
             if choice == "1":
