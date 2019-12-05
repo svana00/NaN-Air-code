@@ -1,4 +1,4 @@
-dest_id,city,country,airport,flight_time,distance,contact,emergency_number, flight_number_id
+dest_id,city,country,airport,flight_time,distance,contact,emergency_number,flight_number_id
 LYR,Longyearbyean,Svalbard,Svalbard Airport,10,2018,Arnar Ingi G,8495039,01
 GOH,Nuuk,Greenland,Nuuk Airport,4,1402,Kuupik Kleist,5861483,02
 KUS,Kulusuk,Greenland,Kulusuk Airport,2,712,Rasmus Lerdorf,5960395,03
