@@ -84,30 +84,35 @@ class VoyageUI():
             print("Invalid choice\nPlease try again")
 
     def create_voyage(self):
-    ######initializing the values for the new object and the list that will contain them ##
-        
-        flight_number_str = ""
-        departing_from_str = ""
-        arriving_at_str = ""
-        departure_str = ""
-        arrival_at_str = ""
-        aircraft_ID_str = ""
+        ''' Returns a list of information about a new voyage '''
+
+        flight_number_1_str = ""
+        flight_number_2_str = ""
+        destination_str = ""
+        flight_1_date_str = ""
+        flight_1_time_str = ""
+        flight_2_date_str = ""
+        flight_2_time_str = ""
+        airplane_ID_str = ""
         captain_str = ""
         copilot_str = ""
-        fsm_str = ""
         fa1_str = ""
         fa2_str = ""
 
-        a_dict_list = [flight_number_str,departing_from_str,arriving_at_str,departure_str,arrival_at_str,aircraft_ID_str,captain_str,copilot_str,fsm_str,fa1_str,fa2_str] # lists all the functionality and things needed to add a voyage
-        test_list = ["flight number","departing from","arriving at", "departure", "arrival", "aircraft", "captain", "copilot", "fsm", "fa1", "fa2"] 
+        voyage_info_list = [flight_number_1_str, flight_number_2_str, destination_str, flight_1_date_str, flight_1_time_str, \
+                        flight_2_date_str, flight_2_time_str, airplane_ID_str, captain_str,copilot_str,fsm_str,fa1_str,fa2_str] 
+
+        test_list = ["flight number 1", "flight number 2", "departing from","arriving at", "departure", \
+                    "arrival", "aircraft", "captain", "copilot", "fa1", "fa2"] 
+
         insert_list = ["\nplease enter new {}: ".format(test_list[i]) for i in range(len(test_list))]
 
-        new_voyage_dict = { str(i+1) : a_dict_list[i] for i in range(0, len(a_dict_list) ) }
+        new_voyage_dict = {str(i+1) : voyage_info_list[i] for i in range(0, len(voyage_info_list) ) }
 
         #### the header and main body
         self.header("-", " ADD VOYAGE ")
-        for i in range(len(a_dict_list)):
-            print("{}. {}: {}".format((i+1), test_list[i],a_dict_list[i]))
+        for i in range(len(voyage_info_list)):
+            print("{}. {}: {}".format((i+1), test_list[i],voyage_info_list[i]))
         input_number_str = input("\nInput what you want to add: ")
         #######
 
@@ -117,7 +122,7 @@ class VoyageUI():
             new_voyage_dict[input_number_str] = choice # changes the value in the dict to the entered value
 
             self.header("-", " ADD VOYAGE ")
-            for i in range(len(a_dict_list)):
+            for i in range(len(voyage_info_list)):
                 print("{}. {}: {}".format((i+1), test_list[i], new_voyage_dict[str(i+1)]))
             print("To confirm changes enter confirm")
 
