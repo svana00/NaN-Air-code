@@ -39,7 +39,9 @@ class DestinationUI():
     def display_destination(self, a_dest_info_list):
         self.header("*", " {} ".format(a_dest_info_list[1]))
         counter = 0
-        display_string = ["DESTINATION ID: ","CITY: ","COUNTRY: ", "AIRPORT: ", "FLIGHT TIME: ", "DISTANCE: ","NAME OF CONTACT PERSONEL: ", "EMERGENCY PHONE NUMBER: "]
+        display_string = ["DESTINATION ID: ","CITY: ","COUNTRY: ", "AIRPORT: ", \
+        "FLIGHT TIME: ", "DISTANCE: ","NAME OF CONTACT PERSONEL: ", "EMERGENCY PHONE NUMBER: "]
+
         for i in range(len(a_dest_info_list)):
             counter += 1
             print("{}. {} {}".format(counter, display_string[i] ,a_dest_info_list[i]))
@@ -52,33 +54,41 @@ class DestinationUI():
         distance_str = ""
         name_of_contact_str = ""
         emergency_number_str = ""
-        destination_dict_values_list = [country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str]
-        destination_info_str = ["COUNTRY", "CITY", "AIRPORT", "FLIGHT TIME", "DISTANCE", "NAME OF CONTACT", "EMERGENCY PHONE NUMBER"]
-        input_text_list = [ "please enter new {}: ".format(destination_info_str[i]) for i in range(len(destination_info_str)) ]
-        destination_dict = { str(i+1) : destination_dict_values_list[i] for i in range(0, len(destination_dict_values_list) ) }
 
-        # prints out the header and main body
+        destination_info_list = [country_str, city_str, airport_str, flight_time_str, \
+                                distance_str, name_of_contact_str, emergency_number_str]
+
+        number_of_info_fields = len(destination_info_list)
+
+        destination_info_print_list = ["COUNTRY", "CITY", "AIRPORT", "FLIGHT TIME", "DISTANCE", \
+                                        "NAME OF CONTACT", "EMERGENCY PHONE NUMBER"]
+
+        input_text_list = ["please enter new {}: ".format(destination_info_print_list[index]) \
+                            for index in range(number_of_info_fields)]
+
+        destination_dict = {str(index + 1) : destination_info_list[index] for index in range(0, number_of_info_fields)}
+
+        # Prints out the header and main body
         self.header("-", " ADD DESTINATION ")
-        print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
-        choice = input("\n"+"Input what you want to add: ")
-
-        ###### a while loop that asks for and replaces values for a new destination
+        print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}" \
+        .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
+       
+        choice = input("\n"+"Input which information you would like to add: ")
 
         while choice in destination_dict.keys():
-            new_value = input(input_text_list[int(choice) - 1]) # prints out the corresponding text to what the user wants to change and takes in the input
+            new_value = input(input_text_list[int(choice) - 1].lower()) # prints out the corresponding text to what the user wants to change and takes in the input
             destination_dict[choice] = new_value # changes the value in the dict to the entered value
 
-            #### printing the header and modified main body ##
+            # Prints out the header and modified main body
             self.header("-", " ADD VOYAGE ")
-            for i in range(len(destination_dict_values_list)):
-                print("{}. {}: {}".format((i+1), destination_info_str[i], destination_dict[str(i+1)]))
+            for index in range(number_of_info_fields):
+                print("{}. {}: {}".format((index + 1), destination_info_print_list[index], destination_dict[str(index + 1)]))
             print("To confirm changes enter confirm")
-            #######
 
-            choice = input("\nInput what you want to add: ")
+            choice = input("\nInput which information you would like to add: ")
 
             if choice == "confirm":
-                destination_info_list = [val for val in destination_dict.values()]
+                destination_info_list = [info for info in destination_dict.values()]
                 return destination_info_list
 
 
