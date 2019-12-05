@@ -98,20 +98,40 @@ class StaffMemberUI():
                 counter += 1
 
     def create_staff_member(self):
-        staff_info_list = ["","","","","","","",""]
-        self.header("-", " ADD NEW STAFF MEMBER ")
         ssn = ""
         name = ""
         role = ""
         rank = ""
-        licence = ""
+        staff_licence_ID = ""
         address = ""
         phone_number = ""
         email = ""
-        
-        print("\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENCE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL: {}".format(ssn, name, role, rank, licence, address, phone_number, email))
+        staff_dict_list = [ssn, name, role, rank, staff_licence_ID, address, phone_number, email]
+        staff_info_string_list = ["SSN","NAME","ROLE","RANK","LICENCE","ADDRESS","PHONE NUMBER","EMAIL"] 
+        insert_list = ["\nplease enter new {}: ".format(staff_info_string_list[i]) for i in range(len(staff_info_string_list))]
+        new_staff_member_dict = { str(i+1) : staff_dict_list[i] for i in range(len(staff_dict_list) ) }
+
+        self.header("-", " ADD NEW STAFF MEMBER ")
+        for i in range(len(new_staff_member_dict)):
+            print("{}. {}: {}".format((i+1), staff_info_string_list[i], new_staff_member_dict[str(i+1)]))
         choice = input("\n"+"Input what you want to add: ")
-        VALID_LIST = ["1","2","3","4","5","6","7","8", "confirm"]
+
+        # a while loop that asks for and replaces values for a new voyage
+        while choice in new_staff_member_dict.keys():
+            new_value = input(insert_list[int(choice)-1])
+            new_staff_member_dict[choice] = new_value
+
+            #prints main body and input statement
+            for i in range(len(staff_dict_list)):
+                print("{}. {}: {}".format((i+1), staff_info_string_list[i], new_staff_member_dict[str(i+1)]))
+            print("To confirm changes enter confirm")
+            choice = input("\n"+"Input what you want to add: ")
+
+
+        if choice == "confirm":
+            new_staff_member_info_list = [val for val in new_staff_member_dict.values()]
+            return new_staff_member_info_list
+
 
     def change_staff_member_info(self):
         pass
@@ -182,11 +202,3 @@ class StaffMemberUI():
             return self.show_pilots_by_one_licence()
         else:
             print("Invalid choice")
-
-"""
-staff = StaffMemberUI()
-staff.show_all_staff()
-choose_in_staff = staff.choose_in_staff()
-staff.display_staff_menu(choose_in_staff)
-staff.pick_staff_sub_menu()
-"""
