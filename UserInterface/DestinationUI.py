@@ -77,11 +77,9 @@ class DestinationUI():
             choice = input("\nInput what you want to add: ")
 
             if choice == "confirm":
-                break
-        
-        destination_info_list = [val for val in destination_dict.values()]
+                destination_info_list = [val for val in destination_dict.values()]
+                return destination_info_list
 
-        return destination_info_list
 
     def change_destination_info(self):
         destination_name = ""
