@@ -100,10 +100,10 @@ class VoyageUI():
         fa2_str = ""
 
         voyage_info_list = [flight_number_1_str, flight_number_2_str, destination_str, flight_1_date_str, flight_1_time_str, \
-                        flight_2_date_str, flight_2_time_str, airplane_ID_str, captain_str,copilot_str,fsm_str,fa1_str,fa2_str] 
+                            flight_2_date_str, flight_2_time_str, airplane_ID_str, captain_str,copilot_str,fsm_str,fa1_str,fa2_str] 
 
-        test_list = ["flight number 1", "flight number 2", "departing from","arriving at", "departure", \
-                    "arrival", "aircraft", "captain", "copilot", "fa1", "fa2"] 
+        voyage_time_and_place_print = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", "flight 2 date (YYYY/MM/DD)" \
+                    "flight 1 time (XX:XX:XX)"] 
 
         insert_list = ["\nplease enter new {}: ".format(test_list[i]) for i in range(len(test_list))]
 
