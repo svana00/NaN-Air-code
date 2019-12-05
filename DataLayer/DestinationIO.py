@@ -25,7 +25,8 @@ class DestinationIO:
     def storeNewDestinationtoFile(self,dest_str):
         ''' Stores new destination to the existing file '''
         dest_file = open("csv_files/Destinations.csv", "a")
-        dest_file.write(dest_str + "\n" )
+        dest_file.write(dest_str)
+        dest_file.write("\n")
         return dest_file
 
     def storeDestinationInfo(self):
