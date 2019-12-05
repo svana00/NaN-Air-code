@@ -102,7 +102,7 @@ class VoyageUI():
         test_list = ["flight number","departing from","arriving at", "departure", "arrival", "aircraft", "captain", "copilot", "fsm", "fa1", "fa2"] 
         insert_list = ["\nplease enter new {}: ".format(test_list[i]) for i in range(len(test_list))]
 
-        voyages_dict = { str(i+1) : a_dict_list[i] for i in range(0, len(a_dict_list) ) }
+        new_voyage_dict = { str(i+1) : a_dict_list[i] for i in range(0, len(a_dict_list) ) }
 
         #### the header and main body
         self.header("-", " ADD VOYAGE ")
@@ -112,23 +112,24 @@ class VoyageUI():
         #######
 
         ###### a while loop that asks for and replaces values for a new voyage
-        while input_number_str in voyages_dict.keys() :
+        while input_number_str in new_voyage_dict.keys():
             choice = input(insert_list[int(input_number_str) - 1]) # prints out the corresponding text to what the user wants to change and takes in the input
-            voyages_dict[input_number_str] = choice # changes the value in the dict to the entered value
+            new_voyage_dict[input_number_str] = choice # changes the value in the dict to the entered value
 
-            #### printing the header and modified main body ##
             self.header("-", " ADD VOYAGE ")
             for i in range(len(a_dict_list)):
-                print("{}. {}: {}".format((i+1), test_list[i], voyages_dict[str(i+1)]))
+                print("{}. {}: {}".format((i+1), test_list[i], new_voyage_dict[str(i+1)]))
             print("To confirm changes enter confirm")
-            #######3
 
             input_number_str = input("\nInput what you want to add: ")
+            
         if input_number_str == "confirm":
-            return 0 ### need to find a way to return the list of values from the dict
+            new_voyage_info_list = [val for val in new_voyage_dict.values()]
+            return new_voyage_info_list
+
+            
 
     def copy_voyage(self):
-
         pass
 
     def assign_voyage(self):
