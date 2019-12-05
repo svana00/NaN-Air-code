@@ -44,7 +44,6 @@ class DestinationUI():
             print("{}. {}".format(counter, info))
 
     def create_destination(self):
-        destination_info_list = ["","","","","","",""]
         country_str = ""
         city_str = ""
         airport_str = ""
@@ -54,7 +53,7 @@ class DestinationUI():
         emergency_number_str = ""
         destination_dict_values_list = [country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str]
         destination_info_str = ["country", "city", "airport", "flight time", "distance", "name of contact", "emergency phone number"]
-        input_text_list = ["please enter new {}: ".format(destination_info_str[i] for i in range(len(destination_info_str)))]
+        input_text_list = [ "please enter new {}: ".format(destination_info_str[i]) for i in range(len(destination_info_str)) ]
         destination_dict = { str(i+1) : destination_dict_values_list[i] for i in range(0, len(destination_dict_values_list) ) }
 
         # prints out the header and main body
@@ -76,54 +75,13 @@ class DestinationUI():
             #######
 
             choice = input("\nInput what you want to add: ")
-        if choice == "confirm":
+
+            if choice == "confirm":
+                break
         
-            return 0 ### need to find a way to return the list of values from the dict
+        destination_info_list = [val for val in destination_dict.values()]
 
-        """
-        #the worse but it works way to do this: 
-
-        while choice in VALID_LIST:
-            
-            if choice == "1":
-                country_str = input("\nEnter new country: ")
-                destination_info_list[0] = country_str
-
-            elif choice == "2":
-                city_str = input("Enter new city: ")
-                destination_info_list[1] = city_str
-                
-            elif choice == "3":
-                airport_str = input("Enter new airport: ")
-                destination_info_list[2] = airport_str
-                
-            elif choice == "4":
-                flight_time_str = input("Enter new flight time: ")
-                destination_info_list[3] = flight_time_str
-
-            elif choice == "5":
-                distance_str = input("Enter distance: ")
-                destination_info_list[4] = distance_str
-                
-            elif choice == "6":
-                name_of_contact_str = input("Enter name of contact: ")
-                destination_info_list[5] = name_of_contact_str
-
-            elif choice == "7":
-                emergency_number_str = input("Enter emergency phone number: ")
-                destination_info_list[6] = emergency_number_str
-
-            elif choice == "confirm":
-                print("Changes have been confirmed")
-                return self.llAPI.create_new_destination(destination_info_list)
-
-            self.header("-", " ADD DESTINATION ")
-            print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
-            print("To confirm changes enter confirm")
-            choice = input("\nInput what you want to add: ")
-        return 
-        """
-
+        return destination_info_list
 
     def change_destination_info(self):
         destination_name = ""
