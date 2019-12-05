@@ -33,7 +33,6 @@ class VoyageUI():
         elif option == "2":
             self.choose_date()
 
-
     def choose_date(self):
         self.header("-"," CHOOSE DATE ")
         print("With the format dd/mm/yyyy")
@@ -65,7 +64,6 @@ class VoyageUI():
         input_choice = input("To choose a specific voyage enter it's number: ")
         if input_choice in voyages_dict:
             self.display_voyage(voyages_dict[input_choice])
-
 
     def display_voyage(self, a_voyage_info_list):
         self.header("*", " {} ".format(a_voyage_info_list[0]))
