@@ -22,7 +22,6 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def show_staff_member_info(self):
-
         pass
 
     def show_pilots(self):

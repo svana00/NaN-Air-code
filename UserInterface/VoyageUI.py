@@ -96,14 +96,15 @@ class VoyageUI():
         airplane_ID_str = ""
         captain_str = ""
         copilot_str = ""
+        fsm_str = ""
         fa1_str = ""
         fa2_str = ""
 
         voyage_info_list = [flight_number_1_str, flight_number_2_str, destination_str, flight_1_date_str, flight_1_time_str, \
-                            flight_2_date_str, flight_2_time_str, airplane_ID_str, captain_str,copilot_str,fsm_str,fa1_str,fa2_str] 
+                            flight_2_date_str, flight_2_time_str, airplane_ID_str, captain_str,copilot_str, fsm_str, fa1_str, fa2_str] 
 
-        voyage_time_and_place_print = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", "flight 2 date (YYYY/MM/DD)" \
-                    "flight 1 time (XX:XX:XX)"] 
+        voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", "flight 2 date (YYYY/MM/DD)" \
+                                 "flight 1 time (XX:XX:XX)", "airplane"] 
 
         insert_list = ["\nplease enter new {}: ".format(test_list[i]) for i in range(len(test_list))]
 
@@ -132,7 +133,6 @@ class VoyageUI():
             new_voyage_info_list = [val for val in new_voyage_dict.values()]
             return new_voyage_info_list
 
-            
 
     def copy_voyage(self):
         pass
