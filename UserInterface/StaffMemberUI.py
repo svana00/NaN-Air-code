@@ -9,6 +9,8 @@ class StaffMemberUI():
         print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
 
     def display_staff_menu(self):
+        """ prints the main staff menu and returns appropriate 
+            functions for the opotion that's picked"""
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
@@ -21,13 +23,72 @@ class StaffMemberUI():
         else:
             print("Invalid choice")
 
+    def choose_in_staff(self):
+        self.header("-", " PICK STAFF ")
+        print("1. STAFF \n2. WORK SCHEDULE")
+        choose_between = input("\nInput a command: ")
+        if choose_between == "1":
+            return self.pick_staff_sub_menu()
+        elif choose_between == "2":
+            return self.work_schedule_sub_menu()
+        else:
+            print("Invalid choice")
+
+    def pick_staff_sub_menu(self):
+        self.header("-", " PICK STAFF ")
+        print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
+        pick_staff = input("\nInput a command: ")
+        if pick_staff == "1":
+            self.pilot_sub_menu()
+        elif pick_staff == "2":
+            self.show_all_flight_attendants()
+        elif pick_staff == "3":
+            self.show_all_staff()
+        else:
+            print("Invalid choice")
+
+    def pilot_sub_menu(self):
+    self.header("-", " PICK SUBGROUP ")
+    print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
+    choose_between = input("\nInput a command: ")
+    if choose_between == "1":
+        return self.show_all_pilots()
+    elif choose_between == "2":
+        return self.pilot_licence_sub_menu()
+    else:
+        print("Invalid choice")
+
+    def pilot_licence_sub_menu(self):
+        self.header("-", " PICK LICENCE SUBGROUP ")
+        print("1. OVERVIEW OF ALL LICENCES \n2. ONE PARTICULAR LICENCE")
+        choose_between = input("\nInput a command: ")
+        if choose_between == "1":
+            return self.show_pilots_by_all_licences()
+        elif choose_between == "2":
+            return self.show_pilots_by_one_licence()
+        else:
+            print("Invalid choice")
+
+    def work_schedule_sub_menu(self):
+        self.header("-", " WORK SCHEDULE ")
+        print("1. SHOW ALL WORKING \n2. SHOW ALL NOT WORKING")
+        choose_between = input("\nInput a command: ")
+        if choose_between == "1":
+            pass
+        elif choose_between == "2":
+            pass
+        else:
+            print("Invalid choice")
+
     def show_staff_member_info(self):
+
         pass
 
     def show_pilots(self):
         pass
 
     def show_all_pilots(self):
+        """ prints the name of all the pilots from a list of their ssn and name """
         counter = 0
         self.header("-", " ALL PILOTS ")
         pilots_info_list = self.llAPI.get_all_pilots()
@@ -38,6 +99,8 @@ class StaffMemberUI():
             print("{}. {}".format(counter, name))
 
     def show_all_flight_attendants(self):
+        """ prints the name of all the flight attendants from a list of their 
+            ssn and names """
         counter = 0
         self.header("-", " ALL FLIGHT ATTENDANTS ")
         flight_attendants_info_list = self.llAPI.get_all_flight_attendants()
@@ -48,6 +111,7 @@ class StaffMemberUI():
             print("{}. {}".format(counter, name))
 
     def show_all_staff(self):
+        """ prints the names of all of the staff members from a lis of their ssn and name """
         counter = 0
         self.header("-", " ALL STAFF MEMBERS ")
         staff_info_list = self.llAPI.get_all_staff()
@@ -58,11 +122,13 @@ class StaffMemberUI():
             print("{}. {}".format(counter, name))
 
     def show_pilots_by_one_licence(self):
+        """ prints all of the pilots who have a license for one particular airplane """
         airplane_type_dict = {}
         counter = 0
         self.header("-", " PICK ONE LICENCE ")
         airplane_types_info_list = self.llAPI.get_all_airplane_types()
 
+        """ makes a dict for  """
         for element in airplane_types_info_list:
             counter += 1
             airplane_type_dict[str(counter)] = element
@@ -144,60 +210,4 @@ class StaffMemberUI():
     def show_staff_member_schedule(self):
         pass
 
-    def pick_staff_sub_menu(self):
-        self.header("-", " PICK STAFF ")
-        print("1. PILOTS \n2. FLIGHT ATTENDANTS \n3. ALL STAFF")
-        pick_staff = input("\nInput a command: ")
-        if pick_staff == "1":
-            self.pilot_sub_menu()
-        elif pick_staff == "2":
-            self.show_all_flight_attendants()
-        elif pick_staff == "3":
-            self.show_all_staff()
-        else:
-            print("Invalid choice")
 
-
-    def choose_in_staff(self):
-        self.header("-", " PICK STAFF ")
-        print("1. STAFF \n2. WORK SCHEDULE")
-        choose_between = input("\nInput a command: ")
-        if choose_between == "1":
-            return self.pick_staff_sub_menu()
-        elif choose_between == "2":
-            return self.work_schedule_sub_menu()
-        else:
-            print("Invalid choice")
-
-    def pilot_sub_menu(self):
-        self.header("-", " PICK SUBGROUP ")
-        print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
-        choose_between = input("\nInput a command: ")
-        if choose_between == "1":
-            return self.show_all_pilots()
-        elif choose_between == "2":
-            return self.pilot_licence_sub_menu()
-        else:
-            print("Invalid choice")
-
-    def work_schedule_sub_menu(self):
-        self.header("-", " WORK SCHEDULE ")
-        print("1. SHOW ALL WORKING \n2. SHOW ALL NOT WORKING")
-        choose_between = input("\nInput a command: ")
-        if choose_between == "1":
-            pass
-        elif choose_between == "2":
-            pass
-        else:
-            print("Invalid choice")
-
-    def pilot_licence_sub_menu(self):
-        self.header("-", " PICK LICENCE SUBGROUP ")
-        print("1. OVERVIEW OF ALL LICENCES \n2. ONE PARTICULAR LICENCE")
-        choose_between = input("\nInput a command: ")
-        if choose_between == "1":
-            return self.show_pilots_by_all_licences()
-        elif choose_between == "2":
-            return self.show_pilots_by_one_licence()
-        else:
-            print("Invalid choice")
