@@ -42,9 +42,7 @@ class Validate:
         pass
 
     def validate_plane_id(self, plane_id_str):
-        new_str = a_str.replace("TF", " ")
-        if len(a_str) == 5 and a_str.isalpha
-        #TF-XXX
+        """TF-XXX"""
         pass
 
     def validate_time(self):
