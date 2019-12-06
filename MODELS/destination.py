@@ -38,7 +38,7 @@ class Destination():
         return self.__flight_number_id
 
     def __string__(self):
-        my_str = "\nDestination id: {}".format(self.__id)
+        my_str = "Destination id: {}".format(self.__id)
         my_str += "\nCountry: {}".format(self.__country)
         my_str += "\nCity: {}".format(self.__city)
         my_str += "\nAirport: {}".format(self.__airport)
