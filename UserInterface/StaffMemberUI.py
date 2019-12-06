@@ -48,15 +48,15 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def pilot_sub_menu(self):
-    self.header("-", " PICK SUBGROUP ")
-    print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
-    choose_between = input("\nInput a command: ")
-    if choose_between == "1":
-        return self.show_all_pilots()
-    elif choose_between == "2":
-        return self.pilot_licence_sub_menu()
-    else:
-        print("Invalid choice")
+        self.header("-", " PICK SUBGROUP ")
+        print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
+        choose_between = input("\nInput a command: ")
+        if choose_between == "1":
+            return self.show_all_pilots()
+        elif choose_between == "2":
+            return self.pilot_licence_sub_menu()
+        else:
+            print("Invalid choice")
 
     def pilot_licence_sub_menu(self):
         self.header("-", " PICK LICENCE SUBGROUP ")

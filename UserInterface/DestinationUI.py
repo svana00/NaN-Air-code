@@ -1,3 +1,4 @@
+from Validation.validation import Validate
 
 class DestinationUI():
 
@@ -54,16 +55,18 @@ class DestinationUI():
         distance_str = ""
         name_of_contact_str = ""
         emergency_number_str = ""
-        VALID_LIST = ["1", "2", "3", "4", "5", "6", "7", "confirm"]
+
+        valid_input_list = ["1", "2", "3", "4", "5", "6", "7", "confirm"]
         destination_info_list = ["" for i in range(7)]
+
         self.header("-", " ADD DESTINATION ")
-        print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
-        choice = input("\nInput what you want to add: ")
+        print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}"\
+                .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
+        
+        choice = input("\nInput which information you would like to add: ")
 
-        #the worse but it works way to do this: 
+        while choice in valid_input_list:
 
-        while choice in VALID_LIST:
-                
             if choice == "1":
                 country_str = input("\nEnter new country: ")
                 destination_info_list[0] = country_str
@@ -71,7 +74,7 @@ class DestinationUI():
             elif choice == "2":
                 city_str = input("Enter new city: ")
                 destination_info_list[1] = city_str
-                    
+
             elif choice == "3":
                 airport_str = input("Enter new airport: ")
                 destination_info_list[2] = airport_str
@@ -83,7 +86,7 @@ class DestinationUI():
             elif choice == "5":
                 distance_str = input("Enter distance: ")
                 destination_info_list[4] = distance_str
-                    
+
             elif choice == "6":
                 name_of_contact_str = input("Enter name of contact: ")
                 destination_info_list[5] = name_of_contact_str
@@ -97,50 +100,10 @@ class DestinationUI():
                 return self.llAPI.create_new_destination(destination_info_list)
 
             self.header("-", " ADD DESTINATION ")
-            print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
+            print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}"\
+                    .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
             print("To confirm changes enter confirm")
             choice = input("\nInput what you want to add: ")
-
-        """
-        destination_info_list = [country_str, city_str, airport_str, flight_time_str, \
-                                distance_str, name_of_contact_str, emergency_number_str]
-
-        number_of_info_fields = len(destination_info_list)
-
-        destination_info_print_list = ["COUNTRY", "CITY", "AIRPORT", "FLIGHT TIME", "DISTANCE", \
-                                        "NAME OF CONTACT", "EMERGENCY PHONE NUMBER"]
-
-        input_text_list = ["please enter new {}: ".format(destination_info_print_list[index]) \
-                            for index in range(number_of_info_fields)]
-
-        destination_dict = {str(index + 1) : destination_info_list[index] for index in range(0, number_of_info_fields)}
-
-        # Prints out the header and main body
-        self.header("-", " ADD DESTINATION ")
-        print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}" \
-        .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
-       
-        choice = input("\n"+"Input which information you would like to add: ")
-
-        while choice in destination_dict.keys():
-            new_value = input(input_text_list[int(choice) - 1].lower()) # prints out the corresponding text to what the user wants to change and takes in the input
-            destination_dict[choice] = new_value # changes the value in the dict to the entered value
-
-            # Prints out the header and modified main body
-            self.header("-", " ADD VOYAGE ")
-            for index in range(number_of_info_fields):
-                print("{}. {}: {}".format((index + 1), destination_info_print_list[index], destination_dict[str(index + 1)]))
-            print("To confirm changes enter confirm")
-
-            choice = input("\nInput which information you would like to add: ")
-
-            if choice == "confirm":
-                destination_info_list = [info for info in destination_dict.values()]
-                return destination_info_list
-
-             if choice == "confirm":
-                 """
-
 
     def change_destination_info(self):
         destination_name = ""
