@@ -21,8 +21,48 @@ class AirplaneUI():
             print("invalid choice\nPlease try again")
             self.display_airplane_menu()
 
+    #def display_airplane_overview_menu(self):
+    #    self.header("*", " PICK AIRPLANE OVERVIEW SUBGROUP ")
+    #    print("1. GET OVERVIEW OF ALL AIRPLANE TYPES\n2. GET OVERVIEW OF AIRPLANE STATES\n")
+
+    """
+    def show_destinations(self):
+        counter = 0
+        a_dict = dict()
+        self.header("-", " ALL DESTINATIONS ")
+        dest_list = self.llAPI.get_all_dest()
+        for destination in dest_list:
+            city = destination[0]
+            country = destination[1]
+            counter += 1
+            a_dict[str(counter)] = destination
+            print("{}. {}: {}".format(counter,country, city))
+        
+        ########  option to choose a specific destination
+        input_choice = input("\nTo choose a destination enter it's number: ")
+        if input_choice in a_dict:
+            self.display_destination(a_dict[input_choice])
+
+    def display_destination(self, a_dest_info_list):
+        self.header("*", " {} ".format(a_dest_info_list[1]))
+        counter = 0
+        display_string = ["DESTINATION ID: ","CITY: ","COUNTRY: ", "AIRPORT: ", "FLIGHT TIME: ", "DISTANCE: ","NAME OF CONTACT PERSONEL: ", "EMERGENCY PHONE NUMBER: "]
+        for i in range(len(a_dest_info_list)):
+            counter += 1
+            print("{}. {} {}".format(counter, display_string[i] ,a_dest_info_list[i]))
+    """
+
     def show_all_airplane_types(self):
-        pass
+        counter = 0
+        a_dict = dict()
+        self.header("-", " ALL AIRPLANE TYPES ")
+        airplane_type_list = self.llAPI.get_all_airplane_types()
+        for airplane_type in airplane_type_list:
+            city = airplane_type_list[0]
+            country = airplane_type_list[1]
+            counter += 1
+            a_dict[str(counter)] = airplane_type
+            print("{}. {}: {}".format(counter,country, city))
 
     def show_airplane_state(self):
         pass
