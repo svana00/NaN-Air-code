@@ -33,6 +33,7 @@ class Validate:
         #check if the first is all letters
         #check if the second is nanair.is
         #
+        pass
 
     def validate_address(self, address_str):
         pass
