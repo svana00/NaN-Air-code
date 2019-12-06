@@ -7,3 +7,6 @@ class AirplaneType():
 
     def get_plane_type_id(self):
         return self.__plane_type_id
+
+    def get_capacity(self):
+        return self.capacity

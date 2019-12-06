@@ -68,10 +68,10 @@ class AirplaneUI():
         pass
 
     def create_airplane(self):
-        ###### initializing the values for the new object and the list that will contain them ###3
+        ''' Returns a new instance of an airplane to the "creat_new_airplane_ function '''
         name_ID_str = ""
         airplane_type_str = ""
-        airplane_info_list = ["" for i in range(3)]
+        airplane_info_list = ["" for index in range(3)]
         
         #printing out the menu
         self.header("-", " ADD AIRPLANE ")
