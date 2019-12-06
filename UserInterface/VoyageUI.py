@@ -59,11 +59,13 @@ class VoyageUI():
             counter += 1
             voyages_dict[str(counter)] = voyage
             print("{}. {}".format(counter,voyage_name))
+        print(voyages_dict)
 
         ###### option to choose a specific destination
         input_choice = input("To choose a specific voyage enter it's number: ")
         if input_choice in voyages_dict:
-            self.display_voyage(voyages_dict[input_choice])
+            self.get_voyage(voyages_dict[input_choice])
+            #self.display_voyage(voyages_dict[input_choice])
 
     def display_voyage(self, a_voyage_info_list):
         self.header("*", " {} ".format(a_voyage_info_list[0]))
@@ -103,11 +105,56 @@ class VoyageUI():
         voyage_info_list = [flight_number_1_str, flight_number_2_str, destination_str, flight_1_date_str, flight_1_time_str, \
                             flight_2_date_str, flight_2_time_str, airplane_ID_str, captain_str,copilot_str, fsm_str, fa1_str, fa2_str] 
 
-        voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", "flight 2 date (YYYY/MM/DD)" \
-                                 "flight 1 time (XX:XX:XX)", "airplane"] 
+        voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", \
+                                "flight 2 date (YYYY/MM/DD)","flight 1 time (XX:XX:XX)", "airplane"] 
 
-        insert_list = ["\nplease enter new {}: ".format(test_list[i]) for i in range(len(test_list))]
+        insert_list = ["\nplease enter new {}: ".format(voyage_info_print_list[i]) for i in range(len(voyage_info_print_list))]
+        VALID_LIST = ["" for i in range(13)]
+        VALID_LIST.append("confirm")
+        choice = input("To choose what you want to add, enter a number: ")
 
+        while choice in VALID_LIST:
+                
+            if choice == "1":
+                country_str = input("\nEnter new country: ")
+                destination_info_list[0] = country_str
+
+            elif choice == "2":
+                city_str = input("Enter new city: ")
+                destination_info_list[1] = city_str
+                    
+            elif choice == "3":
+                airport_str = input("Enter new airport: ")
+                destination_info_list[2] = airport_str
+                    
+            elif choice == "4":
+                flight_time_str = input("Enter new flight time: ")
+                destination_info_list[3] = flight_time_str
+
+            elif choice == "5":
+                distance_str = input("Enter distance: ")
+                destination_info_list[4] = distance_str
+                    
+            elif choice == "6":
+                name_of_contact_str = input("Enter name of contact: ")
+                destination_info_list[5] = name_of_contact_str
+
+            elif choice == "7":
+                emergency_number_str = input("Enter emergency phone number: ")
+                destination_info_list[6] = emergency_number_str
+
+            elif choice == "confirm":
+                print("Changes have been confirmed")
+                return self.llAPI.create_new_destination(destination_info_list)
+
+            self.header("-", " ADD DESTINATION ")
+            print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
+            print("To confirm changes enter confirm")
+            choice = input("\nInput what you want to add: ")
+
+
+
+        """
         new_voyage_dict = {str(i+1) : voyage_info_list[i] for i in range(0, len(voyage_info_list) ) }
 
         #### the header and main body
@@ -132,7 +179,7 @@ class VoyageUI():
         if input_number_str == "confirm":
             new_voyage_info_list = [val for val in new_voyage_dict.values()]
             return new_voyage_info_list
-
+        """
 
     def copy_voyage(self):
         pass

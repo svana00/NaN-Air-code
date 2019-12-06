@@ -30,6 +30,7 @@ class DestinationUI():
             counter += 1
             a_dict[str(counter)] = destination
             print("{}. {}: {}".format(counter,country, city))
+        print(a_dict)
         
         ########  option to choose a specific destination
         input_choice = input("\nTo choose a destination enter it's number: ")
@@ -102,6 +103,7 @@ class DestinationUI():
             choice = input("\nInput what you want to add: ")
 
         """
+
         destination_info_list = [country_str, city_str, airport_str, flight_time_str, \
                                 distance_str, name_of_contact_str, emergency_number_str]
 

@@ -48,15 +48,16 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def pilot_sub_menu(self):
-    self.header("-", " PICK SUBGROUP ")
-    print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
-    choose_between = input("\nInput a command: ")
-    if choose_between == "1":
-        return self.show_all_pilots()
-    elif choose_between == "2":
-        return self.pilot_licence_sub_menu()
-    else:
-        print("Invalid choice")
+        self.header("-", " PICK SUBGROUP ")
+        print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
+        choose_between = input("\nInput a command: ")
+        
+        if choose_between == "1":
+            return self.show_all_pilots()
+        elif choose_between == "2":
+            return self.pilot_licence_sub_menu()
+        else:
+            print("Invalid choice")
 
     def pilot_licence_sub_menu(self):
         self.header("-", " PICK LICENCE SUBGROUP ")
@@ -163,40 +164,68 @@ class StaffMemberUI():
                 counter += 1
 
     def create_staff_member(self):
-        ssn = ""
-        name = ""
-        role = ""
-        rank = ""
-        staff_licence_ID = ""
-        address = ""
-        phone_number = ""
-        email = ""
-        staff_dict_list = [ssn, name, role, rank, staff_licence_ID, address, phone_number, email]
-        staff_info_string_list = ["SSN","NAME","ROLE","RANK","LICENCE","ADDRESS","PHONE NUMBER","EMAIL"] 
-        insert_list = ["\nplease enter new {}: ".format(staff_info_string_list[i]) for i in range(len(staff_info_string_list))]
-        new_staff_member_dict = { str(i+1) : staff_dict_list[i] for i in range(len(staff_dict_list) ) }
+        ssn_str = ""
+        name_str = ""
+        role_str = ""
+        rank_str = ""
+        staff_licence_str = ""
+        address_str = ""
+        phone_number_str = ""
+        email_str = ""
+    
+        staff_member_info_list = [ "" for i in range(15)]
 
-        self.header("-", " ADD NEW STAFF MEMBER ")
-        for i in range(len(new_staff_member_dict)):
-            print("{}. {}: {}".format((i+1), staff_info_string_list[i], new_staff_member_dict[str(i+1)]))
-        choice = input("\n"+"Input what you want to add: ")
+        ### displays the header and main body
+        self.header("-", " ADD STAFF MEMBER ")
+        print("\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}".format(ssn_str, name_str, role_str, rank_str, staff_licence_str, address_str, phone_number_str, email_str))
+        choice = input("\nInput what you want to add: ")
 
-        # a while loop that asks for and replaces values for a new voyage
-        while choice in new_staff_member_dict.keys():
-            new_value = input(insert_list[int(choice)-1])
-            new_staff_member_dict[choice] = new_value
+        VALID_INPUT_LIST = [str(i+1) for i in range(15)]
+        VALID_INPUT_LIST.append("confirm")
+        
+        #the worse but it works way to do this: 
 
-            #prints main body and input statement
-            for i in range(len(staff_dict_list)):
-                print("{}. {}: {}".format((i+1), staff_info_string_list[i], new_staff_member_dict[str(i+1)]))
-            print("To confirm changes enter confirm")
-            choice = input("\n"+"Input what you want to add: ")
+        while choice in VALID_INPUT_LIST:
+                
+            if choice == "1":
+                ssn_str = input("\nEnter new ssn: ")
+                staff_member_info_list[0] = ssn_str
 
+            elif choice == "2":
+                name_str = input("Enter new name: ")
+                staff_member_info_list[1] = name_str
+                    
+            elif choice == "3":
+                role_str = input("Enter new role: ")
+                staff_member_info_list[2] = role_str
+                    
+            elif choice == "4":
+                rank_str = input("Enter new rank: ")
+                staff_member_info_list[3] = rank_str
 
-        if choice == "confirm":
-            new_staff_member_info_list = [val for val in new_staff_member_dict.values()]
-            return new_staff_member_info_list
+            elif choice == "5":
+                staff_licence_str = input("Enter new staff license: ")
+                staff_member_info_list[4] = staff_licence_str
+                    
+            elif choice == "6":
+                address_str = input("Enter new address: ")
+                staff_member_info_list[5] = address_str
 
+            elif choice == "7":
+                phone_number_str = input("Enter new phone number: ")
+                staff_member_info_list[6] = phone_number_str
+
+            elif choice == "8":
+                email_str = input("Enter emergency phone number: ")
+                staff_member_info_list[7] = email_str
+
+            elif choice == "confirm":
+                print("Changes have been confirmed")
+                return self.llAPI.create_new_destination(staff_member_info_list)
+
+            self.header("-", " ADD STAFF MEMBER ")
+        print("\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}".format(ssn_str, name_str, role_str, rank_str, staff_licence_str, address_str, phone_number_str, email_str))
+        choice = input("\nInput what you want to add: ")
 
     def change_staff_member_info(self):
         pass
