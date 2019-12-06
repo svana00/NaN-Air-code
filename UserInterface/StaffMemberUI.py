@@ -9,8 +9,8 @@ class StaffMemberUI():
         print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
 
     def display_staff_menu(self):
-        """ prints the main staff menu and returns appropriate 
-            functions for the opotion that's picked"""
+        """ prints the main staff menu and calls the appropriate 
+            functions for the option that's picked """
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
