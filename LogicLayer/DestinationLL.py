@@ -26,4 +26,5 @@ class DestinationLL():
         return self.ioAPI.create_new_destination(dest_str)
 
     def change_destination(self):
-        pass
+        
+        return.ioAPI.change_destination()
