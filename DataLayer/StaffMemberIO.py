@@ -1,5 +1,7 @@
 import csv
-from MODELS.staff_member import StaffMember
+import datetime
+#from MODELS.staff_member import StaffMember
+#from MODELS.voyage import Voyage
 
 class StaffMemberIO:
     
@@ -8,7 +10,7 @@ class StaffMemberIO:
         name_list = []
         staff_file = open("csv_files/Staff_Members.csv", "r")
         reader = csv.DictReader(staff_file)
-        
+
         for row in reader:
             ssn = row["ssn"]
             name = row["name"]
@@ -18,10 +20,10 @@ class StaffMemberIO:
             address = row["address"]
             phone_number = row["phone_number"]
             email = row["email"]
-            staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number,email)
-            name_list.append(staff_member)
+            #staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number,email)
+            #name_list.append(staff_member)
 
-        return name_list
+        #return name_list
 
     def loadStaffMemberfromFile(self):
         ''' Returns an instance of a specific staff member '''
@@ -36,3 +38,25 @@ class StaffMemberIO:
     def storeStaffMemberInfo(self):
         ''' Changes/adds info on a specific staff member '''
         pass
+
+    def load_work_schedule(self):
+        ''' Gets work schedule for a specific staff member. Returns a dict with staff ID as the key 
+            and a list of voyages the staff member has for the week as the value '''
+
+        staff_member_file = open("csv_files/Staff_Members.csv", "r")
+        voyages_file = open("csv_files/PastFlights.csv", "r")
+
+        staff_reader = csv.DictReader(staff_member_file)
+        voyages_reader = csv.DictReader(voyages_file)
+
+        start_date = "2019-11-04T05:32:00"
+        end_date = datetime.datetime.fromisoformat("2019-11-04T05:32:00") + datetime.timedelta(days = 6)
+        counter = 0
+        for row in voyages_reader:
+            counter += 1
+            if counter % 2 == 0:
+                print(row)
+
+
+beggi = StaffMemberIO()
+beggi.load_work_schedule()
