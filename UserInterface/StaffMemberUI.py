@@ -122,7 +122,14 @@ class StaffMemberUI():
             ssn = element[0]
             name = element[1]
             counter +=1
-            print("{}. {}".format(counter, name))
+            print("{}. {}".format(str.counter, name))
+
+        choose_between = input("\nInput a command: ")
+        for counter in choose_between:
+            if counter in choose_between:
+                return self.show_staff_member_info()
+        else:
+            print("Invalid choice")
 
     def show_pilots_by_one_licence(self):
         """ prints all of the pilots who have a license for one particular airplane """
