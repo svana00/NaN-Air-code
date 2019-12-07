@@ -18,7 +18,7 @@ class DestinationLL():
         return dest_info_list
 
     def get_destination_info(self, dest_id):
-        dest_list = self.ioAPI.load_all_dest_from_file(dest_id)
+        dest_list = self.ioAPI.load_all_dest_from_file()
         
         for dest in dest_list:
             if dest.get_id() == dest_id:
