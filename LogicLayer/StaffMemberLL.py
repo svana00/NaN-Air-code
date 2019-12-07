@@ -3,7 +3,7 @@ class StaffMemberLL():
     def __init__(self, ioAPI):
         self.ioAPI = ioAPI
 
-    def get_staff_member_info(self):
+    def get_staff_member_info(self, ssn):
         pass
 
     def get_all_staff(self):
@@ -15,23 +15,6 @@ class StaffMemberLL():
             ssn = staff_member.get_ssn()
             name = staff_member.get_name()
             staff_info_list.append((ssn, name))
-
-        return staff_info_list
-
-    def get_all_staff_info(self):
-        staff_list = self.ioAPI.load_all_staff_from_file()
-        staff_info_list = []
-
-        for staff_member in staff_list:
-            ssn = staff_member.get_ssn()
-            name = staff_member.get_name()
-            role = staff_member.get_role()
-            rank = staff_member.get_rank()
-            licence = staff_member.get_licence()
-            address = staff_member.get_address()
-            phone_num = staff_member.get_phone_number()
-            email = staff_member.get_email()
-            staff_info_list.append((ssn, name, role, rank, licence, address, phone_num, email))
 
         return staff_info_list
 
