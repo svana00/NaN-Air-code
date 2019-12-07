@@ -28,7 +28,7 @@ class LLAPI():
     def get_all_staff(self):
         return self.staffLL.get_all_staff()
 
-    def get_all_dest(self):
+    def get_destinations(self):
         return self.destLL.get_destinations()
 
     def get_destination_info(self, dest_id):
