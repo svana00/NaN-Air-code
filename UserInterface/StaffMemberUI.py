@@ -1,4 +1,3 @@
-
 class StaffMemberUI():
 
     def __init__(self, llAPI):
@@ -12,7 +11,7 @@ class StaffMemberUI():
         """ prints the main staff menu and calls the appropriate
             functions for the option that's picked """
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
-        print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
+        print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW \n4. test101")
         var = input("\nInput a command: ")
         if var == "1":
             return self.choose_in_staff()
@@ -20,6 +19,8 @@ class StaffMemberUI():
             return self.choose_in_staff()
         elif var == "3":
             return self.create_staff_member()
+        elif var == "4":
+            return self.show_staff_member_info()
         else:
             print("Invalid choice")
 
@@ -81,8 +82,10 @@ class StaffMemberUI():
             print("Invalid choice")
 
     def show_staff_member_info(self):
-
-        pass
+        counter = 0
+        self.header("-", " BLEE ")
+        staff_member_info_list = self.llAPI.get_all_staff_info()
+        print(staff_member_info_list)
 
     def show_pilots(self):
         pass
@@ -237,3 +240,5 @@ class StaffMemberUI():
 
     def show_staff_member_schedule(self):
         pass
+
+

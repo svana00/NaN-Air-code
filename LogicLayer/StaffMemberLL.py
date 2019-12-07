@@ -31,7 +31,7 @@ class StaffMemberLL():
             address = staff_member.get_address()
             phone_num = staff_member.get_phone_number()
             email = staff_member.get_email()
-            staff_info_list.append(ssn, name, role, rank, licence, address, phone_num, email)
+            staff_info_list.append((ssn, name, role, rank, licence, address, phone_num, email))
 
         return staff_info_list
 

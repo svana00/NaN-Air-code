@@ -4,6 +4,8 @@ from LogicLayer.AirplaneLL import AirplaneLL
 from LogicLayer.DestinationLL import DestinationLL
 from DataLayer.IOAPI import IOAPI
 
+
+
 class LLAPI():
 
     def __init__(self):
@@ -49,4 +51,5 @@ class LLAPI():
         return self.airplaneLL.makeAirplane(airplane_str)
 
     def get_all_staff_info(self):
+        print("JHKGJ")
         return self.staffLL.get_all_staff_info()

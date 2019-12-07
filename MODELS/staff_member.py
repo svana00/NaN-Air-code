@@ -18,8 +18,21 @@ class StaffMember():
     def get_role(self):
         return self.role
     
+    def get_rank(self):
+        return self.rank
+
     def get_licence(self):
         return self.licence
+
+    def get_address(self):
+        return self.address
+
+    def get_phone_number(self):
+        return self.phone_number
+
+    def get_email(self):
+        return self.email
+
 
     def __str__(self):
         my_str = "Ssn: {}".format(self.__ssn)
