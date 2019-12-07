@@ -122,7 +122,7 @@ class StaffMemberUI():
             name = element[1]
             counter +=1
             print("{}. {}".format(counter, name))
-        choose_between = input("Do you want to see a specific person? (y/n): ")
+        choose_between = input("\nDo you want to see a specific person? (y/n): ")
         if choose_between == "y":
             return self.show_staff_member_info(staff_info_list)
 
