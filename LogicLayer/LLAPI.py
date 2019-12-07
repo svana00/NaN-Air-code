@@ -34,6 +34,9 @@ class LLAPI():
     def get_destination_info(self, dest_id):
         return self.destLL.get_destination_info(dest_id)
 
+    def get_mutable_destination_info_list(self):
+        return self.destLL.get_mutable_destination_info_list()
+
     def create_new_destination(self, dest_list):
         self.dest_list = dest_list
         return self.destLL.create_new_destination(self.dest_list)
