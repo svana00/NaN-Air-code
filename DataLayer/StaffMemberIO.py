@@ -1,7 +1,7 @@
 import csv
 import datetime
-#from MODELS.staff_member import StaffMember
-#from MODELS.voyage import Voyage
+from MODELS.staff_member import StaffMember
+from MODELS.voyage import Voyage
 
 class StaffMemberIO:
     
@@ -20,10 +20,10 @@ class StaffMemberIO:
             address = row["address"]
             phone_number = row["phone_number"]
             email = row["email"]
-            #staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number,email)
-            #name_list.append(staff_member)
+            staff_member = StaffMember(ssn,name,role,rank,licence,address,phone_number,email)
+            name_list.append(staff_member)
 
-        #return name_list
+        return name_list
 
     def loadStaffMemberfromFile(self):
         ''' Returns an instance of a specific staff member '''
@@ -52,10 +52,10 @@ class StaffMemberIO:
         start_date = "2019-11-04T05:32:00"
         end_date = datetime.datetime.fromisoformat("2019-11-04T05:32:00") + datetime.timedelta(days = 6)
         counter = 0
-        for row in voyages_reader:
-            counter += 1
-            if counter % 2 == 0:
-                print(row)
+        for index, row in enumerate(voyages_reader):
+            if index % 2 != 0:
+                pass
+
 
 
 beggi = StaffMemberIO()
