@@ -122,12 +122,13 @@ class StaffMemberUI():
             ssn = element[0]
             name = element[1]
             counter +=1
-            print("{}. {}".format(str.counter, name))
+            print("{}. {}".format(counter, name))
 
         choose_between = input("\nInput a command: ")
         for counter in choose_between:
             if counter in choose_between:
                 return self.show_staff_member_info()
+            #virkar ekki alveg eins og ég vil en we got bigger thangs to worry about
         else:
             print("Invalid choice")
 
