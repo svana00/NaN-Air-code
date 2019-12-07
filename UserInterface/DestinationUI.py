@@ -1,4 +1,4 @@
-from Validation.validation import Validate
+#from Validation.validation import Validate
 
 class DestinationUI():
 
@@ -22,21 +22,27 @@ class DestinationUI():
 
     def show_destinations(self):
         counter = 0
-        a_dict = dict()
         self.header("-", " ALL DESTINATIONS ")
+        dest_list = self.llAPI.get_destinations()
 
-        dest_list = self.llAPI.get_all_dest()
         for destination in dest_list:
-            city = destination[0]
+            dest_id = destination[0]
             country = destination[1]
+            city = destination[2]
             counter += 1
-            a_dict[str(counter)] = destination
-            print("{}. {}: {}".format(counter,country, city))
+            print("{}. {}: {}".format(counter, country, city))
 
+        choose_between = input("Do you want to see a specific destination? (y/n): ")
+        if choose_between == "y":
+            return self.show_destination_info(dest_list)
+
+    def show_destination_info(self, dest_list):
         #Option to choose a specific destination
-        input_choice = input("\nTo choose a destination enter it's number: ")
-        if input_choice in a_dict:
-            self.display_destination(a_dict[input_choice])
+        choose_number = int(input("Enter number of destination: "))
+        dest_id = dest_list[(choose_number) -1][0]
+        destination = self.llAPI.get_destination_info(dest_id)
+        self.header("-", " {} ".format(destination.get_city()))
+        print(destination)
 
     def display_destination(self, a_dest_info_list):
         self.header("*", " {} ".format(a_dest_info_list[1]))
