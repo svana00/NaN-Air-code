@@ -32,7 +32,7 @@ class DestinationUI():
             counter += 1
             print("{}. {}: {}".format(counter, country, city))
 
-        choose_between = input("Do you want to see a specific destination? (y/n): ")
+        choose_between = input("\nDo you want to see a specific destination? (y/n): ")
         if choose_between == "y":
             return self.show_destination_info(dest_list)
 
