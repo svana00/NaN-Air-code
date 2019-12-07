@@ -16,9 +16,8 @@ class DestinationLL():
             dest_airport = dest.get_airport()
             dest_flight_time = dest.get_flight_time()
             dest_distance = dest.get_distance()
-            dest_contact = dest.get_contact()
-            dest_emergency_number = dest.get_emergency_number()
-            dest_info_list.append((dest_id, dest_country, dest_city, dest_airport, dest_flight_time, dest_distance, dest_contact , dest_emergency_number))
+            mutable_info_list = [dest.get_contact(), dest.get_country()]
+            dest_info_list.append((dest_id, dest_country, dest_city, dest_airport, dest_flight_time, dest_distance, mutable_info_list))
         
         return dest_info_list
     
@@ -26,5 +25,5 @@ class DestinationLL():
         dest_str = ",".join(dest_info_list)
         return self.ioAPI.create_new_destination(dest_str)
 
-    def change_destinationInfo(self):
+    def change_destination(self):
         pass
