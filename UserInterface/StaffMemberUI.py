@@ -86,9 +86,6 @@ class StaffMemberUI():
         self.header("-", " {} ".format(staff_member.get_name()))
         print(staff_member)
 
-    def show_pilots(self):
-        pass
-
     def show_all_pilots(self):
         """ prints the name of all the pilots from a list of their ssn and name """
         counter = 0
