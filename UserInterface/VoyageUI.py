@@ -147,39 +147,38 @@ class VoyageUI():
                 flight_2_time_str = input("Enter emergency phone number: ")
                 voyage_info_list[6] = flight_2_time_str
             
-            elif choice == "7":
+            elif choice == "8":
                 airplane_ID_str = input("Enter emergency phone number: ")
-                voyage_info_list[6] = airplane_ID_str
+                voyage_info_list[7] = airplane_ID_str
             
-            elif choice == "7":
+            elif choice == "9":
                 captain_str = input("Enter emergency phone number: ")
-                voyage_info_list[6] = captain_str
+                voyage_info_list[8] = captain_str
             
-            elif choice == "7":
+            elif choice == "10":
                 copilot_str = input("Enter emergency phone number: ")
-                voyage_info_list[6] = copilot_str
+                voyage_info_list[9] = copilot_str
 
-            elif choice == "7":
+            elif choice == "11":
                 fsm_str = input("Enter emergency phone number: ")
-                voyage_info_list[6] = fsm_str
+                voyage_info_list[10] = fsm_str
 
-            elif choice == "7":
+            elif choice == "12":
                 fa1_str = input("Enter emergency phone number: ")
-                voyage_info_list[6] = fa1_str
+                voyage_info_list[11] = fa1_str
 
-            elif choice == "7":
+            elif choice == "13":
                 fa2_str = input("Enter emergency phone number: ")
-                voyage_info_list[6] = fa2_str
+                voyage_info_list[12] = fa2_str
 
             elif choice == "confirm":
                 print("Changes have been confirmed")
                 return 0 #self.llAPI.create_new_voyage(voyage_info_list)
 
             self.header("-", " ADD DESTINATION ")
-            print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}".format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
+            print("\n1. FLIGHT NUMBER 1: {}\n2. FLIGHT NUMBER 2: {}\n3. DESTINATION: {}\n4. FLIGHT 1 DATE: {}\n5. FLIGHT 1 TIME: {}\n6. FLIGHT 2 DATE: {}\n7. FLIGHT 2 TIME: {}".format(flight_number_1_str, flight_number_2_str, destination_str, flight_1_date_str, flight_1_time_str, flight_2_date_str, flight_2_time_str, airplane_ID_str, captain_str,copilot_str, fsm_str, fa1_str, fa2_str))
             print("To confirm changes enter confirm")
             choice = input("\nInput what you want to add: ")
-
 
 
         """
