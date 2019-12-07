@@ -46,6 +46,6 @@ class Destination():
         my_str += "\nDistance: {} km from Keflavíkurflugvöllur".format(self.__distance)
         my_str += "\nEmergency contact: {}".format(self.__contact)
         my_str += "\nPhone number of emergency contact: {}".format(self.__emergency_number)
-        my_str += "\nPlane: {}".format(self.__flight_number_id)
+        my_str += "\nFlight number id: {}".format(self.__flight_number_id)
 
         return my_str
