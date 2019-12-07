@@ -81,11 +81,12 @@ class StaffMemberUI():
         else:
             print("Invalid choice")
 
-    def show_staff_member_info(self):
-        counter = 0
-        self.header("-", " BLEE ")
-        staff_member_info_list = self.llAPI.get_all_staff_info()
-        print(staff_member_info_list)
+    def show_staff_member_info(self, staff_info_list):
+        choose_number = int(input("Enter number of staff member: "))
+        ssn = staff_info_list[(choose_number) -1][0]
+        staff_member = self.llAPI.get_staff_member_info(ssn)
+        self.header("-", " {} ".format(staff_member.get_name()))
+        print(staff_member)
 
     def show_pilots(self):
         pass
@@ -123,14 +124,9 @@ class StaffMemberUI():
             name = element[1]
             counter +=1
             print("{}. {}".format(counter, name))
-
-        choose_between = input("\nInput a command: ")
-        for counter in choose_between:
-            if counter in choose_between:
-                return self.show_staff_member_info()
-            #virkar ekki alveg eins og ég vil en we got bigger thangs to worry about
-        else:
-            print("Invalid choice")
+        choose_between = input("Do you want to see a specific person? (y/n): ")
+        if choose_between == y:
+            return self.show_staff_member_info(staff_info_list)
 
     def show_pilots_by_one_licence(self):
         """ prints all of the pilots who have a license for one particular airplane """
