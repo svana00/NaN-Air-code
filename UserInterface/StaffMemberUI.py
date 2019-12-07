@@ -11,7 +11,7 @@ class StaffMemberUI():
         """ prints the main staff menu and calls the appropriate
             functions for the option that's picked """
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
-        print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW \n4. test101")
+        print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
         if var == "1":
             return self.choose_in_staff()
@@ -19,8 +19,6 @@ class StaffMemberUI():
             return self.choose_in_staff()
         elif var == "3":
             return self.create_staff_member()
-        elif var == "4":
-            return self.show_staff_member_info()
         else:
             print("Invalid choice")
 
@@ -125,7 +123,7 @@ class StaffMemberUI():
             counter +=1
             print("{}. {}".format(counter, name))
         choose_between = input("Do you want to see a specific person? (y/n): ")
-        if choose_between == y:
+        if choose_between == "y":
             return self.show_staff_member_info(staff_info_list)
 
     def show_pilots_by_one_licence(self):
