@@ -9,7 +9,7 @@ class StaffMemberUI():
         print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
 
     def display_staff_menu(self):
-        """ prints the main staff menu and calls the appropriate 
+        """ prints the main staff menu and calls the appropriate
             functions for the option that's picked """
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
@@ -51,7 +51,6 @@ class StaffMemberUI():
         self.header("-", " PICK SUBGROUP ")
         print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
         choose_between = input("\nInput a command: ")
-        
         if choose_between == "1":
             return self.show_all_pilots()
         elif choose_between == "2":
@@ -100,7 +99,7 @@ class StaffMemberUI():
             print("{}. {}".format(counter, name))
 
     def show_all_flight_attendants(self):
-        """ prints the name of all the flight attendants from a list of their 
+        """ prints the name of all the flight attendants from a list of their
             ssn and names """
         counter = 0
         self.header("-", " ALL FLIGHT ATTENDANTS ")
@@ -141,7 +140,7 @@ class StaffMemberUI():
                 airplane_type_id = value
                 self.header("-", " {} ".format(airplane_type_id))
                 pilots_info_list = self.llAPI.get_pilots_by_one_licence(airplane_type_id)
-                
+
         counter_2 = 0
 
         for list_thang in pilots_info_list:
@@ -172,7 +171,7 @@ class StaffMemberUI():
         address_str = ""
         phone_number_str = ""
         email_str = ""
-    
+
         staff_member_info_list = [ "" for i in range(15)]
 
         ### displays the header and main body
@@ -182,11 +181,11 @@ class StaffMemberUI():
 
         VALID_INPUT_LIST = [str(i+1) for i in range(15)]
         VALID_INPUT_LIST.append("confirm")
-        
-        #the worse but it works way to do this: 
+
+        #the worse but it works way to do this:
 
         while choice in VALID_INPUT_LIST:
-                
+
             if choice == "1":
                 ssn_str = input("\nEnter new ssn: ")
                 staff_member_info_list[0] = ssn_str
@@ -194,11 +193,11 @@ class StaffMemberUI():
             elif choice == "2":
                 name_str = input("Enter new name: ")
                 staff_member_info_list[1] = name_str
-                    
+
             elif choice == "3":
                 role_str = input("Enter new role: ")
                 staff_member_info_list[2] = role_str
-                    
+
             elif choice == "4":
                 rank_str = input("Enter new rank: ")
                 staff_member_info_list[3] = rank_str
@@ -206,7 +205,7 @@ class StaffMemberUI():
             elif choice == "5":
                 staff_licence_str = input("Enter new staff license: ")
                 staff_member_info_list[4] = staff_licence_str
-                    
+
             elif choice == "6":
                 address_str = input("Enter new address: ")
                 staff_member_info_list[5] = address_str
@@ -238,5 +237,3 @@ class StaffMemberUI():
 
     def show_staff_member_schedule(self):
         pass
-
-
