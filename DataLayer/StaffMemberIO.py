@@ -51,10 +51,14 @@ class StaffMemberIO:
 
         start_date = "2019-11-04T05:32:00"
         end_date = datetime.datetime.fromisoformat("2019-11-04T05:32:00") + datetime.timedelta(days = 6)
-        for i in len(voyages_reader):
+        for i in voyages_reader:
             if i % 2 != 0:
                 #flight_num_out = voyages_reader[i]["flightNumber"]
                 pass
+
+    def see_working_for_week(self):
+        pass
+        
                 
 
 
