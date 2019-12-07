@@ -24,6 +24,7 @@ class DestinationUI():
         counter = 0
         a_dict = dict()
         self.header("-", " ALL DESTINATIONS ")
+
         dest_list = self.llAPI.get_all_dest()
         for destination in dest_list:
             city = destination[0]
@@ -31,7 +32,6 @@ class DestinationUI():
             counter += 1
             a_dict[str(counter)] = destination
             print("{}. {}: {}".format(counter,country, city))
-        print(a_dict)
 
         ########  option to choose a specific destination
         input_choice = input("\nTo choose a destination enter it's number: ")
@@ -97,7 +97,7 @@ class DestinationUI():
                 destination_info_list[6] = emergency_number_str
 
             elif choice == "confirm":
-                print("Changes have been confirmed")
+                print("Destination has been added")
                 return self.llAPI.create_new_destination(destination_info_list)
 
             self.header("-", " ADD DESTINATION ")
@@ -107,5 +107,39 @@ class DestinationUI():
             choice = input("\nInput what you want to add: ")
 
     def change_destination_info(self):
+        dest_list = self.llAPI.get_all_dest()
+        
+        contact_str = ""
+        
+        emergency_number_str = ""
+        
+        valid_input_list  = ["1", "2", "confirm"]
+        
+        print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(contact_str, emergency_number_str))
+        
+        choice =int(input("\nInput which information you would like to change: ")) #here hoices the user what dest he wants to change
+
+        while choice in valid_input_list:
+            print(dest_list)
+
+            if choice == 1:
+                contact_str = input("\n Enter new contact: ")
+                dest_list[choice][0] = contact_str
+
+
+            elif second_choice == 2:
+                emergency_number_str = input("Enter new emergency number: ")
+                dest_list[choice][1] = emergency_number_str
+
+            elif choice == "confirm":
+                print("Changes have been confirmed")
+                return llAPI.change_destination(destination_info_list)
+
+            self.header("-", " CHANGE DESTINATION ")
+            print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(contact_str, emergency_number_str))
+            print("To confirm changes enter confirm")
+            choice = input("\nInput what you want to add: ")
+
         destination_name = ""
         self.header("-", destination_name)
+
