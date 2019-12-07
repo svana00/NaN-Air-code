@@ -4,7 +4,11 @@ class StaffMemberLL():
         self.ioAPI = ioAPI
 
     def get_staff_member_info(self, ssn):
-        pass
+        ''' Returns an instance of a staff member with given ssn '''
+        staff_members_list = self.ioAPI.load_all_staff_from_file()
+        for staff_member in staff_members_list:
+            if staff_member.get_ssn() == ssn:
+                return staff_member
 
     def get_all_staff(self):
         ''' Returns a list of tuples with names and ssn of all staff members '''

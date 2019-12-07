@@ -4,8 +4,6 @@ from LogicLayer.AirplaneLL import AirplaneLL
 from LogicLayer.DestinationLL import DestinationLL
 from DataLayer.IOAPI import IOAPI
 
-
-
 class LLAPI():
 
     def __init__(self):
@@ -14,6 +12,9 @@ class LLAPI():
         self.staffLL = StaffMemberLL(self.ioAPI)
         self.voyageLL = VoyageLL(self.ioAPI)
         self.airplaneLL = AirplaneLL(self.ioAPI)
+
+    def get_staff_member_info(self, ssn):
+        return self.staffLL.get_staff_member_info(ssn)
 
     def get_all_airplane_types(self):
         return self.staffLL.get_all_airplane_types()
@@ -43,13 +44,9 @@ class LLAPI():
     def create_staff_member(self, staff_member_info_list):
         return self.staffLL.create_staff_member(staff_member_info_list)
 
-    def get_all_voyages():
+    def get_all_voyages(self):
         pass
 
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str
         return self.airplaneLL.makeAirplane(airplane_str)
-
-    def get_all_staff_info(self):
-        print("JHKGJ")
-        return self.staffLL.get_all_staff_info()
