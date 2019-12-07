@@ -33,7 +33,7 @@ class DestinationUI():
             a_dict[str(counter)] = destination
             print("{}. {}: {}".format(counter,country, city))
 
-        ########  option to choose a specific destination
+        #Option to choose a specific destination
         input_choice = input("\nTo choose a destination enter it's number: ")
         if input_choice in a_dict:
             self.display_destination(a_dict[input_choice])
