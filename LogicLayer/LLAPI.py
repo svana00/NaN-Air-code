@@ -57,3 +57,9 @@ class LLAPI():
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str
         return self.airplaneLL.makeAirplane(airplane_str)
+
+    def get_all_working(self, departure_out_date):
+        return self.staffLL.get_all_working(departure_out_date)
+
+    def get_all_not_working(self, departure_out_date):
+        return self.staffLL.get_all_working(departure_out_date)
