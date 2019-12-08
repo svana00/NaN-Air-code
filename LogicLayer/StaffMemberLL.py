@@ -1,3 +1,4 @@
+import datetime
 
 class StaffMemberLL():
     def __init__(self, ioAPI):
@@ -23,6 +24,7 @@ class StaffMemberLL():
         return staff_info_list
 
     def get_all_flight_attendants(self):
+        ''' Returns a list of tuples with names and ssn of all flight attendants '''
         staff_list = self.ioAPI.load_all_staff_from_file()
         flight_attendants_info_list = []
 
@@ -102,11 +104,48 @@ class StaffMemberLL():
 
         return pilots_by_licences_dict
 
-    def get_all_working(self):
-        pass
+    def get_all_working(self, departure_out_date_str):
+        ''' Returns a dictionary where they key is a destination and the value is a list of staff members
+            that are working a specific day '''
+        voyages_list = self.ioAPI.load_all_voyages()
+        target_date = datetime.datetime.fromisoformat(departure_out_date_str).date()
+        working_staff_dict = {}
 
-    def get_all_not_working(self):
-        pass
+        for voyage in voyages_list:
+            voyage_departure_out = voyage.get_departure_out()
+            temp_date = datetime.datetime.fromisoformat(voyage_departure_out).date()
+
+            if target_date == temp_date:
+                cabin_crew = voyage.get_cabin_crew()
+                destination = voyage.get_dest_id()
+                if cabin_crew != []:
+                    working_staff_dict[destination] = cabin_crew
+        
+        return working_staff_dict
+
+    def get_all_not_working(self, departure_out_date_str):
+        ''' Returns a list of staff members that are not working a specific day '''
+        voyages_list = self.ioAPI.load_all_voyages()
+        staff_member_list = self.ioAPI.load_all_staff_from_file()
+        target_date = datetime.datetime.fromisoformat(departure_out_date_str).date()
+        staff_working_list = []
+        staff_not_working_list = []
+
+        for voyage in voyages_list:
+            voyage_departure_out = voyage.get_departure_out()
+            temp_date = datetime.datetime.fromisoformat(voyage_departure_out).date()
+
+            if target_date == temp_date:
+                cabin_crew = voyage.get_cabin_crew()
+                if cabin_crew != []:
+                    for staff_member in cabin_crew:
+                        staff_working_list.append(staff_member)
+
+        for staff_member in staff_member_list:
+            if staff_member not in staff_working_list:
+                staff_not_working_list.append(staff_member)
+
+        return staff_not_working_list
 
     def get_staff_member_schedule(self):
         pass

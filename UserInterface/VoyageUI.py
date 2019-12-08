@@ -22,7 +22,6 @@ class VoyageUI():
         elif var == "3":
             self.create_voyage()
 
-
     def overview_options(self):
         """ menu for overview choices """
         self.header("-", " GET OVERVIEW ")
@@ -105,13 +104,13 @@ class VoyageUI():
         ''' Returns a list of information about a new voyage '''
 
         destination_str = ""
-        deoarture_out_date_str = ""
+        departure_out_date_str = ""
         departure_out_time_str = ""
         airplane_ID_str = ""
 
         voyage_info_list = ["" for i in range(13)]
         
-        #voyage_info_list = [destination_str, deoarture_out_date_str, departure_out_time_str, airplane_ID_str] 
+        #voyage_info_list = [destination_str, departure_out_date_str, departure_out_time_str, airplane_ID_str] 
 
         voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", \
                                 "flight 2 date (YYYY/MM/DD)","flight 1 time (XX:XX:XX)", "airplane"] 
