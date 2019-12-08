@@ -1,12 +1,12 @@
 class Voyage():
-    def __init__(self, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, dest_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
+    def __init__(self, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
         self.__flight_number_out = flight_num_out
         self.__flight_number_back = flight_num_back
         self.__departure_out = departure_out
         self.__arrival_out = arrival_out
         self.__departure_home = departure_home
         self.__arrival_home = arrival_home
-        self.__destination_id = dest_id
+        self.__destination_id = destination_id
         self.__plane_id = plane_id
         self.__captain = captain
         self.__copilot = copilot
