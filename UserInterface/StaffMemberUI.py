@@ -238,7 +238,7 @@ class StaffMemberUI():
         pass
 
     def show_all_working(self):
-        departure_out_date = input("Enter date: (YYYY-MM-DD)")
+        departure_out_date = input("Enter date (YYYY-MM-DD): ")
 
         self.header("-", " ALL STAFF MEMBERS WORKING ON {}".format(departure_out_date))
 
@@ -251,7 +251,7 @@ class StaffMemberUI():
             print(name)
         
     def show_all_not_working(self):
-        departure_out_date = input("Enter date: (YYYY-MM-DD)")
+        departure_out_date = input("Enter date (YYYY-MM-DD): ")
 
         self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {}".format(departure_out_date))
 

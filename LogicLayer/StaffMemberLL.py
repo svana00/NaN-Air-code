@@ -104,11 +104,11 @@ class StaffMemberLL():
 
         return pilots_by_licences_dict
 
-    def get_all_working(self, departure_out_date_str):
+    def get_all_working(self, departure_out_date):
         ''' Returns a dictionary where they key is a destination and the value is a list of staff members
             that are working a specific day '''
         voyages_list = self.ioAPI.load_all_voyages()
-        target_date = datetime.datetime.fromisoformat(departure_out_date_str).date()
+        target_date = datetime.datetime.fromisoformat(departure_out_date).date()
         working_staff_dict = {}
 
         for voyage in voyages_list:
@@ -123,11 +123,11 @@ class StaffMemberLL():
         
         return working_staff_dict
 
-    def get_all_not_working(self, departure_out_date_str):
+    def get_all_not_working(self, departure_out_date):
         ''' Returns a list of staff members that are not working a specific day '''
         voyages_list = self.ioAPI.load_all_voyages()
         staff_member_list = self.ioAPI.load_all_staff_from_file()
-        target_date = datetime.datetime.fromisoformat(departure_out_date_str).date()
+        departure_out_date = datetime.datetime.fromisoformat(departure_out_date_str).date()
         staff_working_list = []
         staff_not_working_list = []
 
@@ -135,7 +135,7 @@ class StaffMemberLL():
             voyage_departure_out = voyage.get_departure_out()
             temp_date = datetime.datetime.fromisoformat(voyage_departure_out).date()
 
-            if target_date == temp_date:
+            if departure_out_date == temp_date:
                 cabin_crew = voyage.get_cabin_crew()
                 if cabin_crew != []:
                     for staff_member in cabin_crew:
