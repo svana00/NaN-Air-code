@@ -4,11 +4,11 @@ class StaffMemberUI():
         self.llAPI = llAPI
 
     def header(self, form, string):
-        """ creates a header with the form as decoration before the chosen string """
+        """ Creates a header with the form as decoration before the chosen string """
         print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
 
     def display_staff_menu(self):
-        """ prints the main staff menu and calls the appropriate
+        """ Prints the main staff menu and calls the appropriate
             functions for the option that's picked """
         print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
@@ -25,10 +25,10 @@ class StaffMemberUI():
     def choose_in_staff(self):
         self.header("-", " PICK STAFF ")
         print("1. STAFF \n2. WORK SCHEDULE")
-        choose_between = input("\nInput a command: ")
-        if choose_between == "1":
+        choice = input("\nInput a command: ")
+        if choice == "1":
             return self.pick_staff_sub_menu()
-        elif choose_between == "2":
+        elif choice == "2":
             return self.work_schedule_sub_menu()
         else:
             print("Invalid choice")
@@ -49,10 +49,10 @@ class StaffMemberUI():
     def pilot_sub_menu(self):
         self.header("-", " PICK SUBGROUP ")
         print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
-        choose_between = input("\nInput a command: ")
-        if choose_between == "1":
+        choice = input("\nInput a command: ")
+        if choice == "1":
             return self.show_all_pilots()
-        elif choose_between == "2":
+        elif choice == "2":
             return self.pilot_licence_sub_menu()
         else:
             print("Invalid choice")
@@ -60,10 +60,10 @@ class StaffMemberUI():
     def pilot_licence_sub_menu(self):
         self.header("-", " PICK LICENCE SUBGROUP ")
         print("1. OVERVIEW OF ALL LICENCES \n2. ONE PARTICULAR LICENCE")
-        choose_between = input("\nInput a command: ")
-        if choose_between == "1":
+        choice = input("\nInput a command: ")
+        if choice == "1":
             return self.show_pilots_by_all_licences()
-        elif choose_between == "2":
+        elif choice == "2":
             return self.show_pilots_by_one_licence()
         else:
             print("Invalid choice")
@@ -71,92 +71,95 @@ class StaffMemberUI():
     def work_schedule_sub_menu(self):
         self.header("-", " WORK SCHEDULE ")
         print("1. SHOW ALL STAFF MEMBERS WORKING ON A SPECIFIC DAY \n2. SHOW ALL STAFF MEMBERS NOT WORKING ON A SPECIFIC DAY\n3. SHOW THE WORK SCHEDULE OF A SPECIFIC STAFF MEMBER FOR A SPECIFIC WEEK")
-        choose_between = input("\nInput a command: ")
+        choice = input("\nInput a command: ")
 
-        if choose_between == "1":
+        if choice == "1":
             self.show_all_working()
 
-        elif choose_between == "2":
+        elif choice == "2":
             self.show_all_not_working()
 
-        elif choose_between == "3":
+        elif choice == "3":
             self.show_staff_member_schedule()
 
         else:
             print("Invalid choice\nPlease try again")
 
     def show_staff_member_info(self, staff_info_list):
-        choose_number = int(input("Enter number of staff member: "))
-        ssn = staff_info_list[(choose_number) -1][0]
+        ''' Prints more info about a specific staff member '''
+        number = int(input("Enter number of staff member: "))
+        ssn = staff_info_list[(number) - 1][0]
         staff_member = self.llAPI.get_staff_member_info(ssn)
         self.header("-", " {} ".format(staff_member.get_name()))
         print(staff_member)
 
     def show_all_pilots(self):
-        """ prints the name of all the pilots from a list of their ssn and name """
+        """ Prints the name of all the pilots from a list of their ssn and name """
         counter = 0
         self.header("-", " ALL PILOTS ")
         pilots_info_list = self.llAPI.get_all_pilots()
         for element in pilots_info_list:
-            ssn = element[0]
             name = element[1]
             counter += 1
             print("{}. {}".format(counter, name))
+        choice = input("\nDo you want to see more info about a specific staff member? (y/n): ")
+        if choice == "y":
+            return self.show_staff_member_info(pilots_info_list)
 
     def show_all_flight_attendants(self):
-        """ prints the name of all the flight attendants from a list of their
+        """ Prints the name of all the flight attendants from a list of their
             ssn and names """
         counter = 0
         self.header("-", " ALL FLIGHT ATTENDANTS ")
         flight_attendants_info_list = self.llAPI.get_all_flight_attendants()
         for element in flight_attendants_info_list:
-            ssn = element[0]
             name = element[1]
             counter += 1
             print("{}. {}".format(counter, name))
+        choice = input("\nDo you want to see more info about a specific staff member? (y/n): ")
+        if choice == "y":
+            return self.show_staff_member_info(flight_attendants_info_list)
 
     def show_all_staff(self):
-        """ prints the names of all of the staff members from a lis of their ssn and name """
+        """ Prints the names of all of the staff members from a lis of their ssn and name """
         counter = 0
         self.header("-", " ALL STAFF MEMBERS ")
         staff_info_list = self.llAPI.get_all_staff()
         for element in staff_info_list:
-            ssn = element[0]
             name = element[1]
             counter +=1
             print("{}. {}".format(counter, name))
-        choose_between = input("\nDo you want to see a specific person? (y/n): ")
-        if choose_between == "y":
+        choice = input("\nDo you want to see more info about a specific staff member? (y/n): ")
+        if choice == "y":
             return self.show_staff_member_info(staff_info_list)
 
     def show_pilots_by_one_licence(self):
-        """ prints all of the pilots who have a license for one particular airplane """
+        """ Prints all of the pilots who have a license for one particular airplane """
         airplane_type_dict = {}
         counter = 0
+
         self.header("-", " PICK ONE LICENCE ")
         airplane_types_info_list = self.llAPI.get_all_airplane_types()
 
-        """ makes a dict for  """
-        for element in airplane_types_info_list:
+        # Prints all pilots that have a specific licence
+        for airplane_type_id in airplane_types_info_list:
             counter += 1
-            airplane_type_dict[str(counter)] = element
-            print("{}. {}".format(counter, element))
+            airplane_type_dict[str(counter)] = airplane_type_id
+            print("{}. {}".format(counter, airplane_type_id))
 
-        choose_between = input("\nInput a command: ")
-        for key, value in airplane_type_dict.items():
-            if key == choose_between:
-                airplane_type_id = value
+        choice = input("\nInput a command: ")
+        for number, airplane_type_id in airplane_type_dict.items():
+            if number == choice:
+                airplane_type_id = airplane_type_id
                 self.header("-", " {} ".format(airplane_type_id))
                 pilots_info_list = self.llAPI.get_pilots_by_one_licence(airplane_type_id)
 
         counter_2 = 0
 
-        for list_thang in pilots_info_list:
-            ssn = list_thang[0]
-            name = list_thang[1]
+        for pilot in pilots_info_list:
+            name = pilot[1]
             counter_2 += 1
             print("{}. {}".format(counter_2, name))
-
 
     def show_pilots_by_all_licences(self):
         self.header("-", " PILOTS BY LICENCES ")
@@ -165,10 +168,38 @@ class StaffMemberUI():
             print("\n{}".format(airplane_type))
             counter = 1
             for pilot_tuple in pilots_info_list:
-                ssn = pilot_tuple[0]
                 name = pilot_tuple[1]
                 print("\t{}. {}".format(counter, name))
                 counter += 1
+
+    def show_all_working(self):
+        departure_out_date = input("Enter date (YYYY-MM-DD): ")
+
+        self.header("-", " ALL STAFF MEMBERS WORKING ON {}".format(departure_out_date))
+
+        staff_not_working_list = self.llAPI.get_all_not_working(departure_out_date)
+
+        #Print the name of each staff member that is not working
+        for staff_member_id in staff_not_working_list:
+            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
+            name = staff_member.get_name()
+            print(name)
+        
+    def show_all_not_working(self):
+        departure_out_date = input("Enter date (YYYY-MM-DD): ")
+
+        self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {}".format(departure_out_date))
+
+        staff_not_working_list = self.llAPI.get_all_not_working(departure_out_date)
+
+        #Print the name of each staff member that is not working
+        for staff_member_id in staff_not_working_list:
+            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
+            name = staff_member.get_name()
+            print(name)
+
+    def show_staff_member_schedule(self):
+        pass
 
     def create_staff_member(self):
         ssn_str = ""
@@ -236,34 +267,3 @@ class StaffMemberUI():
 
     def change_staff_member_info(self):
         pass
-
-    def show_all_working(self):
-        departure_out_date = input("Enter date (YYYY-MM-DD): ")
-
-        self.header("-", " ALL STAFF MEMBERS WORKING ON {}".format(departure_out_date))
-
-        staff_not_working_list = self.llAPI.get_all_not_working(departure_out_date)
-
-        #Print the name of each staff member that is not working
-        for staff_member_id in staff_not_working_list:
-            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
-            name = staff_member.get_name()
-            print(name)
-        
-    def show_all_not_working(self):
-        departure_out_date = input("Enter date (YYYY-MM-DD): ")
-
-        self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {}".format(departure_out_date))
-
-        staff_not_working_list = self.llAPI.get_all_not_working(departure_out_date)
-
-        #Print the name of each staff member that is not working
-        for staff_member_id in staff_not_working_list:
-            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
-            name = staff_member.get_name()
-            print(name)
-        
-    def show_staff_member_schedule(self):
-        pass
-
-

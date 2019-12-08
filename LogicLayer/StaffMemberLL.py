@@ -127,7 +127,7 @@ class StaffMemberLL():
         ''' Returns a list of staff members that are not working a specific day '''
         voyages_list = self.ioAPI.load_all_voyages()
         staff_member_list = self.ioAPI.load_all_staff_from_file()
-        departure_out_date = datetime.datetime.fromisoformat(departure_out_date_str).date()
+        departure_out_date = datetime.datetime.fromisoformat(departure_out_date).date()
         staff_working_list = []
         staff_not_working_list = []
 
