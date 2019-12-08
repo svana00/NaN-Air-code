@@ -33,3 +33,6 @@ class IOAPI:
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str
         return self.airplaneIO.store_new_airplane_into_file(airplane_str)
+
+    def load_all_voyages(self):
+        return self.voyageIO.load_all_voyages()
