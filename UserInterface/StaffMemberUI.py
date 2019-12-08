@@ -177,13 +177,16 @@ class StaffMemberUI():
 
         self.header("-", " ALL STAFF MEMBERS WORKING ON {}".format(departure_out_date))
 
-        staff_working_list = self.llAPI.get_all_working(departure_out_date)
+        staff_working_dict = self.llAPI.get_all_working(departure_out_date)
 
         #Print the name of each staff member that is working
-        for staff_member_id in staff_working_list:
-            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
-            name = staff_member.get_name()
-            print(name)
+        for dest_id, staff_id_list in staff_working_dict.items():
+            destination = self.llAPI.get_destination_info(dest_id)
+            for staff_id in staff_id_list:
+                staff_member = self.llAPI.get_staff_member_info(staff_id)
+                name = staff_member.get_name()
+                dest_city = destination.get_city()
+                print("{} is going to {}".format(name, dest_city))
         
     def show_all_not_working(self):
         departure_out_date = input("Enter date (YYYY-MM-DD): ")

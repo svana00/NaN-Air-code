@@ -62,4 +62,4 @@ class LLAPI():
         return self.staffLL.get_all_working(departure_out_date)
 
     def get_all_not_working(self, departure_out_date):
-        return self.staffLL.get_all_working(departure_out_date)
+        return self.staffLL.get_all_not_working(departure_out_date)
