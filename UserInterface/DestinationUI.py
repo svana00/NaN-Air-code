@@ -26,7 +26,6 @@ class DestinationUI():
         dest_list = self.llAPI.get_destinations()
 
         for destination in dest_list:
-            dest_id = destination[0]
             country = destination[1]
             city = destination[2]
             counter += 1
@@ -123,7 +122,7 @@ class DestinationUI():
         
         print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(contact_str, emergency_number_str))
         
-        choice =int(input("\nInput which information you would like to change: ")) #here hoices the user what dest he wants to change
+        choice = int(input("\nInput which information you would like to change: "))
 
         while choice in valid_input_list:
             print(dest_list)
@@ -132,8 +131,7 @@ class DestinationUI():
                 contact_str = input("\n Enter new contact: ")
                 dest_list[choice][0] = contact_str
 
-
-            elif second_choice == 2:
+            elif choice == 2:
                 emergency_number_str = input("Enter new emergency number: ")
                 dest_list[choice][1] = emergency_number_str
 
