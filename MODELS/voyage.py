@@ -8,6 +8,11 @@ class Voyage():
         self.__arrival_home = arrival_home
         self.__plane_id = plane_id
         self.__destination_id = dest_id
+        self.__captain = ""
+        self.__copilot = ""
+        self.__fsm = ""
+        self.__fa1 = ""
+        self.__fa2 = ""
 
     def set_cabin_crew(self, staff_list):
         self.__captain = staff_list[0]
