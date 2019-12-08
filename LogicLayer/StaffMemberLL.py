@@ -142,8 +142,9 @@ class StaffMemberLL():
                         staff_working_list.append(staff_member)
 
         for staff_member in staff_member_list:
-            if staff_member not in staff_working_list:
-                staff_not_working_list.append(staff_member)
+            ssn = staff_member.get_ssn()
+            if ssn not in staff_working_list:
+                staff_not_working_list.append(ssn)
 
         return staff_not_working_list
 
