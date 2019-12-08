@@ -186,7 +186,8 @@ class StaffMemberUI():
                 staff_member = self.llAPI.get_staff_member_info(staff_id)
                 name = staff_member.get_name()
                 dest_city = destination.get_city()
-                print("{} is going to {}".format(name, dest_city))
+                print("{} {} is going to {}".format("-", name, dest_city))
+                counter += 1
         
     def show_all_not_working(self):
         departure_out_date = input("Enter date (YYYY-MM-DD): ")
@@ -199,7 +200,7 @@ class StaffMemberUI():
         for staff_member_id in staff_not_working_list:
             staff_member = self.llAPI.get_staff_member_info(staff_member_id)
             name = staff_member.get_name()
-            print(name)
+            print("{} {}".format("-", name))
 
     def show_staff_member_schedule(self):
         pass
