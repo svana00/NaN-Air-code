@@ -25,10 +25,6 @@ class StaffMemberIO:
 
         return name_list
 
-    def loadStaffMemberfromFile(self):
-        ''' Returns an instance of a specific staff member '''
-        pass
-
     def store_new_staff_member(self,staff_member_str):
         ''' Stores new staff member to existing file '''
         staff_member_file = open("csv_files/StaffMember.csv", "a+")
@@ -55,13 +51,6 @@ class StaffMemberIO:
             #if i % 2 != 0:
                 #flight_num_out = voyages_reader[i]["flightNumber"]
             pass
-
-    def see_working_for_week(self):
-        pass
-        
-                
-
-
 
 beggi = StaffMemberIO()
 beggi.load_work_schedule()

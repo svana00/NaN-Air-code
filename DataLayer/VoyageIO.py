@@ -25,16 +25,10 @@ class VoyageIO():
         #    if depart_datetime >= start_date.isoformat() and depart_datetime <= end_date.isoformat():
         #        print(row["flightNumber"])
 
-    def loadnonAssignedVoyages(self):
-        pass
-
     def storeStafftoVoyage(self,staffID):
         pass
 
     def storeNewVoyagetoFile(self):
-        pass
-
-    def loadStaffFromFile(self, staffID):
         pass
 
     def load_all_voy_flipp(self):

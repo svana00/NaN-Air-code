@@ -1,18 +1,18 @@
 class Voyage():
-    def __init__(self, flight_num_out, flight_num_home, departure_out, arrival_out, departure_home, arrival_home, plane_id, dest_id):
+    def __init__(self, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, dest_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
         self.__flight_number_out = flight_num_out
-        self.__flight_number_home = flight_num_home
+        self.__flight_number_back = flight_num_back
         self.__departure_out = departure_out
         self.__arrival_out = arrival_out
         self.__departure_home = departure_home
         self.__arrival_home = arrival_home
-        self.__plane_id = plane_id
         self.__destination_id = dest_id
-        self.__captain = ""
-        self.__copilot = ""
-        self.__fsm = ""
-        self.__fa1 = ""
-        self.__fa2 = ""
+        self.__plane_id = plane_id
+        self.__captain = captain
+        self.__copilot = copilot
+        self.__fsm = fsm
+        self.__fa1 = fa1
+        self.__fa2 = fa2
 
     def set_cabin_crew(self, staff_list):
         self.__captain = staff_list[0]
@@ -25,7 +25,7 @@ class Voyage():
         return self.__flight_number_out
 
     def get_flight_number_back(self):
-        return self.__flight_number_home
+        return self.__flight_number_back
 
     def get_departure_out(self):
         return self.__departure_out
