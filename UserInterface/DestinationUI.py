@@ -137,7 +137,7 @@ class DestinationUI():
 
             elif choice == "confirm":
                 print("Changes have been confirmed")
-                return self.llAPI.change_destination(destination_info_list)
+                return self.llAPI.change_destination(dest_list)
 
             self.header("-", " CHANGE DESTINATION ")
             print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(contact_str, emergency_number_str))

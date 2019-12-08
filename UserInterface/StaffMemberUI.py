@@ -70,14 +70,20 @@ class StaffMemberUI():
 
     def work_schedule_sub_menu(self):
         self.header("-", " WORK SCHEDULE ")
-        print("1. SHOW ALL WORKING \n2. SHOW ALL NOT WORKING")
+        print("1. SHOW ALL STAFF MEMBERS WORKING ON A SPECIFIC DAY \n2. SHOW ALL STAFF MEMBERS NOT WORKING ON A SPECIFIC DAY\n3. SHOW THE WORK SCHEDULE OF A SPECIFIC STAFF MEMBER FOR A SPECIFIC WEEK")
         choose_between = input("\nInput a command: ")
+
         if choose_between == "1":
-            pass
+            self.show_all_working()
+
         elif choose_between == "2":
-            pass
+            self.show_all_not_working()
+
+        elif choose_between == "3":
+            self.show_staff_member_schedule()
+
         else:
-            print("Invalid choice")
+            print("Invalid choice\nPlease try again")
 
     def show_staff_member_info(self, staff_info_list):
         choose_number = int(input("Enter number of staff member: "))
@@ -232,10 +238,12 @@ class StaffMemberUI():
         pass
 
     def show_all_working(self):
-        pass
+        self.header("-", " ALL STAFF MEMBERS WORKING ON {}".format("1/1/1000"))
+        
 
     def show_all_not_working(self):
-        pass
+        self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {}".format("2/2/2000"))
+        
 
     def show_staff_member_schedule(self):
         pass
