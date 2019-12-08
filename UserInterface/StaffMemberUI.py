@@ -175,7 +175,7 @@ class StaffMemberUI():
     def show_all_working(self):
         departure_out_date = input("Enter date (YYYY-MM-DD): ")
 
-        self.header("-", " ALL STAFF MEMBERS WORKING ON {}".format(departure_out_date))
+        self.header("-", " ALL STAFF MEMBERS WORKING ON {} ".format(departure_out_date))
 
         staff_working_dict = self.llAPI.get_all_working(departure_out_date)
 
@@ -191,7 +191,7 @@ class StaffMemberUI():
     def show_all_not_working(self):
         departure_out_date = input("Enter date (YYYY-MM-DD): ")
 
-        self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {}".format(departure_out_date))
+        self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {} ".format(departure_out_date))
 
         staff_not_working_list = self.llAPI.get_all_not_working(departure_out_date)
 
