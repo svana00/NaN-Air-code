@@ -6,6 +6,7 @@ class DestinationLL():
         self.ioAPI = ioAPI
    
     def get_destinations(self):
+        ''' Returns a list of destination tuples containing id, country and city '''
         dest_list = self.ioAPI.load_all_dest_from_file()
         dest_info_list = []
     
@@ -45,5 +46,4 @@ class DestinationLL():
         return self.ioAPI.create_new_destination(dest_str)
 
     def change_destination(self):
-        
         return self.ioAPI.change_destination()
