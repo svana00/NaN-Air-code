@@ -10,7 +10,7 @@ class VoyageIO():
     def loadVoyagesbyDate(self):
         #date = "2019-11-10T06:18:00"
 
-        voyages_file = open("csv_files/PastFlights.csv", "r")
+        voyages_file = open("csv_files/Voyages.csv", "r")
         voyage_reader = csv.DictReader(voyages_file)
 
         start_date = datetime.datetime(2019, 11, 29, 6, 18, 0)
@@ -31,9 +31,9 @@ class VoyageIO():
     def storeNewVoyagetoFile(self):
         pass
 
-    def load_all_voy_flipp(self):
+    def load_all_voyages(self):
         
-        voyages_file = open("csv_files/PastFlights.csv", "r")
+        voyages_file = open("csv_files/Voyages.csv", "r")
         staff_file = open("csv/Staff_Members.csv", "r")
         dest_file = open("csv/Destinations.csv", "r")
 
