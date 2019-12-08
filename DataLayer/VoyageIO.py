@@ -38,7 +38,7 @@ class VoyageIO():
 
         for row in voyages_reader:
             flight_number_out = row["flight_num_out"]
-            flight_number_back = row["fligh_num_back"]
+            flight_number_back = row["flight_num_back"]
             departure_out = row["departure_out"]
             arrival_out = row["arrival_out"]
             departure_home = row["departure_home"]
