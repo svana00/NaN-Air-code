@@ -11,8 +11,9 @@ class VoyageLL():
     def makeVoyage(self):
         pass
 
-    def getVoyage(self):
-        pass
+    def get_all_voyages(self):
+        
+        return 
 
     def getVoyagesbyDate(self):
         pass
