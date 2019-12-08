@@ -208,8 +208,8 @@ class VoyageUI():
             return new_voyage_info_list
         """
 
-    def copy_voyage(self):
-        pass
+    #def copy_voyage(self):
+    #    pass
 
     def assign_voyage(self):
         pass
