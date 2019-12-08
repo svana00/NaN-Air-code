@@ -40,7 +40,7 @@ class StaffMemberIO:
             and a list of voyages the staff member has for the week as the value '''
 
         staff_member_file = open("csv_files/Staff_Members.csv", "r")
-        voyages_file = open("csv_files/PastFlights.csv", "r")
+        voyages_file = open("csv_files/Voyages.csv", "r")
 
         staff_reader = csv.DictReader(staff_member_file)
         voyages_reader = csv.DictReader(voyages_file)
