@@ -4,6 +4,7 @@ from MODELS.airplane_type import AirplaneType
 
 class AirplaneIO():
     def load_all_airplanes(self):
+        ''' Returns a list of all instances of airplanes '''
         airplanes_list = []
         
         airplanes_file = open("csv_files/Aircraft.csv", "r")
@@ -27,7 +28,9 @@ class AirplaneIO():
         return airplanes_list
     
     def load_airplane_types(self):
-        types_list = []
+        ''' Returns a list of all instances of airplane types '''
+        
+        airplane_types_list = []
 
         planeType_file = open("csv_files/AirplaneType.csv", "r")
         type_reader = csv.DictReader(planeType_file)
@@ -39,9 +42,9 @@ class AirplaneIO():
             type_capacity = ["capacity"]
 
             airplaneType = AirplaneType(type_id, type_manufacturer, type_model, type_capacity)
-            types_list.append(airplaneType)
+            airplane_types_list.append(airplaneType)
 
-        return types_list
+        return airplane_types_list
 
     def store_new_airplane_into_file(self, airplane_str):
         ''' Stores new airplane to the existing file '''
