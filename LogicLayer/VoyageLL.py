@@ -10,9 +10,11 @@ class VoyageLL():
     def make_voyage(self):
         pass
 
-    def get_all_voyages(self):
+    def get_all_voyages(self, start_of_desired_week_str):
         voyage_list = self.ioAPI.load_all_voyages()
         voyage_info_list = []
+
+        end_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str) + datetime.timedelta(days = 6)
 
         for voyage in voyage_list:
             departure_out = voyage.get_departure_out()
