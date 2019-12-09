@@ -138,12 +138,12 @@ class VoyageUI():
 
         while not self.validate.validate_time(time_str):
             print("Invalid time.")
-            time_str = input("Enter time of voyage (XX-XX-XX) : ")
+            time_str = input("Enter time of voyage (XX:XX:XX) : ")
         else:
             voyage_info_list.append(time_str)   
 
         self.header("-", " ADD VOYAGE ")
-        print("\n1. DESTINATION ID: {}\n2. FLIGHT 1 DATE: {}\n3. FLIGHT 1 TIME: {}".format(city, date_str, time_str))
+        print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
 
         print("Changes have been confirmed")
         return self.llAPI.make_voyage(voyage_info_list)

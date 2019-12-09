@@ -56,10 +56,14 @@ class VoyageLL():
 
     def make_voyage(self, voyage_info_list):
         voyages_list = self.ioAPI.load_all_voyages()
-        voyage_id = len(voyages_list)
+        all_voyage_info_list = []
+
+        # Create voyage id
+        voyage_id = len(voyages_list) + 1
 
         if voyage_id < 10:
             voyage_id = "0" + "{}".format(voyage_id)
+<<<<<<< HEAD
         elif voyage < 100:
 <<<<<<< HEAD
             voyage_id = "0" + "{}".format(voyage_id)
@@ -78,3 +82,35 @@ class VoyageLL():
 =======
             voyage_id = "0" + "{}".format(voyage_id)
 >>>>>>> 5cc38d0b27dd389863933101bfc13808ae515666
+=======
+        elif voyage_id < 100:
+            voyage_id = "0" + "{}".format(voyage_id)
+        
+        all_voyage_info_list.append(voyage_id)
+        
+        # Create flight number for each flight
+        target_id = voyage_info_list[0]
+        destinations_list = self.ioAPI.load_all_dest_from_file()
+
+        for destination in destinations_list:
+            destination_id = destination.get_id()
+            if target_id == destination_id:
+                dest_flight_number_id  = destination.get_flight_number_id()
+
+        counter = 0
+
+        target_date = voyage_info_list[1]
+        for voyage in voyages_list: 
+            dest_id = voyage.get_dest_id()
+            departure_out_date = voyage.get_departure_out()
+            if dest_id == target_id and departure_out_date == target_date:
+                counter += 1
+
+        flight_number_out = "NA" + str(dest_flight_number_id) + str(counter * 2)
+        flight_number_back = "NA" + str(dest_flight_number_id) + str(counter * 2 + 1)
+
+        all_voyage_info_list.append(flight_number_out)
+        all_voyage_info_list.append(flight_number_back)
+
+        print(all_voyage_info_list)
+>>>>>>> e646f776b41ceafecf490de7faf11c4e474f392e
