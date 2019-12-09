@@ -37,6 +37,7 @@ class VoyageIO():
         voyages_list = []
 
         for row in voyages_reader:
+            voyage_id = row["voyage_id"]
             flight_number_out = row["flight_num_out"]
             flight_number_back = row["flight_num_back"]
             departure_out = row["departure_out"]
@@ -51,7 +52,7 @@ class VoyageIO():
             fa1 = row["fa1"] # Flight Attendant 1
             fa2 = row["fa2"] # Flight Attendant 2
 
-            voyage = Voyage(flight_number_out, flight_number_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id, captain, copilot, fsm, fa1, fa2)
+            voyage = Voyage(voyage_id, flight_number_out, flight_number_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id, captain, copilot, fsm, fa1, fa2)
             voyages_list.append(voyage)
 
         return voyages_list

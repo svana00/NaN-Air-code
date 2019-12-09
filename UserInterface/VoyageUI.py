@@ -52,17 +52,13 @@ class VoyageUI():
         counter = 0
         voyages_dict = {}
         self.header("-", " ALL VOYAGES ")
-<<<<<<< HEAD
         voyage_info_list = self.llAPI.get_all_voyages()
         print(voyage_info_list)
-=======
-        voyage_list = self.llAPI.get_all_voyages()
->>>>>>> 6ec9f52d22cebf709ea078988cab88e4a4efa1fd
 
-        for x in range(len(voyage_list)):
-            voyage_name = voyage_list[x][0]
+        for x in range(len(voyage_info_list)):
+            voyage_name = voyage_info_list[x][0]
             counter += 1
-            voyages_dict[str(counter)] = voyage_list[x]
+            voyages_dict[str(counter)] = voyage_info_list[x]
             print("{}. {}".format(counter,voyage_name))
             print("\n\n", voyages_dict)
         """
@@ -100,8 +96,8 @@ class VoyageUI():
         menu_choice = input("Input command here: ")
         if menu_choice == "1":
             self.create_voyage()
-        elif menu_choice == "2":
-            self.copy_voyage()
+        #elif menu_choice == "2":
+            #self.copy_voyage()
         else:
             print("Invalid choice\nPlease try again")
 

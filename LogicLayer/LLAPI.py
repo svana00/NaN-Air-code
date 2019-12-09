@@ -63,3 +63,6 @@ class LLAPI():
 
     def get_all_not_working(self, departure_out_date):
         return self.staffLL.get_all_not_working(departure_out_date)
+    
+    def get_staff_member_schedule(self, ssn, start_of_desired_week_str):
+        return self.staffLL.get_staff_member_schedule(ssn, start_of_desired_week_str)

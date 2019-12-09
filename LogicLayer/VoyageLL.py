@@ -1,4 +1,5 @@
 import datetime
+
 class VoyageLL():
 
     def __init__(self, ioAPI):
@@ -11,7 +12,7 @@ class VoyageLL():
         pass
 
     def get_all_voyages_for_week(self, start_of_desired_week_str):
-        voyage_list = self.ioAPI.load_all_voyages()
+        voyages_list = self.ioAPI.load_all_voyages()
         voyages_in_week_list = []
         voyage_info_list = []
 
@@ -52,3 +53,14 @@ class VoyageLL():
             voyage_id = "0" + "{}".format(voyage_id)
         elif voyage < 100:
             voyage_id = "0" + "{}".format(voyage_id)
+
+    def get_all_voyages(self):
+        voyage_list = self.ioAPI.load_all_voyages()
+        voyage_info_list = []
+
+        for voyage in voyage_list:
+            dest_id = voyage.get_dest_id()
+            departure_out = voyage.get_departure_out()
+            voyage_info_list.append((dest_id, departure_out))
+
+        return voyage_info_list

@@ -169,6 +169,8 @@ class StaffMemberLL():
             if staff_member_id in cabin_crew_list:
                 voyages_for_staff_member_in_week_list.append(voyage)
 
+        return voyages_for_staff_member_in_week_list
+
     def create_staff_member(self,staff_member_info_list):
         staff_member_str = ",".join(staff_member_info_list)
         return self.ioAPI.store_new_staff_member(staff_member_str)
