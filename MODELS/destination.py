@@ -36,6 +36,28 @@ class Destination():
     
     def get_flight_number_id(self):
         return self.__flight_number_id
+    
+    #------- set functions -----------
+
+    def set_new_contact(self, new_contact):
+        self.__contact = new_contact
+        
+    def set_new_emergency_number(self, new_emergency_number):
+        self.__emergency_number = new_emergency_number
+
+    def instance_to_csv_string(self):
+        csv_str = ""
+        csv_str += "{},".format(self.__id)
+        csv_str += "{},".format(self.__country)
+        csv_str += "{},".format(self.__city)
+        csv_str += "{},".format(self.__airport)
+        csv_str += "{},".format(self.__flight_time)
+        csv_str += "{},".format(self.__distance)
+        csv_str += "{},".format(self.__contact)
+        csv_str += "{},".format(self.__emergency_number)
+        csv_str += "{}".format(self.__flight_number_id)
+
+        return csv_str 
 
     def __str__(self):
         my_str = ""
@@ -50,3 +72,5 @@ class Destination():
         my_str += "Flight number ID: {}\n".format(self.__flight_number_id)
 
         return my_str
+
+
