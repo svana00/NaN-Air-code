@@ -38,7 +38,7 @@ class LLAPI():
     def create_staff_member(self, staff_member_info_list):
         return self.staffLL.create_staff_member(staff_member_info_list)
 
-   def get_all_working(self, departure_out_date):
+    def get_all_working(self, departure_out_date):
         return self.staffLL.get_all_working(departure_out_date)
 
     def get_all_not_working(self, departure_out_date):
