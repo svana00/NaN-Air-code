@@ -11,7 +11,15 @@ class VoyageLL():
         pass
 
     def get_all_voyages(self):
-        pass
+        voyage_list = self.ioAPI.load_all_voyages()
+        voyage_info_list = []
+
+        for voyage in voyage_list:
+            dest_id = voyage.get_dest_id
+            departure_out = voyage.get_departure_out
+            voyage_info_list.append((dest_id, departure_out))
+
+        return voyage_info_list
 
     def get_voyages_by_date(self):
         pass
