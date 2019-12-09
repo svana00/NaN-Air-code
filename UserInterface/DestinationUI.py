@@ -137,12 +137,12 @@ class DestinationUI():
                 if choice == 1:
                     contact_str = input("\n Enter new contact: ")
                     contact_name_str = dest_list[0]
-                    
+                    return self.llAPI.change_destination()
 
                 elif first_choice == 2:
                     emergency_number_str = input("Enter new emergency number: ")
                     emergency_str = dest_list[1]
-                    return self.llAPI.change_destination(emergency_number_str, emergency_str)
+                    return self.llAPI.change_destination(emergency_str, emergency_number_str)
 
                 elif first_choice == "confirm":
                     print("Changes have been confirmed")

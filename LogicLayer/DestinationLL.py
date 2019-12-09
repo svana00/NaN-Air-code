@@ -46,9 +46,9 @@ class DestinationLL():
         dest_str = ",".join(dest_info_list)
         return self.ioAPI.create_new_destination(dest_str)
 
-    def change_destination(self, old_str, new_str):
-        old_file = self.ioAPI.get_all_file()
-        new_file = open("Destinations_temp.csv", "w")
-        for line in old_file:
-            new_file.write(line.replace(old_str, new_str)
-        return self.ioAPI.change_destination()
+    #def change_destination(self, old_str, new_str):
+    #    old_file = self.ioAPI.get_all_file()
+    #    new_file = open("Destinations_temp.csv", "w")
+    #    for line in old_file:
+    #        new_file.write(line.replace(old_str, new_str)
+    #    return self.ioAPI.change_destination()
