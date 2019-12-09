@@ -51,12 +51,21 @@ class VoyageUI():
 
     def show_all_voyages(self):
         counter = 0
-        voyages_dict = {}
-        self.header("-", " ALL VOYAGES ")
+        destination_list = []
         voyage_info_list = self.llAPI.get_all_voyages()
-        print(voyage_info_list)
 
-        
+        self.header("-", " ALL VOYAGES ")
+
+        for voyage_info in voyage_info_list:
+            counter += 1
+            voyage_id = voyage_info[0]
+            dest_id = voyage_info[1]
+            destination =  self.llAPI.get_destination_info(dest_id)
+            city = destination.get_city()
+            departure_out = voyage_info[2]
+
+            print("{:<2}. Voyage_id: {:<5} City: {:<15} Departure at: {:<15}".format(counter, voyage_id, city, departure_out))
+
     def display_voyage(self, a_voy_info_list):
         a_voyage_info_list = list(a_voy_info_list)
         #voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", \
