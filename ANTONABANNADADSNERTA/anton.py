@@ -1,19 +1,25 @@
-tupl = 1,2,3,34,4,5,5,["anton", "hello"]
-tupl1 =  23,45,3,45,43,23,5,42,["siggi", "dsf"]
+tupl = "arnar", "gylfi", "bjorgvin" ,"eva", "magga", "svana", "hall", "sd",["anton", "hello"]
+tupl1 =  "dfd", "dfsfds","fdsfds","sdfdsf",["siggi", "dsf"]
 tupl2 = []
 tupl2.append(tupl)
 tupl2.append(tupl1)
-#print(tupl2)
+print(len(tupl2))
 siggi = tupl2
-print(str(siggi)[1:-1])
 
-ze_tuple = ("tuple", "list")
-" ".join(ze_tuple)
-'tuple list'
-ze_tuple = ("tuple", "list", ["francais", "deutschland"])
-list(ze_tuple)
+
+index = int(input("Hello: "))
+list1 = list(tupl2[index])
+print(list1)
 ['tuple', 'list', ['francais', 'deutschland']]
-string = " ".join(ze_tuple[:-1]) + " " + " ".join(ze_tuple[-1])
-'tuple listfrancais deutschland'
-print(string.split())
+string = " ".join(list1[:-1]) + " " + " ".join(list1[-1])
+new_list = string.split()
+new_file = new_list[4]
+print(new_file)
+
+file_open = open("hello.csv", "r")
+file_new = open("new_hello.csv", "w+")
+for line in file_open:
+    file_new.write(line.replace("antn", "anton"))
+
+
 
