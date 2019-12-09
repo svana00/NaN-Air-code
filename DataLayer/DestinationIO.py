@@ -33,3 +33,8 @@ class DestinationIO:
     def storeDestinationInfo(self):
         ''' Changes/adds info to an existing destination '''
         pass
+
+    def get_all_file(self):
+        the_file = open("Destinations.csv", "r")
+        return the_file
+        
