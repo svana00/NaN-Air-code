@@ -205,9 +205,8 @@ class StaffMemberUI():
             print("{} {}".format("-", name))
 
     def show_staff_member_schedule(self):
-        self.llAPI.get_staff_member_schedule("2910858778", "2019-11-02T12:00:00")
 
-        start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): \n")
+        start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
 
         counter = 0
         staff_info_list = self.llAPI.get_all_staff()
@@ -216,21 +215,22 @@ class StaffMemberUI():
         for staff_member in staff_info_list:
             ssn = staff_member[0]
             name = staff_member[1]
-            counter +=1
+            counter += 1
             print("{:>3}. {:<25} ssn: {:<15}".format(counter, name, ssn))
         choice = input("\nChoose the number staff member whose schedule you want to see: ")
 
         desired_ssn = staff_info_list[int(choice) - 1][0]
         desired_name = staff_info_list[int(choice) - 1][1]
         working_voyages_list = self.llAPI.get_staff_member_schedule(desired_ssn, start_of_desired_week_str)
-
+        
+        print()
         print(desired_name + " is going to:")
         for voyage in working_voyages_list:
             dest_id = voyage.get_dest_id()
             dest_info = self.llAPI.get_destination_info(dest_id)
             dest_city = dest_info.get_city()
-            date = voyage.get_departure_out()[:10]   # Excludes the date from the string
-            print("{} on {}".format(dest_city, date))
+            date = voyage.get_departure_out()[:10]   # Takes only the date from the string
+            print("\t{} on {}".format(dest_city, date))
         
     def create_staff_member(self):
         ssn_str = ""
