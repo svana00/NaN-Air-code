@@ -52,22 +52,10 @@ class VoyageUI():
 
     def show_all_voyages(self):
         counter = 0
-        voyages_dict = {}
         self.header("-", " ALL VOYAGES ")
-        voyage_list = self.llAPI.get_all_voyages()
+        voyage_info_list = self.llAPI.get_all_voyages()
+        print(voyage_list)
 
-        for x in range(len(voyage_list)):
-            voyage_name = voyage_list[x][0]
-            counter += 1
-            voyages_dict[str(counter)] = voyage_list[x]
-            print("{}. {}".format(counter,voyage_name))
-            print("\n\n", voyages_dict)
-
-        # Option to choose a specific destination
-        input_choice = input("To choose a specific voyage enter it's number: ")
-        if input_choice in voyages_dict:
-            self.display_voyage(voyages_dict[input_choice])
-            #self.display_voyage(voyages_dict[input_choice])
 
     def display_voyage(self, a_voy_info_list):
         a_voyage_info_list = list(a_voy_info_list)
