@@ -15,7 +15,7 @@ class Validate:
     def validate_number(self, num_str):
         new_str = num_str.replace(" ", "")
         if new_str.isdigit() == True:
-            return a_str
+            return num_str
         else:
             return -1
 
