@@ -229,7 +229,7 @@ class StaffMemberUI():
             dest_id = voyage.get_dest_id()
             dest_info = self.llAPI.get_destination_info(dest_id)
             dest_city = dest_info.get_city()
-            date = voyage.get_departure_out()[:10]   # Takes only the date from the string
+            date = voyage.get_departure_out()   # Takes only the date from the string
             print("\t{} on {}".format(dest_city, date))
         
     def create_staff_member(self):
