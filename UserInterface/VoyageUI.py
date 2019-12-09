@@ -134,11 +134,11 @@ class VoyageUI():
 
         # User chooses time for voyage
         self.header("-", " CHOOSE TIME ")
-        time_str = input("Enter time of voyage (XX-XX-XX) : ")
+        time_str = input("Enter time of voyage (HH:MM:SS) : ")
 
         while not self.validate.validate_time(time_str):
             print("Invalid time.")
-            time_str = input("Enter time of voyage (XX:XX:XX) : ")
+            time_str = input("Enter time of voyage (HH:MM:SS) : ")
         else:
             voyage_info_list.append(time_str)   
 
