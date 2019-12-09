@@ -154,11 +154,13 @@ class StaffMemberLL():
         staff_member_id = staff_member.get_ssn()
         voyages_list = self.ioAPI.load_all_voyages()
 
-        end_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str) + datetime.timedelta(days = 6)
+        start_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date()
+        end_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date() + datetime.timedelta(days = 6)
 
         for voyage in voyages_list:
             cabin_crew_list = voyage.get_cabin_crew()
-    
+            if staff_member_id in cabin_crew_list:
+                pass
 
     def create_staff_member(self,staff_member_info_list):
         staff_member_str = ",".join(staff_member_info_list)
