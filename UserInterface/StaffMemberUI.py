@@ -237,7 +237,8 @@ class StaffMemberUI():
 
         print(desired_name + " is going to:")
         for voyage in working_voyages_list:
-            pass
+            destination = voyage.get_dest_id()
+            date = 0
         
     def create_staff_member(self):
 
