@@ -1,10 +1,8 @@
-from Validation.validation import Validate
 
 class VoyageUI():
 
     def __init__(self, llAPI):
         self.llAPI = llAPI
-        self.validate = Validate()
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
@@ -52,10 +50,34 @@ class VoyageUI():
 
     def show_all_voyages(self):
         counter = 0
+        voyages_dict = {}
         self.header("-", " ALL VOYAGES ")
+<<<<<<< HEAD
         voyage_info_list = self.llAPI.get_all_voyages()
         print(voyage_info_list)
+=======
+        voyage_list = self.llAPI.get_all_voyages()
+>>>>>>> 6ec9f52d22cebf709ea078988cab88e4a4efa1fd
 
+        for x in range(len(voyage_list)):
+            voyage_name = voyage_list[x][0]
+            counter += 1
+            voyages_dict[str(counter)] = voyage_list[x]
+            print("{}. {}".format(counter,voyage_name))
+            print("\n\n", voyages_dict)
+        """
+        for voyage in voyage_list:
+            voyage_name = voyage[1]
+            counter += 1
+            voyages_dict[str(counter)] = voyage
+            print("{}. {}".format(counter,voyage_name))
+        """
+
+        ###### option to choose a specific destination
+        input_choice = input("To choose a specific voyage enter it's number: ")
+        if input_choice in voyages_dict:
+            self.display_voyage(voyages_dict[input_choice])
+            #self.display_voyage(voyages_dict[input_choice])
 
     def display_voyage(self, a_voy_info_list):
         a_voyage_info_list = list(a_voy_info_list)
@@ -85,59 +107,45 @@ class VoyageUI():
 
     def create_voyage(self):
         ''' Returns a list of information about a new voyage '''
+
+        destination_str = ""
+        departure_out_date_str = ""
+        departure_out_time_str = ""
+        airplane_ID_str = ""
+
         voyage_info_list = []
+        voyage_info_print_list = ["destination","date for departure (YYYY/MM/DD)", "time of departure (XX:XX:XX)", "airplane"] 
+        insert_list = ["\nplease enter {}: ".format(voyage_info_print_list[i]) for i in range(len(voyage_info_print_list))]
 
         # User chooses destination
         destinations_info_list = self.llAPI.get_destinations()
         counter = 1
 
-        self.header("-", " CHOOSE DESTINATION ")
         for destination_info in destinations_info_list:
             city = destination_info[2]
             print("{}. {}".format(counter,city))
             counter += 1
 
-        valid_list = [str(num) for num in range(len(destinations_info_list))]
-        invalid_input = True
-        number = input("\nEnter number of desired destination for voyage: ")
+        number = input("\nEnter number for chosen destination: ")
+        dest_id = destinations_info_list[(int(number) - 1)][0]
+        voyage_info_list[0] = dest_id
+        voyage_info_list[0] = flight_number_1_str
 
-        while invalid_input == True:
-            if number in valid_list:
-                dest_id = destinations_info_list[(int(number) - 1)][0]
-                city = destinations_info_list[(int(number) - 1)][2]
-                voyage_info_list.append(dest_id)
-                invalid_input = False
-            else:
-                print("Invalid choice. Enter again.")
-                number = input("\nEnter number of desired destination for voyage: ")
-
-        invalid_input = True
-
-        # User chooses date for voyage
-        self.header("-", " CHOOSE DATE ")
-        date_str = input("Enter date of voyage (YYYY-MM-DD) : ")
-
-        while not self.validate.validate_date(date_str):
-            print("Invalid date.")
-            date_str = input("Enter date of voyage (YYYY-MM-DD) : ")
-        else:
-            voyage_info_list.append(date_str)        
-
-        # User chooses time for voyage
-        self.header("-", " CHOOSE TIME ")
-        time_str = input("Enter time of voyage (XX-XX-XX) : ")
-
-        while not self.validate.validate_time(time_str):
-            print("Invalid time.")
-            time_str = input("Enter time of voyage (XX-XX-XX) : ")
-        else:
-            voyage_info_list.append(time_str)   
-
-        self.header("-", " ADD VOYAGE ")
-        print("\n1. DESTINATION ID: {}\n2. FLIGHT 1 DATE: {}\n3. FLIGHT 1 TIME: {}".format(city, date_str, time_str))
+        flight_number_2_str = input("Enter new city: ")
+        voyage_info_list[1] = flight_number_2_str
+                    
+        destination_str = input("Enter new airport: ")
+        voyage_info_list[2] = destination_str
+                    
+        flight_1_date_str = input("Enter new flight time: ")
+        voyage_info_list[3] = flight_1_date_str
 
         print("Changes have been confirmed")
-        return self.llAPI.make_voyage(voyage_info_list)
+        return self.llAPI.create_new_voyage(voyage_info_list)
+
+        self.header("-", " ADD VOYAGE ")
+        print("\n1. DESTINATION: {}\n2. FLIGHT 1 DATE: {}\n3. FLIGHT 1 TIME: {}\n Airplane ID: {}".format(destination_str, deoarture_out_date_str, departure_out_time_str, airplane_ID_str))
+        print("To confirm changes enter confirm")
 
     def assign_voyage(self):
         pass

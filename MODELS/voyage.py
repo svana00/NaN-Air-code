@@ -1,6 +1,5 @@
 class Voyage():
-    def __init__(self, voyage_id, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
-        self.__voyage_id = voyage_id
+    def __init__(self, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
         self.__flight_number_out = flight_num_out
         self.__flight_number_back = flight_num_back
         self.__departure_out = departure_out
@@ -21,9 +20,6 @@ class Voyage():
         self.__fsm = staff_list[2]
         self.__fa1 = staff_list[3]
         self.__fa2 = staff_list[4]
-
-    def get_voyage_id(self):
-        return self.__voyage_id
 
     def get_flight_number_out(self):
         return self.__flight_number_out
@@ -53,20 +49,18 @@ class Voyage():
         return [self.__captain, self.__copilot, self.__fsm, self.__fa1, self.__fa2]
 
     def __str__(self):
-        my_str = ""
-        my_str += "Voyage ID: {}\n".format(self.__voyage_id)
-        my_str += "Flight number out: {}\n".format(self.__flight_number_out)
-        my_str += "Flight number back: {}\n".format(self.__flight_number_back)
-        my_str += "Departure out: {}\n".format(self.__departure_out)
-        my_str += "Arrival out: {}\n".format(self.__arrival_out)
-        my_str += "Departue home: {}\n".format(self.__departure_home)
-        my_str += "Arrival home: {}\n".format(self.__arrival_home)
-        my_str += "Destination ID: {}\n".format(self.__destination_id)
-        my_str += "Plane ID: {}\n".format(self.__plane_id)
-        my_str += "Captain: {}\n".format(self.__captain)
-        my_str += "Co-pilot: {}\n".format(self.__copilot)
-        my_str += "Flight service manager: {}\n".format(self.__fsm)
-        my_str += "Flight attendant: {}\n".format(self.__fa1)
-        my_str += "Flight attendant: {}\n".format(self.__fa2)
+        my_str += "Flight number out: {}".format(self.__flight_number_out)
+        my_str += "Flight number back: {}".format(self.__flight_number_back)
+        my_str += "Departure out: {}".format(self.__departure_out)
+        my_str += "Arrival out: {}".format(self.__arrival_out)
+        my_str += "Departue home: {}".format(self.__departure_home)
+        my_str += "Arrival home: {}".format(self.__arrival_home)
+        my_str += "Destination ID: {}".format(self.__destination_id)
+        my_str += "Plane ID: {}".format(self.__plane_id)
+        my_str += "Captain: {}".format(self.__captain)
+        my_str += "Co-pilot: {}".format(self.__copilot)
+        my_str += "Flight service manager: {}".format(self.__fsm)
+        my_str += "Flight attendant: {}".format(self.__fa1)
+        my_str += "Flight attendant: {}".format(self.__fa2)
 
         return my_str
