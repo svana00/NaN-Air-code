@@ -108,46 +108,39 @@ class VoyageUI():
         departure_out_time_str = ""
         airplane_ID_str = ""
 
-        voyage_info_list = ["" for i in range(13)]
-        
-        #voyage_info_list = [destination_str, departure_out_date_str, departure_out_time_str, airplane_ID_str] 
+        voyage_info_list = []
+        voyage_info_print_list = ["destination","date for departure (YYYY/MM/DD)", "time of departure (XX:XX:XX)", "airplane"] 
+        insert_list = ["\nplease enter {}: ".format(voyage_info_print_list[i]) for i in range(len(voyage_info_print_list))]
 
-        voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", \
-                                "flight 2 date (YYYY/MM/DD)","flight 1 time (XX:XX:XX)", "airplane"] 
+        # User chooses destination
+        destinations_info_list = self.llAPI.get_destinations()
+        counter = 1
 
-        insert_list = ["\nplease enter new {}: ".format(voyage_info_print_list[i]) for i in range(len(voyage_info_print_list))]
-        
-        VALID_LIST = ["{}".format(str(i)) for i in range(13)]
-        VALID_LIST.append("confirm")
-        choice = input("To choose what you want to add, enter a number: ")
+        for destination_info in destinations_info_list:
+            city = destination_info[2]
+            print({}. {}.format(counter,city))
+            counter += 1
 
-        while choice in VALID_LIST:
-            print("{}".format(insert_list[int(choice)-1], ))
-                
-            if choice == "1":
-                flight_number_1_str = input("\nEnter new country: ")
-                voyage_info_list[0] = flight_number_1_str
+        number = input("\nEnter number for chosen destination: ")
+        dest_id = destinations_info_list[(number - 1)][0]
+        voyage_info_list[0] = dest_id
+        voyage_info_list[0] = flight_number_1_str
 
-            elif choice == "2":
-                flight_number_2_str = input("Enter new city: ")
-                voyage_info_list[1] = flight_number_2_str
+        flight_number_2_str = input("Enter new city: ")
+        voyage_info_list[1] = flight_number_2_str
                     
-            elif choice == "3":
-                destination_str = input("Enter new airport: ")
-                voyage_info_list[2] = destination_str
+        destination_str = input("Enter new airport: ")
+        voyage_info_list[2] = destination_str
                     
-            elif choice == "4":
-                flight_1_date_str = input("Enter new flight time: ")
-                voyage_info_list[3] = flight_1_date_str
+        flight_1_date_str = input("Enter new flight time: ")
+        voyage_info_list[3] = flight_1_date_str
 
-            elif choice == "confirm":
-                print("Changes have been confirmed")
-                return 0 #self.llAPI.create_new_voyage(voyage_info_list)
+        print("Changes have been confirmed")
+        return self.llAPI.create_new_voyage(voyage_info_list)
 
             self.header("-", " ADD DESTINATION ")
             print("\n1. DESTINATION: {}\n2. FLIGHT 1 DATE: {}\n3. FLIGHT 1 TIME: {}\n Airplane ID: {}".format(destination_str, deoarture_out_date_str, departure_out_time_str, airplane_ID_str))
             print("To confirm changes enter confirm")
-            choice = input("\nInput what you want to add: ")
 
     def assign_voyage(self):
         pass
