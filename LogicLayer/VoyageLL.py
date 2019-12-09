@@ -38,6 +38,9 @@ class VoyageLL():
     def get_non_assigned_voyages(self):
         pass
 
+    def check_voyages_state(self):
+        pass
+
     def check_if_fully_assigned(self):
         pass
 
