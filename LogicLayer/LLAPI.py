@@ -65,3 +65,6 @@ class LLAPI():
     
     def get_staff_member_schedule(self, ssn, start_of_desired_week_str):
         return self.staffLL.get_staff_member_schedule(ssn, start_of_desired_week_str)
+
+    def make_voyage(self, voyage_info_list):
+        return self.voyageLL.make_voyage(voyage_info_list)

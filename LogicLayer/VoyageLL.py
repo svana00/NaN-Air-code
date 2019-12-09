@@ -8,7 +8,7 @@ class VoyageLL():
     def assign_voyage_staff(self):
         pass
 
-    def make_voyage(self):
+    def make_voyage(self, voyage_info_list):
         pass
 
     def get_all_voyages_for_week(self, start_of_desired_week_str):
