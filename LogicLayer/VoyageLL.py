@@ -87,7 +87,9 @@ class VoyageLL():
         for voyage in voyages_list: 
             dest_id = voyage.get_dest_id()
             departure_out_date = voyage.get_departure_out()
-            if dest_id == target_id and departure_out_date == target_date:
+            date = datetime.datetime.fromisoformat(departure_out_date).date()
+            date = str(date)
+            if dest_id == target_id and date == target_date:
                 counter += 1
 
         flight_number_out = "NA" + str(dest_flight_number_id) + str(counter * 2)
