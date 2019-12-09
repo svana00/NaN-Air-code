@@ -54,7 +54,7 @@ class VoyageUI():
         counter = 0
         self.header("-", " ALL VOYAGES ")
         voyage_info_list = self.llAPI.get_all_voyages()
-        print(voyage_list)
+        print(voyage_info_list)
 
 
     def display_voyage(self, a_voy_info_list):
