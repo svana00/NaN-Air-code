@@ -1,5 +1,8 @@
+import datetime
+
 class Validate:
     def __init__(self):
+        # bæta við 
         pass
 
     def validate_letter(self, letter_str):
@@ -47,6 +50,13 @@ class Validate:
 
     def validate_time(self):
         pass
+
+    def validate_date(self, date):
+        try:
+            datetime.datetime.fromisoformat(date)
+            return True
+        except ValueError:
+            return False
 
     def check_if_working(self): # we don't need this
         pass
