@@ -62,15 +62,8 @@ class VoyageUI():
             voyages_dict[str(counter)] = voyage_list[x]
             print("{}. {}".format(counter,voyage_name))
             print("\n\n", voyages_dict)
-        """
-        for voyage in voyage_list:
-            voyage_name = voyage[1]
-            counter += 1
-            voyages_dict[str(counter)] = voyage
-            print("{}. {}".format(counter,voyage_name))
-        """
 
-        ###### option to choose a specific destination
+        # Option to choose a specific destination
         input_choice = input("To choose a specific voyage enter it's number: ")
         if input_choice in voyages_dict:
             self.display_voyage(voyages_dict[input_choice])
