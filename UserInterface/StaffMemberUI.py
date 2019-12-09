@@ -220,16 +220,18 @@ class StaffMemberUI():
 
     def show_staff_member_schedule(self):
 
-        start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
+        start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): \n")
 
         counter = 0
         staff_info_list = self.llAPI.get_all_staff()
+        self.header("<3", " ALL STAFF ")
+
         for staff_member in staff_info_list:
             ssn = staff_member[0]
             name = staff_member[1]
             counter +=1
-            print("{}. Name: {}, ssn: {}".format(counter, name, ssn))
-        choice = input("Choose the number staff member whose schedule you want to see: ")
+            print("{:>3}. {:<25} ssn: {:<15}".format(counter, name, ssn))
+        choice = input("\nChoose the number staff member whose schedule you want to see: ")
 
         desired_ssn = staff_info_list[int(choice) - 1][0]
         desired_name = staff_info_list[int(choice) - 1][1]
@@ -237,9 +239,11 @@ class StaffMemberUI():
 
         print(desired_name + " is going to:")
         for voyage in working_voyages_list:
-            destination = voyage.get_dest_id()
+            dest_id = voyage.get_dest_id()
+            dest_info = self.llAPI.get_destination_info(dest_id)
+            dest_city = dest_info.get_city()
             date = voyage.get_departure_out()[:10]   # Excludes the date from the string
-            print("{} on {}".format(destination, date))
+            print("{} on {}".format(dest_city, date))
         
     def create_staff_member(self):
 
