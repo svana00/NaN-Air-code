@@ -1,9 +1,10 @@
-#from Validation.validation import Validate
+from Validation.validation import Validate
 
 class DestinationUI():
 
     def __init__(self, llAPI):
         self.llAPI = llAPI
+        self.validation = Validate()
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
@@ -14,7 +15,8 @@ class DestinationUI():
         print("1. CHANGE\n2. OVERVIEW\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
-            self.change_destination_info()
+            #self.change_destination_info()
+            self.change_destination()
         elif var == "2":
             self.show_destinations()
         elif var == "3":
@@ -112,9 +114,10 @@ class DestinationUI():
             choice = input("\nInput what you want to add: ")
 
     def change_destination_info(self):
+
         dest_list = self.llAPI.get_mutable_destination_info_list()
         valid_list = []
-        mut_list, dest_id = dest_list
+        dest_id = dest_list
         contact_str = ""
         emergency_number_str = ""
         
@@ -134,8 +137,10 @@ class DestinationUI():
             print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(contact_str, emergency_number_str))
             while first_choice in valid_input_list:
                 second_choice = int(input("\nInput which information you would like to change: "))
+
                 if choice == 1:
                     contact_str = input("\n Enter new contact: ")
+                    #if self.validate_contact(contact_str):
                     contact_name_str = dest_list[0]
                     return self.llAPI.change_destination()
 
@@ -155,4 +160,43 @@ class DestinationUI():
 
         destination_name = ""
         self.header("-", destination_name)
+
+
+    def change_destination(self):
+        dest_instance_list = self.llAPI.anton_og_magga_eru_best()
+        dest_instance_dictionary = {str(i+1): dest_instance_list[i] for i in range(len(dest_instance_list))}
+        self.header("*", " CHOOOOOOOSEE ")
+        for key,val in dest_instance_dictionary.items():
+            print("{}. {}".format(key, val.get_city()))
+
+        dest_choice = input("Enter which destination you want to change: ")
+
+
+        while dest_choice in dest_instance_dictionary.keys():
+            self.header("*", " {} ".format(dest_instance_dictionary[dest_choice].get_city()))
+            print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(dest_instance_dictionary[dest_choice].get_contact(), dest_instance_dictionary[dest_choice].get_emergency_number()))
+            change_info_choice = input("Enter which info you want to change: ")
+            
+            if change_info_choice == "1":
+                new_contact_str = input("\n Enter new contact: ")
+                if self.validation.validate_letter(new_contact_str):
+                    #return self.llAPI.set_new_contact(dest_instance_dictionary[dest_choice],new_contact_str)
+                    dest_instance_dictionary[dest_choice].set_new_contact(new_contact_str)
+                    print(dest_instance_dictionary[dest_choice])
+
+
+            elif change_info_choice == "2":
+                new_emergency_number_str = input("Enter new emergency number: ")
+                if self.validation.validate_phone_num(new_emergency_number_str):
+                    #return self.llAPI.set_new_emergency_phone(dest_instance_dictionary[dest_choice], emergency_str)
+                    dest_instance_dictionary[dest_choice].set_new_emergency_phone(new_emergency_number_str)
+
+            elif change_info_choice == "confirm":
+                print("Changes have been confirmed")
+                return self.llAPI.store_new_changes(dest_instance_list)
+            
+            
+
+
+
 
