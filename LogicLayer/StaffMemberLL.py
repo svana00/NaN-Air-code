@@ -154,8 +154,6 @@ class StaffMemberLL():
         staff_member_id = staff_member.get_ssn()
         voyages_list = self.ioAPI.load_all_voyages()
 
-        start_of_week_datetime = "2019-11-02T12:00:00"
-
         end_of_week_datetime = datetime.datetime.fromisoformat(start_of_week_datetime)
         end_of_week_datetime += datetime.timedelta(days = 6)
         print(end_of_week_datetime)
