@@ -46,23 +46,36 @@ class Validate:
 
     def validate_plane_id(self, plane_id_str):
         """TF-XXX"""
+
         pass
 
-    def validate_time(self):
-        pass
+    def validate_time(self, time):
 
-    def validate_date(self, date):
         try:
-            datetime.datetime.fromisoformat(date)
+            datetime.time(time)
             return True
         except ValueError:
             return False
 
-    def check_if_working(self): # we don't need this
-        pass
 
-    def validate_destination(self, dest_str):
-        pass
+    def validate_date(self, date):
+
+        try:
+            datetime.date.fromisoformat(date)
+            return True
+        except ValueError:
+            return False
+
+
+    def validate_departure(self, departure_date_and_time):
+        voyage_list = self.llAPI.get_all_voyages()
+        for voyage in voyage_list:
+            temp_departure_datetime = voyage.get_departure_out()
+            if temp_departure_datetime == departure_date_and_time:
+                return False
+        
+        return True
+
 
     def validate_arrival(self, arrival_str):
         pass
