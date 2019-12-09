@@ -57,11 +57,11 @@ class LLAPI():
         self.airplane_str = airplane_str
         return self.airplaneLL.makeAirplane(airplane_str)
 
-    def get_all_working(self, departure_out_date):
-        return self.staffLL.get_all_working(departure_out_date)
+    def get_all_working(self, desired_date_str):
+        return self.staffLL.get_all_working(desired_date_str)
 
-    def get_all_not_working(self, departure_out_date):
-        return self.staffLL.get_all_not_working(departure_out_date)
+    def get_all_not_working(self, desired_date_str):
+        return self.staffLL.get_all_not_working(desired_date_str)
 
-    def get_staff_member_schedule(self, ssn, departure_out_date):
-        return self.staffLL.get_staff_member_schedule(ssn, departure_out_date)
+    def get_staff_member_schedule(self, ssn, start_of_target_week):
+        return self.staffLL.get_staff_member_schedule(ssn, start_of_target_week)
