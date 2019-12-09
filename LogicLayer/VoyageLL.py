@@ -1,5 +1,4 @@
-from MODELS.voyage import Voyage
-
+import datetime
 class VoyageLL():
 
     def __init__(self, ioAPI):
@@ -12,8 +11,15 @@ class VoyageLL():
         pass
 
     def get_all_voyages(self):
-        
-        return 
+        voyage_list = self.ioAPI.load_all_voyages()
+        voyage_info_list = []
+
+        for voyage in voyage_list:
+            departure_out = voyage.get_departure_out()
+            dest_id = voyage.get_dest_id()
+            voyage_info_list.append((departure_out, dest_id))
+
+        return voyage_info_list
 
     def get_voyages_by_date(self):
         pass
