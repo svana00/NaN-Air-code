@@ -50,8 +50,8 @@ class LLAPI():
     def create_staff_member(self, staff_member_info_list):
         return self.staffLL.create_staff_member(staff_member_info_list)
 
-    def get_all_voyages(self):
-        return self.ioAPI.load_all_voyages()
+    def get_all_voyages_for_week(self):
+        return self.ioAPI.get_all_voyages_for_week(start_of_desired_week_str)
 
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str
