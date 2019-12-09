@@ -116,10 +116,10 @@ class StaffMemberLL():
             temp_date = datetime.datetime.fromisoformat(voyage_departure_out).date()
 
             if desired_date == temp_date:
-                cabin_crew = voyage.get_cabin_crew()
+                cabin_crew_list = voyage.get_cabin_crew()
                 destination = voyage.get_dest_id()
-                if cabin_crew != []:
-                    working_staff_dict[destination] = cabin_crew
+                if cabin_crew_list != []:
+                    working_staff_dict[destination] = cabin_crew_list
         
         return working_staff_dict
 
@@ -153,14 +153,21 @@ class StaffMemberLL():
         staff_member = self.get_staff_member_info(ssn)
         staff_member_id = staff_member.get_ssn()
         voyages_list = self.ioAPI.load_all_voyages()
+        voyages_in_week_list = []
+        voyages_for_staff_member_in_week_list = []
 
         start_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date()
         end_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date() + datetime.timedelta(days = 6)
 
         for voyage in voyages_list:
+            temp_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date()
+            if temp_date >= start_of_desired_week and temp_date <= end_of_desired_week:
+                voyages_in_week_list.append(voyage)
+
+        for voyage in voyages_in_week_list:
             cabin_crew_list = voyage.get_cabin_crew()
             if staff_member_id in cabin_crew_list:
-                pass
+                voyages_for_staff_member_in_week_list.append(voyage)
 
     def create_staff_member(self,staff_member_info_list):
         staff_member_str = ",".join(staff_member_info_list)
