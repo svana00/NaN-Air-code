@@ -3,20 +3,14 @@ class VoyageLL():
 
     def __init__(self, ioAPI):
         self.ioAPI = ioAPI
-        
-    def assign_voyage_staff(self):
-        pass
-
-    def make_voyage(self, voyage_info_list):
-        pass
 
     def get_all_voyages(self):
         voyage_list = self.ioAPI.load_all_voyages()
         voyage_info_list = []
 
         for voyage in voyage_list:
-            dest_id = voyage.get_dest_id
-            departure_out = voyage.get_departure_out
+            dest_id = voyage.get_dest_id()
+            departure_out = voyage.get_departure_out()
             voyage_info_list.append((dest_id, departure_out))
 
         return voyage_info_list
@@ -50,4 +44,10 @@ class VoyageLL():
         pass
 
     def check_voyages_state(self):
+        pass
+
+    def assign_voyage_staff(self):
+        pass
+
+    def make_voyage(self, voyage_info_list):
         pass
