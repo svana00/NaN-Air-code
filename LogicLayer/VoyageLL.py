@@ -13,10 +13,10 @@ class VoyageLL():
         voyage_info_list = []
 
         for voyage in voyage_list:
+            voyage_id = voyage.get_voyage_id()
             dest_id = voyage.get_dest_id()
             departure_out = voyage.get_departure_out()
-            voyage_id = voyage.get_voyage_id()
-            voyage_info_list.append((dest_id, departure_out, voyage_id))
+            voyage_info_list.append((voyage_id, dest_id, departure_out))
 
         return voyage_info_list
 
@@ -63,26 +63,10 @@ class VoyageLL():
 
         if voyage_id < 10:
             voyage_id = "0" + "{}".format(voyage_id)
-<<<<<<< HEAD
+
         elif voyage < 100:
-<<<<<<< HEAD
             voyage_id = "0" + "{}".format(voyage_id)
 
-    def get_all_voyages(self):
-        voyage_list = self.ioAPI.load_all_voyages()
-        voyage_info_list = []
-
-        for voyage in voyage_list:
-            voyage_id = voyage.get_voyage_id()
-            dest_id = voyage.get_dest_id()
-            departure_out = voyage.get_departure_out()
-            voyage_info_list.append((voyage_id, dest_id, departure_out))
-
-        return voyage_info_list
-=======
-            voyage_id = "0" + "{}".format(voyage_id)
->>>>>>> 5cc38d0b27dd389863933101bfc13808ae515666
-=======
         elif voyage_id < 100:
             voyage_id = "0" + "{}".format(voyage_id)
         
@@ -113,4 +97,4 @@ class VoyageLL():
         all_voyage_info_list.append(flight_number_back)
 
         print(all_voyage_info_list)
->>>>>>> e646f776b41ceafecf490de7faf11c4e474f392e
+
