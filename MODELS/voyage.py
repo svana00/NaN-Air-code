@@ -54,6 +54,7 @@ class Voyage():
 
     def __str__(self):
         my_str = ""
+        my_str += "Voyage ID: {}\n".format(self.__voyage_id)
         my_str += "Flight number out: {}\n".format(self.__flight_number_out)
         my_str += "Flight number back: {}\n".format(self.__flight_number_back)
         my_str += "Departure out: {}\n".format(self.__departure_out)
