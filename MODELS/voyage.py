@@ -1,6 +1,5 @@
 class Voyage():
-    def __init__(self, voyage_id, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
-        self.__voyage_id = voyage_id
+    def __init__(self, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
         self.__flight_number_out = flight_num_out
         self.__flight_number_back = flight_num_back
         self.__departure_out = departure_out
@@ -50,7 +49,6 @@ class Voyage():
         return [self.__captain, self.__copilot, self.__fsm, self.__fa1, self.__fa2]
 
     def __str__(self):
-        my_str = ""
         my_str += "Flight number out: {}".format(self.__flight_number_out)
         my_str += "Flight number back: {}".format(self.__flight_number_back)
         my_str += "Departure out: {}".format(self.__departure_out)
