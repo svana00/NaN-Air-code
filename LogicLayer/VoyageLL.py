@@ -64,7 +64,7 @@ class VoyageLL():
         if voyage_id < 10:
             voyage_id = "0" + "{}".format(voyage_id)
 
-        elif voyage < 100:
+        elif voyage_id < 100:
             voyage_id = "0" + "{}".format(voyage_id)
 
         elif voyage_id < 100:
@@ -97,4 +97,3 @@ class VoyageLL():
         all_voyage_info_list.append(flight_number_back)
 
         print(all_voyage_info_list)
-
