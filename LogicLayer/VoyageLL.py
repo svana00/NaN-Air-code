@@ -50,4 +50,10 @@ class VoyageLL():
         pass
 
     def make_voyage(self, voyage_info_list):
-        pass
+        voyages_list = self.ioAPI.load_all_voyages()
+        voyage_id = len(voyages_list)
+
+        if voyage_id < 10:
+            voyage_id = "0" + "{}".format(voyage_id)
+        elif voyage < 100:
+            voyage_id = "0" + "{}".format(voyage_id)

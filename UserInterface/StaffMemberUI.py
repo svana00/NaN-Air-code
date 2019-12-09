@@ -132,7 +132,7 @@ class StaffMemberUI():
 
     def show_all_staff(self):
         """ Prints the names of all of the staff members from a lis of their ssn and name """
-
+        #TODO: laga þannig að við fáum lista af tilvikum..
         counter = 0
         self.header("-", " ALL STAFF MEMBERS ")
         staff_info_list = self.llAPI.get_all_staff()
