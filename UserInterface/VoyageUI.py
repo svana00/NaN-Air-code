@@ -55,26 +55,7 @@ class VoyageUI():
         voyage_info_list = self.llAPI.get_all_voyages()
         print(voyage_info_list)
 
-        for x in range(len(voyage_info_list)):
-            voyage_name = voyage_info_list[x][0]
-            counter += 1
-            voyages_dict[str(counter)] = voyage_info_list[x]
-            print("{}. {}".format(counter,voyage_name))
-            print("\n\n", voyages_dict)
-        """
-        for voyage in voyage_list:
-            voyage_name = voyage[1]
-            counter += 1
-            voyages_dict[str(counter)] = voyage
-            print("{}. {}".format(counter,voyage_name))
-        """
-
-        ###### option to choose a specific destination
-        input_choice = input("To choose a specific voyage enter it's number: ")
-        if input_choice in voyages_dict:
-            self.display_voyage(voyages_dict[input_choice])
-            #self.display_voyage(voyages_dict[input_choice])
-
+        
     def display_voyage(self, a_voy_info_list):
         a_voyage_info_list = list(a_voy_info_list)
         #voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", \
@@ -96,8 +77,8 @@ class VoyageUI():
         menu_choice = input("Input command here: ")
         if menu_choice == "1":
             self.create_voyage()
-        #elif menu_choice == "2":
-            #self.copy_voyage()
+        elif menu_choice == "2":
+            self.copy_voyage()
         else:
             print("Invalid choice\nPlease try again")
 
