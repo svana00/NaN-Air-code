@@ -60,6 +60,13 @@ class LLAPI():
     def create_new_destination(self, dest_list):
         self.dest_list = dest_list
         return self.destLL.create_new_destination(self.dest_list)
+    
+    def anton_og_magga_eru_best(self):
+        destination_instance_list = self.destLL.lets_see_if_this_works()
+        return destination_instance_list
+
+    def store_new_changes(self, destination_instance_list):
+        return self.destLL.store_new_changes(destination_instance_list)
 
     # ---- Voyage functions ----
     def get_all_voyages(self):

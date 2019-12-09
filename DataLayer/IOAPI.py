@@ -42,3 +42,6 @@ class IOAPI:
 
     def change_destination(self):
         pass
+
+    def storeDestinationInfo(self, dest_list):
+        return self.destIO.storeDestinationInfo(dest_list)

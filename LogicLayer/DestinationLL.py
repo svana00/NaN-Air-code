@@ -41,10 +41,17 @@ class DestinationLL():
         for dest in dest_list:
             if dest.get_id() == dest_id:
                 return dest
+
+    def lets_see_if_this_works(self):
+        dest_instance_list = self.ioAPI.load_all_dest_from_file()
+        return dest_instance_list
     
     def create_new_destination(self, dest_info_list):
         dest_str = ",".join(dest_info_list)
         return self.ioAPI.create_new_destination(dest_str)
+    
+    def store_new_changes(self, dest_instance_list):
+        return self.ioAPI.storeDestinationInfo(dest_instance_list)
 
     #def change_destination(self, old_str, new_str):
     #    old_file = self.ioAPI.get_all_file()
