@@ -45,15 +45,20 @@ class Validate:
                 return True
         return False
 
-    def validate_plane_type(self):
-        pass
+    def validate_plane_type(self, plane_type_str):
+        VALID_PLANE_MANUFACTORER = ["Fokker","BAE"]
+        if plane_type_str[:2] == "NA":
+            if plane_type_str[2:-3] in VALID_PLANE_MANUFACTORER:
+                if plane_type_str[-3:].isdigit():
+                    return True
+        return False
 
     def validate_plane_id(self, plane_id_str):
         #"""TF-XXX"""
         if plane_id_str[:3] == "TF-":
             if len(plane_id_str[3:]) == 3 and plane_id_str[3:].isalpha() and plane_id_str[3:].isupper():
                 return True
-                
+        
         return False
 
     def validate_time(self, time):
@@ -84,11 +89,14 @@ class Validate:
         return True
 
     def validate_flight_num(self, flight_num_str):
+        # þið eigið eftir að breyta þessu þannig að ég ætla ekki að
+        # gera neitt in the meantime (:
         pass
 
-"""
+""" 
+#testing kóði
 hellu = Validate()
-if hellu.validate_address("Háffa 97"):
+if hellu.validate_plane_type("NAFokker123"):
     print("yaaaaaaaaas")
 else:
     print("noooopeeeee")
