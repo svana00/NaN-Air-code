@@ -1,20 +1,23 @@
+from Validation.validation import Validate
+
 class StaffMemberUI():
 
     def __init__(self, llAPI):
         self.llAPI = llAPI
+        self.validation = Validate()
 
     def header(self, form, string):
         """ Creates a header with the form as decoration before the chosen string """
-        print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
+        print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_staff_menu(self):
         """ Prints the main staff menu and calls the appropriate
             functions for the option that's picked """
-        print("\n\n" + "*"*26 + "\n\t STAFF \n"+"*"*26)
+        print("*"*56 + "\n"+" "*int((56-len(" STAFF "))/2)+" STAFF "+" "*int((56-len(" STAFF "))/2)+"\n"+"*"*56)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
         if var == "1":
-            return self.choose_in_staff()
+            return self.change_staff_member_info()
         elif var == "2":
             return self.choose_in_staff()
         elif var == "3":
@@ -297,4 +300,52 @@ class StaffMemberUI():
         choice = input("\nInput what you want to add: ")
 
     def change_staff_member_info(self):
-        pass
+
+            staff_instance_list = self.llAPI.get_staff_member_instance_list()
+            staff_instance_dictionary = {str(i+1): staff_instance_list[i] for i in range(len(staff_instance_list))}
+
+
+            #prints header and main body of the menu for choosing a particular staff member
+            self.header("*", " CHOOSE STAFF MEMBER ")
+            for key,val in staff_instance_dictionary.items():
+                print("{}. {}".format(key, val.get_name()))
+            staff_choice = input("Enter which staff member you want to change: ")
+            
+
+            while staff_choice in staff_instance_dictionary.keys():
+                instance = staff_instance_dictionary[staff_choice] #to make our lives easier
+                 #shortens the code a bit
+
+                self.header("*", " {} ".format(instance.get_name()))
+                print("\n1. NAME: {}\n2. LICENSE: {}\n3. ADDRESS: {}\n4. PHONE NUMBER: {}\n5. EMAIL ADDRESS: {}".format(instance.get_name(), instance.get_licence(), instance.get_address(), instance.get_phone_number(), instance.get_email()))
+                change_info_choice = input("Enter which info you want to change: ")
+
+                if change_info_choice == "1":
+                    new_name_str = input("\n Enter new name: ")
+                    if self.validation.validate_letter(new_name_str):
+                        instance.set_new_name(new_name_str)
+
+                elif change_info_choice == "2":
+                    new_licence_str = input("Enter new license: ")
+                    if self.validation.validate_plane_type(new_licence_str):
+                        instance.set_new_license(new_licence_str)
+
+                elif change_info_choice == "3":
+                    new_address_str = input("Enter new emergency number: ")
+                    if self.validation.validate_address(new_address_str):
+                        instance.set_new_address(new_address_str)
+
+                elif change_info_choice == "4":
+                    new_phone_num_str = input("Enter new emergency number: ")
+                    if self.validation.validate_phone_num(new_phone_num_str):
+                        instance.set_new_phone_number(new_phone_num_str)
+
+                elif change_info_choice == "5":
+                    new_email_str = input("Enter new emergency number: ")
+                    if self.validation.validate_email(new_email_str):
+                        instance.set_new_email(new_email_str)
+
+                elif change_info_choice == "confirm":
+                    print("Changes have been confirmed")
+                    return self.llAPI.store_new_changes(staff_instance_list)
+

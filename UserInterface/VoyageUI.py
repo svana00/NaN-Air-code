@@ -7,13 +7,12 @@ class VoyageUI():
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
-        print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
+        print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_voyages_menu(self):
         """ displays the main menu for voyages giving the user 
         the options to change, add, or see overview of voyages """
-
-        print("*"*26 + "\n\t VOYAGES \n"+"*"*26)
+        print("*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
@@ -167,3 +166,6 @@ class VoyageUI():
             self.assign_voyage()
         elif change_choice == "2":
             self.change_voyage_information()
+
+    def copy_voyage(self):
+        pass

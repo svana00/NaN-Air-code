@@ -8,10 +8,10 @@ class DestinationUI():
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
-        print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
+        print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_dest_menu(self):
-        print("\n\n" + "*"*26 + "\n\t Destinations \n"+"*"*26)
+        print("*"*56 + "\n"+" "*int((56-len(" DESTINATIONS "))/2)+" DESTINATIONS "+" "*int((56-len(" DESTINATIONS "))/2)+"\n"+"*"*56)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
@@ -113,6 +113,7 @@ class DestinationUI():
             print("To confirm changes enter confirm")
             choice = input("\nInput what you want to add: ")
 
+    """
     def change_destination_info(self):
 
         dest_list = self.llAPI.get_mutable_destination_info_list()
@@ -160,7 +161,7 @@ class DestinationUI():
 
         destination_name = ""
         self.header("-", destination_name)
-
+    """
 
     def change_destination(self):
         dest_instance_list = self.llAPI.anton_og_magga_eru_best()
@@ -170,7 +171,7 @@ class DestinationUI():
             print("{}. {}".format(key, val.get_city()))
 
         dest_choice = input("Enter which destination you want to change: ")
-
+        
 
         while dest_choice in dest_instance_dictionary.keys():
             self.header("*", " {} ".format(dest_instance_dictionary[dest_choice].get_city()))
@@ -195,8 +196,3 @@ class DestinationUI():
                 print("Changes have been confirmed")
                 return self.llAPI.store_new_changes(dest_instance_list)
             
-            
-
-
-
-

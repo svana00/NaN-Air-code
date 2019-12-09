@@ -18,7 +18,7 @@ class UIManager():
         
     def mainLoop(self):
         while True:
-            print("\n\n" + "*"*26 + "\n\t NaN AIR\n"+"*"*26)
+            print("\n\n" + "*"*56 + "\n\t\t\tNaN AIR\n"+"*"*56)
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
             if var == "1":

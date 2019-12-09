@@ -9,6 +9,8 @@ class StaffMember():
         self.phone_number = phone_number
         self.email = email
 
+
+#------ get functions ---------
     def get_ssn(self):
         return self.__ssn
 
@@ -33,7 +35,36 @@ class StaffMember():
     def get_email(self):
         return self.email
 
+#------- set functions  ---------
 
+    def set_new_name(self, new_name):
+        self.__name = new_name
+
+    def set_new_licence(self, new_licence):
+        self.licence = new_licence
+
+    def set_new_address(self, new_address):
+        self.address = new_address
+
+    def set_new_phone_number(self, new_phone_number):
+        self.phone_number = new_phone_number
+
+    def set_new_email(self, new_email):
+        self.email = new_email
+
+    def instance_to_csv_string(self):
+            csv_str = ""
+            csv_str += "{}".format(self.__ssn)
+            csv_str += "{}".format(self.__name)
+            csv_str += "{}".format(self.role)
+            csv_str += "{}".format(self.rank)
+            csv_str += "{}".format(self.licence)
+            csv_str += "{}".format(self.address)
+            csv_str += "{}".format(self.phone_number)
+            csv_str += "{}".format(self.email)
+
+
+#------- string function --------
     def __str__(self):
         my_str = ""
         my_str += "Ssn: {}\n".format(self.__ssn)

@@ -14,6 +14,10 @@ class LLAPI():
         self.airplaneLL = AirplaneLL(self.ioAPI)
 
     # ---- Staff member functions ----
+    def get_staff_member_instance_list(self):
+        staff_member_instance_list = self.staffLL.get_staff_member_instance_list()
+        return staff_member_instance_list
+
     def get_staff_member_info(self, ssn):
         return self.staffLL.get_staff_member_info(ssn)
 

@@ -6,10 +6,10 @@ class AirplaneUI():
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
-        print("\n\n"+form*(13 - int((len(string)/2))) + string + form*(13 - int((len(string)/2))))
+        print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_airplane_menu(self):
-        print("\n","*"*26 + "\n\t Airplanes \n"+"*"*26)
+        print("*"*56 + "\n"+" "*int((56-len(" AIRPLANES "))/2)+" AIRPLANES "+" "*int((56-len(" AIRPLANES "))/2)+"\n"+"*"*56)
         print("1. OVERVIEW\n2. ADD AIRPLANES\n")
         user_choice = input("Input a command: ")
 
