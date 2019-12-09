@@ -173,15 +173,16 @@ class StaffMemberUI():
                 counter += 1
 
     def show_all_working(self):
-        departure_out_date = input("Enter date (YYYY-MM-DD): ")
+        desired_date_str = input("Enter date (YYYY-MM-DD): ")
 
-        self.header("-", " ALL STAFF MEMBERS WORKING ON {} ".format(departure_out_date))
+        self.header("-", " ALL STAFF MEMBERS WORKING ON {} ".format(desired_date_str))
 
-        staff_working_dict = self.llAPI.get_all_working(departure_out_date)
+        staff_working_dict = self.llAPI.get_all_working(desired_date_str)
 
         #Print the name of each staff member that is working
         for dest_id, staff_id_list in staff_working_dict.items():
             destination = self.llAPI.get_destination_info(dest_id)
+            counter = 1
             for staff_id in staff_id_list:
                 staff_member = self.llAPI.get_staff_member_info(staff_id)
                 name = staff_member.get_name()
@@ -190,11 +191,11 @@ class StaffMemberUI():
                 counter += 1
         
     def show_all_not_working(self):
-        departure_out_date = input("Enter date (YYYY-MM-DD): ")
+        desired_date_str = input("Enter date (YYYY-MM-DD): ")
 
-        self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {} ".format(departure_out_date))
+        self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {} ".format(desired_date_str))
 
-        staff_not_working_list = self.llAPI.get_all_not_working(departure_out_date)
+        staff_not_working_list = self.llAPI.get_all_not_working(desired_date_str)
 
         #Print the name of each staff member that is not working
         for staff_member_id in staff_not_working_list:
@@ -203,8 +204,8 @@ class StaffMemberUI():
             print("{} {}".format("-", name))
 
     def show_staff_member_schedule(self):
-        pass
-
+        self.llAPI.get_staff_member_schedule("2910858778", "2019-11-02T12:00:00")
+        
     def create_staff_member(self):
         ssn_str = ""
         name_str = ""
