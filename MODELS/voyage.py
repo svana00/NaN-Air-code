@@ -22,6 +22,9 @@ class Voyage():
         self.__fa1 = staff_list[3]
         self.__fa2 = staff_list[4]
 
+    def get_voyage_id(self):
+        return self.__voyage_id
+
     def get_flight_number_out(self):
         return self.__flight_number_out
 
