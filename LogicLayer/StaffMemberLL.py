@@ -156,8 +156,8 @@ class StaffMemberLL():
         voyages_in_week_list = []
         voyages_for_staff_member_in_week_list = []
 
-        start_of_desired_week = datetime.date.fromisoformat(start_of_desired_week_str)
-        end_of_desired_week = datetime.date.fromisoformat(start_of_desired_week_str) + datetime.timedelta(days = 6)
+        start_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date()
+        end_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date() + datetime.timedelta(days = 6)
 
         for voyage in voyages_list:
             temp_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date()
@@ -168,8 +168,6 @@ class StaffMemberLL():
             cabin_crew_list = voyage.get_cabin_crew()
             if staff_member_id in cabin_crew_list:
                 voyages_for_staff_member_in_week_list.append(voyage)
-        
-        return voyages_for_staff_member_in_week_list
 
     def create_staff_member(self,staff_member_info_list):
         staff_member_str = ",".join(staff_member_info_list)

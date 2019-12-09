@@ -35,14 +35,13 @@ class StaffMember():
 
 
     def __str__(self):
-        my_str = ""
-        my_str += "Ssn: {}\n".format(self.__ssn)
-        my_str += "Name: {}\n".format(self.__name)
-        my_str += "Role: {}\n".format(self.role)
-        my_str += "Rank: {}\n".format(self.rank)
-        my_str += "Licence: {}\n".format(self.licence)
-        my_str += "Address: {}\n".format(self.address)
-        my_str += "Phone number: {}\n".format(self.phone_number)
-        my_str += "Email: {}\n".format(self.email)
+        my_str = "Ssn: {}".format(self.__ssn)
+        my_str += "\nName: {}".format(self.__name)
+        my_str += "\nRole: {}".format(self.role)
+        my_str += "\nRank: {}".format(self.rank)
+        my_str += "\nLicence: {}".format(self.licence)
+        my_str += "\nAddress: {}".format(self.address)
+        my_str += "\nPhone number: {}".format(self.phone_number)
+        my_str += "\nEmail: {}".format(self.email)
 
         return my_str
