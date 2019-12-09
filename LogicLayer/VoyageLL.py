@@ -3,7 +3,7 @@ class VoyageLL():
 
     def __init__(self, ioAPI):
         self.ioAPI = ioAPI
-        
+
     def assign_voyage_staff(self):
         pass
 
@@ -38,8 +38,17 @@ class VoyageLL():
     def get_non_assigned_voyages(self):
         pass
 
+    def check_voyages_state(self):
+        pass
+
     def check_if_fully_assigned(self):
         pass
 
-    def check_voyages_state(self):
-        pass
+    def make_voyage(self, voyage_info_list):
+        voyages_list = self.ioAPI.load_all_voyages()
+        voyage_id = len(voyages_list)
+
+        if voyage_id < 10:
+            voyage_id = "0" + "{}".format(voyage_id)
+        elif voyage < 100:
+            voyage_id = "0" + "{}".format(voyage_id)

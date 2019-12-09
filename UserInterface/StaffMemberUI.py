@@ -122,6 +122,7 @@ class StaffMemberUI():
 
     def show_all_staff(self):
         """ Prints the names of all of the staff members from a lis of their ssn and name """
+        #TODO: laga þannig að við fáum lista af tilvikum..
         counter = 0
         self.header("-", " ALL STAFF MEMBERS ")
         staff_info_list = self.llAPI.get_all_staff()
@@ -189,7 +190,7 @@ class StaffMemberUI():
                 dest_city = destination.get_city()
                 print("{} {} is going to {}".format("-", name, dest_city))
                 counter += 1
-        
+
     def show_all_not_working(self):
         desired_date_str = input("Enter date (YYYY-MM-DD): ")
 
@@ -205,7 +206,7 @@ class StaffMemberUI():
 
     def show_staff_member_schedule(self):
         self.llAPI.get_staff_member_schedule("2910858778", "2019-11-02T12:00:00")
-        
+
     def create_staff_member(self):
         ssn_str = ""
         name_str = ""
