@@ -182,6 +182,7 @@ class StaffMemberUI():
         #Print the name of each staff member that is working
         for dest_id, staff_id_list in staff_working_dict.items():
             destination = self.llAPI.get_destination_info(dest_id)
+            counter = 1
             for staff_id in staff_id_list:
                 staff_member = self.llAPI.get_staff_member_info(staff_id)
                 name = staff_member.get_name()
