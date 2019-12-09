@@ -187,7 +187,7 @@ class StaffMemberUI():
 
     def show_all_working(self):
 
-        desired_date_str = input("Enter date (YYYY-MM-DD): ")
+        desired_date_str = input("Please enter your desired date (YYYY-MM-DD): ")
 
         self.header("-", " ALL STAFF MEMBERS WORKING ON {} ".format(desired_date_str))
 
@@ -220,7 +220,7 @@ class StaffMemberUI():
 
     def show_staff_member_schedule(self):
 
-        start_of_desired_week_str = input("Please enter the start of your desried week (YYYY-MM-DD): ")
+        start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
 
         counter = 0
         staff_info_list = self.llAPI.get_all_staff()
@@ -238,7 +238,8 @@ class StaffMemberUI():
         print(desired_name + " is going to:")
         for voyage in working_voyages_list:
             destination = voyage.get_dest_id()
-            date = 0
+            date = voyage.get_departure_out()[:10]   # Excludes the date from the string
+            print("{} on {}".format(destination, date))
         
     def create_staff_member(self):
 
