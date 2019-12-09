@@ -62,8 +62,14 @@ class LLAPI():
         return self.destLL.create_new_destination(self.dest_list)
 
     # ---- Voyages functions ----
+    def get_all_voyages(self):
+        return self.voyageLL.get_all_voyages()
+        
     def get_voyages_by_week(self, start_of_desired_week_str):
-        return self.ioAPI.get_voyages_by_week(start_of_desired_week_str)
+        return self.voyageLL.get_voyages_by_week(start_of_desired_week_str)
+
+    def make_voyage(self, voyage_info_list):
+        return self.voyageLL.make_voyage(voyage_info_list)
 
     # ---- Airplane functions ----
     def create_new_airplane(self, airplane_str):

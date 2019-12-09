@@ -7,7 +7,7 @@ class VoyageLL():
     def assign_voyage_staff(self):
         pass
 
-    def make_voyage(self):
+    def make_voyage(self, voyage_info_list):
         pass
 
     def get_all_voyages(self):

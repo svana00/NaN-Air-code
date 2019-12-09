@@ -156,7 +156,7 @@ class VoyageUI():
         print("\n1. DESTINATION ID: {}\n2. FLIGHT 1 DATE: {}\n3. FLIGHT 1 TIME: {}".format(city, date_str, time_str))
 
         print("Changes have been confirmed")
-        return self.llAPI.create_new_voyage(voyage_info_list)
+        return self.llAPI.make_voyage(voyage_info_list)
 
     def assign_voyage(self):
         pass
