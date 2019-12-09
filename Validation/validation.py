@@ -41,7 +41,7 @@ class Validate:
     def validate_address(self, address_str):
         temp_address_list = address_str.split(" ")
         if len(temp_address_list) == 2:
-            if temp_address[0].isalpha() and temp_address[1].isdigit():
+            if temp_address_list[0].isalpha() and temp_address_list[1].isdigit():
                 return True
         return False
 
@@ -49,9 +49,12 @@ class Validate:
         pass
 
     def validate_plane_id(self, plane_id_str):
-        """TF-XXX"""
-
-        pass
+        #"""TF-XXX"""
+        if plane_id_str[:3] == "TF-":
+            if len(plane_id_str[3:]) == 3 and plane_id_str[3:].isalpha() and plane_id_str[3:].isupper():
+                return True
+                
+        return False
 
     def validate_time(self, time):
 
@@ -80,23 +83,12 @@ class Validate:
         
         return True
 
-
-    def validate_arrival(self, arrival_str):
-        pass
-
     def validate_flight_num(self, flight_num_str):
-        pass
-    def validate_staff_working(self, staff_member_id, be):
-        #voyage_list = self.llAPI.get_all_voyages()
-        #for voyage in voyage_list:
-        #    temp_staff_member_list = voyage.get_staff_members()
-        #    if staff_member_id in temp_staff_member_list:
-        #         return False
         pass
 
 """
 hellu = Validate()
-if hellu.validate_date("2000-03-18"):
+if hellu.validate_address("Háffa 97"):
     print("yaaaaaaaaas")
 else:
     print("noooopeeeee")

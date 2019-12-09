@@ -13,7 +13,6 @@ class LLAPI():
         self.voyageLL = VoyageLL(self.ioAPI)
         self.airplaneLL = AirplaneLL(self.ioAPI)
 
-    #---- Staff member functions ----
     def get_staff_member_info(self, ssn):
         return self.staffLL.get_staff_member_info(ssn)
 
@@ -28,26 +27,7 @@ class LLAPI():
 
     def get_all_staff(self):
         return self.staffLL.get_all_staff()
-    
-    def get_all_pilots(self):       
-        return self.staffLL.get_all_pilots()
 
-    def get_all_flight_attendants(self):
-        return self.staffLL.get_all_flight_attendants()
-
-    def create_staff_member(self, staff_member_info_list):
-        return self.staffLL.create_staff_member(staff_member_info_list)
-
-    def get_all_working(self, desired_date_str):
-        return self.staffLL.get_all_working(desired_date_str)
-
-    def get_all_not_working(self, desired_date_str):
-        return self.staffLL.get_all_not_working(desired_date_str)
-
-    def get_staff_member_schedule(self, ssn, start_of_target_week):
-        return self.staffLL.get_staff_member_schedule(ssn, start_of_target_week)
-
-    # ---- Destination functions ----
     def get_destinations(self):
         return self.destLL.get_destinations()
 
@@ -61,11 +41,25 @@ class LLAPI():
         self.dest_list = dest_list
         return self.destLL.create_new_destination(self.dest_list)
 
-    # ---- Voyages functions ----
-    def get_all_voyages_for_week(self):
-        return self.ioAPI.get_all_voyages_for_week(start_of_desired_week_str)
+    def get_all_pilots(self):
+        return self.staffLL.get_all_pilots()
 
-    # ---- Airplane functions ----
+    def get_all_flight_attendants(self):
+        return self.staffLL.get_all_flight_attendants()
+
+    def create_staff_member(self, staff_member_info_list):
+        return self.staffLL.create_staff_member(staff_member_info_list)
+
+    def get_all_voyages(self):
+        hardkodadur_listi_sem_eg_mun_eyda = [["NA5614","KEF","LYR","2019-11-02T06:21:00","2019-11-02T10:21:00","TF-KOR","3009907461","2410876598","1600904199","3002688722","0505942924","NA7299","LYR","KEF","2019-11-02T11:21:00,2019-11-02T15:21:00","TF-KOR","3009907461","2410876598","1600904199","3002688722","0505942924"], [" NA2551" ,"KEF","LYR,2019-11-04T05:32:00","2019-11-04T09:32:00","TF-HLB","2910858778","2211658134","0303758167","3003962187","1110732819","NA5675","LYR","KEF","2019-11-04T10:32:00","2019-11-04T14:32:00","TF-HLB","2910858778","2211658134","0303758167","3003962187","1110732819"]]
+        return hardkodadur_listi_sem_eg_mun_eyda
+
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str
         return self.airplaneLL.makeAirplane(airplane_str)
+
+    def get_all_working(self, departure_out_date):
+        return self.staffLL.get_all_working(departure_out_date)
+
+    def get_all_not_working(self, departure_out_date):
+        return self.staffLL.get_all_not_working(departure_out_date)
