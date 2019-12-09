@@ -10,7 +10,13 @@ class VoyageLL():
     def make_voyage(self):
         pass
 
-    def get_all_voyages_for_week(self, start_of_desired_week_str):
+    def get_all_voyages(self):
+        pass
+
+    def get_voyages_by_date(self):
+        pass
+
+    def get_voyages_by_week(self, start_of_desired_week_str):
         voyage_list = self.ioAPI.load_all_voyages()
         voyages_in_week_list = []
         voyage_info_list = []
@@ -28,12 +34,6 @@ class VoyageLL():
                 voyage_info_list.append((departure_out, dest_id))
 
         return voyage_info_list
-
-    def get_voyages_by_date(self):
-        pass
-
-    def get_voyages_by_week(self):
-        pass
 
     def get_non_assigned_voyages(self):
         pass
