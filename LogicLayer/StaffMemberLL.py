@@ -148,8 +148,21 @@ class StaffMemberLL():
 
         return staff_not_working_list
 
-    def get_staff_member_schedule(self):
-        pass
+    def get_staff_member_schedule(self, ssn, start_of_week_datetime):
+        
+        staff_member = self.get_staff_member_info(ssn)
+        staff_member_id = staff_member.get_ssn()
+        voyages_list = self.ioAPI.load_all_voyages()
+
+        start_of_week_datetime = "2019-11-02T12:00:00"
+
+        end_of_week_datetime = datetime.datetime.fromisoformat(start_of_week_datetime)
+        end_of_week_datetime += datetime.timedelta(days = 6)
+        print(end_of_week_datetime)
+
+        for voyage in voyages_list:
+            cabin_crew_list = voyage.get_cabin_crew()
+    
 
     def create_staff_member(self,staff_member_info_list):
         staff_member_str = ",".join(staff_member_info_list)

@@ -204,7 +204,8 @@ class StaffMemberUI():
             print("{} {}".format("-", name))
 
     def show_staff_member_schedule(self):
-        pass
+        self.llAPI.get_staff_member_schedule()
+        
 
     def create_staff_member(self):
         ssn_str = ""
