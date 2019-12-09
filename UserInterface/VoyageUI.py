@@ -118,11 +118,11 @@ class VoyageUI():
 
         for destination_info in destinations_info_list:
             city = destination_info[2]
-            print({}. {}.format(counter,city))
+            print("{}. {}".format(counter,city))
             counter += 1
 
         number = input("\nEnter number for chosen destination: ")
-        dest_id = destinations_info_list[(number - 1)][0]
+        dest_id = destinations_info_list[(int(number) - 1)][0]
         voyage_info_list[0] = dest_id
         voyage_info_list[0] = flight_number_1_str
 
@@ -138,9 +138,9 @@ class VoyageUI():
         print("Changes have been confirmed")
         return self.llAPI.create_new_voyage(voyage_info_list)
 
-            self.header("-", " ADD DESTINATION ")
-            print("\n1. DESTINATION: {}\n2. FLIGHT 1 DATE: {}\n3. FLIGHT 1 TIME: {}\n Airplane ID: {}".format(destination_str, deoarture_out_date_str, departure_out_time_str, airplane_ID_str))
-            print("To confirm changes enter confirm")
+        self.header("-", " ADD VOYAGE ")
+        print("\n1. DESTINATION: {}\n2. FLIGHT 1 DATE: {}\n3. FLIGHT 1 TIME: {}\n Airplane ID: {}".format(destination_str, deoarture_out_date_str, departure_out_time_str, airplane_ID_str))
+        print("To confirm changes enter confirm")
 
     def assign_voyage(self):
         pass
