@@ -5,6 +5,12 @@ class VoyageLL():
     def __init__(self, ioAPI):
         self.ioAPI = ioAPI
 
+    def get_voyage_info(self, voyage_id):
+        voyage_list = self.ioAPI.load_all_voyages()
+        for voyage in voyage_list:
+            if voyage.get_voyage_id() == voyage_id:
+                return voyage
+
     def assign_voyage_staff(self):
         pass
 

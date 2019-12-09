@@ -63,23 +63,18 @@ class VoyageUI():
             destination =  self.llAPI.get_destination_info(dest_id)
             city = destination.get_city()
             departure_out = voyage_info[2]
-
             print("{:<2}. Voyage_id: {:<5} City: {:<15} Departure at: {:<15}".format(counter, voyage_id, city, departure_out))
 
-    def display_voyage(self, a_voy_info_list):
-        a_voyage_info_list = list(a_voy_info_list)
-        #voyage_info_print_list = ["destination","flight 1 date (YYYY/MM/DD)", "flight 1 time (XX:XX:XX)", \
-        #                        "flight 2 date (YYYY/MM/DD)","flight 1 time (XX:XX:XX)", "airplane"] 
-        voyage_info_list = ["flight number 1", "flight number 2", "destination", "flight 1 date", "flight 1 time", \
-                            "flight 2 date", "flight 2 time", "airplane ID", "captain","copilot", "fsm", "fa1", "fa2"] 
+        choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
+        if choice == "y":
+            return self.display_voyage(voyage_info_list)
 
-
-        # header and main body
-        self.header("*", " {} ".format(a_voyage_info_list[1]))
-        counter = 0
-        for i in range(len(a_voyage_info_list)):
-            counter += 1
-            print("{}. {} {}".format(counter,voyage_info_list[i].upper(), a_voyage_info_list[i]))
+    def display_voyage(self, voyage_info_list):
+        number = int(input("Enter number of voyage: "))
+        voyage_id = voyage_info_list[(number) - 1][0]
+        voyage = self.llAPI.get_voyage_info(voyage_id)
+        self.header("-", " Voyage {} ".format(voyage.get_voyage_id()))
+        print(voyage)
 
     def add_voyage_menu(self):
         self.header("*"," VOYAGES ")
@@ -134,11 +129,11 @@ class VoyageUI():
 
         # User chooses time for voyage
         self.header("-", " CHOOSE TIME ")
-        time_str = input("Enter time of voyage (HH:MM:SS) : ")
+        time_str = input("Enter time of voyage (XX-XX-XX) : ")
 
         while not self.validate.validate_time(time_str):
             print("Invalid time.")
-            time_str = input("Enter time of voyage (HH:MM:SS) : ")
+            time_str = input("Enter time of voyage (XX:XX:XX) : ")
         else:
             voyage_info_list.append(time_str)   
 

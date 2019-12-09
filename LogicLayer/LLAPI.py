@@ -69,6 +69,9 @@ class LLAPI():
         return self.destLL.store_new_changes(destination_instance_list)
 
     # ---- Voyage functions ----
+    def get_voyage_info(self, voyage_id):
+        return self.voyageLL.get_voyage_info(voyage_id)
+
     def get_all_voyages(self):
         return self.voyageLL.get_all_voyages()
 
