@@ -27,8 +27,10 @@ class Voyage():
         self.__fa2 = staff_list[4]
 
     def set_fully_assigned(self):
-        new_bool = True
-        self.__fully_assigned = new_bool
+        self.__fully_assigned = True
+
+    def is_fully_assigned(self):
+        return self.__fully_assigned
 
     def get_voyage_id(self):
         return self.__voyage_id
@@ -79,13 +81,6 @@ class Voyage():
         csv_str += "{}".format(str(self.__fully_assigned))
         
         return csv_str
-
-    def true_or_not(self):
-        if self.__fully_assigned:
-            return ""
-        else:
-            return "not "
-
 
     def __str__(self):
         my_str = ""
