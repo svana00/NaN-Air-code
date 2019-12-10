@@ -136,11 +136,9 @@ class VoyageUI():
 
         airplanes_list = self.llAPI.get_all_airplanes() # List of instances
         voyage_list = self.llAPI.get_all_voyages() # List of instances
+        non_assigned_voyages = "x"
         valid_airplanes_list = []
         counter = 1
-
-        for voyage in voyage_list:
-            pass
 
         self.header("-", " AIRPLANES ")
 
