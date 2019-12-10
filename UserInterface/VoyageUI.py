@@ -29,17 +29,17 @@ class VoyageUI():
         option = input("\nInput a command: ")
         if option == "1":
             all_voyages_list = self.llAPI.get_all_voyages()
-            self.show_all_voyages(all_voyages_list)
+            self.show_voyages(all_voyages_list)
         elif option == "2":
             desired_date_str = input("Please enter you desired date (YYYY-MM-DD): ")
             voyages_by_date = self.llAPI.get_voyages_by_date(desired_date_str)
-            self.show_all_voyages(voyages_by_date)
+            self.show_voyages(voyages_by_date)
         elif option == "3":
             start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
             voyages_by_week = self.llAPI.get_voyages_by_week(start_of_desired_week_str)
-            self.show_all_voyages(voyages_by_week)
+            self.show_voyages(voyages_by_week)
 
-    def show_all_voyages(self, voyage_list):
+    def show_voyages(self, voyage_list):
         counter = 0
 
         self.header("-", " VOYAGES ")
