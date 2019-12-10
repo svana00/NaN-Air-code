@@ -1,5 +1,5 @@
 class Voyage():
-    def __init__(self, voyage_id, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = ""):
+    def __init__(self, voyage_id, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = "", fully_assigned = False):
         self.__voyage_id = voyage_id
         self.__flight_number_out = flight_num_out
         self.__flight_number_back = flight_num_back
@@ -14,6 +14,7 @@ class Voyage():
         self.__fsm = fsm
         self.__fa1 = fa1
         self.__fa2 = fa2
+        self.__fully_assigned = fully_assigned
 
     def set_airplane(self, new_airplane):
         self.__airplane = new_airplane
@@ -24,6 +25,10 @@ class Voyage():
         self.__fsm = staff_list[2]
         self.__fa1 = staff_list[3]
         self.__fa2 = staff_list[4]
+
+    def set_fully_assigned(self):
+        new_bool = True
+        self.__fully_assigned = new_bool
 
     def get_voyage_id(self):
         return self.__voyage_id
@@ -71,9 +76,15 @@ class Voyage():
         csv_str += "{},".format(self.__fsm)
         csv_str += "{},".format(self.__fa1)
         csv_str += "{}".format(self.__fa2)
+        csv_str += "{}".format(str(self.__fully_assigned))
         
         return csv_str
 
+    def true_or_not(self):
+        if self.__fully_assigned:
+            return ""
+        else:
+            return "not "
 
 
     def __str__(self):
@@ -92,5 +103,11 @@ class Voyage():
         my_str += "Flight service manager: {}\n".format(self.__fsm)
         my_str += "Flight attendant: {}\n".format(self.__fa1)
         my_str += "Flight attendant: {}\n".format(self.__fa2)
+        my_str += "Voyage is {}fully assigned".format(self.true_or_not())
+        
+        #if self.__fully_assigned:
+        #    my_str += "Voyage is fully assigned"
+        #else:
+        #    my_str += "Voyage is {} fully assigned".format("not")
 
         return my_str
