@@ -25,31 +25,24 @@ class VoyageUI():
     def overview_options(self):
         """ menu for overview choices """
         self.header("-", " GET OVERVIEW ")
-        print("1. ALL VOYAGES \n2. VOYAGES BY DATE")
+        print("1. ALL VOYAGES \n2. VOYAGES BY DATE \n3. VOYAGES BY WEEK")
         option = input("\nInput a command: ")
         if option == "1":
-            self.show_all_voyages()
+            all_voyages_list = self.llAPI.get_all_voyages()
+            self.show_all_voyages(all_voyages_list)
         elif option == "2":
-            self.choose_date()
+            desired_date_str = input("Please enter you desired date (YYYY-MM-DD): ")
+            voyages_by_date = self.llAPI.get_voyages_by_date(desired_date_str)
+            self.show_all_voyages(voyages_by_date)
+        elif option == "3":
+            start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
+            voyages_by_week = self.llAPI.get_voyages_by_week(start_of_desired_week_str)
+            self.show_all_voyages(voyages_by_week)
 
-    def choose_date(self):
-        self.header("-"," CHOOSE DATE ")
-        print("With the format dd/mm/yyyy")
-        date = input("Please enter the desired date: ")
-        if date == "01/01/1000":
-            print("whoop whoop!!")
-
-    def show_voyages_by_date(self):
-        pass
-
-    def show_voyages_by_week(self):
-        pass
-
-    def show_all_voyages(self):
+    def show_all_voyages(self, voyage_list):
         counter = 0
-        voyage_list = self.llAPI.get_all_voyages()
 
-        self.header("-", " ALL VOYAGES ")
+        self.header("-", " VOYAGES ")
 
         for voyage in voyage_list:
             counter += 1
@@ -58,7 +51,7 @@ class VoyageUI():
             destination =  self.llAPI.get_destination_info(dest_id)
             city = destination.get_city()
             departure_out = voyage.get_departure_out()
-            print("{:<2}. Voyage_id: {:<5} City: {:<15} Departure at: {:<15}".format(counter, voyage_id, city, departure_out))
+            print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(counter, voyage_id, city, departure_out))
 
         choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
         if choice == "y":

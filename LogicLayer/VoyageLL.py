@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+import datetime
 from MODELS.voyage import Voyage
 class VoyageLL():
 
@@ -23,11 +23,11 @@ class VoyageLL():
         voyages_list = self.ioAPI.load_all_voyages()
         voyages_in_week_list = []
 
-        start_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date()
-        end_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str) + datetime.timedelta(days = 6)
+        start_of_desired_week = datetime.date.fromisoformat(start_of_desired_week_str)
+        end_of_desired_week = datetime.date.fromisoformat(start_of_desired_week_str) + datetime.timedelta(days = 6)
 
         for voyage in voyages_list:
-            temp_date = datetime.datetime.fromisoformat(voyage.get_departure_out(), voyage.get_dest_id()).date()
+            temp_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date()
             if temp_date >= start_of_desired_week and temp_date <= end_of_desired_week:
                 voyages_in_week_list.append(voyage)
 
@@ -40,7 +40,7 @@ class VoyageLL():
         voyages_on_date_list = []
 
         for voyage in voyages_list:
-            departure_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date
+            departure_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date()
             if target_date == departure_date:
                 voyages_on_date_list.append(voyage)
 
@@ -83,7 +83,7 @@ class VoyageLL():
         for voyage in voyages_list: 
             dest_id = voyage.get_dest_id()
             departure_out_date = voyage.get_departure_out()
-            date = datetime.fromisoformat(departure_out_date).date()
+            date = datetime.date.fromisoformat(departure_out_date)
             date = str(date)
             if dest_id == target_id and date == target_date:
                 counter += 1
@@ -93,15 +93,15 @@ class VoyageLL():
 
         departure_out_str = ("T").join(voyage_info_list[1:]) # Departure out
 
-        departure_out = datetime.fromisoformat(departure_out_str)
-        arrival_out = departure_out + timedelta(hours = int(flight_time))
+        departure_out = datetime.datetime.fromisoformat(departure_out_str)
+        arrival_out = departure_out + datetime.timedelta(hours = int(flight_time))
         arrival_out_str = arrival_out.isoformat()
 
         # An hour between flights
-        departure_home = arrival_out + timedelta(hours = 1)
+        departure_home = arrival_out + datetime.timedelta(hours = 1)
         departure_home_str = departure_home.isoformat()
 
-        arrival_home = departure_home + timedelta(hours = int(flight_time))
+        arrival_home = departure_home + datetime.timedelta(hours = int(flight_time))
         arrival_home_str = arrival_home.isoformat()
 
         new_voyage = Voyage(voyage_id_str, flight_number_out_str, flight_number_back_str, departure_out_str, \

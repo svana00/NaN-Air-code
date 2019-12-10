@@ -98,7 +98,7 @@ class Voyage():
         my_str += "Flight service manager: {}\n".format(self.__fsm)
         my_str += "Flight attendant: {}\n".format(self.__fa1)
         my_str += "Flight attendant: {}\n".format(self.__fa2)
-        my_str += "Voyage is {}fully assigned".format(self.true_or_not())
+        my_str += "Voyage is {}fully assigned".format(self.is_fully_assigned())
         
         #if self.__fully_assigned:
         #    my_str += "Voyage is fully assigned"
