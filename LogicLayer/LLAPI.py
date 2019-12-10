@@ -86,8 +86,8 @@ class LLAPI():
     def make_voyage(self, voyage_info_list):
         return self.voyageLL.make_voyage(voyage_info_list)
 
-    def get_voyages_by_date(self):
-        return self.voyageLL.get_voyages_by_date()
+    def get_voyages_by_date(self, desired_date_str):
+        return self.voyageLL.get_voyages_by_date(desired_date_str)
 
     def get_non_assigned_voyages(self):
         return self.voyageLL.get_non_assigned_voyages()
@@ -95,7 +95,7 @@ class LLAPI():
     def check_voyages_state(self):
         return self.voyageLL.check_voyages_state()
 
-    def get_voyages_by_week(self, start_of_desired_week_str)
+    def get_voyages_by_week(self, start_of_desired_week_str):
         return self.voyageLL.get_voyages_by_week(start_of_desired_week_str)
 
     # ---- Airplane functions ----
