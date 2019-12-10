@@ -170,27 +170,28 @@ class DestinationUI():
         for key,val in dest_instance_dictionary.items():
             print("{}. {}".format(key, val.get_city()))
 
-        dest_choice = input("Enter which destination you want to change: ")
+        dest_choice = input("\nEnter which destination you want to change: ")
         
 
         while dest_choice in dest_instance_dictionary.keys():
             self.header("*", " {} ".format(dest_instance_dictionary[dest_choice].get_city()))
             print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(dest_instance_dictionary[dest_choice].get_contact(), dest_instance_dictionary[dest_choice].get_emergency_number()))
-            change_info_choice = input("Enter which info you want to change: ")
+            change_info_choice = input("\nEnter which info you want to change: ")
             
             if change_info_choice == "1":
-                new_contact_str = input("\n Enter new contact: ")
+                new_contact_str = input("Enter new contact: ")
                 if self.validation.validate_letter(new_contact_str):
                     #return self.llAPI.set_new_contact(dest_instance_dictionary[dest_choice],new_contact_str)
                     dest_instance_dictionary[dest_choice].set_new_contact(new_contact_str)
-                    print(dest_instance_dictionary[dest_choice])
+                    print("\n",dest_instance_dictionary[dest_choice])
 
 
             elif change_info_choice == "2":
                 new_emergency_number_str = input("Enter new emergency number: ")
                 if self.validation.validate_phone_num(new_emergency_number_str):
                     #return self.llAPI.set_new_emergency_phone(dest_instance_dictionary[dest_choice], emergency_str)
-                    dest_instance_dictionary[dest_choice].set_new_emergency_phone(new_emergency_number_str)
+                    dest_instance_dictionary[dest_choice].set_new_emergency_number(new_emergency_number_str)
+                    print("\n",dest_instance_dictionary[dest_choice])
 
             elif change_info_choice == "confirm":
                 print("Changes have been confirmed")
