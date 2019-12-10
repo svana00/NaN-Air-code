@@ -1,5 +1,4 @@
-import datetime
-
+from datetime import datetime, timedelta
 class VoyageLL():
 
     def __init__(self, ioAPI):
@@ -62,22 +61,19 @@ class VoyageLL():
 
     def make_voyage(self, voyage_info_list):
         voyages_list = self.ioAPI.load_all_voyages()
-        all_voyage_info_list = []
 
         # Create voyage id
-        voyage_id = len(voyages_list) + 1
+        voyage_id_int = len(voyages_list) + 1
 
-        if voyage_id < 10:
-            voyage_id = "0" + "{}".format(voyage_id)
+        if voyage_id_int < 10:
+            voyage_id_str = "0" + "{}".format(voyage_id_int)
 
-        elif voyage_id < 100:
-            voyage_id = "0" + "{}".format(voyage_id)
+        elif voyage_id_int < 100:
+            voyage_id_str = "0" + "{}".format(voyage_id_int)
 
-        elif voyage_id < 100:
-            voyage_id = "0" + "{}".format(voyage_id)
-        
-        all_voyage_info_list.append(voyage_id)
-        
+        elif voyage_id_int < 100:
+            voyage_id_str = "0" + "{}".format(voyage_id_int)
+                
         # Create flight number for each flight
         target_id = voyage_info_list[0]
         destinations_list = self.ioAPI.load_all_dest_from_file()
@@ -85,23 +81,37 @@ class VoyageLL():
         for destination in destinations_list:
             destination_id = destination.get_id()
             if target_id == destination_id:
+                flight_time = destination.get_flight_time()
                 dest_flight_number_id  = destination.get_flight_number_id()
 
+        target_date = voyage_info_list[1]
         counter = 0
 
-        target_date = voyage_info_list[1]
         for voyage in voyages_list: 
             dest_id = voyage.get_dest_id()
             departure_out_date = voyage.get_departure_out()
-            date = datetime.datetime.fromisoformat(departure_out_date).date()
+            date = datetime.fromisoformat(departure_out_date).date()
             date = str(date)
             if dest_id == target_id and date == target_date:
                 counter += 1
 
-        flight_number_out = "NA" + str(dest_flight_number_id) + str(counter * 2)
-        flight_number_back = "NA" + str(dest_flight_number_id) + str(counter * 2 + 1)
+        flight_number_out_str = "NA" + str(dest_flight_number_id) + str(counter * 2)
+        flight_number_back_str = "NA" + str(dest_flight_number_id) + str(counter * 2 + 1)
 
-        all_voyage_info_list.append(flight_number_out)
-        all_voyage_info_list.append(flight_number_back)
+        departure_out_str = ("T").join(voyage_info_list[1:]) # Departure out
+
+        departure_out = datetime.fromisoformat(departure_out_str)
+        arrival_out = departure_out + timedelta(hours = int(flight_time))
+        arrival_out_str = arrival_out.isoformat()
+
+        # An hour between flights
+        departure_home = arrival_out + timedelta(hours = 1)
+        departure_home_str = departure_home.isoformat()
+
+        arrival_home = departure_home + timedelta(hours = int(flight_time))
+        arrival_home_str = arrival_home.isoformat()
+
+        all_voyage_info_list = [voyage_id_str, flight_number_out_str, flight_number_back_str, departure_out_str, \
+                                arrival_out_str, departure_home_str, arrival_home_str, target_id, "", "", "", "", "", ""]
 
         print(all_voyage_info_list)
