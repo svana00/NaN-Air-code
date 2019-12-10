@@ -7,8 +7,8 @@ class AirplaneIO():
         ''' Returns a list of all instances of airplanes '''
         airplanes_list = []
         
-        airplanes_file = open("csv_files/Aircraft.csv", "r")
-        planeType_file = open("csv_files/AircraftType.csv", "r")
+        airplanes_file = open("csv_files/Airplane.csv", "r")
+        planeType_file = open("csv_files/AirplaneType.csv", "r")
 
         planes_reader = csv.DictReader(airplanes_file)
         type_reader = csv.DictReader(planeType_file)
