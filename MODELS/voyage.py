@@ -27,7 +27,10 @@ class Voyage():
         self.__fa2 = staff_list[4]
 
     def set_fully_assigned(self):
-        self.__fully_assigned = "True"
+        if self.__fully_assigned == "True":
+            return True
+        else:
+            return False
 
     def is_fully_assigned(self):
         return self.__fully_assigned
