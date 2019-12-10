@@ -51,6 +51,9 @@ class LLAPI():
     def get_staff_member_schedule(self, ssn, start_of_desired_week_str):
         return self.staffLL.get_staff_member_schedule(ssn, start_of_desired_week_str)
 
+    def store_new_staff_changes(self, staff_member_instance_list):
+        return self.staffLL.store_new_staff_changes(staff_member_instance_list)
+
     # ---- Destination functions ----
     def get_destinations(self):
         return self.destLL.get_destinations()
@@ -65,11 +68,12 @@ class LLAPI():
         self.dest_list = dest_list
         return self.destLL.create_new_destination(self.dest_list)
     
-    def anton_og_magga_eru_best(self):
+    #def anton_og_magga_eru_best(self):
+    def get_destination_instance_list(self):
         destination_instance_list = self.destLL.lets_see_if_this_works()
         return destination_instance_list
 
-    def store_new_changes(self, destination_instance_list):
+    def store_new_dest_changes(self, destination_instance_list):
         return self.destLL.store_new_changes(destination_instance_list)
 
     # ---- Voyage functions ----

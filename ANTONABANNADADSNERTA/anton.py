@@ -19,7 +19,7 @@ print(new_file)
 file_open = open("hello.csv", "r")
 file_new = open("new_hello.csv", "w+")
 for line in file_open:
-    file_new.write(line.replace("antn", "anton"))
+    file_new.write(line.replace("antn", "anton").replace("ds", "siggi"))
 
 
 

@@ -164,9 +164,9 @@ class DestinationUI():
     """
 
     def change_destination(self):
-        dest_instance_list = self.llAPI.anton_og_magga_eru_best()
+        dest_instance_list = self.llAPI.get_destination_instance_list()
         dest_instance_dictionary = {str(i+1): dest_instance_list[i] for i in range(len(dest_instance_list))}
-        self.header("*", " CHOOOOOOOSEE ")
+        self.header("*", " DESTINATIONS ")
         for key,val in dest_instance_dictionary.items():
             print("{}. {}".format(key, val.get_city()))
 
@@ -194,5 +194,5 @@ class DestinationUI():
 
             elif change_info_choice == "confirm":
                 print("Changes have been confirmed")
-                return self.llAPI.store_new_changes(dest_instance_list)
+                return self.llAPI.store_new_dest_changes(dest_instance_list)
             

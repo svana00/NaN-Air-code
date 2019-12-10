@@ -31,9 +31,14 @@ class StaffMemberIO:
         staff_member_file.write(staff_member_str)
         return staff_member_file
 
-    def storeStaffMemberInfo(self):
+    def storeStaffMemberInfo(self, staff_list):
         ''' Changes/adds info on a specific staff member '''
-        pass
+        big_csv = ""
+        for staff in staff_list:
+            big_csv += staff.instance_to_csv_string() + "\n"
+        dest_file = open("csv_files/Staff_Member.csv", "w+")
+        dest_file.write(big_csv)
+
 
     def load_work_schedule(self):
         ''' Gets work schedule for a specific staff member. Returns a dict with staff ID as the key 

@@ -178,3 +178,6 @@ class StaffMemberLL():
     def get_staff_member_instance_list(self):
         staff_member_instance_list = self.ioAPI.load_all_staff_from_file()
         return staff_member_instance_list
+
+    def store_new_staff_changes(self, staff_member_instance_list):
+        return self.ioAPI.store_staff_changes(staff_member_instance_list)

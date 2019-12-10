@@ -40,8 +40,8 @@ class IOAPI:
     def get_all_file(self):
         return self.destIO.get_all_file()
 
-    def change_destination(self):
-        pass
+    def store_staff_changes(self, staff_member_instance_list):
+        return self.staffIO.storeStaffMemberInfo(staff_member_instance_list)
 
     def storeDestinationInfo(self, dest_list):
         return self.destIO.storeDestinationInfo(dest_list)

@@ -50,7 +50,7 @@ class DestinationLL():
         dest_str = ",".join(dest_info_list)
         return self.ioAPI.create_new_destination(dest_str)
     
-    def store_new_changes(self, dest_instance_list):
+    def store_new_dest_changes(self, dest_instance_list):
         return self.ioAPI.storeDestinationInfo(dest_instance_list)
 
     #def change_destination(self, old_str, new_str):

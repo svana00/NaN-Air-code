@@ -347,5 +347,5 @@ class StaffMemberUI():
 
                 elif change_info_choice == "confirm":
                     print("Changes have been confirmed")
-                    return self.llAPI.store_new_changes(staff_instance_list)
+                    return self.llAPI.store_new_staff_changes(staff_instance_list)
 
