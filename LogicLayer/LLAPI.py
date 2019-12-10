@@ -90,3 +90,6 @@ class LLAPI():
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str
         return self.airplaneLL.makeAirplane(airplane_str)
+
+    def get_all_airplanes(self):
+        return self.airplaneLL.get_all_airplanes()
