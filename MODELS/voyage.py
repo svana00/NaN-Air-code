@@ -15,6 +15,9 @@ class Voyage():
         self.__fa1 = fa1
         self.__fa2 = fa2
 
+    def set_airplane(self, new_airplane):
+        self.__airplane = new_airplane
+
     def set_cabin_crew(self, staff_list):
         self.__captain = staff_list[0]
         self.__copilot = staff_list[1]
@@ -51,6 +54,27 @@ class Voyage():
 
     def get_cabin_crew(self):
         return [self.__captain, self.__copilot, self.__fsm, self.__fa1, self.__fa2]
+
+    def instance_to_csv_string(self):
+        csv_str = ""
+        csv_str += "{},".format(self.__voyage_id)
+        csv_str += "{},".format(self.__flight_number_out)
+        csv_str += "{},".format(self.__flight_number_back)
+        csv_str += "{},".format(self.__departure_out)
+        csv_str += "{},".format(self.__arrival_out)
+        csv_str += "{},".format(self.__departure_home)
+        csv_str += "{},".format(self.__arrival_home)
+        csv_str += "{},".format(self.__destination_id)
+        csv_str += "{},".format(self.__plane_id)
+        csv_str += "{},".format(self.__captain)
+        csv_str += "{},".format(self.__copilot)
+        csv_str += "{},".format(self.__fsm)
+        csv_str += "{},".format(self.__fa1)
+        csv_str += "{}".format(self.__fa2)
+        
+        return csv_str
+
+
 
     def __str__(self):
         my_str = ""
