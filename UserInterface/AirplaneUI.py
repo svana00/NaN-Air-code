@@ -14,7 +14,7 @@ class AirplaneUI():
         user_choice = input("Input a command: ")
 
         if user_choice == "1":
-            pass
+            self.overview_of_airplanes()
         elif user_choice == "2":
             self.create_airplane()
         else:
@@ -63,6 +63,15 @@ class AirplaneUI():
             counter += 1
             a_dict[str(counter)] = airplane_type
             print("{}. {}: {}".format(counter,country, city))
+
+    def overview_of_airplanes(self):
+        #smá flipp
+        counter = 0
+        self.header("-", " ALL AIRPLANES ")
+        airplane_info_list = self.llAPI.get_all_airplanes()
+        print(airplane_info_list)
+
+
 
     def show_airplane_state(self):
         pass
