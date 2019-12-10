@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from MODELS.voyage import Voyage
 class VoyageLL():
 
     def __init__(self, ioAPI):
@@ -111,7 +112,9 @@ class VoyageLL():
         arrival_home = departure_home + timedelta(hours = int(flight_time))
         arrival_home_str = arrival_home.isoformat()
 
-        all_voyage_info_list = [voyage_id_str, flight_number_out_str, flight_number_back_str, departure_out_str, \
-                                arrival_out_str, departure_home_str, arrival_home_str, target_id, "", "", "", "", "", ""]
+        new_voyage = Voyage(voyage_id_str, flight_number_out_str, flight_number_back_str, departure_out_str, \
+                            arrival_out_str, departure_home_str, arrival_home_str, target_id)
 
-        print(all_voyage_info_list)
+        csv_str = new_voyage.instance_to_csv_string()
+
+        return self.ioAPI.store_new_voyage(csv_str)

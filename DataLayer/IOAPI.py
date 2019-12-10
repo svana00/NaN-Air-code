@@ -36,6 +36,9 @@ class IOAPI:
     def load_all_voyages(self):
         return self.voyageIO.load_all_voyages()
 
+    def store_new_voyage(self, csv_str):
+        return self.voyageIO.store_new_voyage(csv_str)
+
     def get_all_file(self):
         return self.destIO.get_all_file()
 

@@ -27,8 +27,8 @@ class VoyageIO():
     def storeStafftoVoyage(self,staffID):
         pass
 
-    def storeNewVoyagetoFile(self):
-        pass
+    def store_new_voyage(self, csv_str):
+        print(csv_str)
 
     def load_all_voyages(self):
         
