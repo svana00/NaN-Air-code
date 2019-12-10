@@ -213,7 +213,7 @@ class StaffMemberUI():
 
         counter = 0
         staff_info_list = self.llAPI.get_all_staff()
-        self.header("<3", " ALL STAFF ")
+        self.header("-", " ALL STAFF ")
 
         for staff_member in staff_info_list:
             ssn = staff_member[0]
