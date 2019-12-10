@@ -79,7 +79,7 @@ class Voyage():
         csv_str += "{},".format(self.__fa1)
         csv_str += "{}".format(self.__fa2)
         csv_str += "{}".format(str(self.__fully_assigned))
-        
+
         return csv_str
 
     def __str__(self):
