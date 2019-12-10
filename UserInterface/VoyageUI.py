@@ -13,10 +13,10 @@ class VoyageUI():
         """ displays the main menu for voyages giving the user 
         the options to change, add, or see overview of voyages """
         print("*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
-        print("1. CHANGE\n2. OVERVIEW\n3. ADD")
+        print("1. ASSIGN\n2. OVERVIEW\n3. ADD")
         var = input("\nInput a command: ")
         if var == "1":
-            self.change_voyage_menu()
+            self.assign_voyage()
         elif var == "2":
             self.overview_options() # menu for overview choices
         elif var == "3":
@@ -45,9 +45,6 @@ class VoyageUI():
     def show_voyages_by_week(self):
         pass
 
-    def show_one_voyage(self):
-        pass
-
     def show_all_voyages(self):
         counter = 0
         destination_list = []
@@ -74,17 +71,6 @@ class VoyageUI():
         voyage = self.llAPI.get_voyage_info(voyage_id)
         self.header("-", " Voyage {} ".format(voyage.get_voyage_id()))
         print(voyage)
-
-    def add_voyage_menu(self):
-        self.header("*"," VOYAGES ")
-        print("1. ADD VOYAGE\n2. ADD FROM EXISTING VOYAGES")
-        menu_choice = input("Input command here: ")
-        if menu_choice == "1":
-            self.create_voyage()
-        elif menu_choice == "2":
-            self.copy_voyage()
-        else:
-            print("Invalid choice\nPlease try again")
 
     def create_voyage(self):
         ''' Returns a list of information about a new voyage '''
@@ -140,32 +126,15 @@ class VoyageUI():
         print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
 
         print("\nChanges have been confirmed")
+
         return self.llAPI.make_voyage(voyage_info_list)
 
     def assign_voyage(self):
-        pass
+        airplanes_list = self.llAPI.get_all_airplanes() # List of instances
+        counter = 1
 
-    def change_voyage_information(self):
-        self.show_all_voyages()
-
-        # show all voyages and then choose one of them,
-        # then you are shown all of the information you are able to change,
-        # you enter what you want to change
-
-    def change_voyage_menu(self):
-        #prints header and main body
-        self.header("-", " CHANGE VOYAGE ")
-        option_list = ["ASSIGN STAFF MEMBERS","CHANGE INFORMATION"]
-        for i in range(2):
-            print("{} {}".format(str(i+1),option_list[i]))
-
-        #asking for input and redirecting to different frames based on that input
-        change_choice = input("\nEnter what you want to change: ")
-
-        if change_choice == "1":
-            self.assign_voyage()
-        elif change_choice == "2":
-            self.change_voyage_information()
-
-    def copy_voyage(self):
-        pass
+        for airplane in airplanes_list:
+            airplane_id = airplane.get_plane_id()
+            name = airplane.get_name()
+            print("{}. {}".format(counter, name))
+            counter += 1
