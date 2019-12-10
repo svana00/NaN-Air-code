@@ -32,6 +32,7 @@ class UIManager():
 
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
+            print("")
             if var == "1":
                 self.staffUI.display_staff_menu()
             elif var == "2":
