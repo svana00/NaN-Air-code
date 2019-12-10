@@ -130,11 +130,25 @@ class VoyageUI():
         return self.llAPI.make_voyage(voyage_info_list)
 
     def assign_voyage(self):
+        # 1. Voyages sem eru ekki fullmannaðar
+        # 2. Vela valid airplane
+        # 3. Vela valid staff (ekki busy eða ekki með leyfi)
+        # 4. Done
+
         airplanes_list = self.llAPI.get_all_airplanes() # List of instances
+        voyage_list = self.llAPI.get_all_voyages() # List of instances
+        valid_airplanes_list = []
         counter = 1
+
+        for voyage in voyage_list:
+            pass
+
+        self.header("-", " AIRPLANES ")
 
         for airplane in airplanes_list:
             airplane_id = airplane.get_plane_id()
             name = airplane.get_name()
             print("{}. {}".format(counter, name))
             counter += 1
+
+        choice = input("Enter a number: ")
