@@ -47,29 +47,28 @@ class VoyageUI():
 
     def show_all_voyages(self):
         counter = 0
-        destination_list = []
-        voyage_info_list = self.llAPI.get_all_voyages()
+        voyage_list = self.llAPI.get_all_voyages()
 
         self.header("-", " ALL VOYAGES ")
 
-        for voyage_info in voyage_info_list:
+        for voyage in voyage_list:
             counter += 1
-            voyage_id = voyage_info[0]
-            dest_id = voyage_info[1]
+            voyage_id = voyage.get_voyage_id()
+            dest_id = voyage.get_dest_id()
             destination =  self.llAPI.get_destination_info(dest_id)
             city = destination.get_city()
-            departure_out = voyage_info[2]
+            departure_out = voyage.get_departure_out()
             print("{:<2}. Voyage_id: {:<5} City: {:<15} Departure at: {:<15}".format(counter, voyage_id, city, departure_out))
 
         choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
         if choice == "y":
-            return self.display_voyage(voyage_info_list)
+            return self.display_voyage(voyage_list)
 
-    def display_voyage(self, voyage_info_list):
+    def display_voyage(self, voyage_list):
         number = int(input("Enter number of voyage: "))
-        voyage_id = voyage_info_list[(number) - 1][0]
-        voyage = self.llAPI.get_voyage_info(voyage_id)
-        self.header("-", " Voyage {} ".format(voyage.get_voyage_id()))
+        voyage = voyage_list[(number) - 1]
+        voyage_id = voyage.get_voyage_id()
+        self.header("-", " Voyage {} ".format(voyage_id))
         print(voyage)
 
     def create_voyage(self):
