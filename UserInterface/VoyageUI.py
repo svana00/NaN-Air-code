@@ -127,9 +127,8 @@ class VoyageUI():
         # 3. Vela valid staff (ekki busy eða ekki með leyfi)
         # 4. Done
 
-        airplanes_list = self.llAPI.get_all_airplanes() # List of instances
         voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
-        print(voyages_list)
+        airplanes_list = self.llAPI.get_all_airplanes() # List of instances
 
         self.header("-", " CHOOSE VOYAGE ")
         for number, voyage in enumerate(voyages_list, 1):
