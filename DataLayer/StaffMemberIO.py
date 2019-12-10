@@ -27,7 +27,7 @@ class StaffMemberIO:
 
     def store_new_staff_member(self,staff_member_str):
         ''' Stores new staff member to existing file '''
-        staff_member_file = open("csv_files/StaffMember.csv", "a+")
+        staff_member_file = open("csv_files/StaffMembers.csv", "a+")
         staff_member_file.write(staff_member_str)
         return staff_member_file
 
@@ -36,8 +36,8 @@ class StaffMemberIO:
         big_csv = ""
         for staff in staff_list:
             big_csv += staff.instance_to_csv_string() + "\n"
-        dest_file = open("csv_files/Staff_Member.csv", "w+")
-        dest_file.write(big_csv)
+        staff_file = open("csv_files/Staff_Members.csv", "w+")
+        staff_file.write(big_csv)
 
 
     def load_work_schedule(self):

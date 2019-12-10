@@ -54,14 +54,14 @@ class StaffMember():
 
     def instance_to_csv_string(self):
         csv_str = ""
-        csv_str += "{}".format(self.__ssn)
-        csv_str += "{}".format(self.__name)
-        csv_str += "{}".format(self.role)
-        csv_str += "{}".format(self.rank)
-        csv_str += "{}".format(self.licence)
-        csv_str += "{}".format(self.address)
-        csv_str += "{}".format(self.phone_number)
-        csv_str += "{}".format(self.email)
+        csv_str += "{},".format(self.__ssn)
+        csv_str += "{},".format(self.__name)
+        csv_str += "{},".format(self.role)
+        csv_str += "{},".format(self.rank)
+        csv_str += "{},".format(self.licence)
+        csv_str += "{},".format(self.address)
+        csv_str += "{},".format(self.phone_number)
+        csv_str += "{},".format(self.email)
         
         return csv_str
 
