@@ -1,5 +1,5 @@
 class Voyage():
-    def __init__(self, voyage_id, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = "", fully_assigned = False):
+    def __init__(self, voyage_id, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = "", fully_assigned = "False"):
         self.__voyage_id = voyage_id
         self.__flight_number_out = flight_num_out
         self.__flight_number_back = flight_num_back
@@ -27,7 +27,7 @@ class Voyage():
         self.__fa2 = staff_list[4]
 
     def set_fully_assigned(self):
-        self.__fully_assigned = True
+        self.__fully_assigned = "True"
 
     def is_fully_assigned(self):
         return self.__fully_assigned
@@ -98,11 +98,6 @@ class Voyage():
         my_str += "Flight service manager: {}\n".format(self.__fsm)
         my_str += "Flight attendant: {}\n".format(self.__fa1)
         my_str += "Flight attendant: {}\n".format(self.__fa2)
-        my_str += "Voyage is {}fully assigned".format(self.true_or_not())
-        
-        #if self.__fully_assigned:
-        #    my_str += "Voyage is fully assigned"
-        #else:
-        #    my_str += "Voyage is {} fully assigned".format("not")
+        my_str += "Voyage fully assigned: {}".format(self.is_fully_assigned())
 
         return my_str

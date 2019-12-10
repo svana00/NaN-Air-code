@@ -47,7 +47,15 @@ class VoyageLL():
         return voyages_on_date_list
 
     def get_non_assigned_voyages(self):
-        pass
+        ''' Returns a list of voyages that are not fully assigned '''
+        non_assigned_voyages_list = []
+        voyages_List = self.ioAPI.load_all_voyages()
+        for voyage in voyages_List:
+            is_fully_assigned = voyage.is_fully_assigned()
+            if is_fully_assigned == "False":
+                non_assigned_voyages_list.append(voyage)
+        
+        return non_assigned_voyages_list
 
     def check_voyages_state(self):
         pass

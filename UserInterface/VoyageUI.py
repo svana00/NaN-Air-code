@@ -135,12 +135,15 @@ class VoyageUI():
         # 4. Done
 
         airplanes_list = self.llAPI.get_all_airplanes() # List of instances
-        voyage_list = self.llAPI.get_all_voyages() # List of instances
-        non_assigned_voyages = "x"
-        valid_airplanes_list = []
+        voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
+        print(voyages_list)
         counter = 1
 
-        self.header("-", " AIRPLANES ")
+        self.header("-", " CHOOSE VOYAGE ")
+        for voyage.get_name, number in enumerate(voyages_list, 1):
+            print("{} {}".format(number, voyage))           
+
+        self.header("-", " CHOOSE PLANE ")
 
         for airplane in airplanes_list:
             airplane_id = airplane.get_plane_id()
