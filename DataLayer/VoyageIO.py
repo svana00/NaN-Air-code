@@ -28,7 +28,10 @@ class VoyageIO():
         pass
 
     def store_new_voyage(self, csv_str):
-        print(csv_str)
+        voyage_file = open("csv_files/Voyages.csv", "a")
+        voyage_file.write(csv_str)
+        voyage_file.write("\n")
+        return voyage_file
 
     def load_all_voyages(self):
         
