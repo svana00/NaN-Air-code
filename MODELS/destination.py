@@ -46,16 +46,10 @@ class Destination():
         self.__emergency_number = new_emergency_number
 
     def instance_to_csv_string(self):
-        csv_str = ""
-        csv_str += "{},".format(self.__id)
-        csv_str += "{},".format(self.__country)
-        csv_str += "{},".format(self.__city)
-        csv_str += "{},".format(self.__airport)
-        csv_str += "{},".format(self.__flight_time)
-        csv_str += "{},".format(self.__distance)
-        csv_str += "{},".format(self.__contact)
-        csv_str += "{},".format(self.__emergency_number)
-        csv_str += "{}".format(self.__flight_number_id)
+        csv_list = [self.__id, self.__country, self.__city, self.__airport, self.__flight_time, \
+                    self.__distance, self.__contact, self.__emergency_number, self.__flight_number_id]
+        
+        csv_str = ",".join(csv_list)
 
         return csv_str 
 

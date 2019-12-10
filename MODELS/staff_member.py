@@ -9,7 +9,6 @@ class StaffMember():
         self.phone_number = phone_number
         self.email = email
 
-
 #------ get functions ---------
     def get_ssn(self):
         return self.__ssn
@@ -53,18 +52,12 @@ class StaffMember():
         self.email = new_email
 
     def instance_to_csv_string(self):
-        csv_str = ""
-        csv_str += "{},".format(self.__ssn)
-        csv_str += "{},".format(self.__name)
-        csv_str += "{},".format(self.role)
-        csv_str += "{},".format(self.rank)
-        csv_str += "{},".format(self.licence)
-        csv_str += "{},".format(self.address)
-        csv_str += "{},".format(self.phone_number)
-        csv_str += "{},".format(self.email)
+        csv_list = [self.__ssn, self.__name, self.role, self.rank, self.licence, \
+                    self.address, self.phone_number, self.email]
         
-        return csv_str
+        csv_str = ",".join(csv_list)
 
+        return csv_str
 
 #------- string function --------
     def __str__(self):

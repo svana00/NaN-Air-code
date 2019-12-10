@@ -63,22 +63,12 @@ class Voyage():
         return [self.__captain, self.__copilot, self.__fsm, self.__fa1, self.__fa2]
 
     def instance_to_csv_string(self):
-        csv_str = ""
-        csv_str += "{},".format(self.__voyage_id)
-        csv_str += "{},".format(self.__flight_number_out)
-        csv_str += "{},".format(self.__flight_number_back)
-        csv_str += "{},".format(self.__departure_out)
-        csv_str += "{},".format(self.__arrival_out)
-        csv_str += "{},".format(self.__departure_home)
-        csv_str += "{},".format(self.__arrival_home)
-        csv_str += "{},".format(self.__destination_id)
-        csv_str += "{},".format(self.__plane_id)
-        csv_str += "{},".format(self.__captain)
-        csv_str += "{},".format(self.__copilot)
-        csv_str += "{},".format(self.__fsm)
-        csv_str += "{},".format(self.__fa1)
-        csv_str += "{}".format(self.__fa2)
-        csv_str += "{}".format(str(self.__fully_assigned))
+        csv_list = [self.__voyage_id, self.__flight_number_out, self.__flight_number_back, \
+                    self.__departure_out, self.__arrival_out, self.__departure_home, self.__arrival_home, \
+                    self.__destination_id, self.__plane_id, self.__captain, self.__copilot, \
+                    self.__fsm, self.__fa1, self.__fa2, self.__fully_assigned]
+
+        csv_str = ",".join(csv_list)
 
         return csv_str
 
