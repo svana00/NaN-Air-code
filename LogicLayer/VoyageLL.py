@@ -67,10 +67,7 @@ class VoyageLL():
         voyage_id_int = len(voyages_list) + 1
 
         if voyage_id_int < 10:
-            voyage_id_str = "0" + "{}".format(voyage_id_int)
-
-        elif voyage_id_int < 100:
-            voyage_id_str = "0" + "{}".format(voyage_id_int)
+            voyage_id_str = "00" + "{}".format(voyage_id_int)
 
         elif voyage_id_int < 100:
             voyage_id_str = "0" + "{}".format(voyage_id_int)
