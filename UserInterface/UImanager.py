@@ -28,8 +28,7 @@ class UIManager():
         print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/\n\n")
 
         while True:
-            print("\n\n")
-            print("*"*56 + "\n"+" "*int((56-len(" MAIN MENU "))/2)+" MAIN MENU "+" "*int((56-len(" MAIN MENU "))/2)+"\n"+"*"*56)
+            print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" MAIN MENU "))/2)+" MAIN MENU "+" "*int((56-len(" MAIN MENU "))/2)+"\n"+"*"*56)
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
             print("")
