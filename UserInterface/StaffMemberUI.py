@@ -227,14 +227,18 @@ class StaffMemberUI():
         desired_name = staff_info_list[int(choice) - 1][1]
         working_voyages_list = self.llAPI.get_staff_member_schedule(desired_ssn, start_of_desired_week_str)
         
-        print()
-        print(desired_name + " is going to:")
-        for voyage in working_voyages_list:
-            dest_id = voyage.get_dest_id()
-            dest_info = self.llAPI.get_destination_info(dest_id)
-            dest_city = dest_info.get_city()
-            date = voyage.get_departure_out()   # Takes only the date from the string
-            print("\t{} on {}".format(dest_city, date))
+        if working_voyages_list: # if staff member has any voyages for the chosen week
+            print()
+            print(desired_name + " is going to:")
+            for voyage in working_voyages_list:
+                dest_id = voyage.get_dest_id()
+                dest_info = self.llAPI.get_destination_info(dest_id)
+                dest_city = dest_info.get_city()
+                date = voyage.get_departure_out()   # Takes only the date from the string
+                print("\t{} on {}".format(dest_city, date))
+        
+        else:
+            print("{} has no voyages for the week you chose!".format(desired_name))
         
     def create_staff_member(self):
         ''' Creates an new staff member with information that's input from the user '''
