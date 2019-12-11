@@ -1,5 +1,5 @@
 from MODELS.airplane import Airplane
-import datetime
+from datetime import datetime
 class AirplaneLL():
 
     def __init__(self, ioAPI):
@@ -29,7 +29,8 @@ class AirplaneLL():
 
         voyages_list = self.ioAPI.load_all_voyages() # List of voyages
         airplane_state = "IDLE"
-        NOW = datetime.datetime.now.isoformat().replace(microsecond=0).replace(second=0)
+        NOW = datetime.datetime.now.replace(microsecond=0).replace(second=0)
+        new_now = NOW.isoformat()
 
         for voyage in voyages_list:
 
@@ -48,11 +49,11 @@ class AirplaneLL():
             arrival2_str_temp = datetime.datetime.fromisoformat(arrival2_str)
 
             if voyage_plane == airplane_instance.get_plane_id():
-                if departure1_str_temp <= NOW <= arrival1_str_temp:
+                if departure1_str_temp <= new_now <= arrival1_str_temp:
                     airplane_state = "in flight 1"
-                elif departure2_str_temp <= NOW <= arrival2_str_temp:
+                elif departure2_str_temp <= new_now <= arrival2_str_temp:
                     airplane_state = "in flight 2"
-                elif arrival1_str_temp < NOW < departure2_str_temp:
+                elif arrival1_str_temp < new_now < departure2_str_temp:
                     airplane_state = "in intermission" 
                 else:
                     airplane_state = "booked to fly at {}".format(departure1_str_temp)
