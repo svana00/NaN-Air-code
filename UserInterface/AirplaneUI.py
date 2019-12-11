@@ -75,7 +75,7 @@ class AirplaneUI():
             airplane_name_str = airplane.get_name()
             airplane_id_str = airplane.get_plane_id()
             airplane_type_str =  airplane.get_type_id()
-            print("{:>10}. Name: {:<30} ID: {:<10} Type: {:<15}".format(counter, airplane_name_str, airplane_id_str, airplane_type_str))
+            print("{}. Name: {:<30} ID: {:<10} Type: {:<15}".format(counter, airplane_name_str, airplane_id_str, airplane_type_str))
 
         #Lista allar flugvélar flugfélagsins og sýna stöðu þeirra miðað við ákveðna dags. og tíma. Það sem sýna ætti er:
         #– Dags. og tíma þegar flugvél er aftur laus ef hún er í notkun. – Nafn áfangastaðar ef hún er í notkun.
