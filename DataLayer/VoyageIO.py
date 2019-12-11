@@ -32,27 +32,9 @@ class VoyageIO():
 
         return voyages_list
 
-    def load_voyages_by_date(self):
-        #date = "2019-11-10T06:18:00"
-
-        voyages_file = open("csv_files/Voyages.csv", "r")
-        voyage_reader = csv.DictReader(voyages_file)
-
-        start_date = datetime.datetime(2019, 11, 29, 6, 18, 0)
-        end_date = start_date + datetime.timedelta(days=7)
-        end_date = end_date.isoformat()
-        date = datetime.datetime.fromisoformat(end_date)
-        print(date)
-
-        #for row in voyage_reader:
-        #    depart_datetime = row["departure"]
-
-        #    if depart_datetime >= start_date.isoformat() and depart_datetime <= end_date.isoformat():
-        #        print(row["flightNumber"])
-
     def store_voyage_changes(self, voyages_list):
         ''' Adds plane and staff to specific voyage '''
-        big_csv = ""
+        big_csv = self.get_header()
         for voyage in voyages_list:
             big_csv += voyage.instance_to_csv_string() + "\n"
         voyages_file = open("csv_files/Voyages.csv", "w+")
@@ -63,3 +45,14 @@ class VoyageIO():
         voyage_file.write(csv_str)
         voyage_file.write("\n")
         return voyage_file
+
+    def get_header(self):
+        ''' Returns the header from the file '''
+
+        voyages_file = open("csv_files/voyages_Members.csv", "r")
+        for index, line in enumerate(voyages_file):
+            if index == 0:
+                header = line
+        voyages_file.close()
+        
+        return header
