@@ -3,35 +3,6 @@ import datetime
 from MODELS.voyage import Voyage
 
 class VoyageIO():
-    def load_voyages(self):
-        pass
-
-    def load_voyages_by_date(self):
-        #date = "2019-11-10T06:18:00"
-
-        voyages_file = open("csv_files/Voyages.csv", "r")
-        voyage_reader = csv.DictReader(voyages_file)
-
-        start_date = datetime.datetime(2019, 11, 29, 6, 18, 0)
-        end_date = start_date + datetime.timedelta(days=7)
-        end_date = end_date.isoformat()
-        date = datetime.datetime.fromisoformat(end_date)
-        print(date)
-
-        #for row in voyage_reader:
-        #    depart_datetime = row["departure"]
-
-        #    if depart_datetime >= start_date.isoformat() and depart_datetime <= end_date.isoformat():
-        #        print(row["flightNumber"])
-
-    def store_staff_to_voyage(self,ssn):
-        pass
-
-    def store_new_voyage(self, csv_str):
-        voyage_file = open("csv_files/Voyages.csv", "a")
-        voyage_file.write(csv_str)
-        voyage_file.write("\n")
-        return voyage_file
 
     def load_all_voyages(self):
         
@@ -60,6 +31,34 @@ class VoyageIO():
             voyages_list.append(voyage)
 
         return voyages_list
+
+    def load_voyages_by_date(self):
+        #date = "2019-11-10T06:18:00"
+
+        voyages_file = open("csv_files/Voyages.csv", "r")
+        voyage_reader = csv.DictReader(voyages_file)
+
+        start_date = datetime.datetime(2019, 11, 29, 6, 18, 0)
+        end_date = start_date + datetime.timedelta(days=7)
+        end_date = end_date.isoformat()
+        date = datetime.datetime.fromisoformat(end_date)
+        print(date)
+
+        #for row in voyage_reader:
+        #    depart_datetime = row["departure"]
+
+        #    if depart_datetime >= start_date.isoformat() and depart_datetime <= end_date.isoformat():
+        #        print(row["flightNumber"])
+
+    def store_staff_to_voyage(self,ssn):
+        pass
+
+    def store_new_voyage(self, csv_str):
+        voyage_file = open("csv_files/Voyages.csv", "a")
+        voyage_file.write(csv_str)
+        voyage_file.write("\n")
+        return voyage_file
+
 
 flippkisi = VoyageIO()
 flippkisi.load_voyages_by_date()
