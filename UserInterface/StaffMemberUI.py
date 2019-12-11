@@ -264,6 +264,7 @@ class StaffMemberUI():
                 staff_member_info_list[0] = ssn_str
 
             elif choice == "2":
+                #name = self.set_new_name()
                 name_str = input("Enter new name: ")
                 staff_member_info_list[1] = name_str
 
