@@ -10,20 +10,21 @@ class VoyageUI():
         print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_voyages_menu(self):
-        """ displays the main menu for voyages giving the user 
-        the options to change, add, or see overview of voyages """
+        """ Displays the main menu for voyages giving the user the 
+            options to change, add, or see overview of voyages """
         print("*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
-        print("1. ASSIGN\n2. OVERVIEW\n3. ADD")
+        print("1. ASSIGN VOYAGE\n2. VOYAGES OVERVIEW\n3. CREATE VOYAGE")
         var = input("\nInput a command: ")
+
         if var == "1":
             self.assign_voyage()
         elif var == "2":
-            self.overview_options() # menu for overview choices
+            self.display_voyages_overview_menu() # menu for overview choices
         elif var == "3":
             self.create_voyage()
 
-    def overview_options(self):
-        """ menu for overview choices """
+    def display_voyages_overview_menu(self):
+        """ Menu for choosing overview type for voyages """
         self.header("-", " GET OVERVIEW ")
         print("1. ALL VOYAGES \n2. VOYAGES BY DATE \n3. VOYAGES BY WEEK")
         option = input("\nInput a command: ")
@@ -31,7 +32,7 @@ class VoyageUI():
             all_voyages_list = self.llAPI.get_all_voyages()
             self.show_voyages(all_voyages_list)
         elif option == "2":
-            desired_date_str = input("Please enter you desired date (YYYY-MM-DD): ")
+            desired_date_str = input("Please enter your desired date (YYYY-MM-DD): ")
             voyages_by_date = self.llAPI.get_voyages_by_date(desired_date_str)
             self.show_voyages(voyages_by_date)
         elif option == "3":
@@ -40,6 +41,7 @@ class VoyageUI():
             self.show_voyages(voyages_by_week)
 
     def show_voyages(self, voyage_list):
+        ''' Shows all voyages from a list of voyages in a specific format '''
         counter = 0
 
         self.header("-", " VOYAGES ")
@@ -58,12 +60,13 @@ class VoyageUI():
                 #{1:<4}
             print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
 
+        # Users can choose whether they want to see more info about a specific voyage
         choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
         if choice == "y":
             return self.display_voyage(voyage_list)
 
     def display_voyage(self, voyage_list):
-        number = int(input("Enter number of voyage: "))
+        number = int(input("Enter number for voyage: "))
         voyage = voyage_list[(number) - 1]
         voyage_id = voyage.get_voyage_id()
         self.header("-", " Voyage {} ".format(voyage_id))
