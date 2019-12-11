@@ -108,6 +108,9 @@ class LLAPI():
 
     def get_airplane(self, plane_id):
         return self.airplaneLL.get_airplane(plane_id)
+    
+    def get_airplane_state(self, airplane_instance):
+        return self.airplaneLL.get_airplane_state(airplane_instance)
 
     def get_free_airplanes(self, departure_out_str, arrival_home_str):
         return self.airplaneLL.get_free_airplanes(departure_out_str, arrival_home_str)
