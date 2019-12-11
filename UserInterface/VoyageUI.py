@@ -134,7 +134,6 @@ class VoyageUI():
         # 4. Done
 
         voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
-        airplanes_list = self.llAPI.get_all_airplanes() # List of instances
 
         # Choose voyage menu
         self.header("-", " CHOOSE VOYAGE ")
@@ -152,22 +151,9 @@ class VoyageUI():
         # Get info about chosen voyage
         voyage = voyages_list[int(choice) - 1]
         departure_out_str = voyage.get_departure_out()
-        departure_out = datetime.datetime.fromisoformat(departure_out_str)
-
         arrival_home_str = voyage.get_departure_home()
-        arrival_home = datetime.datetime.fromisoformat(arrival_home_str)
 
-        # Get all aurplanes that are not on a voyage at time of voyage
-        for voyage in voyages_list:
-            departure_out_str = voyage.get_departure_out()
-            departure_out_temp = datetime.datetime.fromisoformat(departure_out_str)
-
-            arrival_home_str = voyage.get_departure_home()
-            arrival_home_temp = datetime.datetime.fromisoformat(arrival_home_str)
-
-            # startDate1 < endDate2 and startDate2 < endDate1
-            if departure_out < arrival_home_temp and departure_out_temp < arrival_home:
-                airplane_id = voyage.get_plane_id()
-                #airplane = self.self.llAPI.
+        free_airplanes_list = self.llAPI.get_free_airplanes(departure_out_str, arrival_home_str)
+        print(free_airplanes_list)
 
         self.header("-", " CHOOSE PLANE ")
