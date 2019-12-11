@@ -46,9 +46,9 @@ class Validate:
         return False
 
     def validate_plane_type(self, plane_type_str):
-        VALID_PLANE_MANUFACTORER = ["Fokker","BAE"]
+        VALID_PLANE_MANUFACTURER = ["Fokker","BAE"]
         if plane_type_str[:2] == "NA":
-            if plane_type_str[2:-3] in VALID_PLANE_MANUFACTORER:
+            if plane_type_str[2:-3] in VALID_PLANE_MANUFACTURER:
                 if plane_type_str[-3:].isdigit():
                     return True
         return False
@@ -93,6 +93,17 @@ class Validate:
         # gera neitt in the meantime (:
         pass
 
+    def validate_flight_time(self, flight_time):
+        if int(flight_time) > 0:
+            return True
+        
+        return False
+
+    def validate_flight_distance(self, distance):
+        if int(distance) > 0:
+            return True
+        
+        return False
 """ 
 #testing kóði
 hellu = Validate()

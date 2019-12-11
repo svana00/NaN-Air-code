@@ -61,9 +61,8 @@ class LLAPI():
     def get_destination_info(self, dest_id):
         return self.destLL.get_destination_info(dest_id)
 
-    def create_new_destination(self, dest_list):
-        self.dest_list = dest_list
-        return self.destLL.create_new_destination(self.dest_list)
+    def create_new_destination(self, new_destination):
+        return self.destLL.create_new_destination(new_destination)
     
     #def anton_og_magga_eru_best(self):
     def get_destination_instance_list(self):

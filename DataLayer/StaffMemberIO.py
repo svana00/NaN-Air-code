@@ -29,6 +29,7 @@ class StaffMemberIO:
         ''' Stores new staff member to existing file '''
         staff_member_file = open("csv_files/Staff_Members.csv", "a+")
         staff_member_file.write(staff_member_str)
+        staff_member_file.close()
 
     def store_staff_member_info(self, staff_list):
         ''' Changes/adds info on a specific staff member '''
