@@ -11,8 +11,14 @@ class VoyageLL():
             if voyage.get_voyage_id() == voyage_id:
                 return voyage
 
-    def assign_voyage_staff(self):
-        pass
+    def assign_voyage(self, chosen_voyage):
+        voyages_list = self.get_all_voyages()
+
+        for num, voyage in enumerate(voyages_list):
+            if voyage.get_voyage_id() == chosen_voyage.get_voyage_id():
+                    voyages_list[num] = chosen_voyage
+
+        return self.ioAPI.store_voyage_changes(voyages_list)
 
     def get_all_voyages(self):
 

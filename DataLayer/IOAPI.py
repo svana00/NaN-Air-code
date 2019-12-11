@@ -47,3 +47,6 @@ class IOAPI:
 
     def store_destination_info(self, dest_list):
         return self.destIO.store_destination_info(dest_list)
+
+    def store_voyage_changes(self, voyages_list):
+        return self.voyageIO.store_voyage_changes(voyages_list)

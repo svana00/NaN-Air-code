@@ -94,6 +94,9 @@ class LLAPI():
     def get_voyages_by_week(self, start_of_desired_week_str):
         return self.voyageLL.get_voyages_by_week(start_of_desired_week_str)
 
+    def assign_voyage(self, chosen_voyage):
+        return self.voyageLL.assign_voyage(chosen_voyage)
+
     # ---- Airplane functions ----
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str

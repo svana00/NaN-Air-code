@@ -50,15 +50,16 @@ class VoyageIO():
         #    if depart_datetime >= start_date.isoformat() and depart_datetime <= end_date.isoformat():
         #        print(row["flightNumber"])
 
-    def store_staff_to_voyage(self,ssn):
-        pass
+    def store_voyage_changes(self, voyages_list):
+        ''' Adds plane and staff to specific voyage '''
+        big_csv = ""
+        for voyage in voyages_list:
+            big_csv += voyage.instance_to_csv_string() + "\n"
+        voyages_file = open("csv_files/Voyages.csv", "w+")
+        voyages_file.write(big_csv)
 
     def store_new_voyage(self, csv_str):
         voyage_file = open("csv_files/Voyages.csv", "a")
         voyage_file.write(csv_str)
         voyage_file.write("\n")
         return voyage_file
-
-
-flippkisi = VoyageIO()
-flippkisi.load_voyages_by_date()

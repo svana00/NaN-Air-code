@@ -128,7 +128,7 @@ class VoyageUI():
         return self.llAPI.make_voyage(voyage_info_list)
 
     def assign_voyage(self):
-        ''' Assigns plane and staff to a voyage that has not been assigned '''
+        ''' Assigns plane and staff to a voyage that has not been assigned yet '''
 
         voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
 
@@ -146,9 +146,9 @@ class VoyageUI():
         choice = input("\nEnter number for desired voyage: ")
 
         # Get info about chosen voyage
-        voyage = voyages_list[int(choice) - 1]
-        departure_out_str = voyage.get_departure_out()
-        arrival_home_str = voyage.get_departure_home()
+        chosen_voyage = voyages_list[int(choice) - 1]
+        departure_out_str = chosen_voyage.get_departure_out()
+        arrival_home_str = chosen_voyage.get_departure_home()
 
         # Get list of all airplanes free at time of voyage
         airplane_id_set = self.llAPI.get_free_airplanes(departure_out_str, arrival_home_str)
@@ -164,7 +164,7 @@ class VoyageUI():
         choice = input("\nEnter number for desired plane: ")
         plane_id = airplane_id_list[int(choice) - 1]
 
-        voyage.set_plane_id(plane_id) 
+        chosen_voyage.set_plane_id(plane_id) 
         airplane = self.llAPI.get_airplane(plane_id)
 
         free_staff_day_1 = self.llAPI.get_all_not_working(departure_out_str)
@@ -192,6 +192,7 @@ class VoyageUI():
             else:
                 flight_attendant_list.append(staff_member)
 
+        # Choosing captain
         self.header("-", " CHOOSE CAPTAIN ")
         for number, captain in enumerate(captain_list, 1):
             ssn = captain.get_ssn()
@@ -201,6 +202,7 @@ class VoyageUI():
         choice = input("\nEnter number for captain: ")
         captain = captain_list[int(choice) - 1]
 
+        # Choosing copilot
         self.header("-", " CHOOSE COPILOT ")
         for number, copilot in enumerate(copilot_list, 1):
             ssn = copilot.get_ssn()
@@ -210,6 +212,7 @@ class VoyageUI():
         choice = input("\nEnter number for copilot: ")
         copilot = copilot_list[int(choice) - 1]
 
+        # Choosing flight service manager
         self.header("-", " CHOOSE FLIGHT SERVICE MANAGER ")
         for number, flight_service_manager in enumerate(flight_service_manager_list, 1):
             ssn = flight_service_manager.get_ssn()
@@ -219,6 +222,7 @@ class VoyageUI():
         choice = input("\nEnter number for flight service manager: ")
         flight_service_manager = flight_service_manager_list[int(choice) - 1]
 
+        # Choosing flight attendant 1
         self.header("-", " CHOOSE FLIGHT ATTENDANT 1 ")
         for number, flight_attendant in enumerate(flight_attendant_list, 1):
             ssn = flight_attendant.get_ssn()
@@ -230,6 +234,7 @@ class VoyageUI():
 
         flight_attendant_list.remove(flight_attendant_1)
 
+        # Choosing flight attendant 2
         self.header("-", " CHOOSE FLIGHT ATTENDANT 2 ")
         for number, flight_attendant in enumerate(flight_attendant_list, 1):
             ssn = flight_attendant.get_ssn()
@@ -242,8 +247,14 @@ class VoyageUI():
         cabin_crew_list = [captain.get_ssn(), copilot.get_ssn(), flight_service_manager.get_ssn(), \
                             flight_attendant_1.get_ssn(), flight_attendant_2.get_ssn()]
 
-        voyage.set_cabin_crew(cabin_crew_list)
+        chosen_voyage.set_cabin_crew(cabin_crew_list)
+        chosen_voyage.set_fully_assigned()
 
         self.header("-", " VOYAGE ")
-        print(voyage)
-        choice = input("Is this correct information (y/n)? ")
+        print(chosen_voyage)
+        choice = input("\nIs this correct information (y/n)? ")
+
+        if choice == "y":
+            print("\nChanges have been confirmed")
+
+            return self.llAPI.assign_voyage(chosen_voyage)
