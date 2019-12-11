@@ -39,6 +39,24 @@ class Destination():
     
     #------- set functions -----------
 
+    def set_id(self, new_id):
+        self.__id = new_id
+
+    def set_country(self, new_country):
+        self.__country = new_country
+
+    def set_city(self, new_city):
+        self.__city = new_city
+
+    def set_airport(self, new_airport):
+        self.__airport = new_airport
+    
+    def set_flight_time(self, new_flight_time):
+        self.__flight_time = new_flight_time
+
+    def set_distance(self, new_distance):
+        self.__distance = new_distance
+
     def set_new_contact(self, new_contact):
         self.__contact = new_contact
         

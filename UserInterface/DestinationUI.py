@@ -1,4 +1,5 @@
 from Validation.validation import Validate
+from MODELS.destination import Destination
 
 class DestinationUI():
 
@@ -12,7 +13,7 @@ class DestinationUI():
 
     def display_dest_menu(self):
         print("*"*56 + "\n"+" "*int((56-len(" DESTINATIONS "))/2)+" DESTINATIONS "+" "*int((56-len(" DESTINATIONS "))/2)+"\n"+"*"*56)
-        print("1. CHANGE\n2. OVERVIEW\n3. ADD")
+        print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
         if var == "1":
             #self.change_destination_info()
@@ -56,6 +57,10 @@ class DestinationUI():
             print("{}. {} {}".format(counter, display_string[i] ,a_dest_info_list[i]))
 
     def create_destination(self):
+        ''' Creates a new destination for NaN-Air with information input from user '''
+
+        # ---- Initialize a new instance of Destination with information as empty strings ----
+        new_destination = Destination()
         country_str = ""
         city_str = ""
         airport_str = ""
@@ -65,53 +70,81 @@ class DestinationUI():
         emergency_number_str = ""
 
         valid_input_list = ["1", "2", "3", "4", "5", "6", "7", "confirm"]
-        destination_info_list = ["" for i in range(7)]
+        chosen_input_list = set()
 
         self.header("-", " ADD DESTINATION ")
-        print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}"\
-                .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
+        new_info_str = "\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}"\
+                .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str)
+        print(new_info_str)
 
-        choice = input("\nInput which information you would like to add: ")
+        choice = input("\nPlease enter the number corresponding to the information you would like to add: ")
 
         while choice in valid_input_list:
 
             if choice == "1":
-                country_str = input("\nEnter new country: ")
-                destination_info_list[0] = country_str
+                country_str = input("\nPlease enter the country of your desired destination: ")
+                while not self.validation.validate_name(country_str):
+                    country_str = input("The country you entered is invalid. Please enter a country using letters only: ")
+                new_destination.set_country(country_str)
+                chosen_input_list.add(choice)
 
             elif choice == "2":
-                city_str = input("Enter new city: ")
-                destination_info_list[1] = city_str
+                city_str = input("Please enter the city of your desired destination: ")
+                while not self.validation.validate_name(city_str):
+                    city_str = input("The city you entered is invalid. Please enter a city using letters only: ")
+                new_destination.set_city(city_str)
+                chosen_input_list.add(choice)
 
             elif choice == "3":
-                airport_str = input("Enter new airport: ")
-                destination_info_list[2] = airport_str
+                airport_str = input("Please enter the airport of your desired destination: ")
+                while not self.validation.validate_name(airport_str):
+                    city_str = input("The airport you entered is invalid. Please enter an airport using letters only: ")
+                new_destination.set_airport(airport_str)
+                chosen_input_list.add(choice)
 
             elif choice == "4":
-                flight_time_str = input("Enter new flight time: ")
-                destination_info_list[3] = flight_time_str
+                flight_time_str = input("Please enter the flight time to your desired destination in whole hours: ")
+                while not self.validation.validate_flight_time(flight_time_str):
+                    flight_time_str = input("The flight time you entered is invalid. It has to be at least one hour. Please enter it again: ")
+                new_destination.set_flight_time(flight_time_str)
+                chosen_input_list.add(choice)
 
             elif choice == "5":
-                distance_str = input("Enter distance: ")
-                destination_info_list[4] = distance_str
+                distance_str = input("Please enter the distance between Keflavik airport and your desired destination in km: ")
+                while not self.validation.validate_flight_distance(distance_str):
+                    distance_str = input("Flight distance cannot be negative. Please enter it again: ")
+                new_destination.set_distance(distance_str)
+                chosen_input_list.add(choice)
 
             elif choice == "6":
-                name_of_contact_str = input("Enter name of contact: ")
-                destination_info_list[5] = name_of_contact_str
+                name_of_contact_str = input("Please enter the name of the emergency contact at your desired destination: ")
+                while not self.validation.validate_name(name_of_contact_str):
+                    name_of_contact_str = input("The name you entered is invalid. Please enter a new one using only letters: ")
+                new_destination.set_new_contact(name_of_contact_str)
+                chosen_input_list.add(choice)
 
             elif choice == "7":
-                emergency_number_str = input("Enter emergency phone number: ")
-                destination_info_list[6] = emergency_number_str
+                emergency_number_str = input("Please enter the number of the emergency contact at your desired destination: ")
+                while not self.validation.validate_phone_num(emergency_number_str):
+                    emergency_number_str = input("The phone number you entered is invalid. Please enter a new one. Hint: it can only contain 7 numbers ;): ")
+                new_destination.set_new_emergency_number(emergency_number_str)
+                chosen_input_list.add(choice)
 
             elif choice == "confirm":
-                print("Destination has been added")
-                return self.llAPI.create_new_destination(destination_info_list)
+                if len(chosen_input_list) == 7:
+                    print("Great job! A new destination for NanAir has been registered to the system! Bon voyage!")
+                    return self.llAPI.create_new_destination(new_destination)
+                else:
+                    print("Uh oh! There is still some information missing! Please continue filling it out.")
 
             self.header("-", " ADD DESTINATION ")
-            print("\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}"\
-                    .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str))
-            print("To confirm changes enter confirm")
-            choice = input("\nInput what you want to add: ")
+            new_info_str = "\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}"\
+                .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str)
+            print(new_info_str)
+            choice = input("\nInput the number of what you want to add or type 'confirm' to confirm changes: ")
+
+        else: # choice not in valid_input_list:
+            print("Whoops! Invalid input. We are guiding you back to the main page. Sorry for the inconvenience")
 
     def change_destination(self):
         dest_instance_list = self.llAPI.get_destination_instance_list()
