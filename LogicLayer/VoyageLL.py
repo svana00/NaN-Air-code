@@ -74,7 +74,7 @@ class VoyageLL():
                 
         # Create flight number for each flight
         target_id = voyage_info_list[0]
-        destinations_list = self.ioAPI.load_all_dest_from_file()
+        destinations_list = self.ioAPI.load_all_destinations()
 
         for destination in destinations_list:
             destination_id = destination.get_id()

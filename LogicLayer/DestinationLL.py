@@ -7,18 +7,18 @@ class DestinationLL():
    
     def get_destinations(self):
         ''' Returns a list of destination tuples containing id, country and city '''
-        dest_list = self.ioAPI.load_all_dest_from_file()
+        dest_list = self.ioAPI.load_all_destinations()
         return dest_list
 
     def get_destination_info(self, dest_id):
-        dest_list = self.ioAPI.load_all_dest_from_file()
+        dest_list = self.ioAPI.load_all_destinations()
         
         for dest in dest_list:
             if dest.get_id() == dest_id:
                 return dest
 
     def lets_see_if_this_works(self):
-        dest_instance_list = self.ioAPI.load_all_dest_from_file()
+        dest_instance_list = self.ioAPI.load_all_destinations()
         return dest_instance_list
     
     def create_new_destination(self, dest_info_list):
@@ -26,7 +26,7 @@ class DestinationLL():
         return self.ioAPI.create_new_destination(dest_str)
     
     def store_new_changes(self, dest_instance_list):
-        return self.ioAPI.storeDestinationInfo(dest_instance_list)
+        return self.ioAPI.store_destination_info(dest_instance_list)
 
     #def change_destination(self, old_str, new_str):
     #    old_file = self.ioAPI.get_all_file()
