@@ -128,10 +128,7 @@ class VoyageUI():
         return self.llAPI.make_voyage(voyage_info_list)
 
     def assign_voyage(self):
-        # 1. Voyages sem eru ekki fullmannaðar
-        # 2. Vela valid airplane
-        # 3. Vela valid staff (ekki busy eða ekki með leyfi)
-        # 4. Done
+        ''' Assigns plane and staff to a voyage that has not been assigned '''
 
         voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
 
@@ -167,6 +164,86 @@ class VoyageUI():
         choice = input("\nEnter number for desired plane: ")
         plane_id = airplane_id_list[int(choice) - 1]
 
-        voyage.set_plane_id(plane_id)
+        voyage.set_plane_id(plane_id) 
+        airplane = self.llAPI.get_airplane(plane_id)
 
+        free_staff_day_1 = self.llAPI.get_all_not_working(departure_out_str)
+        free_staff_day_2 = self.llAPI.get_all_not_working(arrival_home_str)
+
+        staff_members_id_list = list(set(free_staff_day_1) & set(free_staff_day_2))
+        staff_members_list = []
+
+        for staff_member_id in staff_members_id_list:
+            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
+            staff_members_list.append(staff_member)
+
+        captain_list = []
+        copilot_list = []
+        flight_service_manager_list = []
+        flight_attendant_list = []
+
+        for staff_member in staff_members_list:
+            if staff_member.rank == "Captain" and staff_member.get_licence() == airplane.get_type_id():
+                captain_list.append(staff_member)
+            elif staff_member.rank == "Copilot" and staff_member.get_licence() == airplane.get_type_id():
+                copilot_list.append(staff_member)
+            elif staff_member.rank == "Flight Service Manager":
+                flight_service_manager_list.append(staff_member)
+            else:
+                flight_attendant_list.append(staff_member)
+
+        self.header("-", " CHOOSE CAPTAIN ")
+        for number, captain in enumerate(captain_list, 1):
+            ssn = captain.get_ssn()
+            name = captain.get_name()
+            print("{}. {}, ssn: {}".format(number, name, ssn))
+
+        choice = input("\nEnter number for captain: ")
+        captain = captain_list[int(choice) - 1]
+
+        self.header("-", " CHOOSE COPILOT ")
+        for number, copilot in enumerate(copilot_list, 1):
+            ssn = copilot.get_ssn()
+            name = copilot.get_name()
+            print("{}. {}, ssn: {}".format(number, name, ssn))
+
+        choice = input("\nEnter number for copilot: ")
+        copilot = copilot_list[int(choice) - 1]
+
+        self.header("-", " CHOOSE FLIGHT SERVICE MANAGER ")
+        for number, flight_service_manager in enumerate(flight_service_manager_list, 1):
+            ssn = flight_service_manager.get_ssn()
+            name = flight_service_manager.get_name()
+            print("{}. {}, ssn: {}".format(number, name, ssn))
+        
+        choice = input("\nEnter number for flight service manager: ")
+        flight_service_manager = flight_service_manager_list[int(choice) - 1]
+
+        self.header("-", " CHOOSE FLIGHT ATTENDANT 1 ")
+        for number, flight_attendant in enumerate(flight_attendant_list, 1):
+            ssn = flight_attendant.get_ssn()
+            name = flight_attendant.get_name()
+            print("{}. {}, ssn: {}".format(number, name, ssn))
+
+        choice = input("\nEnter number for flight attendant 1: ")
+        flight_attendant_1 = flight_attendant_list[int(choice) - 1]
+
+        flight_attendant_list.remove(flight_attendant_1)
+
+        self.header("-", " CHOOSE FLIGHT ATTENDANT 2 ")
+        for number, flight_attendant in enumerate(flight_attendant_list, 1):
+            ssn = flight_attendant.get_ssn()
+            name = flight_attendant.get_name()
+            print("{}. {}, ssn: {}".format(number, name, ssn))
+
+        choice = input("\nEnter number for flight attendant 2: ")
+        flight_attendant_2 = flight_attendant_list[int(choice) - 1]
+
+        cabin_crew_list = [captain.get_ssn(), copilot.get_ssn(), flight_service_manager.get_ssn(), \
+                            flight_attendant_1.get_ssn(), flight_attendant_2.get_ssn()]
+
+        voyage.set_cabin_crew(cabin_crew_list)
+
+        self.header("-", " VOYAGE ")
         print(voyage)
+        choice = input("Is this correct information (y/n)? ")
