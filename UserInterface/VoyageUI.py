@@ -127,8 +127,9 @@ class VoyageUI():
 
         return self.llAPI.make_voyage(voyage_info_list)
 
-    def choose_voyage_to_assign(self):
-        ''' Returns voyage instance chosen by user out of non assigned voyages '''
+    def assign_voyage(self):
+        ''' Assigns plane and staff to a voyage that has not been assigned yet '''
+
         voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
 
         # Choose voyage menu
@@ -144,12 +145,8 @@ class VoyageUI():
 
         choice = input("\nEnter number for desired voyage: ")
 
+        # Get info about chosen voyage
         chosen_voyage = voyages_list[int(choice) - 1]
-
-        return chosen_voyage
-
-    def choose_airplane_for_voyage(self, chosen_voyage):
-        ''' Returns airplane id for airplane chosen by user '''
         departure_out_str = chosen_voyage.get_departure_out()
         arrival_home_str = chosen_voyage.get_departure_home()
 
@@ -167,10 +164,34 @@ class VoyageUI():
         choice = input("\nEnter number for desired plane: ")
         plane_id = airplane_id_list[int(choice) - 1]
 
-        return plane_id
+        chosen_voyage.set_plane_id(plane_id) 
+        airplane = self.llAPI.get_airplane(plane_id)
 
-    def choose_pilots_for_voyage(self, captain_list, copilot_list):
-        ''' Returns chosen captain and copilot for voyage '''
+        free_staff_day_1 = self.llAPI.get_all_not_working(departure_out_str)
+        free_staff_day_2 = self.llAPI.get_all_not_working(arrival_home_str)
+
+        staff_members_id_list = list(set(free_staff_day_1) & set(free_staff_day_2))
+        staff_members_list = []
+
+        for staff_member_id in staff_members_id_list:
+            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
+            staff_members_list.append(staff_member)
+
+        captain_list = []
+        copilot_list = []
+        flight_service_manager_list = []
+        flight_attendant_list = []
+
+        for staff_member in staff_members_list:
+            if staff_member.rank == "Captain" and staff_member.get_licence() == airplane.get_type_id():
+                captain_list.append(staff_member)
+            elif staff_member.rank == "Copilot" and staff_member.get_licence() == airplane.get_type_id():
+                copilot_list.append(staff_member)
+            elif staff_member.rank == "Flight Service Manager":
+                flight_service_manager_list.append(staff_member)
+            else:
+                flight_attendant_list.append(staff_member)
+
         # Choosing captain
         self.header("-", " CHOOSE CAPTAIN ")
         for number, captain in enumerate(captain_list, 1):
@@ -190,20 +211,16 @@ class VoyageUI():
 
         choice = input("\nEnter number for copilot: ")
         copilot = copilot_list[int(choice) - 1]
-        
-        return captain, copilot
 
-    def choose_flight_attendants_for_voyage(self, fsm_list, flight_attendant_list):
-        ''' Returns chosen flight attendants for voyage '''
         # Choosing flight service manager
         self.header("-", " CHOOSE FLIGHT SERVICE MANAGER ")
-        for number, fsm in enumerate(fsm_list, 1):
-            ssn = fsm.get_ssn()
-            name = fsm.get_name()
+        for number, flight_service_manager in enumerate(flight_service_manager_list, 1):
+            ssn = flight_service_manager.get_ssn()
+            name = flight_service_manager.get_name()
             print("{}. {}, ssn: {}".format(number, name, ssn))
         
         choice = input("\nEnter number for flight service manager: ")
-        fsm = fsm_list[int(choice) - 1]
+        flight_service_manager = flight_service_manager_list[int(choice) - 1]
 
         # Choosing flight attendant 1
         self.header("-", " CHOOSE FLIGHT ATTENDANT 1 ")
@@ -213,9 +230,9 @@ class VoyageUI():
             print("{}. {}, ssn: {}".format(number, name, ssn))
 
         choice = input("\nEnter number for flight attendant 1: ")
-        fa1 = flight_attendant_list[int(choice) - 1]
+        flight_attendant_1 = flight_attendant_list[int(choice) - 1]
 
-        flight_attendant_list.remove(fa1)
+        flight_attendant_list.remove(flight_attendant_1)
 
         # Choosing flight attendant 2
         self.header("-", " CHOOSE FLIGHT ATTENDANT 2 ")
@@ -225,65 +242,16 @@ class VoyageUI():
             print("{}. {}, ssn: {}".format(number, name, ssn))
 
         choice = input("\nEnter number for flight attendant 2: ")
-        fa2 = flight_attendant_list[int(choice) - 1]
+        flight_attendant_2 = flight_attendant_list[int(choice) - 1]
 
-        return fsm, fa1, fa2
+        cabin_crew_list = [captain.get_ssn(), copilot.get_ssn(), flight_service_manager.get_ssn(), \
+                            flight_attendant_1.get_ssn(), flight_attendant_2.get_ssn()]
 
-    def assign_voyage(self):
-        ''' Assigns plane and staff to a voyage that has not been assigned yet '''
-        # Choose a voyage
-        chosen_voyage = self.choose_voyage_to_assign()
-
-        # Choose a plane
-        plane_id = self.choose_airplane_for_voyage(chosen_voyage)
-
-        chosen_voyage.set_plane_id(plane_id)
-        chosen_airplane = self.llAPI.get_airplane(plane_id)
-
-        # Find all staff members that are not busy at time of voyage
-        departure_out_str = chosen_voyage.get_departure_out()
-        arrival_home_str = chosen_voyage.get_departure_home()
-
-        free_staff_departure_out = self.llAPI.get_all_not_working(departure_out_str)
-        free_staff_arrival_home = self.llAPI.get_all_not_working(arrival_home_str)
-
-        staff_members_id_list = list(set(free_staff_departure_out) & set(free_staff_arrival_home))
-        staff_members_list = []
-
-        for staff_member_id in staff_members_id_list:
-            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
-            staff_members_list.append(staff_member)
-
-        # Sort staff members according to their role and rank
-        captain_list = []
-        copilot_list = []
-        fsm_list = []
-        flight_attendant_list = []
-
-        for staff_member in staff_members_list:
-            if staff_member.rank == "Captain" and staff_member.get_licence() == chosen_airplane.get_type_id():
-                captain_list.append(staff_member)
-            elif staff_member.rank == "Copilot" and staff_member.get_licence() == chosen_airplane.get_type_id():
-                copilot_list.append(staff_member)
-            elif staff_member.rank == "Flight Service Manager":
-                fsm_list.append(staff_member)
-            else:
-                flight_attendant_list.append(staff_member)
-
-        # Choose pilots
-        captain, copilot = self.choose_pilots_for_voyage(captain_list, copilot_list)
-
-        # Choose flight attendants
-        fsm, fa1, fa2 = self.choose_flight_attendants_for_voyage(fsm_list, flight_attendant_list)
-
-        # Add cabin crew to voyage instance
-        cabin_crew_list = [captain.get_ssn(), copilot.get_ssn(), fsm.get_ssn(), fa1.get_ssn(), fa2.get_ssn()]
         chosen_voyage.set_cabin_crew(cabin_crew_list)
         chosen_voyage.set_fully_assigned()
 
         self.header("-", " VOYAGE ")
         print(chosen_voyage)
-
         choice = input("\nIs this correct information (y/n)? ")
 
         if choice == "y":
