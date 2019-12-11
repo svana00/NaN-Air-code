@@ -1,5 +1,6 @@
 from MODELS.airplane import Airplane
 import datetime
+from datetime import date
 class AirplaneLL():
 
     def __init__(self, ioAPI):
@@ -39,16 +40,15 @@ class AirplaneLL():
         attribute_int_list = [int(i) for i in temp_attribute_str_list]
         return attribute_int_list
     
-    def get_airplane_state(self, airplane_instance, chosen_time):
+    def get_airplane_state(self, airplane_instance, chosen_time_and_date):
         """ gets an airplane and chosen time and returns the state of the chosen airplane """
 
         chosen_airplane = airplane_instance
         voyages_list = self.ioAPI.load_all_voyages() # List of all voyages
         airplane_state = "IDLE" # initializes the airplane state at IDLE
-        NOW = chosen_time
+        NOW = datetime.datetime.fromisoformat(chosen_time_and_date)
 
         for voyage in voyages_list:
-
             voyage_plane = voyage.get_plane_id()
 
             departure1_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_departure_out())

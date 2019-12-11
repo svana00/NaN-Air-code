@@ -70,19 +70,19 @@ class AirplaneUI():
         self.header("-", " ALL AIRPLANES ")
         airplane_info_list = self.llAPI.get_all_airplanes()
 
+        chosen_date = input("Enter date in the format (YYYY-MM-DD): ")
+        chosen_time = input("Enter the time in the format (HH:MM:00): ")
+
         for airplane in airplane_info_list:
             counter += 1
             airplane_name_str = airplane.get_name()
             airplane_id_str = airplane.get_plane_id()
             airplane_type_str =  airplane.get_type_id()    #2019-11-12T06:20:00
-            chosen_time = datetime.datetime(2019,11,12,6,20,0)
-            airplane_state_str = self.llAPI.get_airplane_state(airplane.get_plane_id(), chosen_time)
+            date_and_time = chosen_date + "T" + chosen_time
+            #chosen_time = datetime.datetime(2019,11,20,6,40,00)
+            airplane_state_str = self.llAPI.get_airplane_state(airplane.get_plane_id(),date_and_time)
             print("{}. Name: {:<30} ID: {:<10} Type: {:<20} State: {:<15}".format(counter, airplane_name_str, airplane_id_str, airplane_type_str, airplane_state_str))
 
-
-    def show_airplane_state(self):
-        #chosen_time = input("enter time")
-        pass
 
     def create_airplane(self):
         ''' Returns a new instance of an airplane to the "creat_new_airplane_ function '''

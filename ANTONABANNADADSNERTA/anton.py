@@ -24,18 +24,18 @@ siggi = tupl2
 #for line in file_open:
 #    file_new.write(line.replace("antn", "anton").replace("ds", "siggi"))
 
-my_str = "2019-11-02T06:21:00"
-new = my_str.replace("T", "-").replace(":", "-")
-n_lsit = new.split("-")
-n_lsit = [int(i) for i in n_lsit]
-year = n_lsit[0]
-month = n_lsit[1]
-day = n_lsit[2]
-hour = n_lsit[3]
-minute = n_lsit[4]
-siggi = datetime.datetime.(year, month, day, hour, minute)
-print(siggi.isoformat())
+my_str = "2019-11-02T06:03:00"
+print(datetime.datetime.fromisoformat(my_str))
+#new = my_str.replace("T", "-").replace(":", "-")
+#n_lsit = my_str.split("-")
+#n_lsit = [int(i) for i in n_lsit]
+#year = n_lsit[0]
+#month = n_lsit[1]
+#day = n_lsit[2]
+#hour = n_lsit[3]
+#minute = n_lsit[4]
 
+print(datetime.datetime.now())
 now = datetime.datetime.now().replace(microsecond=0).replace(second=0).isoformat()
 start = datetime.datetime(2019, 12, 11, 15, 23, 00).isoformat()
 end = datetime.datetime(2019, 12, 12, 15, 23, 00).isoformat()
