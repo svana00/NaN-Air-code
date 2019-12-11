@@ -11,14 +11,14 @@ class IOAPI:
         self.airplaneIO = AirplaneIO()
         self.voyageIO = VoyageIO()
     
-    def load_all_staff_from_file(self):
-        return self.staffIO.load_all_staff_from_file()
+    def load_all_staff(self):
+        return self.staffIO.load_all_staff()
 
-    def load_all_dest_from_file(self):
-        return self.destIO.load_all_dest_from_file()
+    def load_all_destinations(self):
+        return self.destIO.load_all_destinations()
 
     def create_new_destination(self, dest_str):
-        return self.destIO.storeNewDestinationtoFile(dest_str)
+        return self.destIO.store_new_destination(dest_str)
     
     def load_all_airplanes(self):
         return self.airplaneIO.load_all_airplanes()
@@ -43,7 +43,7 @@ class IOAPI:
         return self.destIO.get_all_file()
 
     def store_staff_changes(self, staff_member_instance_list):
-        return self.staffIO.storeStaffMemberInfo(staff_member_instance_list)
+        return self.staffIO.store_staff_member_info(staff_member_instance_list)
 
-    def storeDestinationInfo(self, dest_list):
-        return self.destIO.storeDestinationInfo(dest_list)
+    def store_destination_info(self, dest_list):
+        return self.destIO.store_destination_info(dest_list)

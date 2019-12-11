@@ -1,4 +1,5 @@
 from Validation.validation import Validate
+from MODELS.staff_member import StaffMember
 
 class StaffMemberUI():
 
@@ -236,77 +237,129 @@ class StaffMemberUI():
             print("\t{} on {}".format(dest_city, date))
         
     def create_staff_member(self):
+        ''' Creates an new staff member with information that's input from the user '''
+
+        ### displays the header and main body
+        self.header("-", " ADD STAFF MEMBER ")
         ssn_str = ""
         name_str = ""
         role_str = ""
         rank_str = ""
-        staff_licence_str = ""
+        licence_str = ""
         address_str = ""
         phone_number_str = ""
         email_str = ""
 
-        staff_member_info_list = [ "" for i in range(15)]
+        # ---- Initialize an empty instance of Staff Member ----
+        new_staff_member = StaffMember()
+        
+        # ---- Set ssn ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        ssn_str = input("Enter new ssn: ")
+        while not self.validation.validate_ssn(ssn_str):
+            ssn_str = input("The ssn you entered is invalid. Please enter a new one: ")
+        new_staff_member.set_new_ssn(ssn_str)
 
-        ### displays the header and main body
-        self.header("-", " ADD STAFF MEMBER ")
-        print("\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}".format(ssn_str, name_str, role_str, rank_str, staff_licence_str, address_str, phone_number_str, email_str))
-        choice = input("\nInput what you want to add: ")
+        # ---- Set name ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        name_str = input("Enter new name: ")
+        while not self.validation.validate_name(name_str):
+            name_str = input("The name you entered is invalid: Please enter a new one: ")
+        new_staff_member.set_new_name(name_str)
 
-        VALID_INPUT_LIST = [str(i+1) for i in range(15)]
-        VALID_INPUT_LIST.append("confirm")
+        # ---- Set role ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        role_list = ["Pilot", "Flight Attendant"]
+        print("\n1. {}\n2. {}".format(role_list[0], role_list[1]))
+        role_choice = input("\nEnter number of new role: ")
+        if role_choice == "1":
+            role_str = "Pilot"
+            new_staff_member.set_new_role(role_str)
+        elif role_choice == "2":
+            role_str = "Flight Attendant"
+            new_staff_member.set_new_role(role_str)
 
-        #the worse but it works way to do this:
+        # ---- Set rank ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        rank_list = ["Captain", "Copilot", "Flight Service Manager", "Flight Attendant"]
+        if new_staff_member.get_role() == "Pilot":
+            print("\n  1. {}\n  2. {}".format(rank_list[0], rank_list[1]))
+            rank_choice = input("\nEnter number of new role: ")
 
-        while choice in VALID_INPUT_LIST:
+            if rank_choice == "1":
+                rank_str = "Captain"
+                new_staff_member.set_new_rank(rank_str)
+            elif rank_choice == "2":
+                rank_str = "Copilot"
+                new_staff_member.set_new_rank(rank_str)
+        
+        elif new_staff_member.get_role() == "Flight Attendant":
+            print("\n  1. {}\n  2. {}".format(rank_list[2], rank_list[3]))
+            rank_choice = input("\nEnter number of new role: ")
 
-            if choice == "1":
-                ssn_str = input("\nEnter new ssn: ")
-                staff_member_info_list[0] = ssn_str
+            if rank_choice == "1":
+                rank_str = "Flight Service Manager"
+                new_staff_member.set_new_rank(rank_str)
+            elif rank_choice == "2":
+                rank_str = "Flight Attendant"
+                new_staff_member.set_new_rank(rank_str)
 
-            elif choice == "2":
-                #name = self.set_new_name()
-                name_str = input("Enter new name: ")
-                staff_member_info_list[1] = name_str
+        # ---- Set licence if applicable ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        counter = 0
+        airplane_type_list = self.llAPI.get_all_airplane_types()
 
-            elif choice == "3":
-                role_list = ["1. Pilot", "2. Flight Attendant"]
-                pilot = role_list[0]
-                flight_attendant = role_list[1]
-                print("\n{}\n{}".format(pilot, flight_attendant))
-                role_str = input("Enter new role: ")
+        if new_staff_member.get_role() == "Pilot":
+            print()
+            for airplane_type in airplane_type_list:
+                counter += 1
+                print("{:>3}. Airplane type: {:<12}".format(counter, airplane_type))
+            
+            licence_choice = input("Please enter the number of desired licence for {}: ".format(name_str))
+            licence_str = airplane_type_list[int(licence_choice) - 1]
+            new_staff_member.set_new_licence(licence_str)
+        
+        elif new_staff_member.get_role() == "Flight Attendant":
+            licence_str = "N/A"
+            new_staff_member.set_new_licence(licence_str)
+        
+        # ---- Set address ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        address_str = input("Enter new address: ")
+        while not self.validation.validate_address(address_str):
+            address_str = input("The address you entered is invalid. Please enter another one: ")
+        new_staff_member.set_new_address(address_str)
+        
+        # ---- Set phone number ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        phone_number_str = input("Enter new phone number: ")
+        while not self.validation.validate_phone_num(phone_number_str):
+            phone_number_str = input("The phone number you entered is invalid. Please enter another one. Hint: Only 7 numbers are allowed ;): ")
+        new_staff_member.set_new_phone_number(phone_number_str)
 
-                if role_str == "1":
-                    staff_member_info_list[2] = pilot
-                elif role_str == "2":
-                    staff_member_info_list[2] = flight_attendant
+        # ---- Set email ---- 
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        email_str = input("Enter new email: ")
+        while not self.validation.validate_email(email_str):
+            email_str = input("The email you entered is invalid. Please enter another one. Hint: It has to end with '@nanair.is ;)': ")
+        new_staff_member.set_new_email(email_str)
 
-            elif choice == "4":
-                rank_str = input("Enter new rank: ")
-                staff_member_info_list[3] = rank_str
+        # ---- Get confirmation from user ----
+        new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
+        print(new_info_str)
+        yes_or_no = input("Is all the information correct? (y/n): ")
+        if yes_or_no == "y":
+            self.llAPI.create_staff_member(new_staff_member)
+            print("You did it! The new staff member has been stored in the database!")
 
-            elif choice == "5":
-                staff_licence_str = input("Enter new staff license: ")
-                staff_member_info_list[4] = staff_licence_str
-
-            elif choice == "6":
-                address_str = input("Enter new address: ")
-                staff_member_info_list[5] = address_str
-
-            elif choice == "7":
-                phone_number_str = input("Enter new phone number: ")
-                staff_member_info_list[6] = phone_number_str
-
-            elif choice == "8":
-                email_str = input("Enter emergency phone number: ")
-                staff_member_info_list[7] = email_str
-
-            elif choice == "confirm":
-                print("Changes have been confirmed")
-                return self.llAPI.create_new_destination(staff_member_info_list)
-
-            self.header("-", " ADD STAFF MEMBER ")
-        print("\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}".format(ssn_str, name_str, role_str, rank_str, staff_licence_str, address_str, phone_number_str, email_str))
-        choice = input("\nInput what you want to add: ")
 
     def change_staff_member_info(self):
 

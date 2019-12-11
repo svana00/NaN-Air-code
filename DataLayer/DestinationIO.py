@@ -2,7 +2,7 @@ import csv
 from MODELS.destination import Destination
 
 class DestinationIO: 
-    def load_all_dest_from_file(self):
+    def load_all_destinations(self):
         dest_list = []
         dest_file = open("csv_files/Destinations.csv", "r")
         reader = csv.DictReader(dest_file)
@@ -23,14 +23,14 @@ class DestinationIO:
             
         return dest_list
 
-    def storeNewDestinationtoFile(self,dest_str):
+    def store_new_destination(self,dest_str):
         ''' Stores new destination to the existing file '''
         dest_file = open("csv_files/Destinations.csv", "a")
         dest_file.write(dest_str)
         dest_file.write("\n")
         return dest_file
 
-    def storeDestinationInfo(self, dest_list):
+    def store_destination_info(self, dest_list):
         ''' Changes/adds info to an existing destination '''
         big_csv = ""
         for dest in dest_list:

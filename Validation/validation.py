@@ -4,7 +4,7 @@ class Validate:
     def __init__(self):
         pass
 
-    def validate_letter(self, letter_str):
+    def validate_name(self, letter_str):
         new_str = letter_str.replace(" ", "")
         if new_str.isalpha() == True:
             return True

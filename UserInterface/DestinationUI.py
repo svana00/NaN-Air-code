@@ -129,7 +129,7 @@ class DestinationUI():
             
             if change_info_choice == "1":
                 new_contact_str = input("Enter new contact: ")
-                if self.validation.validate_letter(new_contact_str):
+                if self.validation.validate_name(new_contact_str):
                     dest_instance_dictionary[dest_choice].set_new_contact(new_contact_str)
                     print("\n",dest_instance_dictionary[dest_choice])
 
