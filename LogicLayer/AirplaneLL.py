@@ -27,8 +27,8 @@ class AirplaneLL():
     def gets_int_list_and_returns_datetime_format(self, int_list):
         return datetime.datetime(int_list[0], int_list[1], int_list[2], int_list[3], int_list[4])
 
-    def gets_instance_attribute_and_returns_int_list(self, attribute):
-        temp_attribute = attribute
+    def gets_instance_attribute_and_returns_int_list(self, voyage_attribute):
+        temp_attribute = voyage_attribute
         temp_attribute_str = temp_attribute.replace("T","-").replace(":", "-")
         temp_attribute_str_list = temp_attribute_str.split("-")
         attribute_int_list = [int(i) for i in temp_attribute_str_list]
@@ -43,6 +43,7 @@ class AirplaneLL():
         NOW = chosen_time #datetime.datetime.now().replace(microsecond=0).replace(second=0)
         new_now = NOW.isoformat()
 
+
         for voyage in voyages_list:
 
             voyage_plane = voyage.get_plane_id()
@@ -50,16 +51,17 @@ class AirplaneLL():
             departure1_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_departure_out())
             departure1_date = self.gets_int_list_and_returns_datetime_format(departure1_int_list)
 
-            arrival1_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_arrival_out)
+            arrival1_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_arrival_out())
             arrival1_date = self.gets_int_list_and_returns_datetime_format(arrival1_int_list)
 
             departure2_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_departure_home())
             departure2_date = self.gets_int_list_and_returns_datetime_format(departure2_int_list)
 
-            arrival2_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_arrival_home)
+            arrival2_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_arrival_home())
             arrival2_date = self.gets_int_list_and_returns_datetime_format(arrival2_int_list)
 
-            if voyage_plane == airplane_instance.get_plane_id():
+            if voyage_plane == airplane_instance:
+
                 if departure1_date <= new_now <= arrival1_date:
                     airplane_state = "in flight 1"
                 elif departure2_date <= new_now <= arrival2_date:
