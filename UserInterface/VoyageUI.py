@@ -153,7 +153,20 @@ class VoyageUI():
         departure_out_str = voyage.get_departure_out()
         arrival_home_str = voyage.get_departure_home()
 
-        free_airplanes_list = self.llAPI.get_free_airplanes(departure_out_str, arrival_home_str)
-        print(free_airplanes_list)
+        # Get list of all airplanes free at time of voyage
+        airplane_id_set = self.llAPI.get_free_airplanes(departure_out_str, arrival_home_str)
+        airplane_id_list = list(airplane_id_set)
 
         self.header("-", " CHOOSE PLANE ")
+
+        for number, airplane_id in enumerate(airplane_id_list, 1):
+            airplane = self.llAPI.get_airplane(airplane_id)
+            name = airplane.get_name()
+            print("{}. {}".format(number, name))
+
+        choice = input("\nEnter number for desired plane: ")
+        plane_id = airplane_id_list[int(choice) - 1]
+
+        voyage.set_plane_id(plane_id)
+
+        print(voyage)

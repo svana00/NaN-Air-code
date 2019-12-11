@@ -16,8 +16,8 @@ class Voyage():
         self.__fa2 = fa2
         self.__fully_assigned = fully_assigned
 
-    def set_airplane(self, new_airplane):
-        self.__airplane = new_airplane
+    def set_plane_id(self, plane_id):
+        self.__plane_id = plane_id
 
     def set_cabin_crew(self, staff_list):
         self.__captain = staff_list[0]

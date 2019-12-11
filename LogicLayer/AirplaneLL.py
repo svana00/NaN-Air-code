@@ -1,5 +1,5 @@
 from MODELS.airplane import Airplane
-from datetime import datetime
+import datetime
 class AirplaneLL():
 
     def __init__(self, ioAPI):
@@ -62,8 +62,13 @@ class AirplaneLL():
 
     def get_free_airplanes(self, departure_out_str, arrival_home_str):
         voyages_list = self.ioAPI.load_all_voyages() # List of voyages
-        free_airplanes_set = set()
-
+        airplanes_list = self.get_all_airplanes()
+        plane_id_list = []
+        
+        for airplane in airplanes_list:
+            plane_id = airplane.get_plane_id()
+            plane_id_list.append(plane_id)
+        
         departure_out = datetime.datetime.fromisoformat(departure_out_str)
         arrival_home = datetime.datetime.fromisoformat(arrival_home_str)
 
@@ -76,10 +81,11 @@ class AirplaneLL():
             arrival_home_temp = datetime.datetime.fromisoformat(arrival_home_str)
 
             overlap = (departure_out < arrival_home_temp and departure_out_temp < arrival_home)
-            # startDate1 < endDate2 and startDate2 < endDate1 = overlap
-            if not overlap:
-                airplane_id = voyage.get_plane_id()
-                airplane = self.get_airplane(airplane_id)
-                free_airplanes_set.add(airplane)
 
-        return free_airplanes_set
+            # startDate1 < endDate2 and startDate2 < endDate1 = overlap
+            if overlap:
+                plane_id = voyage.get_plane_id()
+                if plane_id in plane_id_list:
+                    plane_id_list.remove(plane_id)
+
+        return plane_id_list
