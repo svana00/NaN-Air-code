@@ -51,10 +51,10 @@ class VoyageUI():
             destination =  self.llAPI.get_destination_info(dest_id)
             city = destination.get_city()
             departure_out = voyage.get_departure_out()
-            if voyage.is_fully_assigned():
+            if voyage.is_fully_assigned() == "True":
                 fully_assigned_str = " "
             else:
-                fully_assigned_str = "not "
+                fully_assigned_str = " not "
                 #{1:<4}
             print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
 
@@ -143,12 +143,13 @@ class VoyageUI():
             city = destination.get_city()
             departure_out = voyage.get_departure_out()
 
-            if voyage.is_fully_assigned():
+            if voyage.is_fully_assigned() == "True":
+
                 fully_assigned_str = " "
             else:
-                fully_assigned_str = "not "
+                fully_assigned_str = " not "
 
-            print("{}. ID: {:<5} Destination: {:<20} Departure at: {:<15} Voyage is{}fully assigned".format(number, voyage_id, city, departure_out, fully_assigned_str))
+            print("{}. ID: {:<5} Destination: {:<20} Departure at: {:<15} Voyage fully assigned: {}".format(number, voyage_id, city, departure_out, fully_assigned_str))
         choice = input("\nEnter number for desired voyage: ")
                       
         self.header("-", " CHOOSE PLANE ")

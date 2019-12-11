@@ -12,7 +12,9 @@ class AirplaneLL():
     def getallAirplaneTypes(self):
         pass
 
-    def getAirplaneState(self):
+    def getAirplaneState(self, instance_of_airplane):
+        airplane_instance_list = self.ioAPI.load_all_airplanes()
+        
         pass
 
     def makeAirplane(self, new_airplane_list):
