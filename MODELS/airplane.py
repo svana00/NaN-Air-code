@@ -14,7 +14,6 @@ class Airplane():
     def get_type_id(self):
         return self.type_id
 
-
     def __str__(self): #status
         my_str = ""
         my_str += "Name: {}\n".format(self.name)
