@@ -105,3 +105,6 @@ class LLAPI():
 
     def get_all_airplanes(self):
         return self.airplaneLL.get_all_airplanes()
+
+    def get_airplane(self, plane_id):
+        return self.airplaneLL.get_airplane(plane_id)
