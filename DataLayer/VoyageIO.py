@@ -3,10 +3,10 @@ import datetime
 from MODELS.voyage import Voyage
 
 class VoyageIO():
-    def loadVoyagefromFile(self):
+    def load_voyages(self):
         pass
 
-    def loadVoyagesbyDate(self):
+    def load_voyages_by_date(self):
         #date = "2019-11-10T06:18:00"
 
         voyages_file = open("csv_files/Voyages.csv", "r")
@@ -24,7 +24,7 @@ class VoyageIO():
         #    if depart_datetime >= start_date.isoformat() and depart_datetime <= end_date.isoformat():
         #        print(row["flightNumber"])
 
-    def storeStafftoVoyage(self,staffID):
+    def store_staff_to_voyage(self,staffID):
         pass
 
     def store_new_voyage(self, csv_str):
@@ -62,4 +62,4 @@ class VoyageIO():
         return voyages_list
 
 flippkisi = VoyageIO()
-flippkisi.loadVoyagesbyDate()
+flippkisi.load_voyages_by_date()
