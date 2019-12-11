@@ -31,14 +31,19 @@ class DestinationIO:
 
     def store_destination_info(self, dest_list):
         ''' Changes/adds info to an existing destination '''
-        big_csv = ""
+        big_csv = self.get_header()
         for dest in dest_list:
             big_csv += dest.instance_to_csv_string() + "\n"
         dest_file = open("csv_files/Destinations.csv", "w+")
         dest_file.write(big_csv)
 
+    def get_header(self):
+        ''' Returns the header from the file '''
 
-    def get_all_file(self):
-        the_file = open("Destinations.csv", "r")
-        return the_file
+        dest_file = open("csv_files/Destinations.csv", "r")
+        for index, line in enumerate(dest_file):
+            if index == 0:
+                header = line
+        dest_file.close()
         
+        return header

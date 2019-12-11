@@ -165,16 +165,20 @@ class DestinationUI():
                 if self.validation.validate_name(new_contact_str):
                     dest_instance_dictionary[dest_choice].set_new_contact(new_contact_str)
                     print("\n",dest_instance_dictionary[dest_choice])
+                else:
+                    print("\nInvalid name")
 
             elif change_info_choice == "2":
                 new_emergency_number_str = input("Enter new emergency number: ")
                 if self.validation.validate_phone_num(new_emergency_number_str):
                     dest_instance_dictionary[dest_choice].set_new_emergency_number(new_emergency_number_str)
                     print("\n",dest_instance_dictionary[dest_choice])
+                else:
+                    print("\nInvalid phone number")
 
             else:
-                print("Invalid choice, please try again")
+                print("\nInvalid choice, please try again")
 
-            choice = input("Do you want to make more changes? (y/n): ")
+            choice = input("\nDo you want to make more changes? (y/n): ")
             if choice == "n":
-                break
+                return self.llAPI.store_new_dest_changes(dest_instance_list)
