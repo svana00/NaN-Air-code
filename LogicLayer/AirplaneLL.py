@@ -25,7 +25,12 @@ class AirplaneLL():
 
 
     def gets_int_list_and_returns_datetime_format(self, int_list):
-        return datetime.datetime(int_list[0], int_list[1], int_list[2], int_list[3], int_list[4])
+        year = int_list[0]
+        month = int_list[1]
+        day = int_list[2]
+        hour = int_list[3]
+        minute = int_list[4]
+        return datetime.datetime(year, month, day, hour, minute)
 
     def gets_instance_attribute_and_returns_int_list(self, voyage_attribute):
         temp_attribute = voyage_attribute
@@ -40,7 +45,7 @@ class AirplaneLL():
         chosen_airplane = airplane_instance
         voyages_list = self.ioAPI.load_all_voyages() # List of all voyages
         airplane_state = "IDLE" # initializes the airplane state at IDLE
-        NOW = chosen_time.isoformat()
+        NOW = chosen_time
 
         for voyage in voyages_list:
 
