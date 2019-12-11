@@ -6,23 +6,15 @@ class AirplaneIO():
     def load_all_airplanes(self):
         ''' Returns a list of all instances of airplanes '''
         airplanes_list = []
-        
         airplanes_file = open("csv_files/Airplane.csv", "r")
-        planeType_file = open("csv_files/AirplaneType.csv", "r")
-
         planes_reader = csv.DictReader(airplanes_file)
-        type_reader = csv.DictReader(planeType_file)
 
         for row in planes_reader:
             plane_name = row["name"]
             plane_id = row["planeId"]
             plane_type = row["planeTypeId"]
 
-            for row2 in type_reader:
-                if plane_type == row2["planeTypeId"]:
-                    plane_capacity = row2["capacity"]
-            
-            airplane = Airplane(plane_name, plane_id, plane_type, plane_capacity)
+            airplane = Airplane(plane_name, plane_id, plane_type)
             airplanes_list.append(airplane)
 
         return airplanes_list

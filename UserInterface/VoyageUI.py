@@ -74,23 +74,24 @@ class VoyageUI():
         voyage_info_list = []
  
         # User chooses destination
-        destinations_info_list = self.llAPI.get_destinations()
+        destinations_list = self.llAPI.get_destinations()
         counter = 1
 
         self.header("-", " CHOOSE DESTINATION ")
-        for destination_info in destinations_info_list:
-            city = destination_info[2]
+        for destination in destinations_list:
+            city = destination.get_city()
             print("{}. {}".format(counter,city))
             counter += 1
 
-        valid_list = [str(num) for num in range(len(destinations_info_list))]
+        valid_list = [str(num) for num in range(len(destinations_list))]
         invalid_input = True
         number = input("\nEnter number of desired destination for voyage: ")
 
         while invalid_input == True:
             if number in valid_list:
-                dest_id = destinations_info_list[(int(number) - 1)][0]
-                city = destinations_info_list[(int(number) - 1)][2]
+                destination = destinations_list[(int(number) - 1)]
+                dest_id = destination.get_id()
+                city = destination.get_city()
                 voyage_info_list.append(dest_id)
                 invalid_input = False
             else:
@@ -101,21 +102,21 @@ class VoyageUI():
 
         # User chooses date for voyage
         self.header("-", " CHOOSE DATE ")
-        date_str = input("Enter date of voyage (YYYY-MM-DD) : ")
+        date_str = input("Enter date of voyage (YYYY-MM-DD): ")
 
         while not self.validate.validate_date(date_str):
             print("Invalid date.")
-            date_str = input("Enter date of voyage (YYYY-MM-DD) : ")
+            date_str = input("Enter date of voyage (YYYY-MM-DD): ")
         else:
             voyage_info_list.append(date_str)        
 
         # User chooses time for voyage
         self.header("-", " CHOOSE TIME ")
-        time_str = input("Enter time of voyage (HH:MM:SS) : ")
+        time_str = input("Enter time of voyage (HH:MM:SS): ")
 
         while not self.validate.validate_time(time_str):
             print("Invalid time.")
-            time_str = input("Enter time of voyage (HH:MM:SS) : ")
+            time_str = input("Enter time of voyage (HH:MM:SS): ")
         else:
             voyage_info_list.append(time_str)   
 
