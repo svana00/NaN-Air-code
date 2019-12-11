@@ -41,10 +41,9 @@ class AirplaneLL():
     
     def get_airplane_state(self, airplane_instance, chosen_time):
         """ gets an airplane and chosen time and returns the state of the chosen airplane """
-
+        airplane_state = "BOOKED"
         chosen_airplane = airplane_instance
         voyages_list = self.ioAPI.load_all_voyages() # List of all voyages
-        airplane_state = "IDLE" # initializes the airplane state at IDLE
         NOW = chosen_time
 
         for voyage in voyages_list:
@@ -65,14 +64,21 @@ class AirplaneLL():
 
             if voyage_plane == chosen_airplane:
 
-                if departure1_date <= NOW <= arrival1_date:
+                if departure1_date <= NOW and NOW <= arrival1_date:
                     airplane_state = "in flight 1"
-                elif departure2_date <= NOW <= arrival2_date:
+                    return airplane_state
+
+                elif departure2_date <= NOW and NOW <= arrival2_date:
                     airplane_state = "in flight 2"
-                elif arrival1_date < NOW < departure2_date:
+                    return airplane_state
+
+                elif arrival1_date <= NOW and NOW <= departure2_date:
                     airplane_state = "in intermission" 
-                else:
-                    airplane_state = "booked to fly at {}".format(voyage.get_departure_out())
+                    return airplane_state
+
+                elif arrival2_date < NOW or NOW < departure1_date:
+                    airplane_state = "IDLE"
+                    return airplane_state
 
         return airplane_state
 

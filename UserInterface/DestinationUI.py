@@ -29,8 +29,8 @@ class DestinationUI():
         dest_list = self.llAPI.get_destinations()
 
         for destination in dest_list:
-            country = destination[1]
-            city = destination[2]
+            country = destination.get_country()
+            city = destination.get_city()
             counter += 1
             print("{}. {}: {}".format(counter, country, city))
 
@@ -41,7 +41,7 @@ class DestinationUI():
     def show_destination_info(self, dest_list):
         #Option to choose a specific destination
         choose_number = int(input("Enter number of destination: "))
-        dest_id = dest_list[(choose_number) -1][0]
+        dest_id = dest_list[(choose_number) -1].get_id()
         destination = self.llAPI.get_destination_info(dest_id)
         self.header("-", " {} ".format(destination.get_city()))
         print(destination)
@@ -172,7 +172,9 @@ class DestinationUI():
                     dest_instance_dictionary[dest_choice].set_new_emergency_number(new_emergency_number_str)
                     print("\n",dest_instance_dictionary[dest_choice])
 
-            elif change_info_choice == "confirm":
-                print("Changes have been confirmed")
-                return self.llAPI.store_new_dest_changes(dest_instance_list)
-            
+            else:
+                print("Invalid choice, please try again")
+
+            choice = input("Do you want to make more changes? (y/n): ")
+            if choice == "n":
+                break
