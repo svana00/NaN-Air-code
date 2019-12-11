@@ -6,14 +6,14 @@ class StaffMemberLL():
 
     def get_staff_member_info(self, ssn):
         ''' Returns an instance of a staff member with given ssn '''
-        staff_members_list = self.ioAPI.load_all_staff_from_file()
+        staff_members_list = self.ioAPI.load_all_staff()
         for staff_member in staff_members_list:
             if staff_member.get_ssn() == ssn:
                 return staff_member
 
     def get_all_staff(self):
         ''' Returns a list of tuples with names and ssn of all staff members '''
-        staff_list = self.ioAPI.load_all_staff_from_file()
+        staff_list = self.ioAPI.load_all_staff()
         staff_info_list = []
 
         for staff_member in staff_list:
@@ -25,7 +25,7 @@ class StaffMemberLL():
 
     def get_all_flight_attendants(self):
         ''' Returns a list of tuples with names and ssn of all flight attendants '''
-        staff_list = self.ioAPI.load_all_staff_from_file()
+        staff_list = self.ioAPI.load_all_staff()
         flight_attendants_info_list = []
 
         for flight_attendant in staff_list:
@@ -38,7 +38,7 @@ class StaffMemberLL():
 
     def get_pilots(self):
         ''' Returns a list of all instances of pilots '''
-        staff_list = self.ioAPI.load_all_staff_from_file()
+        staff_list = self.ioAPI.load_all_staff()
         pilots_list = []
 
         for staff_member in staff_list:
@@ -126,7 +126,7 @@ class StaffMemberLL():
     def get_all_not_working(self, desired_date_str):
         ''' Returns a list of staff members that are not working a specific day '''
         voyages_list = self.ioAPI.load_all_voyages()
-        staff_member_list = self.ioAPI.load_all_staff_from_file()
+        staff_member_list = self.ioAPI.load_all_staff()
         desired_date = datetime.datetime.fromisoformat(desired_date_str).date()
         staff_working_list = []
         staff_not_working_list = []
@@ -176,7 +176,7 @@ class StaffMemberLL():
         return self.ioAPI.store_new_staff_member(staff_member_str)
 
     def get_staff_member_instance_list(self):
-        staff_member_instance_list = self.ioAPI.load_all_staff_from_file()
+        staff_member_instance_list = self.ioAPI.load_all_staff()
         return staff_member_instance_list
 
     def store_new_staff_changes(self, staff_member_instance_list):
