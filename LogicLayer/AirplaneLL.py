@@ -29,7 +29,7 @@ class AirplaneLL():
 
         voyages_list = self.ioAPI.load_all_voyages() # List of voyages
         airplane_state = "IDLE"
-        NOW = datetime.datetime.now.isoformat()
+        NOW = datetime.datetime.now.isoformat().replace(microsecond=0).replace(second=0)
 
         for voyage in voyages_list:
 
