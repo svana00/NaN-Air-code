@@ -35,14 +35,12 @@ class AirplaneLL():
         return attribute_int_list
     
     def get_airplane_state(self, airplane_instance, chosen_time):
-        #free_airplane_set = get_free_airplanes(airplane_instance):
-        #instance_list = self.ioAPI.load_all_airplanes()
+        """ gets an airplane and chosen time and returns the state of the chosen airplane """
 
-        voyages_list = self.ioAPI.load_all_voyages() # List of voyages
-        airplane_state = "IDLE"
-        NOW = chosen_time #datetime.datetime.now().replace(microsecond=0).replace(second=0)
-        new_now = NOW.isoformat()
-
+        chosen_airplane = airplane_instance
+        voyages_list = self.ioAPI.load_all_voyages() # List of all voyages
+        airplane_state = "IDLE" # initializes the airplane state at IDLE
+        NOW = chosen_time.isoformat()
 
         for voyage in voyages_list:
 
@@ -60,13 +58,13 @@ class AirplaneLL():
             arrival2_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_arrival_home())
             arrival2_date = self.gets_int_list_and_returns_datetime_format(arrival2_int_list)
 
-            if voyage_plane == airplane_instance:
+            if voyage_plane == chosen_airplane:
 
-                if departure1_date <= new_now <= arrival1_date:
+                if departure1_date <= NOW <= arrival1_date:
                     airplane_state = "in flight 1"
-                elif departure2_date <= new_now <= arrival2_date:
+                elif departure2_date <= NOW <= arrival2_date:
                     airplane_state = "in flight 2"
-                elif arrival1_date < new_now < departure2_date:
+                elif arrival1_date < NOW < departure2_date:
                     airplane_state = "in intermission" 
                 else:
                     airplane_state = "booked to fly at {}".format(voyage.get_departure_out())
