@@ -371,7 +371,7 @@ class StaffMemberUI():
             self.header("*", " CHOOSE STAFF MEMBER ")
             for key,val in staff_instance_dictionary.items():
                 print("{}. {}".format(key, val.get_name()))
-            staff_choice = input("Enter which staff member you want to change: ")
+            staff_choice = input("\nEnter which staff member you want to change: ")
             
 
             while staff_choice in staff_instance_dictionary.keys():
@@ -380,7 +380,7 @@ class StaffMemberUI():
 
                 self.header("*", " {} ".format(instance.get_name()))
                 print("\n1. SSN: {}\n2. NAME: {}\n3. LICENSE: {}\n4. ADDRESS: {}\n5. PHONE NUMBER: {}\n6. EMAIL ADDRESS: {}".format(instance.get_ssn(), instance.get_name(), instance.get_licence(), instance.get_address(), instance.get_phone_number(), instance.get_email()))
-                change_info_choice = input("Enter which info you want to change: ")
+                change_info_choice = input("\nEnter which info you want to change: ")
 
                 if change_info_choice == "1":
                     print("Invalid: can't make changes to ssn")
@@ -392,19 +392,17 @@ class StaffMemberUI():
                     print("Invalid: can't make changes to licence")
 
                 elif change_info_choice == "4":
-                    new_address_str = input("Enter new emergency number: ")
+                    new_address_str = input("Enter new address: ")
                     if self.validation.validate_address(new_address_str):
                         instance.set_new_address(new_address_str)
 
                 elif change_info_choice == "5":
-                    new_phone_num_str = input("Enter new emergency number: ")
+                    new_phone_num_str = input("Enter new phone number: ")
                     if self.validation.validate_phone_num(new_phone_num_str):
                         instance.set_new_phone_number(new_phone_num_str)
 
                 elif change_info_choice == "6":
-                    new_email_str = input("Enter new emergency number: ")
-                    if self.validation.validate_email(new_email_str):
-                        instance.set_new_email(new_email_str)
+                    print("Invalid: can't make changes to email address")
 
                 elif change_info_choice == "confirm":
                     print("Changes have been confirmed")
