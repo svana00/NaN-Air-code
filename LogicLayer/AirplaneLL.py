@@ -24,8 +24,40 @@ class AirplaneLL():
         return self.ioAPI.create_new_airplane(airplane_str)
     
     def get_airplane_state(self, airplane_instance):
+        #free_airplane_set = get_free_airplanes(airplane_instance):
         #instance_list = self.ioAPI.load_all_airplanes()
-        pass
+
+        voyages_list = self.ioAPI.load_all_voyages() # List of voyages
+        airplane_state = "IDLE"
+        NOW = datetime.datetime.now.isoformat()
+
+        for voyage in voyages_list:
+
+            voyage_plane = voyage.get_plane_id()
+
+            departure1_str = voyage.get_departure_out()
+            departure1_str_temp = datetime.datetime.fromisoformat(departure1_str)
+
+            arrival1_str = voyage.get_arrival_out()
+            arrival1_str_temp = datetime.datetime.fromisoformat(arrival1_str)
+
+            departure2_str = voyage.get_departure_home()
+            departure2_str_temp = datetime.datetime.fromisoformat(departure2_str)
+
+            arrival2_str = voyage.get_arrival_home()
+            arrival2_str_temp = datetime.datetime.fromisoformat(arrival2_str)
+
+            if voyage_plane == airplane_instance.get_plane_id():
+                if departure1_str_temp <= NOW <= arrival1_str_temp:
+                    airplane_state = "in flight 1"
+                elif departure2_str_temp <= NOW <= arrival2_str_temp:
+                    airplane_state = "in flight 2"
+                elif arrival1_str_temp < NOW < departure2_str_temp:
+                    airplane_state = "in intermission" 
+                else:
+                    airplane_state = "booked to fly at {}".format(departure1_str_temp)
+
+        return airplane_state
 
     def get_free_airplanes(self, departure_out_str, arrival_home_str):
         voyages_list = self.ioAPI.load_all_voyages() # List of voyages

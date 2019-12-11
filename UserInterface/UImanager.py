@@ -26,7 +26,7 @@ class UIManager():
             print("            | **\  *** /**__  **| **\  ***      | **  | **  | **  | **  \ **")
             print("            | ** \  **|  *******| ** \  **      | **  | ** /******| **  | **")
             print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/\n\n")
-
+            print("text art by ")
 
             print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
             var = input("\nInput a command: ")
