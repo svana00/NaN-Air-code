@@ -36,8 +36,17 @@ class StaffMember():
 
 #------- set functions  ---------
 
+    def set_new_ssn(self, new_ssn):
+        self.__ssn = new_ssn
+
     def set_new_name(self, new_name):
         self.__name = new_name
+
+    def set_new_role(self, new_role):
+        self.role = new_role
+    
+    def set_new_rank(self, new_rank):
+        self.rank = new_rank
 
     def set_new_licence(self, new_licence):
         self.licence = new_licence

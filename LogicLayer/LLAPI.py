@@ -39,8 +39,8 @@ class LLAPI():
     def get_all_flight_attendants(self):
         return self.staffLL.get_all_flight_attendants()
 
-    def create_staff_member(self, staff_member_info_list):
-        return self.staffLL.create_staff_member(staff_member_info_list)
+    def create_staff_member(self, new_staff_member):
+        return self.staffLL.create_staff_member(new_staff_member)
 
     def get_all_working(self, departure_out_date):
         return self.staffLL.get_all_working(departure_out_date)
@@ -60,9 +60,6 @@ class LLAPI():
 
     def get_destination_info(self, dest_id):
         return self.destLL.get_destination_info(dest_id)
-
-    def get_mutable_destination_info_list(self):
-        return self.destLL.get_mutable_destination_info_list()
 
     def create_new_destination(self, dest_list):
         self.dest_list = dest_list
@@ -101,7 +98,7 @@ class LLAPI():
     # ---- Airplane functions ----
     def create_new_airplane(self, airplane_str):
         self.airplane_str = airplane_str
-        return self.airplaneLL.makeAirplane(airplane_str)
+        return self.airplaneLL.make_airplane(airplane_str)
 
     def get_all_airplanes(self):
         return self.airplaneLL.get_all_airplanes()
