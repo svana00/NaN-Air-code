@@ -5,7 +5,7 @@ from MODELS.voyage import Voyage
 
 class StaffMemberIO:
     
-    def load_all_staff_from_file(self):
+    def load_all_staff(self):
         ''' Returns a list of instances of all staff members '''
         name_list = []
         staff_file = open("csv_files/Staff_Members.csv", "r")
@@ -31,7 +31,7 @@ class StaffMemberIO:
         staff_member_file.write(staff_member_str)
         return staff_member_file
 
-    def storeStaffMemberInfo(self, staff_list):
+    def store_staff_member_info(self, staff_list):
         ''' Changes/adds info on a specific staff member '''
         big_csv = ""
         for staff in staff_list:
