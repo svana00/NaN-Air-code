@@ -23,60 +23,37 @@ class AirplaneLL():
         airplane_str = ",".join(new_airplane_list)
         return self.ioAPI.create_new_airplane(airplane_str)
 
-
-    def gets_int_list_and_returns_datetime_format(self, int_list):
-        year = int_list[0]
-        month = int_list[1]
-        day = int_list[2]
-        hour = int_list[3]
-        minute = int_list[4]
-        return datetime.datetime(year, month, day, hour, minute)
-
-    def gets_instance_attribute_and_returns_int_list(self, voyage_attribute):
-        temp_attribute = voyage_attribute
-        temp_attribute_str = temp_attribute.replace("T","-").replace(":", "-")
-        temp_attribute_str_list = temp_attribute_str.split("-")
-        attribute_int_list = [int(i) for i in temp_attribute_str_list]
-        return attribute_int_list
-    
-    def get_airplane_state(self, airplane_instance, chosen_time):
+    def get_airplane_state(self, airplane_instance):
         """ gets an airplane and chosen time and returns the state of the chosen airplane """
         airplane_state = "BOOKED"
         chosen_airplane = airplane_instance
         voyages_list = self.ioAPI.load_all_voyages() # List of all voyages
-        NOW = chosen_time
+        NOW = datetime.datetime.now()
 
         for voyage in voyages_list:
 
             voyage_plane = voyage.get_plane_id()
 
-            departure1_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_departure_out())
-            departure1_date = self.gets_int_list_and_returns_datetime_format(departure1_int_list)
-
-            arrival1_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_arrival_out())
-            arrival1_date = self.gets_int_list_and_returns_datetime_format(arrival1_int_list)
-
-            departure2_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_departure_home())
-            departure2_date = self.gets_int_list_and_returns_datetime_format(departure2_int_list)
-
-            arrival2_int_list = self.gets_instance_attribute_and_returns_int_list(voyage.get_arrival_home())
-            arrival2_date = self.gets_int_list_and_returns_datetime_format(arrival2_int_list)
+            departure_out = datetime.datetime.fromisoformat(voyage.get_departure_out())
+            arrival_out = datetime.datetime.fromisoformat(voyage.get_arrival_out())
+            departure_home = datetime.datetime.fromisoformat(voyage.get_departure_home())
+            arrival_home = datetime.datetime.fromisoformat(voyage.get_arrival_home())
 
             if voyage_plane == chosen_airplane:
 
-                if departure1_date <= NOW and NOW <= arrival1_date:
+                if departure_out <= NOW and NOW <= arrival_out:
                     airplane_state = "in flight 1"
                     return airplane_state
 
-                elif departure2_date <= NOW and NOW <= arrival2_date:
+                elif departure_home <= NOW and NOW <= arrival_home:
                     airplane_state = "in flight 2"
                     return airplane_state
 
-                elif arrival1_date <= NOW and NOW <= departure2_date:
+                elif arrival_out <= NOW and NOW <= departure_home:
                     airplane_state = "in intermission" 
                     return airplane_state
 
-                elif arrival2_date < NOW or NOW < departure1_date:
+                elif arrival_home < NOW or NOW < departure_out:
                     airplane_state = "IDLE"
                     return airplane_state
 
