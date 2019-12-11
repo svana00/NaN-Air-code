@@ -51,10 +51,10 @@ class VoyageUI():
             destination =  self.llAPI.get_destination_info(dest_id)
             city = destination.get_city()
             departure_out = voyage.get_departure_out()
-            if voyage.is_fully_assigned() == "True":
+            if voyage.is_fully_assigned():
                 fully_assigned_str = " "
             else:
-                fully_assigned_str = " not "
+                fully_assigned_str = "not "
                 #{1:<4}
             print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
 
@@ -136,6 +136,7 @@ class VoyageUI():
         voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
         airplanes_list = self.llAPI.get_all_airplanes() # List of instances
 
+        # Choose voyage menu
         self.header("-", " CHOOSE VOYAGE ")
         for number, voyage in enumerate(voyages_list, 1):
             voyage_id = voyage.get_voyage_id()
@@ -144,19 +145,29 @@ class VoyageUI():
             city = destination.get_city()
             departure_out = voyage.get_departure_out()
 
-            if voyage.is_fully_assigned() == "True":
+            print("{}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(number, voyage_id, city, departure_out))
 
-                fully_assigned_str = " "
-            else:
-                fully_assigned_str = " not "
-
-            print("{}. ID: {:<5} Destination: {:<20} Departure at: {:<15} Voyage fully assigned: {}".format(number, voyage_id, city, departure_out, fully_assigned_str))
         choice = input("\nEnter number for desired voyage: ")
-                      
-        self.header("-", " CHOOSE PLANE ")
 
-#       for airplane in airplanes_list:
-#          airplane_id = airplane.get_plane_id()
-#          name = airplane.get_name()
-#         print("{}. {}".format(counter, name))
-#         counter += 1
+        # Get info about chosen voyage
+        voyage = voyages_list[int(choice) - 1]
+        departure_out_str = voyage.get_departure_out()
+        departure_out = datetime.datetime.fromisoformat(departure_out_str)
+
+        arrival_home_str = voyage.get_departure_home()
+        arrival_home = datetime.datetime.fromisoformat(arrival_home_str)
+
+        # Get all aurplanes that are not on a voyage at time of voyage
+        for voyage in voyages_list:
+            departure_out_str = voyage.get_departure_out()
+            departure_out_temp = datetime.datetime.fromisoformat(departure_out_str)
+
+            arrival_home_str = voyage.get_departure_home()
+            arrival_home_temp = datetime.datetime.fromisoformat(arrival_home_str)
+
+            # startDate1 < endDate2 and startDate2 < endDate1
+            if departure_out < arrival_home_temp and departure_out_temp < arrival_home:
+                airplane_id = voyage.get_plane_id()
+                #airplane = self.self.llAPI.
+
+        self.header("-", " CHOOSE PLANE ")
