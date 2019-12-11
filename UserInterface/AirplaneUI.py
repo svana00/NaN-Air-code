@@ -56,7 +56,7 @@ class AirplaneUI():
         counter = 0
         a_dict = dict()
         self.header("-", " ALL AIRPLANE TYPES ")
-        airplane_type_list = self.llAPI.get_all_airplane_types()
+        airplane_type_list = self.llAPI.get_all_airplanes()
         for airplane_type in airplane_type_list:
             city = airplane_type_list[0]
             country = airplane_type_list[1]
@@ -69,7 +69,18 @@ class AirplaneUI():
         counter = 0
         self.header("-", " ALL AIRPLANES ")
         airplane_info_list = self.llAPI.get_all_airplanes()
-        print(airplane_info_list)
+
+        for airplane in airplane_info_list:
+            counter += 1
+            airplane_name_str = airplane.get_name()
+            airplane_id_str = airplane.get_plane_id()
+            airplane_type_str =  airplane.get_type_id()
+            print("{:>10}. Name: {:<30} ID: {:<10} Type: {:<15}".format(counter, airplane_name_str, airplane_id_str, airplane_type_str))
+
+        #Lista allar flugvélar flugfélagsins og sýna stöðu þeirra miðað við ákveðna dags. og tíma. Það sem sýna ætti er:
+        #– Dags. og tíma þegar flugvél er aftur laus ef hún er í notkun. – Nafn áfangastaðar ef hún er í notkun.
+        #– Flugnúmer flugferðar ef hún er í loftinu.
+        #– Nafn, týpu og sætafjölda.
 
 
 
