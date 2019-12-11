@@ -164,7 +164,7 @@ class DestinationUI():
                 new_contact_str = input("Enter new contact: ")
                 if self.validation.validate_name(new_contact_str):
                     dest_instance_dictionary[dest_choice].set_new_contact(new_contact_str)
-                    print("\n",dest_instance_dictionary[dest_choice])
+                    print("\n{}".format(dest_instance_dictionary[dest_choice]))
                 else:
                     print("\nInvalid name")
 
@@ -172,7 +172,7 @@ class DestinationUI():
                 new_emergency_number_str = input("Enter new emergency number: ")
                 if self.validation.validate_phone_num(new_emergency_number_str):
                     dest_instance_dictionary[dest_choice].set_new_emergency_number(new_emergency_number_str)
-                    print("\n",dest_instance_dictionary[dest_choice])
+                    print("\n{}".format(dest_instance_dictionary[dest_choice]))
                 else:
                     print("\nInvalid phone number")
 
