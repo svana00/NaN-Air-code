@@ -268,8 +268,16 @@ class StaffMemberUI():
                 staff_member_info_list[1] = name_str
 
             elif choice == "3":
+                role_list = ["1. Pilot", "2. Flight Attendant"]
+                pilot = role_list[0]
+                flight_attendant = role_list[1]
+                print("\n{}\n{}".format(pilot, flight_attendant))
                 role_str = input("Enter new role: ")
-                staff_member_info_list[2] = role_str
+
+                if role_str == "1":
+                    staff_member_info_list[2] = pilot
+                elif role_str == "2":
+                    staff_member_info_list[2] = flight_attendant
 
             elif choice == "4":
                 rank_str = input("Enter new rank: ")
@@ -317,30 +325,29 @@ class StaffMemberUI():
                  #shortens the code a bit
 
                 self.header("*", " {} ".format(instance.get_name()))
-                print("\n1. NAME: {}\n2. LICENSE: {}\n3. ADDRESS: {}\n4. PHONE NUMBER: {}\n5. EMAIL ADDRESS: {}".format(instance.get_name(), instance.get_licence(), instance.get_address(), instance.get_phone_number(), instance.get_email()))
+                print("\n1. SSN: {}\n2. NAME: {}\n3. LICENSE: {}\n4. ADDRESS: {}\n5. PHONE NUMBER: {}\n6. EMAIL ADDRESS: {}".format(instance.get_ssn(), instance.get_name(), instance.get_licence(), instance.get_address(), instance.get_phone_number(), instance.get_email()))
                 change_info_choice = input("Enter which info you want to change: ")
 
                 if change_info_choice == "1":
-                    new_name_str = input("\n Enter new name: ")
-                    if self.validation.validate_letter(new_name_str):
-                        instance.set_new_name(new_name_str)
+                    print("Invalid: can't make changes to ssn")
 
                 elif change_info_choice == "2":
-                    new_licence_str = input("Enter new license: ")
-                    if self.validation.validate_plane_type(new_licence_str):
-                        instance.set_new_license(new_licence_str)
+                    print("Invalid: can't make changes to name")
 
                 elif change_info_choice == "3":
+                    print("Invalid: can't make changes to licence")
+
+                elif change_info_choice == "4":
                     new_address_str = input("Enter new emergency number: ")
                     if self.validation.validate_address(new_address_str):
                         instance.set_new_address(new_address_str)
 
-                elif change_info_choice == "4":
+                elif change_info_choice == "5":
                     new_phone_num_str = input("Enter new emergency number: ")
                     if self.validation.validate_phone_num(new_phone_num_str):
                         instance.set_new_phone_number(new_phone_num_str)
 
-                elif change_info_choice == "5":
+                elif change_info_choice == "6":
                     new_email_str = input("Enter new emergency number: ")
                     if self.validation.validate_email(new_email_str):
                         instance.set_new_email(new_email_str)
