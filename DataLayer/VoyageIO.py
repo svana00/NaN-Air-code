@@ -24,7 +24,7 @@ class VoyageIO():
         #    if depart_datetime >= start_date.isoformat() and depart_datetime <= end_date.isoformat():
         #        print(row["flightNumber"])
 
-    def store_staff_to_voyage(self,staffID):
+    def store_staff_to_voyage(self,ssn):
         pass
 
     def store_new_voyage(self, csv_str):
