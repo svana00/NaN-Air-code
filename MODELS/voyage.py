@@ -45,7 +45,7 @@ class Voyage():
         return self.__departure_out
 
     def get_arrival_out(self):
-        return self.__arrival_home
+        return self.__arrival_out
 
     def get_departure_home(self):
         return self.__departure_home
