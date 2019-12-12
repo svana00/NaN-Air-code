@@ -17,7 +17,7 @@ class IOAPI:
         return self.staffIO.load_all_staff()
 
     def store_staff_changes(self, staff_member_instance_list):
-        return self.staffIO.store_staff_member_info(staff_member_instance_list)
+        return self.staffIO.store_staff_member_changes(staff_member_instance_list)
 
     def store_new_staff_member(self,staff_member_str):
         return self.staffIO.store_new_staff_member(staff_member_str)
