@@ -1,4 +1,5 @@
 from Validation.validation import Validate
+import datetime
 class VoyageUI():
 
     def __init__(self, llAPI):
@@ -70,32 +71,47 @@ class VoyageUI():
                 destination =  self.llAPI.get_destination_info(dest_id)
                 city = destination.get_city()
                 departure_out = voyage.get_departure_out()
-                if voyage.is_fully_assigned():
+                if voyage.is_fully_assigned() == "True":
                     fully_assigned_str = " "
                 else:
-                    fully_assigned_str = "not "
+                    fully_assigned_str = " not "
                     #{1:<4}
                 print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
 
             # Users can choose whether they want to see more info about a specific voyage
             choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
             if choice == "y":
-                return self.display_voyage(voyage_list)
+                number = int(input("Enter number for voyage: "))
+                return self.display_voyage(voyage_list, number)
             elif choice == "b":
                 return 0
             elif choice == "h":
                 return "*"
 
-    def display_voyage(self, voyage_list):
+    def display_voyage(self, voyage_list, number):
         #do
         return_val = 0
         while return_val == 0:
-            number = int(input("Enter number for voyage: "))
             voyage = voyage_list[(number) - 1]
             voyage_id = voyage.get_voyage_id()
             self.header("-", " Voyage {} ".format(voyage_id))
             print(voyage)
 
+            plane_id = voyage.get_plane_id()
+            date_and_time = datetime.datetime.now()
+            date_and_time_str = datetime.datetime.isoformat(date_and_time)
+
+            airplane_state = self.llAPI.get_airplane_state(plane_id, date_and_time_str)
+
+            print("Current state of voyage: {}".format(airplane_state))
+
+            var = input("\nEnter b to go back and h to go to home page: ")
+
+            if var == "b":
+                return 0
+            elif var == "h":
+                return "*"
+        
     def create_voyage(self):
         ''' Returns a list of information about a new voyage '''
         #do
@@ -190,8 +206,6 @@ class VoyageUI():
                 else:
                     print("Invalid choice")
                     choice = input("\nEnter number for desired voyage: ")
-
-
 
     def choose_airplane_for_voyage(self, chosen_voyage):
         ''' Returns airplane id for airplane chosen by user '''
