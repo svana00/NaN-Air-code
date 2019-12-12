@@ -9,9 +9,9 @@ class DestinationUI():
     
     def going_back(self):
         variable = input("To go back enter 0, to go home enter *: ")
-        if variable == "0":
+        if variable == "b":
                 return 0
-        elif variable == "*":
+        elif variable == "h":
             return "*"
 
 
@@ -33,9 +33,9 @@ class DestinationUI():
                 return_val = self.show_destinations()
             elif var == "3":
                 return_val = self.create_destination()
-            elif var == "0":
+            elif var == "b":
                 return 0
-            elif var == "*":
+            elif var == "h":
                 return "*"
         if return_val == "*":
             return "*"
@@ -57,9 +57,9 @@ class DestinationUI():
             choose_between = input("\nDo you want to see a specific destination? (y/n): ")
             if choose_between == "y":
                 return_val = self.show_destination_info(dest_list)
-            elif choose_between == "0":
+            elif choose_between == "b":
                 return 0
-            elif choose_between == "*":
+            elif choose_between == "h":
                 return "*"
 
     def show_destination_info(self, dest_list):
@@ -73,9 +73,9 @@ class DestinationUI():
             self.header("-", " {} ".format(destination.get_city()))
             print(destination)
             back_option = input("To go back enter 0 to go home enter *  ")
-            if back_option == "0":
+            if back_option == "b":
                 return 0
-            elif back_option == "*":
+            elif back_option == "h":
                 return "*"
 
     def display_destination(self, a_dest_info_list):
@@ -114,9 +114,9 @@ class DestinationUI():
         print(new_info_str)
 
         choice = input("\nPlease enter the number corresponding to the information you would like to add: ")
-        if choice == "0":
+        if choice == "b":
             return 0
-        elif choice == "*":
+        elif choice == "h":
             return "*"
 
         while choice in valid_input_list:
@@ -124,9 +124,9 @@ class DestinationUI():
             if choice == "1":
                 country_str = input("\nPlease enter the country of your desired destination: ")
                 while not self.validation.validate_name(country_str):
-                    if country_str == "0":
+                    if country_str == "b":
                         return 0
-                    elif country_str == "*":
+                    elif country_str == "h":
                         return "*"
                     country_str = input("The country you entered is invalid. Please enter a country using letters only: ")
                 new_destination.set_country(country_str)
@@ -135,9 +135,9 @@ class DestinationUI():
             elif choice == "2":
                 city_str = input("Please enter the city of your desired destination: ")
                 while not self.validation.validate_name(city_str):
-                    if city_str == "0":
+                    if city_str == "b":
                         return 0
-                    elif city_str == "*":
+                    elif city_str == "h":
                         return "*"
                     city_str = input("The city you entered is invalid. Please enter a city using letters only: ")
                 new_destination.set_city(city_str)
@@ -146,9 +146,9 @@ class DestinationUI():
             elif choice == "3":
                 airport_str = input("Please enter the airport of your desired destination: ")
                 while not self.validation.validate_name(airport_str):
-                    if airport_str == "0":
+                    if airport_str == "b":
                         return 0
-                    elif airport_str == "*":
+                    elif airport_str == "h":
                         return "*"
                     city_str = input("The airport you entered is invalid. Please enter an airport using letters only: ")
                 new_destination.set_airport(airport_str)
@@ -157,9 +157,9 @@ class DestinationUI():
             elif choice == "4":
                 flight_time_str = input("Please enter the flight time to your desired destination in whole hours: ")
                 while not self.validation.validate_flight_time(flight_time_str):
-                    if flight_time_str == "0":
+                    if flight_time_str == "b":
                         return 0
-                    elif flight_time_str == "*":
+                    elif flight_time_str == "h":
                         return "*"
                     flight_time_str = input("The flight time you entered is invalid. It has to be at least one hour. Please enter it again: ")
                 new_destination.set_flight_time(flight_time_str)
@@ -168,9 +168,9 @@ class DestinationUI():
             elif choice == "5":
                 distance_str = input("Please enter the distance between Keflavik airport and your desired destination in km: ")
                 while not self.validation.validate_flight_distance(distance_str):
-                    if distance_str == "0":
+                    if distance_str == "b":
                         return 0
-                    elif distance_str == "*":
+                    elif distance_str == "h":
                         return "*"
                     distance_str = input("Flight distance cannot be negative. Please enter it again: ")
                 new_destination.set_distance(distance_str)
@@ -179,9 +179,9 @@ class DestinationUI():
             elif choice == "6":
                 name_of_contact_str = input("Please enter the name of the emergency contact at your desired destination: ")
                 while not self.validation.validate_name(name_of_contact_str):
-                    if name_of_contact_str == "0":
+                    if name_of_contact_str == "b":
                         return 0
-                    elif name_of_contact_str == "*":
+                    elif name_of_contact_str == "h":
                         return "*"
                     name_of_contact_str = input("The name you entered is invalid. Please enter a new one using only letters: ")
                 new_destination.set_new_contact(name_of_contact_str)
@@ -190,9 +190,9 @@ class DestinationUI():
             elif choice == "7":
                 emergency_number_str = input("Please enter the number of the emergency contact at your desired destination: ")
                 while not self.validation.validate_phone_num(emergency_number_str):
-                    if emergency_number_str == "0":
+                    if emergency_number_str == "b":
                         return 0
-                    elif emergency_number_str == "*":
+                    elif emergency_number_str == "h":
                         return "*"
                     emergency_number_str = input("The phone number you entered is invalid. Please enter a new one. Hint: it can only contain 7 numbers ;): ")
                 new_destination.set_new_emergency_number(emergency_number_str)
@@ -216,9 +216,9 @@ class DestinationUI():
             print("Whoops! Invalid input. We are guiding you back to the main page. Sorry for the inconvenience")
 
     def back_option(self,var):
-        if var == "0":
+        if var == "b":
             return 0
-        elif var == "*":
+        elif var == "h":
             return "*"
 
     def change_destination(self):
@@ -231,9 +231,9 @@ class DestinationUI():
                 print("{}. {}".format(key, val.get_city()))
 
             dest_choice = input("\nEnter which destination you want to change: ")
-            if dest_choice == "0":
+            if dest_choice == "b":
                 return 0
-            elif dest_choice == "*":
+            elif dest_choice == "h":
                 return "*"
 
             while dest_choice in dest_instance_dictionary.keys():
