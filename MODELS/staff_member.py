@@ -35,7 +35,6 @@ class StaffMember():
         return self.email
 
 #------- set functions  ---------
-
     def set_new_ssn(self, new_ssn):
         self.__ssn = new_ssn
 

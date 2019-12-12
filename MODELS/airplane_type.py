@@ -7,6 +7,7 @@ class AirplaneType():
         self.model = model
         self.capacity = capacity
 
+    #------- get functions -----------
     def get_plane_type_id(self):
         return self.__plane_type_id
 

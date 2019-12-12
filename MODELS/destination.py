@@ -10,6 +10,7 @@ class Destination():
         self.__emergency_number = emergency_number
         self.__flight_number_id = flight_number_id
 
+    #------- get functions -----------
     def get_id(self):
         return self.__id
 
@@ -38,7 +39,6 @@ class Destination():
         return self.__flight_number_id
     
     #------- set functions -----------
-
     def set_id(self, new_id):
         self.__id = new_id
 
@@ -64,6 +64,7 @@ class Destination():
         self.__emergency_number = new_emergency_number
 
     def instance_to_csv_string(self):
+        ''' Makes a csv string from destination instance '''
         csv_list = [self.__id, self.__country, self.__city, self.__airport, self.__flight_time, \
                     self.__distance, self.__contact, self.__emergency_number, self.__flight_number_id]
         
@@ -71,6 +72,7 @@ class Destination():
 
         return csv_str 
 
+    #------- string function -----------
     def __str__(self):
         my_str = ""
         my_str += "Destination ID: {}\n".format(self.__id)
@@ -84,5 +86,3 @@ class Destination():
         my_str += "Flight number ID: {}\n".format(self.__flight_number_id)
 
         return my_str
-
-
