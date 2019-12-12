@@ -39,6 +39,7 @@ class AirplaneLL():
             arrival_out = datetime.datetime.fromisoformat(voyage.get_arrival_out())
             departure_home = datetime.datetime.fromisoformat(voyage.get_departure_home())
             arrival_home = datetime.datetime.fromisoformat(voyage.get_arrival_home())
+            available = arrival_home + datetime.timedelta(hours = 1)
             
             if voyage_plane == chosen_airplane:
                 if departure_out <= NOW and arrival_home > NOW:
@@ -47,11 +48,11 @@ class AirplaneLL():
             return airplane_state
             
         if departure_out <= NOW and NOW <= arrival_out:
-            airplane_state = "in flight 1"
+            airplane_state = "Flight nr. {} going to {}".format(voyage.get_voyage_id(), voyage.get_departure_out())
         elif departure_home <= NOW and NOW <= arrival_home:
-            airplane_state = "in flight 2"
+            airplane_state = "Flight nr. {} going to KEF and will again be available: {}".format(voyage.get_voyage_id(), available)
         elif arrival_out <= NOW and NOW <= departure_home:
-            airplane_state = "in intermission" 
+            airplane_state = "IN ITERMISSION" 
             #airplane_state_list.append(airplane_state)
 
         return airplane_state
