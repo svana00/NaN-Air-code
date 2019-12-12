@@ -12,70 +12,52 @@ class StaffMemberLL():
                 return staff_member
 
     def get_all_staff(self):
-        ''' Returns a list of tuples with names and ssn of all staff members '''
+        ''' Returns a list of instances of all staff members '''
+
         staff_list = self.ioAPI.load_all_staff()
-        staff_info_list = []
-
-        for staff_member in staff_list:
-            ssn = staff_member.get_ssn()
-            name = staff_member.get_name()
-            staff_info_list.append((ssn, name))
-
-        return staff_info_list
+        return staff_list
 
     def get_all_flight_attendants(self):
-        ''' Returns a list of tuples with names and ssn of all flight attendants '''
+        ''' Returns a list of instances of all flight attendants '''
+
         staff_list = self.ioAPI.load_all_staff()
-        flight_attendants_info_list = []
+        flight_attendants_list = []
 
-        for flight_attendant in staff_list:
-            if flight_attendant.role == "Flight attendant":
-                ssn = flight_attendant.get_ssn()
-                name = flight_attendant.get_name()
-                flight_attendants_info_list.append((ssn, name))
+        for staff_member in staff_list:
+            if staff_member.get_role() == "Flight Attendant":
+                flight_attendants_list.append(staff_member)
 
-        return flight_attendants_info_list
+        return flight_attendants_list
 
-    def get_pilots(self):
+    def get_all_pilots(self):
         ''' Returns a list of all instances of pilots '''
+
         staff_list = self.ioAPI.load_all_staff()
         pilots_list = []
 
         for staff_member in staff_list:
-            if staff_member.role == "Pilot":
+            if staff_member.get_role() == "Pilot":
                 pilots_list.append(staff_member)
 
         return pilots_list
 
-    def get_all_pilots(self):
-        ''' Returns a list of tuples for each pilot, the tuple contains their ssn and name '''
-        pilots_list = self.get_pilots()
-        pilots_info_list = []
-
-        for pilot in pilots_list:
-            ssn = pilot.get_ssn()
-            name = pilot.get_name()
-            pilots_info_list.append((ssn, name))
-
-        return pilots_info_list
-
-    def get_pilots_by_one_licence(self,airplane_type_id):
+    def get_pilots_by_one_licence(self, airplane_type_id):
         ''' Returns a list of tuples with names and ssn of all pilots
             with a specific licence '''
-        pilots_list = self.get_pilots()
-        pilots_info_list = []
+
+        pilots_list = self.get_all_pilots()
+        pilots_list_with_licence = []
 
         for pilot in pilots_list:
-            ssn = pilot.get_ssn()
-            name = pilot.get_name()
-            licence = pilot.licence
+            licence = pilot.licence()
             if licence == airplane_type_id:
-                pilots_info_list.append((ssn, name))
+                pilots_list_with_licence.append(pilot)
 
-        return pilots_info_list
+        return pilots_list_with_licence
 
     def get_all_airplane_types(self):
         ''' Returns a list of all instances of airplane types '''
+
         airplane_types_list = self.ioAPI.load_airplane_types()
         airplane_types_info_list = []
 
@@ -89,24 +71,24 @@ class StaffMemberLL():
         ''' Returns a dictionary where the keys are an airplane type
             and the value is a list of tuples for pilots that have the
             licence for that type '''
-        pilots_list = self.get_pilots()
+
+        pilots_list = self.get_all_pilots()
         pilots_by_licences_dict = {}
 
         for pilot in pilots_list:
-            ssn = pilot.get_ssn()
-            name = pilot.get_name()
             licence = pilot.get_licence()
 
             if licence in pilots_by_licences_dict:
-                pilots_by_licences_dict[licence].append((ssn, name))
+                pilots_by_licences_dict[licence].append(pilot)
             else:
-                pilots_by_licences_dict[licence] = [(ssn, name)]
+                pilots_by_licences_dict[licence] = [pilot]
 
         return pilots_by_licences_dict
 
     def get_all_working(self, desired_date_str):
         ''' Returns a dictionary where they key is a destination and the value is a list of staff members
             that are working a specific day '''
+
         voyages_list = self.ioAPI.load_all_voyages()
         desired_date = datetime.datetime.fromisoformat(desired_date_str).date()
         working_staff_dict = {}
@@ -125,6 +107,7 @@ class StaffMemberLL():
 
     def get_all_not_working(self, desired_date_str):
         ''' Returns a list of staff members that are not working a specific day '''
+
         voyages_list = self.ioAPI.load_all_voyages()
         staff_member_list = self.ioAPI.load_all_staff()
         desired_date = datetime.datetime.fromisoformat(desired_date_str).date()
@@ -149,7 +132,8 @@ class StaffMemberLL():
         return staff_not_working_list
 
     def get_staff_member_schedule(self, ssn, start_of_desired_week_str):
-        
+        ''' Filters voyages to only voyages in the desired week where the target staff member is working '''
+
         staff_member = self.get_staff_member_info(ssn)
         staff_member_id = staff_member.get_ssn()
         voyages_list = self.ioAPI.load_all_voyages()
@@ -172,12 +156,10 @@ class StaffMemberLL():
         return voyages_for_staff_member_in_week_list
 
     def create_staff_member(self, new_staff_member):
+        ''' Create a csv formatted string and sends to the database '''
+
         staff_csv_string = new_staff_member.instance_to_csv_string()
         return self.ioAPI.store_new_staff_member(staff_csv_string)
-
-    def get_staff_member_instance_list(self):
-        staff_member_instance_list = self.ioAPI.load_all_staff()
-        return staff_member_instance_list
 
     def store_new_staff_changes(self, staff_member_instance_list):
         return self.ioAPI.store_staff_changes(staff_member_instance_list)
