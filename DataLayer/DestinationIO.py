@@ -51,4 +51,3 @@ class DestinationIO:
                 header = line
         
         return header
-        dest_file.write(big_csv)

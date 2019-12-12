@@ -31,7 +31,7 @@ class AirplaneLL():
         voyages_list = self.ioAPI.load_all_voyages() # List of all voyages
         airplane_state = "IDLE" # initializes the airplane state at IDLE
         NOW = datetime.datetime.fromisoformat(chosen_time_and_date)
-
+        #airplane_state_list = []
         for voyage in voyages_list:
             voyage_plane = voyage.get_plane_id()
 
@@ -39,18 +39,20 @@ class AirplaneLL():
             arrival_out = datetime.datetime.fromisoformat(voyage.get_arrival_out())
             departure_home = datetime.datetime.fromisoformat(voyage.get_departure_home())
             arrival_home = datetime.datetime.fromisoformat(voyage.get_arrival_home())
-
+            
             if voyage_plane == chosen_airplane:
-
-                if departure_out <= NOW and NOW <= arrival_out:
-                    airplane_state = "in flight 1"
-                elif departure_home <= NOW and NOW <= arrival_home:
-                    airplane_state = "in flight 2"
-                elif arrival_out <= NOW and NOW <= departure_home:
-                    airplane_state = "in intermission" 
-                elif arrival_home < NOW or NOW < departure_out:
-                    airplane_state = "IDLE"
-                    return airplane_state
+                if departure_out <= NOW and arrival_home > NOW:
+                    break 
+        else:
+            return airplane_state
+            
+        if departure_out <= NOW and NOW <= arrival_out:
+            airplane_state = "in flight 1"
+        elif departure_home <= NOW and NOW <= arrival_home:
+            airplane_state = "in flight 2"
+        elif arrival_out <= NOW and NOW <= departure_home:
+            airplane_state = "in intermission" 
+            #airplane_state_list.append(airplane_state)
 
         return airplane_state
 
