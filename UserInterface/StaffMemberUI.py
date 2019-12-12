@@ -536,59 +536,57 @@ class StaffMemberUI():
         return_val = 0
         while return_val == 0:
 
-                staff_instance_list = self.llAPI.get_all_staff()
-                staff_instance_dictionary = {str(i+1): staff_instance_list[i] for i in range(len(staff_instance_list))}
+            staff_instance_list = self.llAPI.get_all_staff()
+            staff_instance_dictionary = {str(i+1): staff_instance_list[i] for i in range(len(staff_instance_list))}
 
-
-                #prints header and main body of the menu for choosing a particular staff member
-                self.header("*", " CHOOSE STAFF MEMBER ")
-                for key,val in staff_instance_dictionary.items():
-                    print("{}. {}".format(key, val.get_name()))
-                staff_choice = input("\nEnter which staff member you want to change: ")
-                if staff_choice == "b":
-                    return 0
-                elif staff_choice == "h":
-                    return "*"
+            #prints header and main body of the menu for choosing a particular staff member
+            self.header("*", " CHOOSE STAFF MEMBER ")
+            for key,val in staff_instance_dictionary.items():
+                print("{}. {}".format(key, val.get_name()))
+            staff_choice = input("\nEnter which staff member you want to change: ")
+            if staff_choice == "b":
+                return 0
+            elif staff_choice == "h":
+                return "*"
                 
+            while staff_choice in staff_instance_dictionary.keys():
+                instance = staff_instance_dictionary[staff_choice] #to make our lives easier
+                #shortens the code a bit
 
-                while staff_choice in staff_instance_dictionary.keys():
-                    instance = staff_instance_dictionary[staff_choice] #to make our lives easier
-                    #shortens the code a bit
+                self.header("*", " {} ".format(instance.get_name()))
+                print("\n1. SSN: {}\n2. NAME: {}\n3. LICENSE: {}\n4. ADDRESS: {}\n5. PHONE NUMBER: {}\n6. EMAIL ADDRESS: {}".format(instance.get_ssn(), instance.get_name(), instance.get_licence(), instance.get_address(), instance.get_phone_number(), instance.get_email()))
+                change_info_choice = input("\nEnter which info you want to change: ")
 
-                    self.header("*", " {} ".format(instance.get_name()))
-                    print("\n1. SSN: {}\n2. NAME: {}\n3. LICENSE: {}\n4. ADDRESS: {}\n5. PHONE NUMBER: {}\n6. EMAIL ADDRESS: {}".format(instance.get_ssn(), instance.get_name(), instance.get_licence(), instance.get_address(), instance.get_phone_number(), instance.get_email()))
-                    change_info_choice = input("\nEnter which info you want to change: ")
+                if change_info_choice == "1":
+                    print("Invalid: can't make changes to ssn")
 
-                    if change_info_choice == "1":
-                        print("Invalid: can't make changes to ssn")
+                elif change_info_choice == "2":
+                    print("Invalid: can't make changes to name")
 
-                    elif change_info_choice == "2":
-                        print("Invalid: can't make changes to name")
+                elif change_info_choice == "3":
+                    print("Invalid: can't make changes to licence")
 
-                    elif change_info_choice == "3":
-                        print("Invalid: can't make changes to licence")
+                elif change_info_choice == "4":
+                    new_address_str = input("Enter new address: ")
+                    if self.validation.validate_address(new_address_str):
+                        instance.set_new_address(new_address_str)
 
-                    elif change_info_choice == "4":
-                        new_address_str = input("Enter new address: ")
-                        if self.validation.validate_address(new_address_str):
-                            instance.set_new_address(new_address_str)
+                elif change_info_choice == "5":
+                    new_phone_num_str = input("Enter new phone number: ")
+                    if self.validation.validate_phone_num(new_phone_num_str):
+                        instance.set_new_phone_number(new_phone_num_str)
 
-                    elif change_info_choice == "5":
-                        new_phone_num_str = input("Enter new phone number: ")
-                        if self.validation.validate_phone_num(new_phone_num_str):
-                            instance.set_new_phone_number(new_phone_num_str)
+                elif change_info_choice == "6":
+                   print("Invalid: can't make changes to email address")
 
-                    elif change_info_choice == "6":
-                        print("Invalid: can't make changes to email address")
-
-                    elif change_info_choice == "confirm":
-                        print("Changes have been confirmed")
-                        return self.llAPI.store_new_staff_changes(staff_instance_list)
+                elif change_info_choice == "confirm":
+                    print("Changes have been confirmed")
+                    return self.llAPI.store_new_staff_changes(staff_instance_list)
                     
-                    # ---- Gives the user an option of going back or going home ------
-                    back_option = input("\nTo go back enter b, to go home enter h: ")
-                    if back_option == "b":
-                        return 0
-                    elif back_option == "h":
-                        return "*"
+                # ---- Gives the user an option of going back or going home ------
+                back_option = input("\nTo go back enter b, to go home enter h: ")
+                if back_option == "b":
+                    return 0
+                elif back_option == "h":
+                    return "*"
 

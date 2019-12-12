@@ -35,8 +35,8 @@ class Airplane():
     #------- string function -----------
     def __str__(self):
         my_str = ""
-        my_str += "Name: {}\n".format(self.name)
-        my_str += "ID: {}\n".format(self.plane_id)
-        my_str += "Type: {}\n".format(self.type_id)
+        my_str += "Name: {}\n".format(self.__name)
+        my_str += "ID: {}\n".format(self.__plane_id)
+        my_str += "Type: {}\n".format(self.__type_id)
 
         return my_str
