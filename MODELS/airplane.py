@@ -16,13 +16,13 @@ class Airplane():
 
     #------- set functions -----------
     def set_name(self, new_name):
-        self.name = new_name 
+        self.__name = new_name 
     
     def set_plane_id(self, new_plane_id):
-        self.plane_id = new_plane_id
+        self.__plane_id = new_plane_id
 
     def set_type_id(self, new_type_id):
-        self.type_id = new_type_id
+        self.__type_id = new_type_id
 
     def instance_to_csv_str(self):
         ''' Makes a csv string from airplane instance '''

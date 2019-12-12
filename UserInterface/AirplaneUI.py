@@ -146,8 +146,8 @@ class AirplaneUI():
         print(new_info_str)
         yes_or_no = input("\nIs all the information correct? (y/n): ")
         if yes_or_no == "y":
-            self.llAPI.create_new_airplane(new_airplane)
             print("You did it! The new airplane has been stored in the database!")
+            return self.llAPI.create_new_airplane(new_airplane)
 
         # ------- Give the option of going back or home ------------
         back_option = input("To go home enter h, to go back enter b: ")
