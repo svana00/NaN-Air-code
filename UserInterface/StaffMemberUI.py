@@ -241,14 +241,14 @@ class StaffMemberUI():
         self.header("-", " ALL STAFF ")
 
         for staff_member in staff_info_list:
-            ssn = staff_member[0]
-            name = staff_member[1]
+            ssn = staff_member.get_ssn()
+            name = staff_member.get_name()
             counter += 1
             print("{:>3}. {:<25} ssn: {:<15}".format(counter, name, ssn))
         choice = input("\nChoose the number staff member whose schedule you want to see: ")
 
-        desired_ssn = staff_info_list[int(choice) - 1][0]
-        desired_name = staff_info_list[int(choice) - 1][1]
+        desired_ssn = staff_info_list[int(choice) - 1].get_ssn()
+        desired_name = staff_info_list[int(choice) - 1].get_name()
         working_voyages_list = self.llAPI.get_staff_member_schedule(desired_ssn, start_of_desired_week_str)
         
         if working_voyages_list: # if staff member has any voyages for the chosen week
