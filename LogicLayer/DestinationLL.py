@@ -33,9 +33,8 @@ class DestinationLL():
                 new_dest_id = new_destination.get_country()[:3].upper()
         
         new_destination.set_id(new_dest_id)
-        dest_csv_string = new_destination.instance_to_csv_string()
-        
-        return self.ioAPI.create_new_destination(dest_csv_string)
+
+        return self.ioAPI.create_new_destination(new_destination)
     
     def store_new_changes(self, dest_instance_list):
         return self.ioAPI.store_destination_changes(dest_instance_list)

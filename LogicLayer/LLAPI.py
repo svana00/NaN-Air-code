@@ -76,8 +76,8 @@ class LLAPI():
     def get_all_voyages(self):
         return self.voyageLL.get_all_voyages()
 
-    def make_voyage(self, voyage_info_list):
-        return self.voyageLL.make_voyage(voyage_info_list)
+    def make_voyage(self, new_voyage):
+        return self.voyageLL.make_voyage(new_voyage)
 
     def get_voyages_by_date(self, desired_date_str):
         return self.voyageLL.get_voyages_by_date(desired_date_str)

@@ -26,11 +26,12 @@ class DestinationIO:
             
         return dest_list
 
-    def store_new_destination(self,dest_str):
+    def store_new_destination(self, new_destination):
         ''' Stores new destination to the existing file '''
 
+        destination_csv_str = new_destination.instance_to_csv_string()
         dest_file = open("csv_files/Destinations.csv", "a+")
-        dest_file.write(dest_str)
+        dest_file.write(destination_csv_str)
         dest_file.close()
 
     def store_destination_changes(self, dest_list):

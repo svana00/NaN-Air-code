@@ -6,12 +6,16 @@ class VoyageLL():
         self.ioAPI = ioAPI
 
     def get_voyage_info(self, voyage_id):
+        ''' Filters out a single voyage with its ID '''
+        
         voyage_list = self.ioAPI.load_all_voyages()
         for voyage in voyage_list:
             if voyage.get_voyage_id() == voyage_id:
                 return voyage
 
     def assign_voyage(self, chosen_voyage):
+        ''' Updates a voyage instance with assigned staff for a single voyage. Sends to the database for storing '''
+
         voyages_list = self.get_all_voyages()
 
         for num, voyage in enumerate(voyages_list):
@@ -21,11 +25,14 @@ class VoyageLL():
         return self.ioAPI.store_voyage_changes(voyages_list)
 
     def get_all_voyages(self):
+        ''' Returns a list of all voyages '''
 
         voyage_list = self.ioAPI.load_all_voyages()
         return voyage_list
 
     def get_voyages_by_week(self, start_of_desired_week_str):
+        ''' Returns a list of voyages filtered by a week where the start of it was input by the user '''
+
         voyages_list = self.ioAPI.load_all_voyages()
         voyages_in_week_list = []
 
@@ -40,6 +47,7 @@ class VoyageLL():
         return voyages_in_week_list
 
     def get_voyages_by_date(self, desired_date_str):
+        ''' Returns a list of voyages filtered by an input date from user '''
         
         voyages_list = self.ioAPI.load_all_voyages()
         target_date = datetime.date.fromisoformat(desired_date_str)
@@ -54,6 +62,7 @@ class VoyageLL():
 
     def get_non_assigned_voyages(self):
         ''' Returns a list of voyages that are not fully assigned '''
+
         non_assigned_voyages_list = []
         voyages_List = self.ioAPI.load_all_voyages()
         for voyage in voyages_List:
@@ -63,10 +72,9 @@ class VoyageLL():
         
         return non_assigned_voyages_list
 
-    def check_voyages_state(self):
-        pass
+    def create_flight_numbers_for_voyage(self, new_voyage, target_dest_id):
+        ''' Generates both flight numbers of voyage and gets flight time '''
 
-    def create_flight_numbers_for_voyage(self, voyage_info_list, target_dest_id):
         voyages_list = self.ioAPI.load_all_voyages()
         destinations_list = self.ioAPI.load_all_destinations()
 
@@ -77,16 +85,17 @@ class VoyageLL():
                 flight_time = destination.get_flight_time()
                 dest_flight_number_id  = destination.get_flight_number_id()
 
-        target_date = voyage_info_list[1]
+        target_date = datetime.datetime.fromisoformat(new_voyage.get_departure_out())
         counter = 0
 
         # Find how many flights are already to that destination that same day
         for voyage in voyages_list: 
-            dest_id = voyage.get_dest_id()
-            departure_out_date = voyage.get_departure_out()
-            date = datetime.datetime.fromisoformat(departure_out_date).date()
-            date = str(date)
-            if dest_id == target_dest_id and date == target_date:
+            temp_dest_id = voyage.get_dest_id()
+            temp_departure_out_date = voyage.get_departure_out()
+            new_voyage_date = str(target_date.date()) # Date of the voyage being created
+
+            # Target dest_id = our dest_id
+            if temp_dest_id == target_dest_id and new_voyage_date == temp_departure_out_date:
                 counter += 1
 
         flight_number_out_str = "NA" + str(dest_flight_number_id) + str(counter * 2)
@@ -94,9 +103,11 @@ class VoyageLL():
 
         return flight_time, flight_number_out_str, flight_number_back_str
 
-    def make_voyage(self, voyage_info_list):
+    def make_voyage(self, new_voyage):
+        ''' Generates most of the info needed to create an instance of a voyage. Sets it to the instance
+            and sends it to the database '''
+
         voyages_list = self.ioAPI.load_all_voyages()
-        target_dest_id = voyage_info_list[0]
 
         # Create voyage id
         voyage_id_int = len(voyages_list) + 1
@@ -105,34 +116,43 @@ class VoyageLL():
             voyage_id_str = "00" + "{}".format(voyage_id_int)
         elif voyage_id_int < 100:
             voyage_id_str = "0" + "{}".format(voyage_id_int)
+        new_voyage.set_voyage_id(voyage_id_str)
 
-        # Create flight numbers
+        # Create and set both flight numbers and gets flight distance
+        target_dest_id = new_voyage.get_dest_id()
         flight_time, flight_number_out_str, flight_number_back_str = \
-        self.create_flight_numbers_for_voyage(voyage_info_list, target_dest_id)
+        self.create_flight_numbers_for_voyage(new_voyage, target_dest_id)
+
+        new_voyage.set_flight_number_out(flight_number_out_str)
+        new_voyage.set_flight_number_back(flight_number_back_str)
 
         # Find time of each flight
-        departure_out_str = ("T").join(voyage_info_list[1:]) # Departure out
+        departure_out_str = new_voyage.get_departure_out() # Departure out
 
         departure_out = datetime.datetime.fromisoformat(departure_out_str)
         arrival_out = departure_out + datetime.timedelta(hours = int(flight_time))
         arrival_out_str = arrival_out.isoformat()
+        new_voyage.set_arrival_out(arrival_out_str)
 
         # An hour between the flights
         departure_home = arrival_out + datetime.timedelta(hours = 1)
         departure_home_str = departure_home.isoformat()
+        new_voyage.set_departure_home(departure_home_str)
 
         arrival_home = departure_home + datetime.timedelta(hours = int(flight_time))
         arrival_home_str = arrival_home.isoformat()
+        new_voyage.set_arrival_home(arrival_home_str)
 
-        new_voyage = Voyage(voyage_id_str, flight_number_out_str, flight_number_back_str, departure_out_str, \
-                            arrival_out_str, departure_home_str, arrival_home_str, target_dest_id)
-
-        csv_str = new_voyage.instance_to_csv_string()
-
-        return self.ioAPI.store_new_voyage(csv_str)
+        return self.ioAPI.store_new_voyage(new_voyage)
 
     def voyage_date_check(self, departure_out_str):
         ''' Returns whether a date is valid for a voyage '''
+
+        try:
+            datetime.datetime.fromisoformat(departure_out_str)
+        except ValueError:
+            return False
+
         voyages_list = self.ioAPI.load_all_voyages()
         departure_out = datetime.datetime.fromisoformat(departure_out_str)
 

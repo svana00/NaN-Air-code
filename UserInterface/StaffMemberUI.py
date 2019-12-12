@@ -18,7 +18,7 @@ class StaffMemberUI():
     def display_staff_menu(self):
         ''' Prints the main staff menu and calls the appropriate
             functions for the option that's picked '''
-            #done
+            
         return_val = 0
         while return_val == 0:
 
@@ -39,10 +39,9 @@ class StaffMemberUI():
             else:
                 print("Invalid choice")
 
-
     def choose_in_staff(self):
         ''' Displays the submenu to choos between getting an overview of work schedules or staff members '''
-        #done
+        
         return_val = 0
         while return_val == 0:
             self.header("-", " PICK STAFF ")
@@ -62,7 +61,7 @@ class StaffMemberUI():
 
     def pick_staff_sub_menu(self):
         ''' Displays the staff sub menu '''
-        #done
+        
         return_val = 0
         while return_val == 0:
             self.header("-", " PICK STAFF ")
@@ -83,7 +82,7 @@ class StaffMemberUI():
 
     def pilot_sub_menu(self):
         ''' Displays the submenu for pilots '''
-        #done
+        
         return_val = 0
         while return_val == 0:
             self.header("-", " PICK SUBGROUP ")
@@ -102,7 +101,7 @@ class StaffMemberUI():
 
     def pilot_licence_sub_menu(self):
         ''' Displays the submenu for pilots to filter by licences '''
-        #done
+        
         return_val = 0
         while return_val == 0:
             self.header("-", " PICK LICENCE SUBGROUP ")
@@ -120,8 +119,8 @@ class StaffMemberUI():
                 print("Invalid choice")
 
     def work_schedule_sub_menu(self):
-        ''' Shows a work schedule, for a single week, for a specific staff member '''
-        #done
+        ''' Displays a sub menu for choosing more specific information for the user '''
+        
         return_val = 0
         while return_val == 0:
             self.header("-", " WORK SCHEDULE ")
@@ -147,7 +146,7 @@ class StaffMemberUI():
 
     def show_staff_member_info(self, staff_info_list):
         ''' Prints more info about a specific staff member '''
-        #done
+        
         return_val = 0
         while return_val == 0:
 
@@ -163,8 +162,8 @@ class StaffMemberUI():
                 return "*"
 
     def show_all_pilots(self):
-        """ Prints the name of all the pilots from a list of their ssn and name """
-        #done
+        ''' Shows a listing of all pilots. Lets user choose if they want to see more info on a specific pilot '''
+        
         return_val = 0
         while return_val == 0:
             counter = 0
@@ -174,7 +173,7 @@ class StaffMemberUI():
             for pilot in pilots_list:
                 name = pilot.get_name()
                 counter += 1
-                print("{}. {}".format(counter, name))
+                print("{:>3}. {}".format(counter, name))
 
             choice = input("\nDo you want to see more info about a specific staff pilot? (y/n): ")
             if choice == "y":
@@ -185,9 +184,8 @@ class StaffMemberUI():
                 return "*"
 
     def show_all_flight_attendants(self):
-        """ Prints the name of all the flight attendants from a list of their
-            ssn and names """
-        #done
+        ''' Shows a listing of all Flight attendants. Lets user choose if they want to see more info on a specific flight attendant '''
+        
         return_val = 0
         while return_val == 0:
 
@@ -198,7 +196,7 @@ class StaffMemberUI():
             for flight_attendant in flight_attendants_list:
                 name = flight_attendant.get_name()
                 counter += 1
-                print("{}. {}".format(counter, name))
+                print("{:>3}. {}".format(counter, name))
 
             choice = input("\nDo you want to see more info about a specific flight attendant? (y/n): ")
             if choice == "y":
@@ -210,8 +208,8 @@ class StaffMemberUI():
 
 
     def show_all_staff(self):
-        """ Prints the names of all of the staff members from a lis of their ssn and name """
-        #done
+        ''' Shows a listing of all staff members. Lets user choose if they want to see more info on a specific staff member '''
+
         return_val = 0
         while return_val == 0:
             counter = 0
@@ -220,7 +218,7 @@ class StaffMemberUI():
             for staff_member in staff_list:
                 name = staff_member.get_name()
                 counter +=1
-                print("{}. {}".format(counter, name))
+                print("{:>3}. {}".format(counter, name))
                 
             choice = input("\nDo you want to see more info about a specific staff member? (y/n): ")
             if choice == "y":
@@ -232,8 +230,8 @@ class StaffMemberUI():
 
 
     def show_pilots_by_one_licence(self):
-        """ Prints all of the pilots who have a license for one particular airplane """
-        #done
+        ''' Shows a listing of all pilots that have a licence on a specific type of airplane '''
+        
         return_val = 0
         while return_val == 0:
             self.header("-", " PICK ONE LICENCE ")
@@ -245,7 +243,7 @@ class StaffMemberUI():
             for airplane_type_id in airplane_types_info_list:
                 counter += 1
                 airplane_type_dict[str(counter)] = airplane_type_id
-                print("{}. {}".format(counter, airplane_type_id))
+                print("{:>3}. {}".format(counter, airplane_type_id))
 
             choice = input("\nPlease input the number corresponding to the licence you want to see: ")
 
@@ -259,7 +257,7 @@ class StaffMemberUI():
             for pilot in pilots_info_list:
                 name = pilot.get_name()
                 counter += 1
-                print("{}. {}".format(counter, name))
+                print("{:>3}. {}".format(counter, name))
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
@@ -267,8 +265,8 @@ class StaffMemberUI():
                 return "*"
 
     def show_pilots_by_all_licences(self):
-        ''' Displays pilots sorted by the aircraft type they have a licence for '''
-        #done
+        ''' Shows all pilots sorted by the airplane type they have a licence for '''
+        
         return_val = 0
         while return_val == 0:
             self.header("-", " PILOTS BY LICENCES ")
@@ -280,7 +278,7 @@ class StaffMemberUI():
                 for pilot in pilots_list:
                     name = pilot.get_name()
                     counter += 1
-                    print("\t{}. {}".format(counter, name))
+                    print("\t{:>3}. {}".format(counter, name))
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
@@ -288,7 +286,9 @@ class StaffMemberUI():
                 return "*"
 
     def show_all_working(self):
-        #done
+        ''' Shows a listing of all staff members working on a spcific day '''
+
+        
         return_val = 0
         while return_val == 0:
             desired_date_str = input("Enter date (YYYY-MM-DD): ")
@@ -304,13 +304,13 @@ class StaffMemberUI():
             #Print the name of each staff member that is working
             for dest_id, staff_id_list in staff_working_dict.items():
                 destination = self.llAPI.get_destination_info(dest_id)
-                counter = 1
+
                 for staff_id in staff_id_list:
                     staff_member = self.llAPI.get_staff_member_info(staff_id)
                     name = staff_member.get_name()
                     dest_city = destination.get_city()
-                    print("{} {} is going to {}".format("-", name, dest_city))
-                    counter += 1
+                    print("\t{:>3} {} is going to {}".format("-", name, dest_city))
+                    
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
@@ -318,7 +318,8 @@ class StaffMemberUI():
                 return "*"
 
     def show_all_not_working(self):
-        #done
+        ''' Shows a listing of all staff members that are not working on a specific day '''
+        
         return_val = 0
         while return_val == 0:
             desired_date_str = input("Enter date (YYYY-MM-DD): ")
@@ -335,7 +336,7 @@ class StaffMemberUI():
             for staff_member_id in staff_not_working_list:
                 staff_member = self.llAPI.get_staff_member_info(staff_member_id)
                 name = staff_member.get_name()
-                print("{} {}".format("-", name))
+                print("\t{:>3} {}".format("-", name))
 
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
@@ -344,7 +345,8 @@ class StaffMemberUI():
                 return "*"
 
     def show_staff_member_schedule(self):
-        #done
+        ''' Shows a schedule for a specific staff member during a specific week '''
+
         return_val = 0
         while return_val == 0:
 
@@ -394,6 +396,7 @@ class StaffMemberUI():
     
     def create_staff_member(self):
         ''' Creates an new staff member with information that's input from the user '''
+
         return_val = 0
         while return_val == 0:
             # -------- displays the header and main body --------
@@ -532,7 +535,8 @@ class StaffMemberUI():
 
 
     def change_staff_member_info(self):
-        #done
+        ''' Changes info about a specific staff member '''
+
         return_val = 0
         while return_val == 0:
 

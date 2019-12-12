@@ -30,8 +30,7 @@ class AirplaneLL():
                 return airplane
 
     def make_airplane(self, new_airplane):
-        airplane_csv_string = new_airplane.instance_to_csv_str()
-        return self.ioAPI.store_new_airplane(airplane_csv_string)
+        return self.ioAPI.store_new_airplane(new_airplane)
 
     def get_airplane_state(self, airplane_instance, chosen_time_and_date):
         """ gets an airplane and chosen time and returns the state of the chosen airplane """
@@ -40,7 +39,7 @@ class AirplaneLL():
         voyages_list = self.ioAPI.load_all_voyages() # List of all voyages
         airplane_state = "IDLE" # initializes the airplane state at IDLE
         NOW = datetime.datetime.fromisoformat(chosen_time_and_date)
-        #airplane_state_list = []
+
         for voyage in voyages_list:
             voyage_plane = voyage.get_plane_id()
 
@@ -62,7 +61,6 @@ class AirplaneLL():
             airplane_state = "Flight nr. {} going to KEF and will again be available: {}".format(voyage.get_voyage_id(), available)
         elif arrival_out <= NOW and NOW <= departure_home:
             airplane_state = "IN ITNERMISSION" 
-            #airplane_state_list.append(airplane_state)
 
         return airplane_state
 

@@ -19,8 +19,8 @@ class IOAPI:
     def store_staff_changes(self, staff_member_instance_list):
         return self.staffIO.store_staff_member_changes(staff_member_instance_list)
 
-    def store_new_staff_member(self,staff_member_str):
-        return self.staffIO.store_new_staff_member(staff_member_str)
+    def store_new_staff_member(self, new_staff_member):
+        return self.staffIO.store_new_staff_member(new_staff_member)
 
     # ---- Destination functions ----
 
@@ -30,8 +30,8 @@ class IOAPI:
     def store_destination_changes(self, dest_list):
         return self.destIO.store_destination_changes(dest_list)
 
-    def create_new_destination(self, dest_str):
-        return self.destIO.store_new_destination(dest_str)
+    def create_new_destination(self, new_destination):
+        return self.destIO.store_new_destination(new_destination)
 
     # ---- Airplane functions ----
     
@@ -41,8 +41,8 @@ class IOAPI:
     def load_airplane_types(self):
         return self.airplaneIO.load_airplane_types()
 
-    def store_new_airplane(self, airplane_str):
-        return self.airplaneIO.store_new_airplane(airplane_str)
+    def store_new_airplane(self, new_airplane):
+        return self.airplaneIO.store_new_airplane(new_airplane)
     
     # ---- Voyage functions ----
 
@@ -52,5 +52,5 @@ class IOAPI:
     def store_voyage_changes(self, voyages_list):
         return self.voyageIO.store_voyage_changes(voyages_list)
 
-    def store_new_voyage(self, csv_str):
-        return self.voyageIO.store_new_voyage(csv_str)
+    def store_new_voyage(self, new_voyage):
+        return self.voyageIO.store_new_voyage(new_voyage)

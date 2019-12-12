@@ -1,4 +1,5 @@
 from Validation.validation import Validate
+from MODELS.voyage import Voyage
 import datetime
 class VoyageUI():
 
@@ -117,7 +118,7 @@ class VoyageUI():
         #do
         return_val = 0
         while return_val == 0:
-            voyage_info_list = []
+            new_voyage = Voyage()
     
             # User chooses destination
             destinations_list = self.llAPI.get_destinations()
@@ -143,7 +144,7 @@ class VoyageUI():
                     destination = destinations_list[(int(number) - 1)]
                     dest_id = destination.get_id()
                     city = destination.get_city()
-                    voyage_info_list.append(dest_id)
+                    new_voyage.set_dest_id(dest_id)
                     invalid_input = False
                 else:
                     print("Invalid choice. Enter again.")
@@ -151,31 +152,43 @@ class VoyageUI():
 
             # User chooses date for voyage
             self.header("-", " CHOOSE DATE ")
-            date_str = input("Enter date of voyage (YYYY-MM-DD): ")
+            date_str = input("Please enter a date for the voyage (YYYY-MM-DD): ")
 
             while not self.validate.validate_date(date_str):
-                print("Invalid date.")
-                date_str = input("Enter date of voyage (YYYY-MM-DD): ")      
+                print("\nInvalid date.")
+                date_str = input("Please enter another date for the voyage (YYYY-MM-DD): ")      
 
             # User chooses time for voyage
             self.header("-", " CHOOSE TIME ")
-            time_str = input("Enter time of voyage (HH:MM:SS): ")
+            time_str = input("Please enter a time for the voyage (HH:MM:SS): ")
 
             while not self.validate.validate_time(time_str):
-                print("Invalid time.")
-                time_str = input("Enter time of voyage (HH:MM:SS): ")
-            else:
-                departure_out_str = "T".join([date_str, time_str])
-                while not self.llAPI.voyage_date_check(departure_out_str):
-                    print("Invalid date. There is already a plane leaving Keflavík at that hour.")
-                    departure_out_str = input("Please enter a new ")
+                print("\nInvalid time.")
+                time_str = input("Please enter another time for the voyage (HH:MM:SS): ")
 
+            # User enters a new date and time if it overlaps a departure of another voyage until they find an appropriate time
+            departure_out_str = "T".join([date_str, time_str])
+            while not self.llAPI.voyage_date_check(departure_out_str):
+                print("\nInvalid departure time. There is already a plane leaving Keflavik at that hour.")
+                
+                departure_date = input("Please enter a new departure date for your voyage (YYYY-MM-DD): ")
+                while not self.validate.validate_date(departure_date):
+                    departure_date = input("Invalid date. Please enter a new departure date for your voyage (YYYY-MM-DD): ")
+
+                departure_time = input("Please enter another time for the voyage (HH:MM:SS): ")
+                while not self.validate.validate_time(time_str):
+                    time_str = input("Invalid time. Please enter another time for the voyage (HH:MM:SS): ")
+                
+                departure_out_str = "T".join([departure_date, departure_time])
+            
+            new_voyage.set_departure_out(departure_out_str)
+                
             self.header("-", " ADD VOYAGE ")
             print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
 
             print("\nChanges have been confirmed")
 
-            return self.llAPI.make_voyage(voyage_info_list)
+            return self.llAPI.make_voyage(new_voyage)
 
     def choose_voyage_to_assign(self):
         ''' Returns voyage instance chosen by user out of non assigned voyages '''
@@ -208,9 +221,7 @@ class VoyageUI():
 
     def choose_airplane_for_voyage(self, chosen_voyage):
         ''' Returns airplane id for airplane chosen by user '''
-        #do
-    #return_val = 0
-    #while return_val == 0:
+
         departure_out_str = chosen_voyage.get_departure_out()
         arrival_home_str = chosen_voyage.get_departure_home()
 
@@ -228,7 +239,8 @@ class VoyageUI():
         return plane_id
 
     def choose_staff_member(self, staff_member_list):
-        #do
+        ''' Template for showing a list of staff members when assigning staff to voyage '''
+
         return_val = 0
         while return_val == 0:
             for number, staff_member in enumerate(staff_member_list, 1):
@@ -243,7 +255,7 @@ class VoyageUI():
 
     def choose_pilots_for_voyage(self, captain_list, copilot_list):
         ''' Returns chosen captain and copilot for voyage '''
-        #do
+
         return_val = 0
         while return_val == 0:
             # Choosing captain
@@ -257,7 +269,7 @@ class VoyageUI():
 
     def choose_flight_attendants_for_voyage(self, fsm_list, flight_attendant_list):
         ''' Returns chosen flight attendants for voyage '''
-        #do
+
         return_val = 0
         while return_val == 0:
             # Choosing flight service manager
@@ -277,7 +289,7 @@ class VoyageUI():
 
     def assign_voyage(self):
         ''' Assigns plane and staff to a voyage that has not been assigned yet '''
-        #do
+
         return_val = 0
         while return_val == 0:
             # Choose a voyage

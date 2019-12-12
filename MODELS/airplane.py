@@ -24,7 +24,7 @@ class Airplane():
     def set_type_id(self, new_type_id):
         self.__type_id = new_type_id
 
-    def instance_to_csv_str(self):
+    def instance_to_csv_string(self):
         ''' Makes a csv string from airplane instance '''
         csv_list = [self.__name, self.__plane_id, self.__type_id]
 

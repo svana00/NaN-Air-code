@@ -3,7 +3,7 @@ from MODELS.airplane import Airplane
 from MODELS.airplane_type import AirplaneType
 
 class AirplaneIO():
-    
+
     def load_all_airplanes(self):
         ''' Reads into the database. Returns an list of all airplanes as instances '''
 
@@ -40,9 +40,10 @@ class AirplaneIO():
 
         return airplane_types_list
 
-    def store_new_airplane(self, airplane_str):
+    def store_new_airplane(self, new_airplane):
         ''' Stores new airplane to the existing file '''
 
+        airplane_csv_str = new_airplane.instance_to_csv_string
         airplane_file = open("csv_files/Airplane.csv", "a+")
-        airplane_file.write(airplane_str)
+        airplane_file.write(airplane_csv_str)
         airplane_file.close()

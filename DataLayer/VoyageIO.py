@@ -42,13 +42,14 @@ class VoyageIO():
         voyages_file = open("csv_files/Voyages.csv", "w+")
         voyages_file.write(big_csv)
 
-    def store_new_voyage(self, csv_str):
+    def store_new_voyage(self, new_voyage):
         ''' Stores a new voyages to the database '''
-        
+
+        voyage_csv_str = new_voyage.instance_to_csv_string()
         voyage_file = open("csv_files/Voyages.csv", "a")
-        voyage_file.write(csv_str)
+        voyage_file.write(voyage_csv_str)
         voyage_file.write("\n")
-        return voyage_file
+        voyage_file.close()
 
     def get_csv_header(self):
         ''' Gets the header from the csv file '''

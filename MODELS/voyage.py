@@ -1,5 +1,5 @@
 class Voyage():
-    def __init__(self, voyage_id, flight_num_out, flight_num_back, departure_out, arrival_out, departure_home, arrival_home, destination_id, plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = "", fully_assigned = "False"):
+    def __init__(self, voyage_id = "", flight_num_out = "", flight_num_back = "", departure_out = "", arrival_out = "", departure_home = "", arrival_home = "", destination_id = "", plane_id = "", captain = "", copilot = "", fsm = "", fa1 = "", fa2 = "", fully_assigned = "False"):
         self.__voyage_id = voyage_id
         self.__flight_number_out = flight_num_out
         self.__flight_number_back = flight_num_back
@@ -48,6 +48,31 @@ class Voyage():
         return [self.__captain, self.__copilot, self.__fsm, self.__fa1, self.__fa2]
 
     #------- set functions -----------
+
+    def set_voyage_id(self, new_voyage_id):
+        self.__voyage_id = new_voyage_id
+
+    def set_flight_number_out(self, flight_number_out):
+        self.__flight_number_out = flight_number_out
+    
+    def set_flight_number_back(self, flight_number_back):
+        self.__flight_number_back = flight_number_back
+    
+    def set_departure_out(self, new_departure_out):
+        self.__departure_out = new_departure_out
+    
+    def set_arrival_out(self, new_arrival_out):
+        self.__arrival_out = new_arrival_out
+    
+    def set_departure_home(self, new_departure_home):
+        self.__departure_home = new_departure_home
+
+    def set_arrival_home(self, new_arrival_home):
+        self.__arrival_home = new_arrival_home
+    
+    def set_dest_id(self, new_destination_id):
+        self.__destination_id = new_destination_id
+
     def set_plane_id(self, plane_id):
         self.__plane_id = plane_id
 

@@ -8,6 +8,7 @@ class DestinationUI():
         self.validation = Validate()
     
     def going_back(self):
+        ''' Gives the user the option to go back when called on '''
         variable = input("\nTo go back enter b, to go home enter h: ")
         if variable == "b":
                 return 0
@@ -15,11 +16,13 @@ class DestinationUI():
             return "*"
 
     def header(self, form, string):
-        """ creates a header with the form as decoration before the chosen string """
+        ''' creates a header with the form as decoration before the chosen string '''
+
         print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_dest_menu(self):
-        #I've added back and home
+        ''' Displays a submenu for the user to choose between actions they want to do with destinations '''
+
         return_val = 0
         while return_val == 0:
             print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" DESTINATIONS "))/2)+" DESTINATIONS "+" "*int((56-len(" DESTINATIONS "))/2)+"\n"+"*"*56)
@@ -40,7 +43,8 @@ class DestinationUI():
             return "*"
 
     def show_destinations(self):
-        #added back and home
+        ''' Shows a listing of all destinations '''
+
         return_val = 0
         while return_val == 0:
             counter = 0
@@ -51,7 +55,7 @@ class DestinationUI():
                 country = destination.get_country()
                 city = destination.get_city()
                 counter += 1
-                print("{}. {}: {}".format(counter, country, city))
+                print("{:>3}. {}: {}".format(counter, country, city))
 
             choose_between = input("\nDo you want to see a specific destination? (y/n): ")
             if choose_between == "y":
@@ -62,8 +66,7 @@ class DestinationUI():
                 return "*"
 
     def show_destination_info(self, dest_list):
-        #Option to choose a specific destination
-        #added back and home
+
         return_val = 0
         while return_val == 0:
             choose_number = int(input("Enter number of destination: "))
@@ -76,20 +79,6 @@ class DestinationUI():
                 return 0
             elif back_option == "h":
                 return "*"
-
-    def display_destination(self, a_dest_info_list):
-        #added back and home
-        return_val = 0
-        while return_val == 0:
-            self.header("*", " {} ".format(a_dest_info_list[1]))
-            counter = 0
-            display_string = ["DESTINATION ID: ","CITY: ","COUNTRY: ", "AIRPORT: ", \
-            "FLIGHT TIME: ", "DISTANCE: ","NAME OF CONTACT PERSONEL: ", "EMERGENCY PHONE NUMBER: "]
-
-            for i in range(len(a_dest_info_list)):
-                counter += 1
-                print("{}. {} {}".format(counter, display_string[i] ,a_dest_info_list[i]))
-            self.going_back()
 
     def create_destination(self):
         ''' Creates a new destination for NaN-Air with information input from user '''
@@ -214,13 +203,15 @@ class DestinationUI():
         else: # choice not in valid_input_list:
             print("Whoops! Invalid input. We are guiding you back to the main page. Sorry for the inconvenience")
 
-    def back_option(self,var):
-        if var == "b":
+    def back_option(self, choice):
+        if choice == "b":
             return 0
-        elif var == "h":
+        elif choice == "h":
             return "*"
 
     def change_destination(self):
+        ''' Lets the user change information about a specific destination '''
+
         return_val = 0
         while return_val == 0:
             dest_instance_list = self.llAPI.get_destination_instance_list()

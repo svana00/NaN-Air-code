@@ -144,10 +144,11 @@ class StaffMemberLL():
         return voyages_for_staff_member_in_week_list
 
     def create_staff_member(self, new_staff_member):
-        ''' Create a csv formatted string and sends to the database '''
+        ''' Sends the new instance down to the database for storing '''
 
-        staff_csv_string = new_staff_member.instance_to_csv_string()
-        return self.ioAPI.store_new_staff_member(staff_csv_string)
+        return self.ioAPI.store_new_staff_member(new_staff_member)
 
     def store_new_staff_changes(self, staff_member_instance_list):
+        ''' Sends an updated list of staff member isntances down to the database for storing ''' 
+        
         return self.ioAPI.store_staff_changes(staff_member_instance_list)
