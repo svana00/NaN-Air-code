@@ -14,7 +14,6 @@ class DestinationUI():
         elif variable == "h":
             return "*"
 
-
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
         print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))

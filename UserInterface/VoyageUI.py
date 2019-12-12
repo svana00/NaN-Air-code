@@ -103,9 +103,14 @@ class VoyageUI():
 
             airplane_state = self.llAPI.get_airplane_state(plane_id, date_and_time_str)
 
-            print("\nCurrent state of voyage: {}".format(airplane_state))
-            
-            return 0
+            print("Current state of voyage: {}".format(airplane_state))
+
+            var = input("\nEnter b to go back and h to go to home page: ")
+
+            if var == "b":
+                return 0
+            elif var == "h":
+                return "*"
         
     def create_voyage(self):
         ''' Returns a list of information about a new voyage '''
@@ -201,8 +206,6 @@ class VoyageUI():
                 else:
                     print("Invalid choice")
                     choice = input("\nEnter number for desired voyage: ")
-
-
 
     def choose_airplane_for_voyage(self, chosen_voyage):
         ''' Returns airplane id for airplane chosen by user '''
