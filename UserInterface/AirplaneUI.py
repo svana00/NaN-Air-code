@@ -80,7 +80,7 @@ class AirplaneUI():
             airplane_type_str =  airplane.get_type_id()    #2019-11-12T06:20:00
             date_and_time = chosen_date + "T" + chosen_time
             #chosen_time = datetime.datetime(2019,11,20,6,40,00)
-            airplane_state_str = self.llAPI.get_airplane_state(airplane.get_plane_id(),date_and_time)
+            airplane_state_str = self.llAPI.get_airplane_state(airplane.get_plane_id(), date_and_time)
             print("{}. Name: {:<30} ID: {:<10} Type: {:<20} State: {:<15}".format(counter, airplane_name_str, airplane_id_str, airplane_type_str, airplane_state_str))
 
 

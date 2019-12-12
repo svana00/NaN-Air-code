@@ -5,7 +5,7 @@ class DestinationIO:
 
     def load_all_destinations(self):
         ''' Reads into the database. Returns a list of all destinations as instances '''
-        
+
         dest_list = []
         dest_file = open("csv_files/Destinations.csv", "r")
         reader = csv.DictReader(dest_file)
@@ -41,11 +41,6 @@ class DestinationIO:
             big_csv += dest.instance_to_csv_string() + "\n"
         dest_file = open("csv_files/Destinations.csv", "w+")
         dest_file.write(big_csv)
-
-    def get_all_file(self):
-
-        the_file = open("Destinations.csv", "r")
-        return the_file
     
     def get_csv_header(self):
         ''' Gets the header from the csv file '''
@@ -56,3 +51,4 @@ class DestinationIO:
                 header = line
         
         return header
+        dest_file.write(big_csv)
