@@ -1,5 +1,5 @@
 class Airplane():
-    def __init__(self, name, plane_id, type_id): #status
+    def __init__(self, name = "", plane_id = "", type_id = ""): #status
         self.name = name
         self.plane_id = plane_id
         self.type_id = type_id
@@ -13,6 +13,15 @@ class Airplane():
 
     def get_type_id(self):
         return self.type_id
+
+    def set_name(self, new_name):
+        self.name = new_name 
+    
+    def set_plane_id(self, new_plane_id):
+        self.plane_id = new_plane_id
+
+    def set_type_id(self, new_type_id):
+        self.type_id = new_type_id
 
     def __str__(self): #status
         my_str = ""

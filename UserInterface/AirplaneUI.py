@@ -1,8 +1,12 @@
 import datetime
+from MODELS.airplane import Airplane
+from Validation.validation import Validate
+
 class AirplaneUI():
 
     def __init__(self, llAPI):
         self.llAPI = llAPI
+        self.validation = Validate()
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
@@ -86,33 +90,77 @@ class AirplaneUI():
 
     def create_airplane(self):
         ''' Returns a new instance of an airplane to the "creat_new_airplane_ function '''
-        name_ID_str = ""
-        airplane_type_str = ""
-        airplane_info_list = ["" for index in range(3)]
-        
+        new_airplane = Airplane()
+
+        name_str = ""
+        plane_id_str = ""
+        plane_type_str = ""
+
         #printing out the menu
         self.header("-", " ADD AIRPLANE ")
-        print("1. ID: {}\n2. TYPE: {}".format(name_ID_str, airplane_type_str))
-
-        choice = input("\n"+"Input what you want to add: ")
+        print("1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str))
         
-        VALID_LIST = ["1","2","confirm"] #all of the valid options within the menu
+        VALID_LIST = ["1","2", "3", "confirm"] #all of the valid options within the menu
+        chosen_input_list = set()
+
+        choice = input("\nPlease enter the number corresponding to the information you would like to add: ")
+        if choice == "0":
+            return 0
+        elif choice == "*":
+            return "*"
 
         while choice in VALID_LIST:
+
             if choice == "1":
-                name_ID_str = input("\nEnter airplane name: ")
-                airplane_info_list[0] = name_ID_str
-                
+                name_str = input("\nEnter airplane name: ")
+                while not self.validation.validate_name(name_str):
+                    if name_str == "0":
+                        return 0
+                    elif name_str == "*":
+                        return "*"
+                    name_str = input("The name you entered is invalid. Please enter a using letters only: ")
+                new_airplane.set_name(name_str)
+                chosen_input_list.add(choice)
+
             elif choice == "2":
-                airplane_type_str = input("Enter airplane type: ")
-                airplane_info_list[2] = airplane_type_str
-            
+                plane_id_str = input("Enter airplane ID: ")
+                while not self.validation.validate_plane_id(plane_id_str):
+                    if plane_id_str == "0":
+                        return 0
+                    elif plane_id_str == "*":
+                        return "*"
+                    plane_id_str = input("The ID you entered is invalid. Please try again: ")
+                new_airplane.set_plane_id(plane_id_str)
+                chosen_input_list.add(choice)
+    
+            elif choice == "3":
+                type_list = ["NABAE146", "NAFokkerF28", "NAFokkerF100"]
+                print("\n1. {}\n2. {}\n3. {}".format(type_list[0], type_list[1], type_list[2]))
+                type_choice = input("\nEnter number of new airplane type: ")
+
+                if type_choice == "1":
+                    new_plane_type = "NABAE146"
+                    new_airplane.set_type_id(plane_type_str)
+                    chosen_input_list.add(choice)
+
+
+                    chosen_input_list.add(choice)
+                elif type_choice == "2":
+                    new_plane_type = "NAFokkerF28"
+                    new_airplane.set_type_id(plane_type_str)
+                    chosen_input_list.add(choice)
+
+                elif type_choice == "3":
+                    new_plane_type = "NAFokkerF100"
+                    new_airplane.set_type_id(plane_type_str)
+                    chosen_input_list.add(choice)
+
             elif choice == "confirm":
                 break
            
             self.header("-", " ADD AIRPLANE ")
-            print("1. ID: {}\n2. TYPE: {}".format(name_ID_str, airplane_type_str))
+            print("1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str))
             choice = input("\nInput what you want to add: ")
 
-        return self.llAPI.create_new_airplane(airplane_info_list)
+        return self.llAPI.create_new_airplane(new_airplane)
             
