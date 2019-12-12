@@ -1,5 +1,3 @@
-from Validation.validation import Validate
-
 class AirplaneType():
     def __init__(self, plane_type_id, manufacturer, model, capacity):
         self.__plane_type_id = plane_type_id

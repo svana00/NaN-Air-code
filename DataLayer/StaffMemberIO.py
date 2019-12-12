@@ -1,7 +1,6 @@
 import csv
 import datetime
 from MODELS.staff_member import StaffMember
-from MODELS.voyage import Voyage
 
 class StaffMemberIO:
     

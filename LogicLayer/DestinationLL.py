@@ -1,5 +1,3 @@
-from MODELS.destination import Destination
-
 class DestinationLL():
 
     def __init__(self, ioAPI):

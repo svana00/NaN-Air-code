@@ -1,4 +1,3 @@
-from MODELS.airplane import Airplane
 import datetime
 from datetime import date
 class AirplaneLL():
