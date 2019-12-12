@@ -52,7 +52,7 @@ class AirplaneLL():
         elif departure_home <= NOW and NOW <= arrival_home:
             airplane_state = "Flight nr. {} going to KEF and will again be available: {}".format(voyage.get_voyage_id(), available)
         elif arrival_out <= NOW and NOW <= departure_home:
-            airplane_state = "IN ITERMISSION" 
+            airplane_state = "IN ITNERMISSION" 
             #airplane_state_list.append(airplane_state)
 
         return airplane_state
