@@ -29,10 +29,10 @@ class AirplaneLL():
             if airplane.get_plane_id() == plane_id:
                 return airplane
 
-    def make_airplane(self, new_airplane_list):
-        airplane_str = ",".join(new_airplane_list)
-        return self.ioAPI.create_new_airplane(airplane_str)
-    
+    def make_airplane(self, new_airplane):
+        airplane_csv_string = new_airplane.instance_to_csv_str()
+        return self.ioAPI.store_new_airplane(airplane_csv_string)
+
     def get_airplane_state(self, airplane_instance, chosen_time_and_date):
         """ gets an airplane and chosen time and returns the state of the chosen airplane """
 

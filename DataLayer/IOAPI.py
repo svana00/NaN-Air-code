@@ -41,9 +41,8 @@ class IOAPI:
     def load_airplane_types(self):
         return self.airplaneIO.load_airplane_types()
 
-    def create_new_airplane(self, airplane_str):
-        self.airplane_str = airplane_str
-        return self.airplaneIO.store_new_airplane_into_file(airplane_str)
+    def store_new_airplane(self, airplane_str):
+        return self.airplaneIO.store_new_airplane(airplane_str)
     
     # ---- Voyage functions ----
 

@@ -95,9 +95,8 @@ class LLAPI():
         return self.voyageLL.assign_voyage(chosen_voyage)
 
     # ---- Airplane functions ----
-    def create_new_airplane(self, airplane_str):
-        self.airplane_str = airplane_str
-        return self.airplaneLL.make_airplane(airplane_str)
+    def create_new_airplane(self, new_airplane):
+        return self.airplaneLL.make_airplane(new_airplane)
 
     def get_all_airplanes(self):
         return self.airplaneLL.get_all_airplanes()
