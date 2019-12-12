@@ -7,7 +7,7 @@ class DestinationUI():
         self.llAPI = llAPI
         self.validation = Validate()
     
-    def testing_going_back_and_home(self):
+    def going_back(self):
         variable = input("To go back enter 0, to go home enter *  ")
         if variable == "0":
                 return 0
@@ -90,7 +90,7 @@ class DestinationUI():
             for i in range(len(a_dest_info_list)):
                 counter += 1
                 print("{}. {} {}".format(counter, display_string[i] ,a_dest_info_list[i]))
-            self.testing_going_back_and_home()
+            self.going_back()
 
     def create_destination(self):
         ''' Creates a new destination for NaN-Air with information input from user '''
@@ -118,7 +118,7 @@ class DestinationUI():
             return 0
         elif choice == "*":
             return "*"
-            
+
         while choice in valid_input_list:
 
             if choice == "1":
