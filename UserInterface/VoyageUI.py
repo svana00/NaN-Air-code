@@ -179,6 +179,15 @@ class VoyageUI():
             print("{}. {}, ssn: {}".format(number, name, ssn))
 
         choice = input("\nEnter number for copilot: ")
+        captain = captain_list[int(choice) - 1]
+
+        self.header("-", " CHOOSE COPILOT ")
+        for number, copilot in enumerate(copilot_list, 1):
+            ssn = copilot.get_ssn()
+            name = copilot.get_name()
+            print("{}. {}, ssn: {}".format(number, name, ssn))
+
+        choice = input("\nEnter number for copilot: ")
         copilot = copilot_list[int(choice) - 1]
         
         return captain, copilot
@@ -198,10 +207,9 @@ class VoyageUI():
 
         # Choosing flight attendant 1
         self.header("-", " CHOOSE FLIGHT ATTENDANT 1 ")
-        for number, flight_attendant in enumerate(fsm_list, 1):
+        for number, flight_attendant in enumerate(flight_attendant_list, 1):
             ssn = flight_attendant.get_ssn()
             name = flight_attendant.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
             print("{}. {}, ssn: {}".format(number, name, ssn))
 
         choice = input("\nEnter number for flight attendant 1: ")
@@ -211,7 +219,7 @@ class VoyageUI():
 
         # Choosing flight attendant 2
         self.header("-", " CHOOSE FLIGHT ATTENDANT 2 ")
-        for number, flight_attendant in enumerate(fsm_list, 1):
+        for number, flight_attendant in enumerate(flight_attendant_list, 1):
             ssn = flight_attendant.get_ssn()
             name = flight_attendant.get_name()
             print("{}. {}, ssn: {}".format(number, name, ssn))
@@ -258,7 +266,7 @@ class VoyageUI():
                 copilot_list.append(staff_member)
             elif staff_member.rank == "Flight Service Manager":
                 fsm_list.append(staff_member)
-            else:
+            elif staff_member.rank == "Flight Attendant":
                 flight_attendant_list.append(staff_member)
 
         # Choose pilots
