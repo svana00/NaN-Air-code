@@ -156,7 +156,7 @@ class StaffMemberUI():
             staff_member = self.llAPI.get_staff_member_info(ssn)
             self.header("-", " {} ".format(staff_member.get_name()))
             print(staff_member)
-            choice = input("To go home enter h, to go back enter b ")
+            choice = input("\nTo go back enter b, to go home enter h: ")
             if choice == "b":
                 return 0
             elif choice == "h":
@@ -260,7 +260,7 @@ class StaffMemberUI():
                 name = pilot.get_name()
                 counter += 1
                 print("{}. {}".format(counter, name))
-            back_option = input("To go home enter h, to go back enter h: ")
+            back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":
@@ -281,7 +281,7 @@ class StaffMemberUI():
                     name = pilot.get_name()
                     counter += 1
                     print("\t{}. {}".format(counter, name))
-            back_option = input("To go home enter h, to go back enter h: ")
+            back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":
@@ -311,7 +311,7 @@ class StaffMemberUI():
                     dest_city = destination.get_city()
                     print("{} {} is going to {}".format("-", name, dest_city))
                     counter += 1
-            back_option = input("To go home enter h, to go back enter h: ")
+            back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":
@@ -337,7 +337,7 @@ class StaffMemberUI():
                 name = staff_member.get_name()
                 print("{} {}".format("-", name))
 
-            back_option = input("To go home enter h, to go back enter h: ")
+            back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":
@@ -386,7 +386,7 @@ class StaffMemberUI():
             else:
                 print("{} has no voyages for the week you chose!".format(desired_name))
 
-            back_option = input("To go home enter h, to go back enter h: ")
+            back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":
@@ -524,7 +524,7 @@ class StaffMemberUI():
                 print("You did it! The new staff member has been stored in the database!")
             
             # ------- Give the option of going back or home ------------
-            back_option = input("To go home enter h, to go back enter h: ")
+            back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":
@@ -586,7 +586,7 @@ class StaffMemberUI():
                         return self.llAPI.store_new_staff_changes(staff_instance_list)
                     
                     # ---- Gives the user an option of going back or going home ------
-                    back_option = input("To go home enter h, to go back enter h: ")
+                    back_option = input("\nTo go back enter b, to go home enter h: ")
                     if back_option == "b":
                         return 0
                     elif back_option == "h":
