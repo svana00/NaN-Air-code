@@ -29,20 +29,20 @@ class UIManager():
             print("            | ** \  **|  *******| ** \  **      | **  | ** /******| **  | **")
             print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/\n\n")
 
-            while True:
-                print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" MAIN MENU "))/2)+" MAIN MENU "+" "*int((56-len(" MAIN MENU "))/2)+"\n"+"*"*56)
-                print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
-                var = input("\nInput a command: ")
-                print("")
-                if var == "1":
-                    self.staffUI.display_staff_menu()
-                elif var == "2":
-                    self.airplaneUI.display_airplane_menu()
-                elif var == "3":
-                    self.voyageUI.display_voyages_menu()
-                elif var == "4":
-                    self.destUI.display_dest_menu()
-                elif var == "q":
-                    break
-                else:
-                    print("invalid choice")
+            #while True:
+            print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" MAIN MENU "))/2)+" MAIN MENU "+" "*int((56-len(" MAIN MENU "))/2)+"\n"+"*"*56)
+            print("1. STAFF\n2. AIRPLANES\n3. VOYAGES\n4. DESTINATIONS")
+            var = input("\nInput a command: ")
+            print("")
+            if var == "1":
+                self.staffUI.display_staff_menu()
+            elif var == "2":
+                self.airplaneUI.display_airplane_menu()
+            elif var == "3":
+                self.voyageUI.display_voyages_menu()
+            elif var == "4":
+                self.destUI.display_dest_menu()
+            elif var == "q":
+                break
+            else:
+                print("invalid choice")
