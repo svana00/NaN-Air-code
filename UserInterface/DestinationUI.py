@@ -8,7 +8,7 @@ class DestinationUI():
         self.validation = Validate()
     
     def going_back(self):
-        variable = input("To go back enter 0, to go home enter *  ")
+        variable = input("To go back enter 0, to go home enter *: ")
         if variable == "0":
                 return 0
         elif variable == "*":
