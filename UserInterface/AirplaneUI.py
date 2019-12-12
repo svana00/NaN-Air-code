@@ -73,19 +73,22 @@ class AirplaneUI():
         return_val = 0
         while return_val == 0:
             counter = 0
-            self.header("-", " ALL AIRPLANES ")
             airplanes_list = self.llAPI.get_all_airplanes()
 
-            chosen_date = input("Enter date in the format (YYYY-MM-DD): ")
-            chosen_time = input("Enter the time in the format (HH:MM:00): ")
+            self.header("-", " ENTER DATE ")
+            print("To see the state of our airplanes, please specify the date and time you want to see :)")
+            chosen_date = input("\nPlease enter your desired date in the format (YYYY-MM-DD): ")
+            chosen_time = input("Please enter your desired time in the format (HH:MM:00): ")
 
+            self.header("-", " STATE OF ALL AIRPLANES AT {} ON {}".format(chosen_time, chosen_date))
             for airplane in airplanes_list:
                 counter += 1
                 airplane_name_str = airplane.get_name()
                 airplane_id_str = airplane.get_plane_id()
                 date_and_time = chosen_date + "T" + chosen_time
                 airplane_state_str = self.llAPI.get_airplane_state(airplane.get_plane_id(), date_and_time)
-                print("{}. Name: {:<30} ID: {:<10} State: {:<15}".format(counter, airplane_name_str, airplane_id_str, airplane_state_str))
+                print("{:>3}. {:<23} ID: {:<10} State: {:<15}"\
+                .format(counter, airplane_name_str, airplane_id_str, airplane_state_str))
             
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":

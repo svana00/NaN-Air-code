@@ -55,11 +55,11 @@ class AirplaneLL():
             return airplane_state
             
         if departure_out <= NOW and NOW <= arrival_out:
-            airplane_state = "Flight nr. {} going to {}".format(voyage.get_voyage_id(), voyage.get_departure_out())
+            airplane_state = "Flight {} is on its way to {} and will be available again on: {}".format(voyage.get_flight_number_out(), voyage.get_dest_id(), available)
         elif departure_home <= NOW and NOW <= arrival_home:
-            airplane_state = "Flight nr. {} going to KEF and will again be available: {}".format(voyage.get_voyage_id(), available)
+            airplane_state = "Flight {} is on its way to KEF and will be available again on: {}".format(voyage.get_flight_number_back(), available)
         elif arrival_out <= NOW and NOW <= departure_home:
-            airplane_state = "IN ITNERMISSION" 
+            airplane_state = "IN INTERMISSION" 
 
         return airplane_state
 
