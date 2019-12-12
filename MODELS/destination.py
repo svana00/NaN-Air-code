@@ -65,7 +65,7 @@ class Destination():
 
     def instance_to_csv_string(self):
         ''' Makes a csv string from destination instance '''
-        csv_list = [self.__id, self.__country, self.__city, self.__airport, self.__flight_time, \
+        csv_list = [self.__id, self.__city, self.__country,self.__airport, self.__flight_time, \
                     self.__distance, self.__contact, self.__emergency_number, self.__flight_number_id]
         
         csv_str = ",".join(csv_list)
