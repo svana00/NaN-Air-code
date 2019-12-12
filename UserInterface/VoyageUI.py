@@ -12,147 +12,192 @@ class VoyageUI():
     def display_voyages_menu(self):
         """ Displays the main menu for voyages giving the user the 
             options to change, add, or see overview of voyages """
-        print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
-        print("1. ASSIGN VOYAGE\n2. VOYAGES OVERVIEW\n3. CREATE VOYAGE")
-        var = input("\nInput a command: ")
+        #done
+        return_val = 0
+        while return_val == 0:
+            print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
+            print("1. ASSIGN VOYAGE\n2. VOYAGES OVERVIEW\n3. CREATE VOYAGE")
+            var = input("\nInput a command: ")
 
-        if var == "1":
-            self.assign_voyage()
-        elif var == "2":
-            self.display_voyages_overview_menu() # menu for overview choices
-        elif var == "3":
-            self.create_voyage()
+            if var == "b":
+                return 0
+            elif var == "h":
+                return "*"
+            elif var == "1":
+                return_val = self.assign_voyage()
+            elif var == "2":
+                return_val = self.display_voyages_overview_menu() # menu for overview choices
+            elif var == "3":
+                return_val = self.create_voyage()
 
     def display_voyages_overview_menu(self):
         """ Menu for choosing overview type for voyages """
-        self.header("-", " GET OVERVIEW ")
-        print("1. ALL VOYAGES \n2. VOYAGES BY DATE \n3. VOYAGES BY WEEK")
-        option = input("\nInput a command: ")
-        if option == "1":
-            all_voyages_list = self.llAPI.get_all_voyages()
-            self.show_voyages(all_voyages_list)
-        elif option == "2":
-            desired_date_str = input("Please enter your desired date (YYYY-MM-DD): ")
-            voyages_by_date = self.llAPI.get_voyages_by_date(desired_date_str)
-            self.show_voyages(voyages_by_date)
-        elif option == "3":
-            start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
-            voyages_by_week = self.llAPI.get_voyages_by_week(start_of_desired_week_str)
-            self.show_voyages(voyages_by_week)
+        #done
+        return_val = 0
+        while return_val == 0:
+            self.header("-", " GET OVERVIEW ")
+            print("1. ALL VOYAGES \n2. VOYAGES BY DATE \n3. VOYAGES BY WEEK")
+            option = input("\nInput a command: ")
+            if option == "b":
+                return 0
+            elif option == "h":
+                return "*"
+            elif option == "1":
+                all_voyages_list = self.llAPI.get_all_voyages()
+                return_val = self.show_voyages(all_voyages_list)
+            elif option == "2":
+                desired_date_str = input("Please enter your desired date (YYYY-MM-DD): ")
+                voyages_by_date = self.llAPI.get_voyages_by_date(desired_date_str)
+                return_val = self.show_voyages(voyages_by_date)
+            elif option == "3":
+                start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
+                voyages_by_week = self.llAPI.get_voyages_by_week(start_of_desired_week_str)
+                return_val = self.show_voyages(voyages_by_week)
 
     def show_voyages(self, voyage_list):
         ''' Shows all voyages from a list of voyages in a specific format '''
-        counter = 0
+        #done
+        return_val = 0
+        while return_val == 0:
+            counter = 0
 
-        self.header("-", " VOYAGES ")
+            self.header("-", " VOYAGES ")
 
-        for voyage in voyage_list:
-            counter += 1
-            voyage_id = voyage.get_voyage_id()
-            dest_id = voyage.get_dest_id()
-            destination =  self.llAPI.get_destination_info(dest_id)
-            city = destination.get_city()
-            departure_out = voyage.get_departure_out()
-            if voyage.is_fully_assigned():
-                fully_assigned_str = " "
-            else:
-                fully_assigned_str = "not "
-                #{1:<4}
-            print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
+            for voyage in voyage_list:
+                counter += 1
+                voyage_id = voyage.get_voyage_id()
+                dest_id = voyage.get_dest_id()
+                destination =  self.llAPI.get_destination_info(dest_id)
+                city = destination.get_city()
+                departure_out = voyage.get_departure_out()
+                if voyage.is_fully_assigned():
+                    fully_assigned_str = " "
+                else:
+                    fully_assigned_str = "not "
+                    #{1:<4}
+                print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
 
-        # Users can choose whether they want to see more info about a specific voyage
-        choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
-        if choice == "y":
-            return self.display_voyage(voyage_list)
+            # Users can choose whether they want to see more info about a specific voyage
+            choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
+            if choice == "y":
+                return self.display_voyage(voyage_list)
+            elif choice == "b":
+                return 0
+            elif choice == "h":
+                return "*"
 
     def display_voyage(self, voyage_list):
-        number = int(input("Enter number for voyage: "))
-        voyage = voyage_list[(number) - 1]
-        voyage_id = voyage.get_voyage_id()
-        self.header("-", " Voyage {} ".format(voyage_id))
-        print(voyage)
+        #do
+        return_val = 0
+        while return_val == 0:
+            number = int(input("Enter number for voyage: "))
+            voyage = voyage_list[(number) - 1]
+            voyage_id = voyage.get_voyage_id()
+            self.header("-", " Voyage {} ".format(voyage_id))
+            print(voyage)
 
     def create_voyage(self):
         ''' Returns a list of information about a new voyage '''
-        voyage_info_list = []
- 
-        # User chooses destination
-        destinations_list = self.llAPI.get_destinations()
-        counter = 1
+        #do
+        return_val = 0
+        while return_val == 0:
+            voyage_info_list = []
+    
+            # User chooses destination
+            destinations_list = self.llAPI.get_destinations()
+            counter = 1
 
-        self.header("-", " CHOOSE DESTINATION ")
-        for destination in destinations_list:
-            city = destination.get_city()
-            print("{}. {}".format(counter,city))
-            counter += 1
-
-        valid_list = [str(num) for num in range(len(destinations_list))]
-        invalid_input = True
-        number = input("\nEnter number of desired destination for voyage: ")
-
-        while invalid_input == True:
-            if number in valid_list:
-                destination = destinations_list[(int(number) - 1)]
-                dest_id = destination.get_id()
+            self.header("-", " CHOOSE DESTINATION ")
+            for destination in destinations_list:
                 city = destination.get_city()
-                voyage_info_list.append(dest_id)
-                invalid_input = False
-            else:
-                print("Invalid choice. Enter again.")
-                number = input("\nEnter number of desired destination for voyage: ")
+                print("{}. {}".format(counter,city))
+                counter += 1
 
-        invalid_input = True
+            valid_list = [str(num) for num in range(len(destinations_list))]
+            invalid_input = True
+            number = input("\nEnter number of desired destination for voyage: ")
+            # ---- option to leave before creating a voyage
+            if number == "b":
+                return 0
+            elif number == "h":
+                return "*"
 
-        # User chooses date for voyage
-        self.header("-", " CHOOSE DATE ")
-        date_str = input("Enter date of voyage (YYYY-MM-DD): ")
+            while invalid_input == True:
+                if number in valid_list:
+                    destination = destinations_list[(int(number) - 1)]
+                    dest_id = destination.get_id()
+                    city = destination.get_city()
+                    voyage_info_list.append(dest_id)
+                    invalid_input = False
+                else:
+                    print("Invalid choice. Enter again.")
+                    number = input("\nEnter number of desired destination for voyage: ")
 
-        while not self.validate.validate_date(date_str):
-            print("Invalid date.")
+            invalid_input = True
+
+            # User chooses date for voyage
+            self.header("-", " CHOOSE DATE ")
             date_str = input("Enter date of voyage (YYYY-MM-DD): ")
-        else:
-            voyage_info_list.append(date_str)        
 
-        # User chooses time for voyage
-        self.header("-", " CHOOSE TIME ")
-        time_str = input("Enter time of voyage (HH:MM:SS): ")
+            while not self.validate.validate_date(date_str):
+                print("Invalid date.")
+                date_str = input("Enter date of voyage (YYYY-MM-DD): ")
+            else:
+                voyage_info_list.append(date_str)        
 
-        while not self.validate.validate_time(time_str):
-            print("Invalid time.")
+            # User chooses time for voyage
+            self.header("-", " CHOOSE TIME ")
             time_str = input("Enter time of voyage (HH:MM:SS): ")
-        else:
-            voyage_info_list.append(time_str)   
 
-        self.header("-", " ADD VOYAGE ")
-        print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
+            while not self.validate.validate_time(time_str):
+                print("Invalid time.")
+                time_str = input("Enter time of voyage (HH:MM:SS): ")
+            else:
+                voyage_info_list.append(time_str)   
 
-        print("\nChanges have been confirmed")
+            self.header("-", " ADD VOYAGE ")
+            print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
 
-        return self.llAPI.make_voyage(voyage_info_list)
+            print("\nChanges have been confirmed")
+
+            return self.llAPI.make_voyage(voyage_info_list)
 
     def choose_voyage_to_assign(self):
         ''' Returns voyage instance chosen by user out of non assigned voyages '''
-        voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
+        #do
+        return_val = 0
+        while return_val == 0:
+            voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
 
-        # Choose voyage menu
-        self.header("-", " CHOOSE VOYAGE ")
-        for number, voyage in enumerate(voyages_list, 1):
-            voyage_id = voyage.get_voyage_id()
-            dest_id = voyage.get_dest_id()
-            destination =  self.llAPI.get_destination_info(dest_id)
-            city = destination.get_city()
-            departure_out = voyage.get_departure_out()
+            # Choose voyage menu
+            self.header("-", " CHOOSE VOYAGE ")
+            for number, voyage in enumerate(voyages_list, 1):
+                voyage_id = voyage.get_voyage_id()
+                dest_id = voyage.get_dest_id()
+                destination =  self.llAPI.get_destination_info(dest_id)
+                city = destination.get_city()
+                departure_out = voyage.get_departure_out()
 
-            print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(number, voyage_id, city, departure_out))
+                print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(number, voyage_id, city, departure_out))
 
-        choice = input("\nEnter number for desired voyage: ")
+            choice = input("\nEnter number for desired voyage: ")
+            h = True
 
-        chosen_voyage = voyages_list[int(choice) - 1]
+            while h:
+                if choice.isdigit():
+                    chosen_voyage = voyages_list[int(choice) - 1]
+                    return chosen_voyage
+                else:
+                    print("Invalid choice")
+                    choice = input("\nEnter number for desired voyage: ")
 
-        return chosen_voyage
+
 
     def choose_airplane_for_voyage(self, chosen_voyage):
         ''' Returns airplane id for airplane chosen by user '''
+        #do
+    #return_val = 0
+    #while return_val == 0:
         departure_out_str = chosen_voyage.get_departure_out()
         arrival_home_str = chosen_voyage.get_departure_home()
 
@@ -169,123 +214,115 @@ class VoyageUI():
 
         return plane_id
 
+    def choose_staff_member(self, staff_member_list):
+        #do
+        return_val = 0
+        while return_val == 0:
+            for number, staff_member in enumerate(staff_member_list, 1):
+                ssn = staff_member.get_ssn()
+                name = staff_member.get_name()
+                print("{}. {:<25} ssn: {}".format(number, name, ssn))
+
+            choice = input("\nEnter number for {}: ".format(staff_member.get_rank().lower()))
+            chosen_staff_member = staff_member_list[int(choice) - 1]
+
+            return chosen_staff_member
+
     def choose_pilots_for_voyage(self, captain_list, copilot_list):
         ''' Returns chosen captain and copilot for voyage '''
-        # Choosing captain
-        self.header("-", " CHOOSE CAPTAIN ")
-        for number, captain in enumerate(captain_list, 1):
-            ssn = captain.get_ssn()
-            name = captain.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
+        #do
+        return_val = 0
+        while return_val == 0:
+            # Choosing captain
+            self.header("-", " CHOOSE CAPTAIN ")
+            captain = self.choose_staff_member(captain_list)
 
-        choice = input("\nEnter number for copilot: ")
-        captain = captain_list[int(choice) - 1]
-
-        self.header("-", " CHOOSE COPILOT ")
-        for number, copilot in enumerate(copilot_list, 1):
-            ssn = copilot.get_ssn()
-            name = copilot.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-
-        choice = input("\nEnter number for copilot: ")
-        copilot = copilot_list[int(choice) - 1]
-        
-        return captain, copilot
+            self.header("-", " CHOOSE COPILOT ")
+            copilot = self.choose_staff_member(copilot_list)
+            
+            return captain, copilot
 
     def choose_flight_attendants_for_voyage(self, fsm_list, flight_attendant_list):
         ''' Returns chosen flight attendants for voyage '''
-        # Choosing flight service manager
-        self.header("-", " CHOOSE FLIGHT SERVICE MANAGER ")
+        #do
+        return_val = 0
+        while return_val == 0:
+            # Choosing flight service manager
+            self.header("-", " CHOOSE FLIGHT SERVICE MANAGER ")
+            fsm = self.choose_staff_member(fsm_list)
 
-        for number, fsm in enumerate(fsm_list, 1):
-            ssn = fsm.get_ssn()
-            name = fsm.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-        
-        choice = input("\nEnter number for flight service manager: ")
-        fsm = fsm_list[int(choice) - 1]
+            # Choosing flight attendant 1
+            self.header("-", " CHOOSE FLIGHT ATTENDANT 1 ")
+            fa1 = self.choose_staff_member(flight_attendant_list)
+            flight_attendant_list.remove(fa1)
 
-        # Choosing flight attendant 1
-        self.header("-", " CHOOSE FLIGHT ATTENDANT 1 ")
-        for number, flight_attendant in enumerate(flight_attendant_list, 1):
-            ssn = flight_attendant.get_ssn()
-            name = flight_attendant.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
+            # Choosing flight attendant 2
+            self.header("-", " CHOOSE FLIGHT ATTENDANT 2 ")
+            fa2 = self.choose_staff_member(flight_attendant_list)
 
-        choice = input("\nEnter number for flight attendant 1: ")
-        fa1 = flight_attendant_list[int(choice) - 1]
-
-        flight_attendant_list.remove(fa1)
-
-        # Choosing flight attendant 2
-        self.header("-", " CHOOSE FLIGHT ATTENDANT 2 ")
-        for number, flight_attendant in enumerate(flight_attendant_list, 1):
-            ssn = flight_attendant.get_ssn()
-            name = flight_attendant.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-        choice = input("\nEnter number for flight attendant 2: ")
-        fa2 = flight_attendant_list[int(choice) - 1]
-
-        return fsm, fa1, fa2
+            return fsm, fa1, fa2
 
     def assign_voyage(self):
         ''' Assigns plane and staff to a voyage that has not been assigned yet '''
-        # Choose a voyage
-        chosen_voyage = self.choose_voyage_to_assign()
+        #do
+        return_val = 0
+        while return_val == 0:
+            # Choose a voyage
+            chosen_voyage = self.choose_voyage_to_assign()
+            
+            # Choose a plane
+            plane_id = self.choose_airplane_for_voyage(chosen_voyage)
 
-        # Choose a plane
-        plane_id = self.choose_airplane_for_voyage(chosen_voyage)
+            chosen_voyage.set_plane_id(plane_id)
+            chosen_airplane = self.llAPI.get_airplane(plane_id)
 
-        chosen_voyage.set_plane_id(plane_id)
-        chosen_airplane = self.llAPI.get_airplane(plane_id)
+            # Find all staff members that are not busy at time of voyage
+            departure_out_str = chosen_voyage.get_departure_out()
+            arrival_home_str = chosen_voyage.get_departure_home()
 
-        # Find all staff members that are not busy at time of voyage
-        departure_out_str = chosen_voyage.get_departure_out()
-        arrival_home_str = chosen_voyage.get_departure_home()
+            free_staff_departure_out = self.llAPI.get_all_not_working(departure_out_str)
+            free_staff_arrival_home = self.llAPI.get_all_not_working(arrival_home_str)
 
-        free_staff_departure_out = self.llAPI.get_all_not_working(departure_out_str)
-        free_staff_arrival_home = self.llAPI.get_all_not_working(arrival_home_str)
+            staff_members_id_list = list(set(free_staff_departure_out) & set(free_staff_arrival_home))
+            staff_members_list = []
 
-        staff_members_id_list = list(set(free_staff_departure_out) & set(free_staff_arrival_home))
-        staff_members_list = []
+            for staff_member_id in staff_members_id_list:
+                staff_member = self.llAPI.get_staff_member_info(staff_member_id)
+                staff_members_list.append(staff_member)
 
-        for staff_member_id in staff_members_id_list:
-            staff_member = self.llAPI.get_staff_member_info(staff_member_id)
-            staff_members_list.append(staff_member)
+            # Sort staff members according to their role and rank
+            captain_list = []
+            copilot_list = []
+            fsm_list = []
+            flight_attendant_list = []
 
-        # Sort staff members according to their role and rank
-        captain_list = []
-        copilot_list = []
-        fsm_list = []
-        flight_attendant_list = []
+            for staff_member in staff_members_list:
+                if staff_member.rank == "Captain" and staff_member.get_licence() == chosen_airplane.get_type_id():
+                    captain_list.append(staff_member)
+                elif staff_member.rank == "Copilot" and staff_member.get_licence() == chosen_airplane.get_type_id():
+                    copilot_list.append(staff_member)
+                elif staff_member.rank == "Flight Service Manager":
+                    fsm_list.append(staff_member)
+                elif staff_member.rank == "Flight Attendant":
+                    flight_attendant_list.append(staff_member)
 
-        for staff_member in staff_members_list:
-            if staff_member.rank == "Captain" and staff_member.get_licence() == chosen_airplane.get_type_id():
-                captain_list.append(staff_member)
-            elif staff_member.rank == "Copilot" and staff_member.get_licence() == chosen_airplane.get_type_id():
-                copilot_list.append(staff_member)
-            elif staff_member.rank == "Flight Service Manager":
-                fsm_list.append(staff_member)
-            elif staff_member.rank == "Flight Attendant":
-                flight_attendant_list.append(staff_member)
+            # Choose pilots
+            captain, copilot = self.choose_pilots_for_voyage(captain_list, copilot_list)
 
-        # Choose pilots
-        captain, copilot = self.choose_pilots_for_voyage(captain_list, copilot_list)
+            # Choose flight attendants
+            fsm, fa1, fa2 = self.choose_flight_attendants_for_voyage(fsm_list, flight_attendant_list)
 
-        # Choose flight attendants
-        fsm, fa1, fa2 = self.choose_flight_attendants_for_voyage(fsm_list, flight_attendant_list)
+            # Add cabin crew to voyage instance
+            cabin_crew_list = [captain.get_ssn(), copilot.get_ssn(), fsm.get_ssn(), fa1.get_ssn(), fa2.get_ssn()]
+            chosen_voyage.set_cabin_crew(cabin_crew_list)
+            chosen_voyage.set_fully_assigned()
 
-        # Add cabin crew to voyage instance
-        cabin_crew_list = [captain.get_ssn(), copilot.get_ssn(), fsm.get_ssn(), fa1.get_ssn(), fa2.get_ssn()]
-        chosen_voyage.set_cabin_crew(cabin_crew_list)
-        chosen_voyage.set_fully_assigned()
+            self.header("-", " VOYAGE ")
+            print(chosen_voyage)
 
-        self.header("-", " VOYAGE ")
-        print(chosen_voyage)
+            choice = input("\nIs this correct information (y/n)? ")
 
-        choice = input("\nIs this correct information (y/n)? ")
+            if choice == "y":
+                print("\nChanges have been confirmed")
 
-        if choice == "y":
-            print("\nChanges have been confirmed")
-
-            return self.llAPI.assign_voyage(chosen_voyage)
+                return self.llAPI.assign_voyage(chosen_voyage)

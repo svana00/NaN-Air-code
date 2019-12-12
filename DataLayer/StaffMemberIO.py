@@ -6,7 +6,8 @@ from MODELS.voyage import Voyage
 class StaffMemberIO:
     
     def load_all_staff(self):
-        ''' Returns a list of instances of all staff members '''
+        ''' Reads into the database. Returns a list of instances of all staff members '''
+
         name_list = []
         staff_file = open("csv_files/Staff_Members.csv", "r")
         reader = csv.DictReader(staff_file)
@@ -27,34 +28,26 @@ class StaffMemberIO:
 
     def store_new_staff_member(self,staff_member_str):
         ''' Stores new staff member to existing file '''
+
         staff_member_file = open("csv_files/Staff_Members.csv", "a+")
         staff_member_file.write(staff_member_str)
         staff_member_file.close()
 
-    def store_staff_member_info(self, staff_list):
+    def store_staff_member_changes(self, staff_list):
         ''' Changes/adds info on a specific staff member '''
-        big_csv = ""
+
+        big_csv = self.get_csv_header()
         for staff in staff_list:
             big_csv += staff.instance_to_csv_string() + "\n"
         staff_file = open("csv_files/Staff_Members.csv", "w+")
         staff_file.write(big_csv)
 
-    def load_work_schedule(self):
-        ''' Gets work schedule for a specific staff member. Returns a dict with staff ID as the key 
-            and a list of voyages the staff member has for the week as the value '''
+    def get_csv_header(self):
+        ''' Gets the header from the csv file '''
 
-        staff_member_file = open("csv_files/Staff_Members.csv", "r")
-        voyages_file = open("csv_files/Voyages.csv", "r")
-
-        staff_reader = csv.DictReader(staff_member_file)
-        voyages_reader = csv.DictReader(voyages_file)
-
-        start_date = "2019-11-04T05:32:00"
-        end_date = datetime.datetime.fromisoformat("2019-11-04T05:32:00") + datetime.timedelta(days = 6)
-        for i in voyages_reader:
-            #if i % 2 != 0:
-                #flight_num_out = voyages_reader[i]["flightNumber"]
-            pass
-
-beggi = StaffMemberIO()
-beggi.load_work_schedule()
+        staff_file = open("csv_files/Staff_Members.csv", "r")
+        for index, line in enumerate(staff_file):
+            if index == 0:
+                header = line
+        
+        return header

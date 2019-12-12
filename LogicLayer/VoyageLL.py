@@ -66,49 +66,58 @@ class VoyageLL():
     def check_voyages_state(self):
         pass
 
-    def make_voyage(self, voyage_info_list):
+    def create_flight_numbers_for_voyage(self, voyage_info_list, target_dest_id):
         voyages_list = self.ioAPI.load_all_voyages()
-
-        # Create voyage id
-        voyage_id_int = len(voyages_list) + 1
-
-        if voyage_id_int < 10:
-            voyage_id_str = "00" + "{}".format(voyage_id_int)
-
-        elif voyage_id_int < 100:
-            voyage_id_str = "0" + "{}".format(voyage_id_int)
-                
-        # Create flight number for each flight
-        target_id = voyage_info_list[0]
         destinations_list = self.ioAPI.load_all_destinations()
 
         for destination in destinations_list:
             destination_id = destination.get_id()
-            if target_id == destination_id:
+            if target_dest_id == destination_id:
+                # Find flight time for chosen destination for voyage
                 flight_time = destination.get_flight_time()
                 dest_flight_number_id  = destination.get_flight_number_id()
 
         target_date = voyage_info_list[1]
         counter = 0
 
+        # Find how many flights are already to that destination that same day
         for voyage in voyages_list: 
             dest_id = voyage.get_dest_id()
             departure_out_date = voyage.get_departure_out()
             date = datetime.datetime.fromisoformat(departure_out_date).date()
             date = str(date)
-            if dest_id == target_id and date == target_date:
+            if dest_id == target_dest_id and date == target_date:
                 counter += 1
 
         flight_number_out_str = "NA" + str(dest_flight_number_id) + str(counter * 2)
         flight_number_back_str = "NA" + str(dest_flight_number_id) + str(counter * 2 + 1)
 
+        return flight_time, flight_number_out_str, flight_number_back_str
+
+    def make_voyage(self, voyage_info_list):
+        voyages_list = self.ioAPI.load_all_voyages()
+        target_dest_id = voyage_info_list[0]
+
+        # Create voyage id
+        voyage_id_int = len(voyages_list) + 1
+
+        if voyage_id_int < 10:
+            voyage_id_str = "00" + "{}".format(voyage_id_int)
+        elif voyage_id_int < 100:
+            voyage_id_str = "0" + "{}".format(voyage_id_int)
+
+        # Create flight numbers
+        flight_time, flight_number_out_str, flight_number_back_str = \
+        self.create_flight_numbers_for_voyage(voyage_info_list, target_dest_id)
+
+        # Find time of each flight
         departure_out_str = ("T").join(voyage_info_list[1:]) # Departure out
 
         departure_out = datetime.datetime.fromisoformat(departure_out_str)
         arrival_out = departure_out + datetime.timedelta(hours = int(flight_time))
         arrival_out_str = arrival_out.isoformat()
 
-        # An hour between flights
+        # An hour between the flights
         departure_home = arrival_out + datetime.timedelta(hours = 1)
         departure_home_str = departure_home.isoformat()
 
@@ -116,7 +125,7 @@ class VoyageLL():
         arrival_home_str = arrival_home.isoformat()
 
         new_voyage = Voyage(voyage_id_str, flight_number_out_str, flight_number_back_str, departure_out_str, \
-                            arrival_out_str, departure_home_str, arrival_home_str, target_id)
+                            arrival_out_str, departure_home_str, arrival_home_str, target_dest_id)
 
         csv_str = new_voyage.instance_to_csv_string()
 

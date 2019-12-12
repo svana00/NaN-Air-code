@@ -38,11 +38,4 @@ class DestinationLL():
         return self.ioAPI.create_new_destination(dest_csv_string)
     
     def store_new_changes(self, dest_instance_list):
-        return self.ioAPI.store_destination_info(dest_instance_list)
-
-    #def change_destination(self, old_str, new_str):
-    #    old_file = self.ioAPI.get_all_file()
-    #    new_file = open("Destinations_temp.csv", "w")
-    #    for line in old_file:
-    #        new_file.write(line.replace(old_str, new_str)
-    #    return self.ioAPI.change_destination()
+        return self.ioAPI.store_destination_changes(dest_instance_list)

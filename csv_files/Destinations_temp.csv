@@ -1,8 +1,0 @@
-dest_id,city,country,airport,flight_time,distance,contact,emergency_number,flight_number_id
-LYR,Longyearbyean,Svalbard,Svalbard Airport,4,2018,Arnar Ingi G,8495039,01
-GOH,Nuuk,Greenland,Nuuk Airport,3,1402,Kuupik Kleist,5861483,02
-KUS,Kulusuk,Greenland,Kulusuk Airport,2,712,Rasmus Lerdorf,5960395,03
-FAE,Thorshavn,Faroe Islands,Thorshavn Airport,1,824,Ebba Hentze,5860385,04
-LWK,Tingwall,Scotland,Tingwall Airport,2,1654,Jamie Fraser,5968292,05
-KEF,Keflavik,Iceland,Keflavík Airport,0,0,Karl Karlsson,7958392,06
-

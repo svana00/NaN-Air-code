@@ -2,7 +2,10 @@ import csv
 from MODELS.destination import Destination
 
 class DestinationIO: 
+
     def load_all_destinations(self):
+        ''' Reads into the database. Returns a list of all destinations as instances '''
+
         dest_list = []
         dest_file = open("csv_files/Destinations.csv", "r")
         reader = csv.DictReader(dest_file)
@@ -25,20 +28,27 @@ class DestinationIO:
 
     def store_new_destination(self,dest_str):
         ''' Stores new destination to the existing file '''
+
         dest_file = open("csv_files/Destinations.csv", "a+")
         dest_file.write(dest_str)
         dest_file.close()
 
-    def store_destination_info(self, dest_list):
+    def store_destination_changes(self, dest_list):
         ''' Changes/adds info to an existing destination '''
-        big_csv = ""
+
+        big_csv = self.get_csv_header()
         for dest in dest_list:
             big_csv += dest.instance_to_csv_string() + "\n"
         dest_file = open("csv_files/Destinations.csv", "w+")
         dest_file.write(big_csv)
+    
+    def get_csv_header(self):
+        ''' Gets the header from the csv file '''
 
-
-    def get_all_file(self):
-        the_file = open("Destinations.csv", "r")
-        return the_file
+        dest_file = open("csv_files/Destinations.csv", "r")
+        for index, line in enumerate(dest_file):
+            if index == 0:
+                header = line
         
+        return header
+        dest_file.write(big_csv)
