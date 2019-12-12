@@ -169,26 +169,25 @@ class VoyageUI():
 
         return plane_id
 
+    def choose_staff_member(self, staff_member_list):
+        for number, staff_member in enumerate(staff_member_list, 1):
+            ssn = staff_member.get_ssn()
+            name = staff_member.get_name()
+            print("{}. {:<25} ssn: {}".format(number, name, ssn))
+
+        choice = input("\nEnter number for {}: ".format(staff_member.get_rank().lower()))
+        chosen_staff_member = staff_member_list[int(choice) - 1]
+
+        return chosen_staff_member
+
     def choose_pilots_for_voyage(self, captain_list, copilot_list):
         ''' Returns chosen captain and copilot for voyage '''
         # Choosing captain
         self.header("-", " CHOOSE CAPTAIN ")
-        for number, captain in enumerate(captain_list, 1):
-            ssn = captain.get_ssn()
-            name = captain.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-
-        choice = input("\nEnter number for copilot: ")
-        captain = captain_list[int(choice) - 1]
+        captain = self.choose_staff_member(captain_list)
 
         self.header("-", " CHOOSE COPILOT ")
-        for number, copilot in enumerate(copilot_list, 1):
-            ssn = copilot.get_ssn()
-            name = copilot.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-
-        choice = input("\nEnter number for copilot: ")
-        copilot = copilot_list[int(choice) - 1]
+        copilot = self.choose_staff_member(copilot_list)
         
         return captain, copilot
 
@@ -196,35 +195,16 @@ class VoyageUI():
         ''' Returns chosen flight attendants for voyage '''
         # Choosing flight service manager
         self.header("-", " CHOOSE FLIGHT SERVICE MANAGER ")
-
-        for number, fsm in enumerate(fsm_list, 1):
-            ssn = fsm.get_ssn()
-            name = fsm.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-        
-        choice = input("\nEnter number for flight service manager: ")
-        fsm = fsm_list[int(choice) - 1]
+        fsm = self.choose_staff_member(fsm_list)
 
         # Choosing flight attendant 1
         self.header("-", " CHOOSE FLIGHT ATTENDANT 1 ")
-        for number, flight_attendant in enumerate(flight_attendant_list, 1):
-            ssn = flight_attendant.get_ssn()
-            name = flight_attendant.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-
-        choice = input("\nEnter number for flight attendant 1: ")
-        fa1 = flight_attendant_list[int(choice) - 1]
-
+        fa1 = self.choose_staff_member(flight_attendant_list)
         flight_attendant_list.remove(fa1)
 
         # Choosing flight attendant 2
         self.header("-", " CHOOSE FLIGHT ATTENDANT 2 ")
-        for number, flight_attendant in enumerate(flight_attendant_list, 1):
-            ssn = flight_attendant.get_ssn()
-            name = flight_attendant.get_name()
-            print("{}. {}, ssn: {}".format(number, name, ssn))
-        choice = input("\nEnter number for flight attendant 2: ")
-        fa2 = flight_attendant_list[int(choice) - 1]
+        fa2 = self.choose_staff_member(flight_attendant_list)
 
         return fsm, fa1, fa2
 
