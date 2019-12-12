@@ -1,4 +1,5 @@
 from Validation.validation import Validate
+import datetime
 class VoyageUI():
 
     def __init__(self, llAPI):
@@ -80,22 +81,32 @@ class VoyageUI():
             # Users can choose whether they want to see more info about a specific voyage
             choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
             if choice == "y":
-                return self.display_voyage(voyage_list)
+                number = int(input("Enter number for voyage: "))
+                return self.display_voyage(voyage_list, number)
             elif choice == "b":
                 return 0
             elif choice == "h":
                 return "*"
 
-    def display_voyage(self, voyage_list):
+    def display_voyage(self, voyage_list, number):
         #do
         return_val = 0
         while return_val == 0:
-            number = int(input("Enter number for voyage: "))
             voyage = voyage_list[(number) - 1]
             voyage_id = voyage.get_voyage_id()
             self.header("-", " Voyage {} ".format(voyage_id))
             print(voyage)
 
+            plane_id = voyage.get_plane_id()
+            date_and_time = datetime.datetime.now()
+            date_and_time_str = datetime.datetime.isoformat(date_and_time)
+
+            airplane_state = self.llAPI.get_airplane_state(plane_id, date_and_time_str)
+
+            print("\nCurrent state of voyage: {}".format(airplane_state))
+            
+            return 0
+        
     def create_voyage(self):
         ''' Returns a list of information about a new voyage '''
         #do
