@@ -8,7 +8,7 @@ class DestinationUI():
         self.validation = Validate()
     
     def going_back(self):
-        variable = input("To go back enter 0, to go home enter *: ")
+        variable = input("\nTo go back enter b, to go home enter h: ")
         if variable == "b":
                 return 0
         elif variable == "h":
@@ -72,7 +72,7 @@ class DestinationUI():
             destination = self.llAPI.get_destination_info(dest_id)
             self.header("-", " {} ".format(destination.get_city()))
             print(destination)
-            back_option = input("To go back enter 0 to go home enter *  ")
+            back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":

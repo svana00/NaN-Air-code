@@ -11,7 +11,16 @@ class AirplaneLL():
         return airplane_info_list
 
     def get_all_airplane_types(self):
-        pass
+        ''' Returns a list of all instances of airplane types '''
+
+        airplane_types_list = self.ioAPI.load_airplane_types()
+        airplane_types_info_list = []
+
+        for airplane_type in airplane_types_list:
+            airplane_type_id = airplane_type.get_plane_type_id()
+            airplane_types_info_list.append(airplane_type_id)
+
+        return airplane_types_info_list
 
     def get_airplane(self, plane_id):
         airplanes_list = self.ioAPI.load_all_airplanes()

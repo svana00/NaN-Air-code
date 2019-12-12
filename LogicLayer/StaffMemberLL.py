@@ -49,23 +49,11 @@ class StaffMemberLL():
         pilots_list_with_licence = []
 
         for pilot in pilots_list:
-            licence = pilot.licence()
+            licence = pilot.get_licence()
             if licence == airplane_type_id:
                 pilots_list_with_licence.append(pilot)
 
         return pilots_list_with_licence
-
-    def get_all_airplane_types(self):
-        ''' Returns a list of all instances of airplane types '''
-
-        airplane_types_list = self.ioAPI.load_airplane_types()
-        airplane_types_info_list = []
-
-        for airplane_type in airplane_types_list:
-            airplane_type_id = airplane_type.get_plane_type_id()
-            airplane_types_info_list.append(airplane_type_id)
-
-        return airplane_types_info_list
 
     def get_pilots_by_all_licences(self):
         ''' Returns a dictionary where the keys are an airplane type
