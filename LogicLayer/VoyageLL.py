@@ -130,3 +130,20 @@ class VoyageLL():
         csv_str = new_voyage.instance_to_csv_string()
 
         return self.ioAPI.store_new_voyage(csv_str)
+
+    def voyage_date_check(self, departure_out_str):
+        ''' Returns whether a date is valid for a voyage '''
+        voyages_list = self.ioAPI.load_all_voyages()
+        departure_out = datetime.datetime.fromisoformat(departure_out_str)
+
+        for voyage in voyages_list:
+            departure_out_2_str = voyage.get_departure_out()
+            departure_out_2 = datetime.datetime.fromisoformat(departure_out_2_str)
+
+            start_date = departure_out_2 + datetime.timedelta(hours = -1)
+            end_date = departure_out_2 + datetime.timedelta(hours = 1)
+
+            if start_date <= departure_out <= end_date:
+                return False
+
+        return True

@@ -149,17 +149,13 @@ class VoyageUI():
                     print("Invalid choice. Enter again.")
                     number = input("\nEnter number of desired destination for voyage: ")
 
-            invalid_input = True
-
             # User chooses date for voyage
             self.header("-", " CHOOSE DATE ")
             date_str = input("Enter date of voyage (YYYY-MM-DD): ")
 
             while not self.validate.validate_date(date_str):
                 print("Invalid date.")
-                date_str = input("Enter date of voyage (YYYY-MM-DD): ")
-            else:
-                voyage_info_list.append(date_str)        
+                date_str = input("Enter date of voyage (YYYY-MM-DD): ")      
 
             # User chooses time for voyage
             self.header("-", " CHOOSE TIME ")
@@ -169,7 +165,10 @@ class VoyageUI():
                 print("Invalid time.")
                 time_str = input("Enter time of voyage (HH:MM:SS): ")
             else:
-                voyage_info_list.append(time_str)   
+                departure_out_str = "T".join([date_str, time_str])
+                while not self.llAPI.voyage_date_check(departure_out_str):
+                    print("Invalid date. There is already a plane leaving Keflavík at that hour.")
+                    departure_out_str = input("Please enter a new ")
 
             self.header("-", " ADD VOYAGE ")
             print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
