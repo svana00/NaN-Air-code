@@ -36,9 +36,3 @@ class DestinationIO:
             big_csv += dest.instance_to_csv_string() + "\n"
         dest_file = open("csv_files/Destinations.csv", "w+")
         dest_file.write(big_csv)
-
-
-    def get_all_file(self):
-        the_file = open("Destinations.csv", "r")
-        return the_file
-        
