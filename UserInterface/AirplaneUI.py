@@ -18,7 +18,7 @@ class AirplaneUI():
     def display_airplane_menu(self):
         return_val = 0
         while return_val == 0:
-            print("*"*56 + "\n"+" "*int((56-len(" AIRPLANES "))/2)+" AIRPLANES "+" "*int((56-len(" AIRPLANES "))/2)+"\n"+"*"*56)
+            print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" AIRPLANES "))/2)+" AIRPLANES "+" "*int((56-len(" AIRPLANES "))/2)+"\n"+"*"*56)
             print("1. OVERVIEW\n2. ADD AIRPLANES\n")
             user_choice = input("Input a command: ")
 

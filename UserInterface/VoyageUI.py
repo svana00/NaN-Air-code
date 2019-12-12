@@ -12,7 +12,7 @@ class VoyageUI():
     def display_voyages_menu(self):
         """ Displays the main menu for voyages giving the user the 
             options to change, add, or see overview of voyages """
-        print("*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
+        print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
         print("1. ASSIGN VOYAGE\n2. VOYAGES OVERVIEW\n3. CREATE VOYAGE")
         var = input("\nInput a command: ")
 

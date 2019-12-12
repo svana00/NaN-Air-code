@@ -16,7 +16,7 @@ class StaffMemberUI():
         ''' Prints the main staff menu and calls the appropriate
             functions for the option that's picked '''
 
-        print("*"*56 + "\n"+" "*int((56-len(" STAFF "))/2)+" STAFF "+" "*int((56-len(" STAFF "))/2)+"\n"+"*"*56)
+        print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" STAFF "))/2)+" STAFF "+" "*int((56-len(" STAFF "))/2)+"\n"+"*"*56)
         print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
         var = input("\nInput a command: ")
         if var == "1":

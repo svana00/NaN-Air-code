@@ -23,7 +23,7 @@ class DestinationUI():
         #I've added back and home
         return_val = 0
         while return_val == 0:
-            print("*"*56 + "\n"+" "*int((56-len(" DESTINATIONS "))/2)+" DESTINATIONS "+" "*int((56-len(" DESTINATIONS "))/2)+"\n"+"*"*56)
+            print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" DESTINATIONS "))/2)+" DESTINATIONS "+" "*int((56-len(" DESTINATIONS "))/2)+"\n"+"*"*56)
             print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
             var = input("\nInput a command: ")
             if var == "1":
