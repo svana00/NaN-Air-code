@@ -203,10 +203,25 @@ class VoyageUI():
             self.header("-", " ADD VOYAGE ")
             print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
 
-            print("\nChanges have been confirmed")
-
-            return self.llAPI.make_voyage(new_voyage)
-
+            # ---- Get confirmation from user ----
+            yes_or_no = input("Is all the information correct? (y/n): ")
+            if yes_or_no == "y":
+                self.llAPI.make_voyage(new_voyage)
+                print("You did it! The new voyage has been stored in the database!")
+            elif yes_or_no == "n":
+                back_option = input("\nTo go back enter b, to go home enter h: ")
+                if back_option == "b":
+                    return 0
+                elif back_option == "h":
+                    return "*"
+            
+            # ------- Give the option of going back or home ------------
+            back_option = input("\nTo go back enter b, to go home enter h: ")
+            if back_option == "b":
+                return 0
+            elif back_option == "h":
+                return "*"
+    
     def choose_voyage_to_assign(self):
         ''' Returns voyage instance chosen by user out of non assigned voyages '''
         #do
