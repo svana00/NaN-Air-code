@@ -171,7 +171,7 @@ class VoyageUI():
             self.header("-", " CHOOSE DATE ")
             date_str = input("Please enter a date for the voyage (YYYY-MM-DD): ")
 
-            while not self.validate.validate_date(date_str):
+            while not self.validation.validate_date(date_str):
                 print("\nInvalid date.")
                 date_str = input("Please enter another date for the voyage (YYYY-MM-DD): ")      
 
@@ -179,7 +179,7 @@ class VoyageUI():
             self.header("-", " CHOOSE TIME ")
             time_str = input("Please enter a time for the voyage (HH:MM:SS): ")
 
-            while not self.validate.validate_time(time_str):
+            while not self.validation.validate_time(time_str):
                 print("\nInvalid time.")
                 time_str = input("Please enter another time for the voyage (HH:MM:SS): ")
 
@@ -189,11 +189,11 @@ class VoyageUI():
                 print("\nInvalid departure time. There is already a plane leaving Keflavik at that hour.")
                 
                 departure_date = input("Please enter a new departure date for your voyage (YYYY-MM-DD): ")
-                while not self.validate.validate_date(departure_date):
+                while not self.validation.validate_date(departure_date):
                     departure_date = input("Invalid date. Please enter a new departure date for your voyage (YYYY-MM-DD): ")
 
                 departure_time = input("Please enter another time for the voyage (HH:MM:SS): ")
-                while not self.validate.validate_time(time_str):
+                while not self.validation.validate_time(time_str):
                     time_str = input("Invalid time. Please enter another time for the voyage (HH:MM:SS): ")
                 
                 departure_out_str = "T".join([departure_date, departure_time])
@@ -203,10 +203,25 @@ class VoyageUI():
             self.header("-", " ADD VOYAGE ")
             print("\n1. DESTINATION: {}\n2. DATE: {}\n3. TIME OF FLIGHT FROM KEFLAVIK TO DESTINATION: {}".format(city, date_str, time_str))
 
-            print("\nChanges have been confirmed")
-
-            return self.llAPI.make_voyage(new_voyage)
-
+            # ---- Get confirmation from user ----
+            yes_or_no = input("Is all the information correct? (y/n): ")
+            if yes_or_no == "y":
+                self.llAPI.make_voyage(new_voyage)
+                print("You did it! The new voyage has been stored in the database!")
+            elif yes_or_no == "n":
+                back_option = input("\nTo go back enter b, to go home enter h: ")
+                if back_option == "b":
+                    return 0
+                elif back_option == "h":
+                    return "*"
+            
+            # ------- Give the option of going back or home ------------
+            back_option = input("\nTo go back enter b, to go home enter h: ")
+            if back_option == "b":
+                return 0
+            elif back_option == "h":
+                return "*"
+    
     def choose_voyage_to_assign(self):
         ''' Returns voyage instance chosen by user out of non assigned voyages '''
         #do
@@ -248,7 +263,7 @@ class VoyageUI():
         for number, airplane_id in enumerate(airplane_id_list, 1):
             airplane = self.llAPI.get_airplane(airplane_id)
             name = airplane.get_name()
-            print("{}. {}".format(number, name))
+            print("{}. {} ".format(number, name))
 
         choice = input("\nEnter number for desired plane: ")
         plane_id = airplane_id_list[int(choice) - 1]

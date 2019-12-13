@@ -32,7 +32,7 @@ class UIManager():
         while return_val == 0 or return_val == "*":
             
             # ----- super extra logo ------
-            """
+            '''
             print(red + "\n\n             /**   /**           /**   /**        /******  /****** /******* "+ white + "TM"+ red +"                                               ")
             print("            | *** | **          | *** | **       /**__  **|_  **_/| **__  **"+ white + "   *  *                                          " + red)               
             print(yellow + "            | ****| **  /****** | ****| **      | **  \ **  | **  | **  \ **"+ dark_gray + "           *         "+ white + "Where every number"+ red + "          ")
@@ -41,7 +41,7 @@ class UIManager():
             print("            | **\  *** /**__  **| **\  ***      | **  | **  | **  | **  \ **"+ dark_gray + "               *                                 " + blue)
             print(magenta + "            | ** \  **|  *******| ** \  **      | **  | ** /******| **  | **"+ white + "                     *                           "+ magenta)
             print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/                                                 \n\n" + "\033[0m")
-            """
+            '''
             # ---- very basic logo -------
             """
             print("\n\n             /**   /**           /**   /**        /******  /****** /******* TM")

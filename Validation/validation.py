@@ -98,16 +98,40 @@ class Validate:
 
     def validate_flight_time(self, flight_time):
         ''' Validates flight time inputs from user ''' 
+        try:
+            int(flight_time)
+            if int(flight_time) > 0 and int(flight_time) < 11:
+                return True
+            else: 
+                return False
 
-        if int(flight_time) > 0:
-            return True
-        
-        return False
+        except ValueError:
+            return False
 
     def validate_flight_distance(self, distance):
         ''' Validates flight distance inputs from user '''
         
-        if int(distance) > 0:
+        try:
+            int(distance)
+
+            if int(distance) > 0 and int(distance) < 20000:
+                return True
+            else:
+                return False
+
+        except ValueError:
+            return False
+
+    def validate_dest_id(self, new_dest_id):
+
+        if len(new_dest_id) == 3 and new_dest_id.isupper():
+            return True
+        
+        return False
+
+    def validate_flight_id(self, new_flight_id):
+
+        if len(new_flight_id) == 2 and new_flight_id.isdigit():
             return True
         
         return False

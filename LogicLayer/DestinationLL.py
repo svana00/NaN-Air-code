@@ -20,18 +20,6 @@ class DestinationLL():
         return dest_instance_list
     
     def create_new_destination(self, new_destination):
-
-        # ---- Create Destination ID ----
-        new_dest_id = new_destination.get_city()[:3].upper()
-
-        dest_list = self.ioAPI.load_all_destinations()
-        for dest in dest_list:
-            temp_dest_id = dest.get_id()
-            if new_dest_id == temp_dest_id:
-                new_dest_id = new_destination.get_country()[:3].upper()
-        
-        new_destination.set_id(new_dest_id)
-
         return self.ioAPI.create_new_destination(new_destination)
     
     def store_new_changes(self, dest_instance_list):

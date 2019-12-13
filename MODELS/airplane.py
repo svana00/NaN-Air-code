@@ -1,8 +1,9 @@
 class Airplane():
-    def __init__(self, name = "", plane_id = "", type_id = ""): #status
+    def __init__(self, name = "", plane_id = "", type_id = "", capacity = ""): #status
         self.__name = name
         self.__plane_id = plane_id
         self.__type_id = type_id
+        self.__capacity = capacity
 
     #------- get functions -----------
     def get_name(self):
@@ -13,6 +14,9 @@ class Airplane():
 
     def get_type_id(self):
         return self.__type_id
+    
+    def get_capacity(self):
+        return self.__capacity
 
     #------- set functions -----------
     def set_name(self, new_name):
@@ -23,6 +27,9 @@ class Airplane():
 
     def set_type_id(self, new_type_id):
         self.__type_id = new_type_id
+    
+    def set_capacity(self, new_capacity):
+        self.__capacity = new_capacity
 
     def instance_to_csv_string(self):
         ''' Makes a csv string from airplane instance '''
