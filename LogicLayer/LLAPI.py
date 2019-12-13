@@ -61,11 +61,6 @@ class LLAPI():
     def create_new_destination(self, new_destination):
         return self.destLL.create_new_destination(new_destination)
     
-    #def anton_og_magga_eru_best(self):
-    def get_destination_instance_list(self):
-        destination_instance_list = self.destLL.lets_see_if_this_works()
-        return destination_instance_list
-
     def store_new_dest_changes(self, destination_instance_list):
         return self.destLL.store_new_changes(destination_instance_list)
 
@@ -84,9 +79,6 @@ class LLAPI():
 
     def get_non_assigned_voyages(self):
         return self.voyageLL.get_non_assigned_voyages()
-
-    def check_voyages_state(self):
-        return self.voyageLL.check_voyages_state()
 
     def get_voyages_by_week(self, start_of_desired_week_str):
         return self.voyageLL.get_voyages_by_week(start_of_desired_week_str)

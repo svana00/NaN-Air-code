@@ -85,21 +85,8 @@ class DestinationUI():
 
         # ---- Initialize a new instance of Destination with information as empty strings ----
         new_destination = Destination()
-        country_str = ""
-        city_str = ""
-        airport_str = ""
-        flight_time_str = ""
-        distance_str = ""
-        name_of_contact_str = ""
-        emergency_number_str = ""
-
-        valid_input_list = ["1", "2", "3", "4", "5", "6", "7", "confirm"]
-        chosen_input_list = set()
 
         self.header("-", " ADD DESTINATION ")
-        new_info_str = "\n1. COUNTRY: {}\n2. CITY: {}\n3. AIRPORT: {}\n4. FLIGHT TIME: {}\n5. DISTANCE: {}\n6. NAME OF CONTACT: {}\n7. EMERGENCY PHONE: {}"\
-                .format(country_str, city_str, airport_str, flight_time_str, distance_str, name_of_contact_str, emergency_number_str)
-        print(new_info_str)
 
         choice = input("\nEnter b to go back, h to go home, or any other letter to start adding a new staff member: ")
         if choice == "b":
@@ -225,11 +212,11 @@ class DestinationUI():
 
         return_val = 0
         while return_val == 0:
-            dest_instance_list = self.llAPI.get_destination_instance_list()
+            dest_instance_list = self.llAPI.get_destinations()
             dest_instance_dictionary = {str(i+1): dest_instance_list[i] for i in range(len(dest_instance_list))}
             self.header("*", " DESTINATIONS ")
-            for key,val in dest_instance_dictionary.items():
-                print("{}. {}".format(key, val.get_city()))
+            for counter, destination in dest_instance_dictionary.items():
+                print("{:>3}. {}".format(counter, destination.get_city()))
 
             dest_choice = input("\nEnter which destination you want to change: ")
             if dest_choice == "b":
@@ -238,26 +225,23 @@ class DestinationUI():
                 return "*"
 
             while dest_choice in dest_instance_dictionary.keys():
-                self.header("*", " {} ".format(dest_instance_dictionary[dest_choice].get_city()))
-                print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(dest_instance_dictionary[dest_choice].get_contact(), dest_instance_dictionary[dest_choice].get_emergency_number()))
+                destination = dest_instance_dictionary[dest_choice]
+                self.header("*", " {} ".format(destination.get_city()))
+                print("\n 1. NAME OF CONTACT: {}\n 2. EMERGENCY PHONE: {}".format(destination.get_contact(), destination.get_emergency_number()))
                 change_info_choice = input("\Please enter number for info that you would like to change: ")
                 
                 if change_info_choice == "1":
                     new_contact_str = input("Please enter name of new contact: ")
-                    if self.validation.validate_name(new_contact_str):
-                        dest_instance_dictionary[dest_choice].set_new_contact(new_contact_str)
-                        print("\n{}".format(dest_instance_dictionary[dest_choice]))
-                    else:
-                        print("\nInvalid name")
-
+                    while not self.validation.validate_name(new_contact_str):
+                        new_contact_str = input("The name you entered is invalid. Please entere a new one: ")
+                    destination.set_new_contact(new_contact_str)
+                    
                 elif change_info_choice == "2":
                     return_val = self.back_option(change_info_choice)
                     new_emergency_number_str = input("Please enter emergency number for contact: ")
-                    if self.validation.validate_phone_num(new_emergency_number_str):
-                        dest_instance_dictionary[dest_choice].set_new_emergency_number(new_emergency_number_str)
-                        print("\n{}".format(dest_instance_dictionary[dest_choice]))
-                    else:
-                        print("\nInvalid phone number")
+                    while not self.validation.validate_phone_num(new_emergency_number_str):
+                        new_emergency_number_str = input("The phone numebr you entered is invalid. Please enter one with 7 consecutive integers: ")
+                    destination.set_new_emergency_number(new_emergency_number_str)
 
                 else:
                     print("\nInvalid choice, please try again")
