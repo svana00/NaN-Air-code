@@ -9,6 +9,7 @@ class DestinationUI():
     
     def going_back(self):
         ''' Gives the user the option to go back when called '''
+
         variable = input("\nTo go back enter b, to go home enter h: ")
         if variable == "b":
                 return 0
@@ -28,17 +29,24 @@ class DestinationUI():
             print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" DESTINATIONS "))/2)+" DESTINATIONS "+" "*int((56-len(" DESTINATIONS "))/2)+"\n"+"*"*56)
             print("1. CHANGE DESTINATION\n2. DESTINATIONS OVERVIEW\n3. ADD NEW DESTINATION")
             var = input("\nInput a command: ")
-            if var == "1":
-                #self.change_destination_info()
-                return_val = self.change_destination()
-            elif var == "2":
-                return_val = self.show_destinations()
-            elif var == "3":
-                return_val = self.create_destination()
-            elif var == "b":
-                return 0
-            elif var == "h":
-                return "*"
+
+            _ = True
+            while _:
+                if var == "1":
+                    _ = False
+                    return_val = self.change_destination()
+                elif var == "2":
+                    _ = False
+                    return_val = self.show_destinations()
+                elif var == "3":
+                    _ = False
+                    return_val = self.create_destination()
+                elif var == "b":
+                    return 0
+                elif var == "h":
+                    return "*"
+                else:
+                    var = input("Whoops! Invalid input. Please try again: ")
         if return_val == "*":
             return "*"
 
@@ -56,24 +64,31 @@ class DestinationUI():
                 city = destination.get_city()
                 counter += 1
                 print("{:>3}. {}: {}".format(counter, country, city))
-
-            choose_between = input("\nDo you want to see a specific destination? (y/n): ")
-            if choose_between == "y":
+            choice = input("\nDo you want to see a specific destination? (y/n): ")
+            if choice == "y":
                 return_val = self.show_destination_info(dest_list)
-            elif choose_between == "b":
-                return 0
-            elif choose_between == "h":
-                return "*"
 
+            elif choice == "n":
+                choice = input("\nEnter b to go back or h to go home: ")
+                while True:
+                    if choice == "b":
+                        return 0
+                    elif choice == "h":
+                        return "*"
+            else:
+                choice = input("Whoops! Invalid input. Try again: ")
+            
     def show_destination_info(self, dest_list):
+        ''' Shows more information about a specific destination '''
 
         return_val = 0
         while return_val == 0:
-            choose_number = int(input("Please enter number of destination: "))
-            dest_id = dest_list[(choose_number) -1].get_id()
+            choice = int(input("Please enter number of destination: "))
+            dest_id = dest_list[(choice) -1].get_id() # Matches choice to the index of the list
             destination = self.llAPI.get_destination_info(dest_id)
             self.header("-", " {} ".format(destination.get_city()))
             print(destination)
+
             back_option = input("To go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
@@ -115,12 +130,14 @@ class DestinationUI():
         print(new_destination)
         new_dest_id_str = input("Please enter the ID of {}: ".format(new_city_str))
 
+        # Get all destinations to avoid using the same ID
         dest_id_list = []
         dest_list = self.llAPI.get_destinations()
         for dest in dest_list:
             dest_id_list.append(dest.get_id())
 
         while new_dest_id_str in dest_id_list or not self.validation.validate_dest_id(new_dest_id_str):
+            # Shows different error messages depending on user input error
             if new_dest_id_str in dest_id_list:
                 new_dest_id_str = input("This destination ID is already in use. Please enter a new one: ")
             elif not self.validation.validate_dest_id(new_dest_id_str):
@@ -172,12 +189,14 @@ class DestinationUI():
         print(new_destination)
         new_flight_num_id = input("Please enter the two digit number used for creating flight numbers to {}: ".format(new_city_str))
         
+        # Gets all destinations to avoid using the same ID when creating flight numbers
         flight_num_id_list = []
         dest_list = self.llAPI.get_destinations()
         for dest in dest_list:
             flight_num_id_list.append(dest.get_flight_number_id())
         
         while new_flight_num_id in flight_num_id_list or not self.validation.validate_flight_id(new_flight_num_id):
+            # Shows different error messages depending on user input error
             if new_flight_num_id in flight_num_id_list:
                 new_flight_num_id = input("That flight number ID is already in use. Please enter a new one: ")
             elif not self.validation.validate_flight_id(new_flight_num_id):
@@ -192,6 +211,7 @@ class DestinationUI():
             self.llAPI.create_new_destination(new_destination)
             print("Ah, tres bien! The staff member has been stored in the database!")
         
+        # Offers user to go back or home
         choice = input("\nEnter b to go back or h to go home: ")
         while True:
             if choice == "b":
@@ -213,17 +233,19 @@ class DestinationUI():
         return_val = 0
         while return_val == 0:
             dest_instance_list = self.llAPI.get_destinations()
+            # Creates a dictionary with numbers as keys and instances of destinations as values
             dest_instance_dictionary = {str(i+1): dest_instance_list[i] for i in range(len(dest_instance_list))}
             self.header("*", " DESTINATIONS ")
             for counter, destination in dest_instance_dictionary.items():
                 print("{:>3}. {}".format(counter, destination.get_city()))
 
-            dest_choice = input("\nEnter which destination you want to change: ")
+            dest_choice = input("\nEnter which destination you want to change, or press b to go back or h to go home: ")
             if dest_choice == "b":
                 return 0
             elif dest_choice == "h":
                 return "*"
 
+            # Sticks the user into an input loop until they are satisfied with the changes
             while dest_choice in dest_instance_dictionary.keys():
                 destination = dest_instance_dictionary[dest_choice]
                 self.header("*", " {} ".format(destination.get_city()))
@@ -249,4 +271,7 @@ class DestinationUI():
                 choice = input("\nDo you want to make more changes? (y/n): ")
                 if choice == "n":
                     return_val = self.llAPI.store_new_dest_changes(dest_instance_list)
+                if choice == "y":
+                    continue
+
                 return self.back_option(choice)

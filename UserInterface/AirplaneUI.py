@@ -9,10 +9,13 @@ class AirplaneUI():
         self.validation = Validate()
 
     def header(self, form, string):
-        """ creates a header with the form as decoration before the chosen string """
+        ''' Creates a header with the form as decoration around the chosen string '''
+
         print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_airplane_menu(self):
+        ''' Displays the airplanes sub-menu '''
+
         return_val = 0
         while return_val == 0:
 
@@ -20,22 +23,29 @@ class AirplaneUI():
             print("1. AIRPLANES OVERVIEW\n2. SEE STATE OF AIRPLANES\n3. CREATE AIRPLANE\n")
             user_choice = input("Input a command: ")
 
-            if user_choice == "1":
-                self.overview_of_airplanes()
-            elif user_choice == "2":
-                self.state_of_airplanes()
-            elif user_choice == "3":
-                self.create_airplane()
-            elif user_choice == "b":
-                return 0
-            elif user_choice == "h":
-                return "*"
-            else:
-                print("invalid choice\nPlease try again")
-                self.display_airplane_menu()
+            # Displays a sub-sub-menu depending on the user input
+            _ = True
+            while _:
+                if user_choice == "1":
+                    _ = False
+                    self.overview_of_airplanes()
+                elif user_choice == "2":
+                    _ = False
+                    self.state_of_airplanes()
+                elif user_choice == "3":
+                    _ = False
+                    self.create_airplane()
+                elif user_choice == "b":
+                    _ = False
+                    return 0
+                elif user_choice == "h":
+                    return "*"
+                else:
+                    user_choice = input("Invalid command. Please try again: ")
 
     def overview_of_airplanes(self):
-        ''' Shows all airplanes and lets you choose an airplane to see more info about '''
+        ''' Shows a listing of all airplanes and lets you choose an airplane to see more info about '''
+
         airplanes_list = self.llAPI.get_all_airplanes()
 
         return_val = 0
@@ -55,14 +65,17 @@ class AirplaneUI():
             elif choice == "h":
                 return "*"
 
-    def display_airplane(self, number):
+    def display_airplane(self, choice):
+        ''' Displays more information about a specific airplane '''
+
         airplanes_list = self.llAPI.get_all_airplanes()
 
         return_val = 0
         while return_val == 0:
-            airplane = airplanes_list[int(number) - 1]
+            airplane = airplanes_list[int(choice) - 1] # Matches the user_choice to the index in airplanes list
             self.header("-", " {} ".format(airplane.get_name().upper()))
-            print(airplane)
+            print(airplane) # Calls the __str__ method for the chosen airplane instance
+
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
@@ -70,6 +83,8 @@ class AirplaneUI():
                 return "*"
         
     def state_of_airplanes(self):
+        ''' Shows an overview of all states of airplanes for a specific date and time '''
+
         return_val = 0
         while return_val == 0:
             counter = 0
@@ -80,6 +95,7 @@ class AirplaneUI():
             chosen_date = input("\nPlease enter your desired date in the format (YYYY-MM-DD): ")
             chosen_time = input("Please enter your desired time in the format (HH:MM:00): ")
 
+            # Creates the listing
             self.header("-", " STATE OF ALL AIRPLANES AT {} ON {}".format(chosen_time, chosen_date))
             for airplane in airplanes_list:
                 counter += 1
@@ -97,7 +113,8 @@ class AirplaneUI():
                 return "*"
 
     def create_airplane(self):
-        ''' Returns a new instance of an airplane to the "create_new_airplane_ function '''
+        ''' Gets information inputs from user to create a new instance of an Airplane '''
+
         return_val = 0
         while return_val == 0:
             new_airplane = Airplane()
@@ -109,7 +126,7 @@ class AirplaneUI():
             name_str = input("Please enter new airplane name: ")
 
             while not self.validation.validate_name(name_str):
-                name_str = input("The name you entered is invalid. Please etner a new one using only letters: ")
+                name_str = input("The name you entered is invalid. Please enter a new one using only letters: ")
 
             new_airplane.set_name(name_str)
 
@@ -139,6 +156,7 @@ class AirplaneUI():
             while type_choice not in valid_type_choices:
                 type_choice = input("Invalid choice. Please enter again: ")
 
+            # ---- Sets the plane capacity depending on the plane type ----
             else:
                 if type_choice == "1":
                     plane_type_str = plane_types_list[0]
