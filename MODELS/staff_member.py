@@ -70,13 +70,13 @@ class StaffMember():
 #------- string function --------
     def __str__(self):
         my_str = ""
-        my_str += "Ssn: {}\n".format(self.__ssn)
-        my_str += "Name: {}\n".format(self.__name)
-        my_str += "Role: {}\n".format(self.role)
-        my_str += "Rank: {}\n".format(self.rank)
-        my_str += "Licence: {}\n".format(self.licence)
-        my_str += "Address: {}\n".format(self.address)
-        my_str += "Phone number: {}\n".format(self.phone_number)
-        my_str += "Email address: {}\n".format(self.email)
+        my_str += "SSN: {}\n".format(self.__ssn)
+        my_str += "NAME: {}\n".format(self.__name)
+        my_str += "ROLE: {}\n".format(self.role)
+        my_str += "RANK: {}\n".format(self.rank)
+        my_str += "LICENCE: {}\n".format(self.licence)
+        my_str += "ADDRESS: {}\n".format(self.address)
+        my_str += "PHONE NUMBER: {}\n".format(self.phone_number)
+        my_str += "EMAIL ADDRESS: {}\n".format(self.email)
 
         return my_str

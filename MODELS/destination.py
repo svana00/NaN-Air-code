@@ -75,14 +75,14 @@ class Destination():
     #------- string function -----------
     def __str__(self):
         my_str = ""
-        my_str += "Destination ID: {}\n".format(self.__id)
-        my_str += "Country: {}\n".format(self.__country)
-        my_str += "City: {}\n".format(self.__city)
-        my_str += "Airport: {}\n".format(self.__airport)
-        my_str += "Flight time: {} hours\n".format(self.__flight_time)
-        my_str += "Distance: {} km from Keflavik Airport\n".format(self.__distance)
-        my_str += "Emergency contact: {}\n".format(self.__contact)
-        my_str += "Phone number of emergency contact: {}\n".format(self.__emergency_number)
-        my_str += "Flight number ID: {}\n".format(self.__flight_number_id)
+        my_str += "DESTINATION ID: {}\n".format(self.__id)
+        my_str += "COUNTRY: {}\n".format(self.__country)
+        my_str += "CITY: {}\n".format(self.__city)
+        my_str += "AIRPORT: {}\n".format(self.__airport)
+        my_str += "FLIGHT TIME (HOURS): {}\n".format(self.__flight_time)
+        my_str += "DISTANCE FROM KEF (KM): {}\n".format(self.__distance)
+        my_str += "EMERGENCY CONTACT: {}\n".format(self.__contact)
+        my_str += "PHONE NUMBER OF EMERGENCY CONTACT: {}\n".format(self.__emergency_number)
+        my_str += "FLIGHT NUMBER ID: {}\n".format(self.__flight_number_id)
 
         return my_str
