@@ -9,14 +9,20 @@ class AirplaneIO():
 
         airplanes_list = []
         airplanes_file = open("csv_files/Airplane.csv", "r")
+        airplane_type_file = open("csv_files/AirplaneType.csv", "r")
         planes_reader = csv.DictReader(airplanes_file)
+        planne_type_reader = csv.DictReader(airplane_type_file)
 
         for row in planes_reader:
             plane_name = row["name"]
             plane_id = row["planeId"]
             plane_type = row["planeTypeId"]
+        
+        for row in planne_type_reader:
+            if row["planeTypeId"] == plane_type:
+                plane_capacity = row["capacity"]
 
-            airplane = Airplane(plane_name, plane_id, plane_type)
+            airplane = Airplane(plane_name, plane_id, plane_type, plane_capacity)
             airplanes_list.append(airplane)
 
         return airplanes_list
