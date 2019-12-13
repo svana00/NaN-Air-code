@@ -23,7 +23,7 @@ class StaffMemberUI():
         while return_val == 0:
 
             print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" STAFF "))/2)+" STAFF "+" "*int((56-len(" STAFF "))/2)+"\n"+"*"*56)
-            print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
+            print("1. CHANGE STAFF MEMBER\n2. OVERVIEW\n3. CREATE STAFF MEMBER")
             self.footer("_")
             var = input("\nInput a command: ")
             if var == "b":
@@ -44,8 +44,8 @@ class StaffMemberUI():
         
         return_val = 0
         while return_val == 0:
-            self.header("-", " PICK STAFF ")
-            print("1. STAFF \n2. WORK SCHEDULE")
+            self.header("-", " OVERVIEW ")
+            print("1. SEE STAFF OVERVIEW \n2. SEE WORK SCHEDULE")
             self.footer("_")
             choice = input("\nInput a command: ")
             if choice == "b":
@@ -85,7 +85,7 @@ class StaffMemberUI():
         
         return_val = 0
         while return_val == 0:
-            self.header("-", " PICK SUBGROUP ")
+            self.header("-", " PICK STAFF SUBGROUP ")
             print("1. ALL PILOTS \n2. PILOTS BY LICENCE")
             choice = input("\nInput a command: ")
             if choice == "b":
@@ -124,7 +124,8 @@ class StaffMemberUI():
         return_val = 0
         while return_val == 0:
             self.header("-", " WORK SCHEDULE ")
-            print("1. SHOW ALL STAFF MEMBERS WORKING ON A SPECIFIC DAY \n2. SHOW ALL STAFF MEMBERS NOT WORKING ON A SPECIFIC DAY\n3. SHOW THE WORK SCHEDULE OF A SPECIFIC STAFF MEMBER FOR A SPECIFIC WEEK")
+            print("1. SHOW ALL STAFF MEMBERS WORKING ON A SPECIFIC DAY \n2. SHOW ALL STAFF MEMBERS NOT WORKING ON A SPECIFIC DAY\
+                    \n3. SHOW THE WORK SCHEDULE OF A SPECIFIC STAFF MEMBER FOR A SPECIFIC WEEK")
             choice = input("\nInput a command: ")
 
             if choice == "b":
@@ -393,7 +394,7 @@ class StaffMemberUI():
                 return 0
             elif back_option == "h":
                 return "*"
-    
+
     def create_staff_member(self):
         ''' Creates an new staff member with information that's input from the user '''
 
@@ -401,21 +402,13 @@ class StaffMemberUI():
         while return_val == 0:
             # -------- displays the header and main body --------
             self.header("-", " ADD STAFF MEMBER ")
-            ssn_str = ""
-            name_str = ""
-            role_str = ""
-            rank_str = ""
-            licence_str = ""
-            address_str = ""
-            phone_number_str = ""
-            email_str = ""
 
             # ---- Initialize an empty instance of Staff Member ----
             new_staff_member = StaffMember()
             
             # ---- Set ssn ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            self.header("=", " ENTER SSN ")
+            print(new_staff_member)
             ssn_str = input("Enter new ssn: ")
             # --- Option to go back -----
             if ssn_str == "b":
@@ -428,19 +421,19 @@ class StaffMemberUI():
             new_staff_member.set_new_ssn(ssn_str)
 
             # ---- Set name ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            self.header("=", " ENTER NAME ")
+            print(new_staff_member)
             name_str = input("Enter new name: ")
             while not self.validation.validate_name(name_str):
                 name_str = input("The name you entered is invalid: Please enter a new one: ")
             new_staff_member.set_new_name(name_str)
 
             # ---- Set role ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            self.header("=", " CHOOSE ROLE ")
+            print(new_staff_member)
             role_list = ["Pilot", "Flight Attendant"]
             print("\n1. {}\n2. {}".format(role_list[0], role_list[1]))
-            role_choice = input("\nEnter number of new role: ")
+            role_choice = input("\nEnter number for new role: ")
             if role_choice == "1":
                 role_str = "Pilot"
                 new_staff_member.set_new_role(role_str)
@@ -449,12 +442,12 @@ class StaffMemberUI():
                 new_staff_member.set_new_role(role_str)
 
             # ---- Set rank ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            self.header("=", " CHOOSE RANK ")
+            print(new_staff_member)
             rank_list = ["Captain", "Copilot", "Flight Service Manager", "Flight Attendant"]
             if new_staff_member.get_role() == "Pilot":
-                print("\n  1. {}\n  2. {}".format(rank_list[0], rank_list[1]))
-                rank_choice = input("\nEnter number of new role: ")
+                print("\n1. {}\n2. {}".format(rank_list[0], rank_list[1]))
+                rank_choice = input("\nEnter number for new rank: ")
 
                 if rank_choice == "1":
                     rank_str = "Captain"
@@ -465,7 +458,7 @@ class StaffMemberUI():
             
             elif new_staff_member.get_role() == "Flight Attendant":
                 print("\n  1. {}\n  2. {}".format(rank_list[2], rank_list[3]))
-                rank_choice = input("\nEnter number of new role: ")
+                rank_choice = input("\nEnter number for new rank: ")
 
                 if rank_choice == "1":
                     rank_str = "Flight Service Manager"
@@ -475,18 +468,17 @@ class StaffMemberUI():
                     new_staff_member.set_new_rank(rank_str)
 
             # ---- Set licence if applicable ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            self.header("=", " CHOOSE LICENCE ")
+            print(new_staff_member)
             counter = 0
             airplane_type_list = self.llAPI.get_all_airplane_types()
 
             if new_staff_member.get_role() == "Pilot":
-                print()
                 for airplane_type in airplane_type_list:
                     counter += 1
-                    print("{:>3}. Airplane type: {:<12}".format(counter, airplane_type))
+                    print("{}. Airplane type: {:<12}".format(counter, airplane_type))
                 
-                licence_choice = input("Please enter the number of desired licence for {}: ".format(name_str))
+                licence_choice = input("\nPlease enter the number of desired licence for {}: ".format(name_str))
                 licence_str = airplane_type_list[int(licence_choice) - 1]
                 new_staff_member.set_new_licence(licence_str)
             
@@ -495,32 +487,31 @@ class StaffMemberUI():
                 new_staff_member.set_new_licence(licence_str)
             
             # ---- Set address ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            self.header("=", " ENTER HOME ADDRESS ")
+            print(new_staff_member)
             address_str = input("Enter new address: ")
             while not self.validation.validate_address(address_str):
                 address_str = input("The address you entered is invalid. Please enter another one: ")
             new_staff_member.set_new_address(address_str)
             
             # ---- Set phone number ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            self.header("=", " ENTER PHONE NUMBER ")
+            print(new_staff_member)
             phone_number_str = input("Enter new phone number: ")
             while not self.validation.validate_phone_num(phone_number_str):
                 phone_number_str = input("The phone number you entered is invalid. Please enter another one. Hint: Only 7 numbers are allowed ;): ")
             new_staff_member.set_new_phone_number(phone_number_str)
 
             # ---- Set email -------
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
-            email_str = input("Enter new email: ")
+            print(new_staff_member)
+            self.header("=", " ENTER EMAIL ADDRESS ")
+            email_str = input("Enter new email address: ")
             while not self.validation.validate_email(email_str):
                 email_str = input("The email you entered is invalid. Please enter another one. Hint: It has to end with '@nanair.is ;)': ")
             new_staff_member.set_new_email(email_str)
 
             # ---- Get confirmation from user ----
-            new_info_str = "\n1. SSN: {}\n2. NAME: {}\n3. ROLE: {}\n4. RANK: {}\n5. LICENSE: {}\n6. ADDRESS: {}\n7. PHONE NUMBER: {}\n8. EMAIL ADDRESS: {}\n".format(ssn_str, name_str, role_str, rank_str, licence_str, address_str, phone_number_str, email_str)
-            print(new_info_str)
+            print(new_staff_member)
             yes_or_no = input("Is all the information correct? (y/n): ")
             if yes_or_no == "y":
                 self.llAPI.create_staff_member(new_staff_member)
@@ -532,7 +523,6 @@ class StaffMemberUI():
                 return 0
             elif back_option == "h":
                 return "*"
-
 
     def change_staff_member_info(self):
         ''' Changes info about a specific staff member '''

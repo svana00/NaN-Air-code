@@ -77,6 +77,6 @@ class StaffMember():
         my_str += "Licence: {}\n".format(self.licence)
         my_str += "Address: {}\n".format(self.address)
         my_str += "Phone number: {}\n".format(self.phone_number)
-        my_str += "Email: {}\n".format(self.email)
+        my_str += "Email address: {}\n".format(self.email)
 
         return my_str
