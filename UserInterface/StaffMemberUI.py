@@ -502,8 +502,8 @@ class StaffMemberUI():
             new_staff_member.set_new_phone_number(phone_number_str)
 
             # ---- Set email -------
-            print(new_staff_member)
             self.header("=", " ENTER EMAIL ADDRESS ")
+            print(new_staff_member)
             email_str = input("Please enter new email address: ")
             while not self.validation.validate_email(email_str):
                 email_str = input("The email you entered is invalid. Please enter another one. Hint: It has to end with '@nanair.is ;)': ")
