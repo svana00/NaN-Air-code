@@ -185,8 +185,9 @@ class StaffMemberUI():
                 return "*"
 
     def show_all_flight_attendants(self):
-        ''' Shows a listing of all Flight attendants. Lets user choose if they want to see more info on a specific flight attendant '''
-        
+        ''' Shows a listing of all Flight attendants. Lets user choose if 
+            they want to see more info on a specific flight attendant '''
+
         return_val = 0
         while return_val == 0:
 
@@ -209,7 +210,8 @@ class StaffMemberUI():
 
 
     def show_all_staff(self):
-        ''' Shows a listing of all staff members. Lets user choose if they want to see more info on a specific staff member '''
+        ''' Shows a listing of all staff members. Lets user choose if they 
+            want to see more info on a specific staff member '''
 
         return_val = 0
         while return_val == 0:
@@ -365,6 +367,7 @@ class StaffMemberUI():
                 name = staff_member.get_name()
                 counter += 1
                 print("{:>3}. {:<25} ssn: {:<15}".format(counter, name, ssn))
+
             choice = input("\nChoose the number staff member whose schedule you want to see: ")
             if choice == "b":
                 return 0
@@ -375,14 +378,14 @@ class StaffMemberUI():
             desired_name = staff_info_list[int(choice) - 1].get_name()
             working_voyages_list = self.llAPI.get_staff_member_schedule(desired_ssn, start_of_desired_week_str)
             
-            if working_voyages_list: # if staff member has any voyages for the chosen week
+            if working_voyages_list: # If staff member has any voyages for the chosen week
                 print()
                 print(desired_name + " is going to:")
                 for voyage in working_voyages_list:
                     dest_id = voyage.get_dest_id()
                     dest_info = self.llAPI.get_destination_info(dest_id)
                     dest_city = dest_info.get_city()
-                    date = voyage.get_departure_out()   # Takes only the date from the string
+                    date = voyage.get_departure_out()
                     print("\t{} on {}".format(dest_city, date))
             
             else:
@@ -531,7 +534,7 @@ class StaffMemberUI():
 
             staff_members_list = self.llAPI.get_all_staff()
 
-            # Prints header and main body of the menu for choosing a particular staff member
+            # ----- Choosing a particular staff member ----
             self.header("*", " CHOOSE STAFF MEMBER ")
             for number, staff_member in enumerate(staff_members_list, 1):
                 print("{}. {}".format(number, staff_member.get_name()))
@@ -541,20 +544,24 @@ class StaffMemberUI():
                 return 0
             elif choice == "h":
                 return "*"
-                
+
             chosen_staff_member = staff_members_list[int(choice) - 1]
 
+            # ---- Prints the chosen staff member ----
             self.header("*", " {} ".format(chosen_staff_member.get_name()))
             print(chosen_staff_member)
+
             print("Only a staff member's home address and phone number can be changed.")
-            print("a: address     p: phone number")
+            print("a: address  p: phone number")
             address_or_phone_number = input("\nPlease enter your choice: ")
-            valid_choices_list = ["a", "p", "b", "h"]
+            valid_choices_list = ["a", "p", "b", "h"] # All valid choices
 
             while address_or_phone_number not in valid_choices_list:
+                # Lets users enter a choice until choice is valid
                 address_or_phone_number = input("Invalid choice. Please try again: ")
 
             else:
+                # ------- Changing home address ----------
                 if address_or_phone_number == "a":
                     new_address = input("Please enter new address for {}: ".format(chosen_staff_member.get_name()))
                     while not self.validation.validate_address(new_address):
@@ -562,6 +569,7 @@ class StaffMemberUI():
                     else:
                         chosen_staff_member.set_new_address(new_address)
 
+                # ------- Changing phone number --------
                 elif address_or_phone_number == "p":
                     new_phone_number = input("Please enter new phone number for {}: ".format(chosen_staff_member.get_name()))
                     while not self.validation.validate_phone_num(new_phone_number):
@@ -575,19 +583,25 @@ class StaffMemberUI():
                 elif choice == "h":
                     return "*"
 
+            # ------ Prints chosen staff member with new information -----
             self.header("*", " {} ".format(chosen_staff_member.get_name()))
             print(staff_member)
 
             confirmation = input("Do you want to confirm these changes (y/n)? ")
+
             if confirmation == "y":
                 print("Changes have been confirmed")
                 staff_members_list[int(choice) - 1] = chosen_staff_member
                 self.llAPI.store_new_staff_changes(staff_members_list)
+
+                # ------- Give the option of going back or home ------------
                 back_option = input("\nTo go back enter b, to go home enter h: ")
                 if back_option == "b":
                     return 0
                 elif back_option == "h":
                     return "*"
+
+            # ------- Give the option of going back or home ------------
             elif confirmation == "n":
                 back_option = input("\nTo go back enter b, to go home enter h: ")
                 if back_option == "b":
