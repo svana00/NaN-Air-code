@@ -5,7 +5,7 @@ class VoyageUI():
 
     def __init__(self, llAPI):
         self.llAPI = llAPI
-        self.validate = Validate()
+        self.validation = Validate()
 
     def header(self, form, string):
         """ creates a header with the form as decoration before the chosen string """
@@ -49,10 +49,14 @@ class VoyageUI():
                 return_val = self.show_voyages(all_voyages_list)
             elif option == "2":
                 desired_date_str = input("Please enter your desired date (YYYY-MM-DD): ")
+                while not self.validation.validate_date(desired_date_str):
+                    desired_date_str = input("Invalid date: please try again: ")
                 voyages_by_date = self.llAPI.get_voyages_by_date(desired_date_str)
                 return_val = self.show_voyages(voyages_by_date)
             elif option == "3":
                 start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
+                while not self.validation.validate_date(start_of_desired_week_str):
+                    start_of_desired_week_str = input("Invalid date: please try again: ")
                 voyages_by_week = self.llAPI.get_voyages_by_week(start_of_desired_week_str)
                 return_val = self.show_voyages(voyages_by_week)
 
@@ -79,11 +83,24 @@ class VoyageUI():
                     #{1:<4}
                 print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
 
+            if voyage_list == []:
+                choice = input("\nTo go back enter b, to go home enter h: ")
+                if choice == "b":
+                    return 0
+                elif choice =="h":
+                    return "*"
+
             # Users can choose whether they want to see more info about a specific voyage
             choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
             if choice == "y":
                 number = int(input("Please enter number for voyage: "))
                 return self.display_voyage(voyage_list, number)
+            elif choice == "n":
+                choice = input("To go back enter b, to go home enter h: ")
+                if choice == "b":
+                    return 0
+                elif choice =="h":
+                    return "*"
             elif choice == "b":
                 return 0
             elif choice == "h":
