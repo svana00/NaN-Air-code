@@ -103,7 +103,7 @@ class DestinationUI():
 
         self.header("-", " ADD DESTINATION ")
 
-        choice = input("\nEnter b to go back, h to go home, or any other letter to start adding a new staff member: ")
+        choice = input("\nEnter b to go back, h to go home, or any other letter to start adding a new destination: ")
         if choice == "b":
             return 0
         elif choice == "h":

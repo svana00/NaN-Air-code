@@ -356,6 +356,9 @@ class StaffMemberUI():
                 return 0
             elif start_of_desired_week_str == "h":
                 return "*"
+            
+            while not self.validation.validate_date(start_of_desired_week_str):
+                start_of_desired_week_str = input("Invalid input. Please enter a new date with the format given: ")
 
             staff_info_list = self.llAPI.get_all_staff()
             self.header("-", " ALL STAFF ")
