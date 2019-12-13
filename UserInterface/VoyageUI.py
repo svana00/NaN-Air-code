@@ -79,7 +79,7 @@ class VoyageUI():
                     fully_assigned_str = " "
                 else:
                     fully_assigned_str = " not "
-                print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned"\
+                print("{:>3}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned"\
                         .format(num, voyage_id, city, departure_out," ",fully_assigned_str))
 
             if voyage_list == []:
@@ -147,7 +147,7 @@ class VoyageUI():
             self.header("-", " CHOOSE DESTINATION ")
             for destination in destinations_list:
                 city = destination.get_city()
-                print("{}. {}".format(counter,city))
+                print("{:>3}. {}".format(counter,city))
                 counter += 1
 
             number = input("\nEnter number of desired destination for voyage: ")
@@ -239,7 +239,7 @@ class VoyageUI():
                 city = destination.get_city()
                 departure_out = voyage.get_departure_out()
 
-                print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(number, voyage_id, city, departure_out))
+                print("{:>3}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(number, voyage_id, city, departure_out))
 
             choice = input("\nEnter number for desired voyage: ")
             valid_list = [str(num) for num in range(1, len(voyages_list) + 1)]
@@ -263,7 +263,7 @@ class VoyageUI():
         for number, airplane_id in enumerate(airplane_id_list, 1):
             airplane = self.llAPI.get_airplane(airplane_id)
             name = airplane.get_name()
-            print("{}. {} ".format(number, name))
+            print("{:>3}. {} ".format(number, name))
 
         choice = input("\nEnter number for desired plane: ")
         plane_id = airplane_id_list[int(choice) - 1]
@@ -278,7 +278,7 @@ class VoyageUI():
             for number, staff_member in enumerate(staff_member_list, 1):
                 ssn = staff_member.get_ssn()
                 name = staff_member.get_name()
-                print("{}. {:<25} ssn: {}".format(number, name, ssn))
+                print("{:>3}. {:<25} ssn: {}".format(number, name, ssn))
 
             choice = input("\nEnter number for {}: ".format(staff_member.get_rank().lower()))
             chosen_staff_member = staff_member_list[int(choice) - 1]
