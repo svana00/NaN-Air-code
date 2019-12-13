@@ -548,7 +548,7 @@ class StaffMemberUI():
             print(chosen_staff_member)
             print("Only a staff member's home address and phone number can be changed.")
             print("a: address     p: phone number")
-            address_or_phone_number = input("\nEnter your choice: ")
+            address_or_phone_number = input("\nPlease enter your choice: ")
             valid_choices_list = ["a", "p", "b", "h"]
 
             while address_or_phone_number not in valid_choices_list:
@@ -556,14 +556,14 @@ class StaffMemberUI():
 
             else:
                 if address_or_phone_number == "a":
-                    new_address = input("Enter new address for {}: ".format(chosen_staff_member.get_name()))
+                    new_address = input("Please enter new address for {}: ".format(chosen_staff_member.get_name()))
                     while not self.validation.validate_address(new_address):
                         new_address = input("Invalid address. Please enter another address: ")
                     else:
                         chosen_staff_member.set_new_address(new_address)
 
                 elif address_or_phone_number == "p":
-                    new_phone_number = input("Enter new phone number for {}: ".format(chosen_staff_member.get_name()))
+                    new_phone_number = input("Please enter new phone number for {}: ".format(chosen_staff_member.get_name()))
                     while not self.validation.validate_phone_num(new_phone_number):
                         new_phone_number = input("Invalid phone number. Please enter another phone number: ")
                     else:
