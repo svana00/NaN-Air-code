@@ -6,7 +6,7 @@ class VoyageLL():
         self.ioAPI = ioAPI
 
     def get_voyage_info(self, voyage_id):
-        ''' Filters out a single voyage with its ID '''
+        ''' Returns an instance of a voyage from its ID '''
         
         voyage_list = self.ioAPI.load_all_voyages()
         for voyage in voyage_list:
@@ -14,7 +14,8 @@ class VoyageLL():
                 return voyage
 
     def assign_voyage(self, chosen_voyage):
-        ''' Updates a voyage instance with assigned staff for a single voyage. Sends to the database for storing '''
+        ''' Updates a voyage instance with assigned staff for a single voyage. 
+            Sends to the database for storing '''
 
         voyages_list = self.get_all_voyages()
 
@@ -36,11 +37,13 @@ class VoyageLL():
         voyages_list = self.ioAPI.load_all_voyages()
         voyages_in_week_list = []
 
+        # Filters out the start and end of the desired week by adding 7 days to the starting date
         start_of_desired_week = datetime.date.fromisoformat(start_of_desired_week_str)
         end_of_desired_week = datetime.date.fromisoformat(start_of_desired_week_str) + datetime.timedelta(days = 6)
 
         for voyage in voyages_list:
             temp_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date()
+            # Checks if starting date of each voyage is within desired week
             if temp_date >= start_of_desired_week and temp_date <= end_of_desired_week:
                 voyages_in_week_list.append(voyage)
 
@@ -55,6 +58,7 @@ class VoyageLL():
 
         for voyage in voyages_list:
             departure_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date()
+            # Checks if date of each voyage is on desired day
             if target_date == departure_date:
                 voyages_on_date_list.append(voyage)
 
@@ -120,6 +124,7 @@ class VoyageLL():
 
         # Create and set both flight numbers and gets flight distance
         target_dest_id = new_voyage.get_dest_id()
+
         flight_time, flight_number_out_str, flight_number_back_str = \
         self.create_flight_numbers_for_voyage(new_voyage, target_dest_id)
 
@@ -134,7 +139,7 @@ class VoyageLL():
         arrival_out_str = arrival_out.isoformat()
         new_voyage.set_arrival_out(arrival_out_str)
 
-        # An hour between the flights
+        # An hour is between the two flights (flight out and flight home)
         departure_home = arrival_out + datetime.timedelta(hours = 1)
         departure_home_str = departure_home.isoformat()
         new_voyage.set_departure_home(departure_home_str)
@@ -148,6 +153,7 @@ class VoyageLL():
     def voyage_date_check(self, departure_out_str):
         ''' Returns whether a date is valid for a voyage '''
 
+        # Check if the date is in the right format
         try:
             datetime.datetime.fromisoformat(departure_out_str)
         except ValueError:
@@ -157,12 +163,16 @@ class VoyageLL():
         departure_out = datetime.datetime.fromisoformat(departure_out_str)
 
         for voyage in voyages_list:
+            # Find when each voyage begins
             departure_out_2_str = voyage.get_departure_out()
             departure_out_2 = datetime.datetime.fromisoformat(departure_out_2_str)
 
+            # There needs to be at least an hour between flight from Keflavík
+            # If there is not, the voyage daeparture is not valid
             start_date = departure_out_2 + datetime.timedelta(hours = -1)
             end_date = departure_out_2 + datetime.timedelta(hours = 1)
 
+            # Check if voyage crosses another voyage
             if start_date <= departure_out <= end_date:
                 return False
 
