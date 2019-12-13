@@ -30,15 +30,31 @@ class UIManager():
         #red yellow green cyan blue magenta
         return_val = 0
         while return_val == 0 or return_val == "*":
-            
+            """
             print(red + "\n\n             /**   /**           /**   /**        /******  /****** /******* "+ white + "TM"+ red +"                                               ")
             print("            | *** | **          | *** | **       /**__  **|_  **_/| **__  **"+ white + "   *  *                                          " + red)               
             print(yellow + "            | ****| **  /****** | ****| **      | **  \ **  | **  | **  \ **"+ dark_gray + "           *         "+ white + "Where every number"+ red + "          ")
             print(yellow + "            | ** ** ** |____  **| ** ** **      | ********  | **  | *******/"+ white + "                 *       is divisible by zero    " + green)
-            print("            | **  ****  /*******| **  ****      | **__  **  | **  | **__  **"+ dark_gray + "                       *                         " + cyan)       
-            print("            | **\  *** /**__  **| **\  ***      | **  | **  | **  | **  \ **"+ dark_gray + "               *                                 " + blue)            
+            print("            | **  ****  /*******| **  ****      | **__  **  | **  | **__  **"+ dark_gray + "                       *                         " + cyan)
+            print("            | **\  *** /**__  **| **\  ***      | **  | **  | **  | **  \ **"+ dark_gray + "               *                                 " + blue)
             print(magenta + "            | ** \  **|  *******| ** \  **      | **  | ** /******| **  | **"+ white + "                     *                           "+ magenta)
             print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/                                                 \n\n" + "\033[0m")
+            """
+            print("\n\n             /**   /**           /**   /**        /******  /****** /******* TM")
+            print("            | *** | **          | *** | **       /**__  **|_  **_/| **__  **")
+            print("            | ****| **  /****** | ****| **      | **  \ **  | **  | **  \ **         where every number")
+            print("            | ** ** ** |____  **| ** ** **      | ********  | **  | *******/             is divisable by zero")
+            print("            | **  ****  /*******| **  ****      | **__  **  | **  | **__  **")
+            print("            | **\  *** /**__  **| **\  ***      | **  | **  | **  | **  \ **")
+            print("            | ** \  **|  *******| ** \  **      | **  | ** /******| **  | **")
+            print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/\n\n")
+
+
+
+
+
+
+
 
             # font = bigmoney-ne : by nathan bloomfield (xzovik@gmail.com)
             print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" MAIN MENU "))/2)+" MAIN MENU "+" "*int((56-len(" MAIN MENU "))/2)+"\n"+"*"*56)
