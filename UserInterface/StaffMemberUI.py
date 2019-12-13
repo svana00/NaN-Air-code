@@ -302,11 +302,10 @@ class StaffMemberUI():
             while not self.validation.validate_date(desired_date_str):
                 desired_date_str = input("Invalid input. You have to enter the date in the format (YYYY-MM-DD): ")
 
-            self.header("-", " ALL STAFF MEMBERS WORKING ON {} ".format(desired_date_str))
-
             staff_working_dict = self.llAPI.get_all_working(desired_date_str)
 
             if staff_working_dict != {}:
+                self.header("-", " ALL STAFF MEMBERS WORKING ON {} ".format(desired_date_str))
                 #Print the name of each staff member that is working
                 for dest_id, staff_id_list in staff_working_dict.items():
                     destination = self.llAPI.get_destination_info(dest_id)
@@ -339,11 +338,10 @@ class StaffMemberUI():
             while not self.validation.validate_date(desired_date_str):
                 desired_date_str = input("Invalid input. You have to enter a date in the format (YYYY-MM-DD)")
 
-            self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {} ".format(desired_date_str))
-
             staff_not_working_list = self.llAPI.get_all_not_working(desired_date_str)
 
             if staff_not_working_list != []:
+                self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {} ".format(desired_date_str))
                 #Print the name of each staff member that is not working
                 for staff_member_id in staff_not_working_list:
                     staff_member = self.llAPI.get_staff_member_info(staff_member_id)
@@ -390,9 +388,9 @@ class StaffMemberUI():
             desired_name = staff_info_list[int(choice) - 1].get_name()
             working_voyages_list = self.llAPI.get_staff_member_schedule(desired_ssn, start_of_desired_week_str)
             
-            if working_voyages_list: # If staff member has any voyages for the chosen week
-                print()
-                print(desired_name + " is going to:")
+            if working_voyages_list != []: # If staff member has any voyages for the chosen week
+                self.header("=", " SCHEDULE OF {} ".format(desired_name))
+                print("They are going to:")
                 for voyage in working_voyages_list:
                     dest_id = voyage.get_dest_id()
                     dest_info = self.llAPI.get_destination_info(dest_id)
