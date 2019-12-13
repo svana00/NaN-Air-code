@@ -306,15 +306,18 @@ class StaffMemberUI():
 
             staff_working_dict = self.llAPI.get_all_working(desired_date_str)
 
-            #Print the name of each staff member that is working
-            for dest_id, staff_id_list in staff_working_dict.items():
-                destination = self.llAPI.get_destination_info(dest_id)
+            if staff_working_dict != {}:
+                #Print the name of each staff member that is working
+                for dest_id, staff_id_list in staff_working_dict.items():
+                    destination = self.llAPI.get_destination_info(dest_id)
 
-                for staff_id in staff_id_list:
-                    staff_member = self.llAPI.get_staff_member_info(staff_id)
-                    name = staff_member.get_name()
-                    dest_city = destination.get_city()
-                    print("{:>3} {} is going to {}".format("-", name, dest_city))
+                    for staff_id in staff_id_list:
+                        staff_member = self.llAPI.get_staff_member_info(staff_id)
+                        name = staff_member.get_name()
+                        dest_city = destination.get_city()
+                        print("{:>3} {} is going to {}".format("-", name, dest_city))
+            else:
+                print("No one is working on this day!")
                     
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
@@ -332,16 +335,22 @@ class StaffMemberUI():
                 return 0
             elif desired_date_str == "h":
                 return "*"
+            
+            while not self.validation.validate_date(desired_date_str):
+                desired_date_str = input("Invalid input. You have to enter a date in the format (YYYY-MM-DD)")
 
             self.header("-", " ALL STAFF MEMBERS NOT WORKING ON {} ".format(desired_date_str))
 
             staff_not_working_list = self.llAPI.get_all_not_working(desired_date_str)
 
-            #Print the name of each staff member that is not working
-            for staff_member_id in staff_not_working_list:
-                staff_member = self.llAPI.get_staff_member_info(staff_member_id)
-                name = staff_member.get_name()
-                print("{:>3} {}".format("-", name))
+            if staff_not_working_list != []:
+                #Print the name of each staff member that is not working
+                for staff_member_id in staff_not_working_list:
+                    staff_member = self.llAPI.get_staff_member_info(staff_member_id)
+                    name = staff_member.get_name()
+                    print("{:>3} {}".format("-", name))
+            else:
+                print("Everybody is working on this day!")
 
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
