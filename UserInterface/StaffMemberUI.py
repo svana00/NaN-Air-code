@@ -151,7 +151,7 @@ class StaffMemberUI():
         return_val = 0
         while return_val == 0:
 
-            number = int(input("Enter number of staff member: "))
+            number = int(input("Please enter number for staff member: "))
             ssn = staff_info_list[(number) - 1].get_ssn()
             staff_member = self.llAPI.get_staff_member_info(ssn)
             self.header("-", " {} ".format(staff_member.get_name()))
@@ -289,10 +289,9 @@ class StaffMemberUI():
     def show_all_working(self):
         ''' Shows a listing of all staff members working on a spcific day '''
 
-        
         return_val = 0
         while return_val == 0:
-            desired_date_str = input("Enter date (YYYY-MM-DD): ")
+            desired_date_str = input("Please enter a date (YYYY-MM-DD): ")
             if desired_date_str == "b":
                 return 0
             elif desired_date_str == "h":
@@ -323,7 +322,7 @@ class StaffMemberUI():
         
         return_val = 0
         while return_val == 0:
-            desired_date_str = input("Enter date (YYYY-MM-DD): ")
+            desired_date_str = input("Please enter a date (YYYY-MM-DD): ")
             if desired_date_str == "b":
                 return 0
             elif desired_date_str == "h":
@@ -409,7 +408,7 @@ class StaffMemberUI():
             # ---- Set ssn ----
             self.header("=", " ENTER SSN ")
             print(new_staff_member)
-            ssn_str = input("Enter new ssn: ")
+            ssn_str = input("Please enter new social security number: ")
             # --- Option to go back -----
             if ssn_str == "b":
                 return 0
@@ -423,7 +422,7 @@ class StaffMemberUI():
             # ---- Set name ----
             self.header("=", " ENTER NAME ")
             print(new_staff_member)
-            name_str = input("Enter new name: ")
+            name_str = input("Please enter new name: ")
             while not self.validation.validate_name(name_str):
                 name_str = input("The name you entered is invalid: Please enter a new one: ")
             new_staff_member.set_new_name(name_str)
@@ -489,7 +488,7 @@ class StaffMemberUI():
             # ---- Set address ----
             self.header("=", " ENTER HOME ADDRESS ")
             print(new_staff_member)
-            address_str = input("Enter new address: ")
+            address_str = input("Please enter new address: ")
             while not self.validation.validate_address(address_str):
                 address_str = input("The address you entered is invalid. Please enter another one: ")
             new_staff_member.set_new_address(address_str)
@@ -497,7 +496,7 @@ class StaffMemberUI():
             # ---- Set phone number ----
             self.header("=", " ENTER PHONE NUMBER ")
             print(new_staff_member)
-            phone_number_str = input("Enter new phone number: ")
+            phone_number_str = input("Please enter new phone number: ")
             while not self.validation.validate_phone_num(phone_number_str):
                 phone_number_str = input("The phone number you entered is invalid. Please enter another one. Hint: Only 7 numbers are allowed ;): ")
             new_staff_member.set_new_phone_number(phone_number_str)
@@ -505,7 +504,7 @@ class StaffMemberUI():
             # ---- Set email -------
             print(new_staff_member)
             self.header("=", " ENTER EMAIL ADDRESS ")
-            email_str = input("Enter new email address: ")
+            email_str = input("Please enter new email address: ")
             while not self.validation.validate_email(email_str):
                 email_str = input("The email you entered is invalid. Please enter another one. Hint: It has to end with '@nanair.is ;)': ")
             new_staff_member.set_new_email(email_str)
@@ -561,12 +560,12 @@ class StaffMemberUI():
                     print("Invalid: can't make changes to licence")
 
                 elif change_info_choice == "4":
-                    new_address_str = input("Enter new address: ")
+                    new_address_str = input("Please enter new address: ")
                     if self.validation.validate_address(new_address_str):
                         instance.set_new_address(new_address_str)
 
                 elif change_info_choice == "5":
-                    new_phone_num_str = input("Enter new phone number: ")
+                    new_phone_num_str = input("Please enter new phone number: ")
                     if self.validation.validate_phone_num(new_phone_num_str):
                         instance.set_new_phone_number(new_phone_num_str)
 

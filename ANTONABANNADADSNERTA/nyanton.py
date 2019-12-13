@@ -96,8 +96,8 @@ def overview_of_airplanes(self):
         self.header("-", " ALL AIRPLANES ")
         airplane_info_list = self.llAPI.get_all_airplanes()
 
-        chosen_date = input("Enter date in the format (YYYY-MM-DD): ")
-        chosen_time = input("Enter the time in the format (HH:MM:00): ")
+        chosen_date = input("Please enter date in the format (YYYY-MM-DD): ")
+        chosen_time = input("Please enter the time in the format (HH:MM:00): ")
 
         for airplane in airplane_info_list:
             counter += 1

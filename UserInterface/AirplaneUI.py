@@ -48,7 +48,7 @@ class AirplaneUI():
 
             choice = input("\nDo you want to see more info about a specific airplane? (y/n): ")
             if choice == "y":
-                choice = input("Enter number for airplane you want to see more info about: ")
+                choice = input("Please enter the number for the airplane you want to see more info about: ")
                 return_val = self.display_airplane(choice)
             elif choice == "b" or choice == "n":
                 return 0
@@ -110,17 +110,17 @@ class AirplaneUI():
             new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
             print(new_info_str)
 
-            name_str = input("\nEnter new airplane name: ")
+            name_str = input("\Please enter new airplane name: ")
 
             while not self.validation.validate_name(name_str):
-                name_str = input("The name you entered is invalid. Please enter a new one using only letters: ")
+                name_str = input("The name you entered is invalid. Please  a new one using only letters: ")
             new_airplane.set_name(name_str)
 
             # ---- Set plane ID ----
             self.header("-", " ADD AIRPLANE ")
             new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
             print(new_info_str)
-            plane_id_str = input("\nEnter new airplane ID: ")
+            plane_id_str = input("\nPlease enter new airplane ID: ")
             while not self.validation.validate_plane_id(plane_id_str):
                 plane_id_str = input("The airplane ID you entered is invalid: Please enter a new one: ")
             new_airplane.set_plane_id(plane_id_str)
@@ -131,7 +131,7 @@ class AirplaneUI():
             print(new_info_str)
             type_list = ["NABAE146", "NAFokkerF28", "NAFokkerF100"]
             print("\n1. {}\n2. {}\n3. {}".format(type_list[0], type_list[1], type_list[2]))
-            type_choice = input("\nEnter number of new airplane type: ")
+            type_choice = input("\Please enter the number for airplane type: ")
 
             if type_choice == "1":
                 plane_type_str = "NABAE146"

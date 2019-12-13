@@ -82,7 +82,7 @@ class VoyageUI():
             # Users can choose whether they want to see more info about a specific voyage
             choice = input("\nDo you want to see more info about a specific voyage? (y/n): ")
             if choice == "y":
-                number = int(input("Enter number for voyage: "))
+                number = int(input("Please enter number for voyage: "))
                 return self.display_voyage(voyage_list, number)
             elif choice == "b":
                 return 0

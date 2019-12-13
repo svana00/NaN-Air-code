@@ -69,7 +69,7 @@ class DestinationUI():
 
         return_val = 0
         while return_val == 0:
-            choose_number = int(input("Enter number of destination: "))
+            choose_number = int(input("Please enter number of destination: "))
             dest_id = dest_list[(choose_number) -1].get_id()
             destination = self.llAPI.get_destination_info(dest_id)
             self.header("-", " {} ".format(destination.get_city()))
@@ -229,10 +229,10 @@ class DestinationUI():
             while dest_choice in dest_instance_dictionary.keys():
                 self.header("*", " {} ".format(dest_instance_dictionary[dest_choice].get_city()))
                 print("\n1. NAME OF CONTACT: {}\n2. EMERGENCY PHONE: {}".format(dest_instance_dictionary[dest_choice].get_contact(), dest_instance_dictionary[dest_choice].get_emergency_number()))
-                change_info_choice = input("\nEnter which info you want to change: ")
+                change_info_choice = input("\Please enter number for info that you would like to change: ")
                 
                 if change_info_choice == "1":
-                    new_contact_str = input("Enter new contact: ")
+                    new_contact_str = input("Please enter name of new contact: ")
                     if self.validation.validate_name(new_contact_str):
                         dest_instance_dictionary[dest_choice].set_new_contact(new_contact_str)
                         print("\n{}".format(dest_instance_dictionary[dest_choice]))
@@ -241,7 +241,7 @@ class DestinationUI():
 
                 elif change_info_choice == "2":
                     return_val = self.back_option(change_info_choice)
-                    new_emergency_number_str = input("Enter new emergency number: ")
+                    new_emergency_number_str = input("Please enter emergency number for contact: ")
                     if self.validation.validate_phone_num(new_emergency_number_str):
                         dest_instance_dictionary[dest_choice].set_new_emergency_number(new_emergency_number_str)
                         print("\n{}".format(dest_instance_dictionary[dest_choice]))
