@@ -160,7 +160,7 @@ class AirplaneUI():
             print(new_airplane)
             confirmation = input("Is all the information correct? (y/n): ")
             if confirmation == "y":
-                print("You did it! The new airplane has been stored in the database!")
+                print("\nYou did it! The new airplane has been stored in the database!")
                 self.llAPI.create_new_airplane(new_airplane)
 
                 back_option = input("To go home enter h, to go back enter b: ")
