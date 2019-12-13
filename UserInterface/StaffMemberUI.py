@@ -299,6 +299,9 @@ class StaffMemberUI():
             elif desired_date_str == "h":
                 return "*"
 
+            while not self.validation.validate_date(desired_date_str):
+                desired_date_str = input("Invalid input. You have to enter the date in the format (YYYY-MM-DD): ")
+
             self.header("-", " ALL STAFF MEMBERS WORKING ON {} ".format(desired_date_str))
 
             staff_working_dict = self.llAPI.get_all_working(desired_date_str)
