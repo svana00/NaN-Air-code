@@ -8,7 +8,7 @@ class DestinationUI():
         self.validation = Validate()
     
     def going_back(self):
-        ''' Gives the user the option to go back when called on '''
+        ''' Gives the user the option to go back when called '''
         variable = input("\nTo go back enter b, to go home enter h: ")
         if variable == "b":
                 return 0
@@ -16,7 +16,7 @@ class DestinationUI():
             return "*"
 
     def header(self, form, string):
-        ''' creates a header with the form as decoration before the chosen string '''
+        ''' Creates a header with the form as decoration before the chosen string '''
 
         print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
@@ -26,7 +26,7 @@ class DestinationUI():
         return_val = 0
         while return_val == 0:
             print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" DESTINATIONS "))/2)+" DESTINATIONS "+" "*int((56-len(" DESTINATIONS "))/2)+"\n"+"*"*56)
-            print("1. CHANGE\n2. OVERVIEW\n3. ADD NEW")
+            print("1. CHANGE DESTINATION\n2. DESTINATIONS OVERVIEW\n3. ADD NEW DESTINATION")
             var = input("\nInput a command: ")
             if var == "1":
                 #self.change_destination_info()
@@ -74,7 +74,7 @@ class DestinationUI():
             destination = self.llAPI.get_destination_info(dest_id)
             self.header("-", " {} ".format(destination.get_city()))
             print(destination)
-            back_option = input("\nTo go back enter b, to go home enter h: ")
+            back_option = input("To go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
             elif back_option == "h":
