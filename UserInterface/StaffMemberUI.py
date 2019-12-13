@@ -40,7 +40,8 @@ class StaffMemberUI():
                 print("Invalid choice")
 
     def choose_in_staff(self):
-        ''' Displays the submenu to choos between getting an overview of work schedules or staff members '''
+        ''' Displays the submenu of choosing between getting an overview 
+            of staff work schedules or staff members '''
         
         return_val = 0
         while return_val == 0:
@@ -60,7 +61,7 @@ class StaffMemberUI():
                 print("Invalid choice")
 
     def pick_staff_sub_menu(self):
-        ''' Displays the staff sub menu '''
+        ''' Displays the staff overview sub menu '''
         
         return_val = 0
         while return_val == 0:
@@ -119,7 +120,7 @@ class StaffMemberUI():
                 print("Invalid choice")
 
     def work_schedule_sub_menu(self):
-        ''' Displays a sub menu for choosing more specific information for the user '''
+        ''' Displays a sub menu for choosing a work schedule'''
         
         return_val = 0
         while return_val == 0:
@@ -132,21 +133,17 @@ class StaffMemberUI():
                 return 0
             elif choice == "h":
                 return "*"
-
             elif choice == "1":
                 return_val = self.show_all_working()
-
             elif choice == "2":
                 return_val = self.show_all_not_working()
-
             elif choice == "3":
                 return_val = self.show_staff_member_schedule()
-
             else:
                 print("Invalid choice\nPlease try again")
 
     def show_staff_member_info(self, staff_info_list):
-        ''' Prints more info about a specific staff member '''
+        ''' Prints more information about a specific staff member '''
         
         return_val = 0
         while return_val == 0:
@@ -163,18 +160,17 @@ class StaffMemberUI():
                 return "*"
 
     def show_all_pilots(self):
-        ''' Shows a listing of all pilots. Lets user choose if they want to see more info on a specific pilot '''
+        ''' Shows a listing of all pilots. Lets user choose if they want 
+            to see more info on a specific pilot '''
         
         return_val = 0
         while return_val == 0:
-            counter = 0
             self.header("-", " ALL PILOTS ")
             pilots_list = self.llAPI.get_all_pilots()
 
-            for pilot in pilots_list:
+            for num, pilot in enumerate(pilots_list, 1):
                 name = pilot.get_name()
-                counter += 1
-                print("{:>3}. {}".format(counter, name))
+                print("{:>3}. {}".format(num, name))
 
             choice = input("\nDo you want to see more info about a specific staff pilot? (y/n): ")
             if choice == "y":
@@ -191,14 +187,12 @@ class StaffMemberUI():
         return_val = 0
         while return_val == 0:
 
-            counter = 0
             self.header("-", " ALL FLIGHT ATTENDANTS ")
             flight_attendants_list = self.llAPI.get_all_flight_attendants()
 
-            for flight_attendant in flight_attendants_list:
+            for num, flight_attendant in enumerate(flight_attendants_list, 1):
                 name = flight_attendant.get_name()
-                counter += 1
-                print("{:>3}. {}".format(counter, name))
+                print("{:>3}. {}".format(num, name))
 
             choice = input("\nDo you want to see more info about a specific flight attendant? (y/n): ")
             if choice == "y":
@@ -215,13 +209,11 @@ class StaffMemberUI():
 
         return_val = 0
         while return_val == 0:
-            counter = 0
             self.header("-", " ALL STAFF MEMBERS ")
             staff_list = self.llAPI.get_all_staff()
-            for staff_member in staff_list:
+            for num, staff_member in enumerate(staff_list, 1):
                 name = staff_member.get_name()
-                counter +=1
-                print("{:>3}. {}".format(counter, name))
+                print("{:>3}. {}".format(num, name))
                 
             choice = input("\nDo you want to see more info about a specific staff member? (y/n): ")
             if choice == "y":
@@ -230,7 +222,6 @@ class StaffMemberUI():
                 return 0
             elif choice == "h":
                 return "*"
-
 
     def show_pilots_by_one_licence(self):
         ''' Shows a listing of all pilots that have a licence on a specific type of airplane '''
@@ -241,25 +232,24 @@ class StaffMemberUI():
             airplane_types_info_list = self.llAPI.get_all_airplane_types()
 
             airplane_type_dict = {}
-            counter = 0
-            # Prints all pilots that have a specific licence
-            for airplane_type_id in airplane_types_info_list:
-                counter += 1
-                airplane_type_dict[str(counter)] = airplane_type_id
-                print("{:>3}. {}".format(counter, airplane_type_id))
+
+            for num, airplane_type_id in enumerate(airplane_types_info_list, 1):
+                airplane_type_dict[str(num)] = airplane_type_id
+                print("{:>3}. {}".format(num, airplane_type_id))
 
             choice = input("\nPlease input the number corresponding to the licence you want to see: ")
 
-            for number, airplane_type_id in airplane_type_dict.items():
-                if number == choice:
+            # Prints all pilots that have a specific licence
+            for num, airplane_type_id in airplane_type_dict.items():
+                if num == choice:
                     airplane_type_id = airplane_type_id
                     self.header("-", " {} ".format(airplane_type_id))
                     pilots_info_list = self.llAPI.get_pilots_by_one_licence(airplane_type_id)
 
-
             for pilot in pilots_info_list:
                 name = pilot.get_name()
                 print("{:>3}. {}".format("-", name))
+
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
@@ -361,20 +351,19 @@ class StaffMemberUI():
         while return_val == 0:
 
             start_of_desired_week_str = input("Please enter the start of your desired week (YYYY-MM-DD): ")
+            # Give user the back option
             if start_of_desired_week_str == "b":
                 return 0
             elif start_of_desired_week_str == "h":
                 return "*"
 
-            counter = 0
             staff_info_list = self.llAPI.get_all_staff()
             self.header("-", " ALL STAFF ")
 
-            for staff_member in staff_info_list:
+            for num, staff_member in enumerate(staff_info_list, 1):
                 ssn = staff_member.get_ssn()
                 name = staff_member.get_name()
-                counter += 1
-                print("{:>3}. {:<25} ssn: {:<15}".format(counter, name, ssn))
+                print("{:>3}. {:<25} ssn: {:<15}".format(num, name, ssn))
 
             choice = input("\nChoose the number staff member whose schedule you want to see: ")
             if choice == "b":
@@ -382,11 +371,12 @@ class StaffMemberUI():
             elif choice == "h":
                 return "*"
 
+            # Find the voyages chosen staff member in desired week
             desired_ssn = staff_info_list[int(choice) - 1].get_ssn()
             desired_name = staff_info_list[int(choice) - 1].get_name()
             working_voyages_list = self.llAPI.get_staff_member_schedule(desired_ssn, start_of_desired_week_str)
             
-            if working_voyages_list != []: # If staff member has any voyages for the chosen week
+            if working_voyages_list != []:
                 self.header("=", " SCHEDULE OF {} ".format(desired_name))
                 print("They are going to:")
                 for voyage in working_voyages_list:
@@ -396,7 +386,7 @@ class StaffMemberUI():
                     date = voyage.get_departure_out()
                     print("\t{} on {}".format(dest_city, date))
             
-            else:
+            else: # If staff member has any voyages for the chosen week
                 print("{} has no voyages for the week you chose!".format(desired_name))
 
             back_option = input("\nTo go back enter b, to go home enter h: ")
@@ -480,13 +470,11 @@ class StaffMemberUI():
             # ---- Set licence if applicable ----
             self.header("=", " CHOOSE LICENCE ")
             print(new_staff_member)
-            counter = 0
             airplane_type_list = self.llAPI.get_all_airplane_types()
 
             if new_staff_member.get_role() == "Pilot":
-                for airplane_type in airplane_type_list:
-                    counter += 1
-                    print("{}. Airplane type: {:<12}".format(counter, airplane_type))
+                for num, airplane_type in enumerate(airplane_type_list, 1):
+                    print("{}. Airplane type: {:<12}".format(num, airplane_type))
                 
                 licence_choice = input("\nPlease enter the number of desired licence for {}: ".format(name_str))
                 licence_str = airplane_type_list[int(licence_choice) - 1]
