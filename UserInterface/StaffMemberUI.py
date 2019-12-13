@@ -593,4 +593,3 @@ class StaffMemberUI():
                     return 0
                 elif back_option == "h":
                     return "*"
-
