@@ -56,9 +56,8 @@ class StaffMemberLL():
         return pilots_list_with_licence
 
     def get_pilots_by_all_licences(self):
-        ''' Returns a dictionary where the keys are an airplane type
-            and the value is a list of tuples for pilots that have the
-            licence for that type '''
+        ''' Returns a dictionary where the key is an airplane type and the value 
+            is a list of pilots that have the licence for that type'''
 
         pilots_list = self.get_all_pilots()
         pilots_by_licences_dict = {}
@@ -74,8 +73,8 @@ class StaffMemberLL():
         return pilots_by_licences_dict
 
     def get_all_working(self, desired_date_str):
-        ''' Returns a dictionary where they key is a destination and the value is a list of staff members
-            that are working a specific day '''
+        ''' Returns a dictionary where they key is a destination and the value is a list 
+            of staff members that are working a specific day '''
 
         voyages_list = self.ioAPI.load_all_voyages()
         desired_date = datetime.datetime.fromisoformat(desired_date_str).date()
@@ -85,9 +84,12 @@ class StaffMemberLL():
             voyage_departure_out = voyage.get_departure_out()
             temp_date = datetime.datetime.fromisoformat(voyage_departure_out).date()
 
+            # Check if each voyage is on desired date
+            # If so is, the staff members on thay voyage are added to the list
             if desired_date == temp_date:
                 cabin_crew_list = voyage.get_cabin_crew()
                 destination = voyage.get_dest_id()
+                # Check if the voyage is assigned
                 if cabin_crew_list != []:
                     working_staff_dict[destination] = cabin_crew_list
         
@@ -102,6 +104,7 @@ class StaffMemberLL():
         staff_working_list = []
         staff_not_working_list = []
 
+        # Begin by finding all staff members that are working that day
         for voyage in voyages_list:
             voyage_departure_out = voyage.get_departure_out()
             temp_date = datetime.datetime.fromisoformat(voyage_departure_out).date()
@@ -112,6 +115,8 @@ class StaffMemberLL():
                     for staff_member in cabin_crew:
                         staff_working_list.append(staff_member)
 
+        # Check if each staff member is in the list of working staff members
+        # If they are not, then they must not be working that day
         for staff_member in staff_member_list:
             ssn = staff_member.get_ssn()
             if ssn not in staff_working_list:
@@ -122,20 +127,25 @@ class StaffMemberLL():
     def get_staff_member_schedule(self, ssn, start_of_desired_week_str):
         ''' Filters voyages to only voyages in the desired week where the target staff member is working '''
 
-        staff_member = self.get_staff_member_info(ssn)
-        staff_member_id = staff_member.get_ssn()
+        chosen_staff_member = self.get_staff_member_info(ssn)
+        staff_member_id = chosen_staff_member.get_ssn()
+
         voyages_list = self.ioAPI.load_all_voyages()
         voyages_in_week_list = []
         voyages_for_staff_member_in_week_list = []
 
+        # Find end of desired week by calculating it from the start date
         start_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date()
         end_of_desired_week = datetime.datetime.fromisoformat(start_of_desired_week_str).date() + datetime.timedelta(days = 6)
 
         for voyage in voyages_list:
             temp_date = datetime.datetime.fromisoformat(voyage.get_departure_out()).date()
+
+            # Find if the date of each voyage is within desired week
             if temp_date >= start_of_desired_week and temp_date <= end_of_desired_week:
                 voyages_in_week_list.append(voyage)
 
+        # Find if chosen staff member is working in any of the voyages that week
         for voyage in voyages_in_week_list:
             cabin_crew_list = voyage.get_cabin_crew()
             if staff_member_id in cabin_crew_list:

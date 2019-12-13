@@ -37,11 +37,9 @@ class AirplaneIO():
 
         for row in type_reader:
             type_id = row["planeTypeId"]
-            type_manufacturer = row["manufacturer"]
-            type_model = ["model"]
             type_capacity = ["capacity"]
 
-            airplaneType = AirplaneType(type_id, type_manufacturer, type_model, type_capacity)
+            airplaneType = AirplaneType(type_id, type_capacity)
             airplane_types_list.append(airplaneType)
 
         return airplane_types_list

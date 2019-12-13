@@ -8,13 +8,13 @@ class VoyageUI():
         self.validation = Validate()
 
     def header(self, form, string):
-        """ creates a header with the form as decoration before the chosen string """
+        ''' Creates a header with the form as decoration before the chosen string '''
         print("\n\n"+form*(28 - int((len(string)/2))) + string + form*(28 - int((len(string)/2))))
 
     def display_voyages_menu(self):
-        """ Displays the main menu for voyages giving the user the 
-            options to change, add, or see overview of voyages """
-        #done
+        ''' Displays the main menu for voyages giving the user the 
+            options to assign, see overview or create new voyage '''
+
         return_val = 0
         while return_val == 0:
             print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" VOYAGES "))/2)+"VOYAGES"+" "*int((56-len(" VOYAGES "))/2)+"\n"+"*"*56)
@@ -33,8 +33,8 @@ class VoyageUI():
                 return_val = self.create_voyage()
 
     def display_voyages_overview_menu(self):
-        """ Menu for choosing overview type for voyages """
-        #done
+        ''' Menu for choosing overview type for voyages '''
+
         return_val = 0
         while return_val == 0:
             self.header("-", " GET OVERVIEW ")
@@ -62,26 +62,25 @@ class VoyageUI():
 
     def show_voyages(self, voyage_list):
         ''' Shows all voyages from a list of voyages in a specific format '''
-        #done
+
         return_val = 0
         while return_val == 0:
-            counter = 0
 
             self.header("-", " VOYAGES ")
 
-            for voyage in voyage_list:
-                counter += 1
+            for num, voyage in enumerate(voyage_list, 1):
                 voyage_id = voyage.get_voyage_id()
                 dest_id = voyage.get_dest_id()
                 destination =  self.llAPI.get_destination_info(dest_id)
                 city = destination.get_city()
                 departure_out = voyage.get_departure_out()
+
                 if voyage.is_fully_assigned() == "True":
                     fully_assigned_str = " "
                 else:
                     fully_assigned_str = " not "
-                    #{1:<4}
-                print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned".format(counter, voyage_id, city, departure_out," ",fully_assigned_str))
+                print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15} {:<6}Voyage is{}fully assigned"\
+                        .format(num, voyage_id, city, departure_out," ",fully_assigned_str))
 
             if voyage_list == []:
                 choice = input("\nTo go back enter b, to go home enter h: ")
@@ -101,17 +100,20 @@ class VoyageUI():
                     return 0
                 elif choice =="h":
                     return "*"
+
             elif choice == "b":
                 return 0
             elif choice == "h":
                 return "*"
 
     def display_voyage(self, voyage_list, number):
-        #do
+        ''' Displays a specific voyage from the list of voyages '''
+
         return_val = 0
         while return_val == 0:
             voyage = voyage_list[(number) - 1]
             voyage_id = voyage.get_voyage_id()
+
             self.header("-", " Voyage {} ".format(voyage_id))
             print(voyage)
 
@@ -119,6 +121,7 @@ class VoyageUI():
             date_and_time = datetime.datetime.now()
             date_and_time_str = datetime.datetime.isoformat(date_and_time)
 
+            # Get the current state of the plane
             airplane_state = self.llAPI.get_airplane_state(plane_id, date_and_time_str)
 
             print("Current state of voyage: {}".format(airplane_state))
@@ -132,7 +135,7 @@ class VoyageUI():
         
     def create_voyage(self):
         ''' Returns a list of information about a new voyage '''
-        #do
+
         return_val = 0
         while return_val == 0:
             new_voyage = Voyage()
@@ -147,27 +150,24 @@ class VoyageUI():
                 print("{}. {}".format(counter,city))
                 counter += 1
 
-            valid_list = [str(num) for num in range(len(destinations_list))]
-            invalid_input = True
             number = input("\nEnter number of desired destination for voyage: ")
-            # ---- option to leave before creating a voyage
+            # Option to go back before creating voyage
             if number == "b":
                 return 0
             elif number == "h":
                 return "*"
 
-            while invalid_input == True:
-                if number in valid_list:
-                    destination = destinations_list[(int(number) - 1)]
-                    dest_id = destination.get_id()
-                    city = destination.get_city()
-                    new_voyage.set_dest_id(dest_id)
-                    invalid_input = False
-                else:
+            valid_list = [str(num) for num in range(len(destinations_list))]
+            while number not in valid_list:
                     print("Invalid choice. Enter again.")
                     number = input("\nEnter number of desired destination for voyage: ")
+            else:
+                destination = destinations_list[(int(number) - 1)]
+                dest_id = destination.get_id()
+                city = destination.get_city()
+                new_voyage.set_dest_id(dest_id)
 
-            # User chooses date for voyage
+            # ---- Choosing date for voyage ----
             self.header("-", " CHOOSE DATE ")
             date_str = input("Please enter a date for the voyage (YYYY-MM-DD): ")
 
@@ -175,7 +175,7 @@ class VoyageUI():
                 print("\nInvalid date.")
                 date_str = input("Please enter another date for the voyage (YYYY-MM-DD): ")      
 
-            # User chooses time for voyage
+            # ---- Choosing time for voyage ----
             self.header("-", " CHOOSE TIME ")
             time_str = input("Please enter a time for the voyage (HH:MM:SS): ")
 
@@ -185,6 +185,7 @@ class VoyageUI():
 
             # User enters a new date and time if it overlaps a departure of another voyage until they find an appropriate time
             departure_out_str = "T".join([date_str, time_str])
+
             while not self.llAPI.voyage_date_check(departure_out_str):
                 print("\nInvalid departure time. There is already a plane leaving Keflavik at that hour.")
                 
@@ -224,7 +225,7 @@ class VoyageUI():
     
     def choose_voyage_to_assign(self):
         ''' Returns voyage instance chosen by user out of non assigned voyages '''
-        #do
+
         return_val = 0
         while return_val == 0:
             voyages_list = self.llAPI.get_non_assigned_voyages() # List of instances
@@ -241,15 +242,14 @@ class VoyageUI():
                 print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(number, voyage_id, city, departure_out))
 
             choice = input("\nEnter number for desired voyage: ")
-            h = True
+            valid_list = [str(num) for num in range(len(voyages_list))]
 
-            while h:
-                if choice.isdigit():
-                    chosen_voyage = voyages_list[int(choice) - 1]
-                    return chosen_voyage
-                else:
-                    print("Invalid choice")
-                    choice = input("\nEnter number for desired voyage: ")
+            while choice not in valid_list:
+                print("Invalid choice")
+                choice = input("\nEnter number for desired voyage: ")
+            else:
+                chosen_voyage = voyages_list[int(choice) - 1]
+                return chosen_voyage
 
     def choose_airplane_for_voyage(self, chosen_voyage):
         ''' Returns airplane id for airplane chosen by user '''
