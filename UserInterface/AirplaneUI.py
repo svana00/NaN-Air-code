@@ -86,8 +86,16 @@ class AirplaneUI():
 
             self.header("-", " ENTER DATE ")
             print("To see the state of our airplanes, please specify the date and time you want to see :)")
+
+            # Choose a date
             chosen_date = input("\nPlease enter your desired date in the format (YYYY-MM-DD): ")
+            while not self.validation.validate_date(chosen_date):
+                chosen_date = input("Invalid date. Please enter a new date using the format (YYYY-MM-DD)")
+
+            # Choose a time
             chosen_time = input("Please enter your desired time in the format (HH:MM:00): ")
+            while not self.validation.validate_time(chosen_time):
+                chosen_time = input("Invalid time. Please use the format (HH:MM:SS): ")
 
             # Creates the listing
             self.header("-", " STATE OF ALL AIRPLANES AT {} ON {}".format(chosen_time, chosen_date))
