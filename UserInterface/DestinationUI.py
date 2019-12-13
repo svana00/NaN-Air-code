@@ -228,7 +228,7 @@ class DestinationUI():
                 destination = dest_instance_dictionary[dest_choice]
                 self.header("*", " {} ".format(destination.get_city()))
                 print("\n 1. NAME OF CONTACT: {}\n 2. EMERGENCY PHONE: {}".format(destination.get_contact(), destination.get_emergency_number()))
-                change_info_choice = input("\Please enter number for info that you would like to change: ")
+                change_info_choice = input("\nPlease enter number for info that you would like to change: ")
                 
                 if change_info_choice == "1":
                     new_contact_str = input("Please enter name of new contact: ")
