@@ -242,7 +242,7 @@ class VoyageUI():
                 print("{:>2}. ID: {:<5} Destination: {:<20} Departure at: {:<15}".format(number, voyage_id, city, departure_out))
 
             choice = input("\nEnter number for desired voyage: ")
-            valid_list = [str(num) for num in range(len(voyages_list))]
+            valid_list = [str(num) for num in range(1, len(voyages_list) + 1)]
 
             while choice not in valid_list:
                 print("Invalid choice")
