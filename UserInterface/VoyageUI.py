@@ -171,7 +171,7 @@ class VoyageUI():
             self.header("-", " CHOOSE DATE ")
             date_str = input("Please enter a date for the voyage (YYYY-MM-DD): ")
 
-            while not self.validate.validate_date(date_str):
+            while not self.validation.validate_date(date_str):
                 print("\nInvalid date.")
                 date_str = input("Please enter another date for the voyage (YYYY-MM-DD): ")      
 
@@ -179,7 +179,7 @@ class VoyageUI():
             self.header("-", " CHOOSE TIME ")
             time_str = input("Please enter a time for the voyage (HH:MM:SS): ")
 
-            while not self.validate.validate_time(time_str):
+            while not self.validation.validate_time(time_str):
                 print("\nInvalid time.")
                 time_str = input("Please enter another time for the voyage (HH:MM:SS): ")
 
@@ -189,11 +189,11 @@ class VoyageUI():
                 print("\nInvalid departure time. There is already a plane leaving Keflavik at that hour.")
                 
                 departure_date = input("Please enter a new departure date for your voyage (YYYY-MM-DD): ")
-                while not self.validate.validate_date(departure_date):
+                while not self.validation.validate_date(departure_date):
                     departure_date = input("Invalid date. Please enter a new departure date for your voyage (YYYY-MM-DD): ")
 
                 departure_time = input("Please enter another time for the voyage (HH:MM:SS): ")
-                while not self.validate.validate_time(time_str):
+                while not self.validation.validate_time(time_str):
                     time_str = input("Invalid time. Please enter another time for the voyage (HH:MM:SS): ")
                 
                 departure_out_str = "T".join([departure_date, departure_time])
@@ -248,7 +248,7 @@ class VoyageUI():
         for number, airplane_id in enumerate(airplane_id_list, 1):
             airplane = self.llAPI.get_airplane(airplane_id)
             name = airplane.get_name()
-            print("{}. {}".format(number, name))
+            print("{}. {} ".format(number, name))
 
         choice = input("\nEnter number for desired plane: ")
         plane_id = airplane_id_list[int(choice) - 1]
