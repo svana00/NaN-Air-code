@@ -16,7 +16,7 @@ class AirplaneUI():
         return_val = 0
         while return_val == 0:
 
-            print("*"*56 + "\n"+" "*int((56-len(" AIRPLANES "))/2)+" AIRPLANES "+" "*int((56-len(" AIRPLANES "))/2)+"\n"+"*"*56)
+            print("\n" + "*"*56 + "\n"+" "*int((56-len(" AIRPLANES "))/2)+" AIRPLANES "+" "*int((56-len(" AIRPLANES "))/2)+"\n"+"*"*56)
             print("1. AIRPLANES OVERVIEW\n2. SEE STATE OF AIRPLANES\n3. CREATE AIRPLANE\n")
             user_choice = input("Input a command: ")
 
@@ -102,57 +102,72 @@ class AirplaneUI():
         while return_val == 0:
             new_airplane = Airplane()
 
-            self.header("-", " ADD AIRPLANE ")
-            name_str = ""
-            plane_id_str = ""
-            plane_type_str = ""
+            # ---- Set name ----
+            self.header("=", " ENTER NAME ")
+            print(new_airplane)
 
-            new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
-            print(new_info_str)
-
-            name_str = input("\nPlease enter new airplane name: ")
+            name_str = input("Please enter new airplane name: ")
 
             while not self.validation.validate_name(name_str):
-                name_str = input("The name you entered is invalid. Please  a new one using only letters: ")
+                name_str = input("The name you entered is invalid. Please etner a new one using only letters: ")
+
             new_airplane.set_name(name_str)
 
             # ---- Set plane ID ----
-            self.header("-", " ADD AIRPLANE ")
-            new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
-            print(new_info_str)
+            self.header("=", " ENTER PLANE ID ")
+            print(new_airplane)
+
             plane_id_str = input("\nPlease enter new airplane ID: ")
+
             while not self.validation.validate_plane_id(plane_id_str):
                 plane_id_str = input("The airplane ID you entered is invalid: Please enter a new one: ")
+
             new_airplane.set_plane_id(plane_id_str)
 
             # ---- Set airplane type ----
-            self.header("-", " ADD AIRPLANE ")
-            new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
-            print(new_info_str)
-            type_list = ["NABAE146", "NAFokkerF28", "NAFokkerF100"]
-            print("\n1. {}\n2. {}\n3. {}".format(type_list[0], type_list[1], type_list[2]))
+            self.header("=", " SET AIRPLANE TYPE ")
+            print(new_airplane)
+
+            plane_types_list = ["NABAE146", "NAFokkerF28", "NAFokkerF100"]
+
+            for number, plane_type in enumerate(plane_types_list, 1):
+                print("{}. {}".format(number, plane_type))
+
+            valid_type_choices = ["1", "2", "3"]
             type_choice = input("\nPlease enter the number for airplane type: ")
 
-            if type_choice == "1":
-                plane_type_str = "NABAE146"
-                new_airplane.set_type_id(plane_type_str)
+            while type_choice not in valid_type_choices:
+                type_choice = input("Invalid choice. Please enter again: ")
 
-            elif type_choice == "2":
-                plane_type_str = "NAFokkerF28"
-                new_airplane.set_type_id(plane_type_str)
+            else:
+                if type_choice == "1":
+                    plane_type_str = plane_types_list[0]
+                    new_airplane.set_type_id(plane_type_str)
+                    new_airplane.set_capacity("83")
 
-            elif type_choice == "3":
-                plane_type_str = "NAFokkerF100"
-                new_airplane.set_type_id(plane_type_str)
+                elif type_choice == "2":
+                    plane_type_str = plane_types_list[1]
+                    new_airplane.set_type_id(plane_type_str)
+                    new_airplane.set_capacity("65")
 
-                # ---- Get confirmation from user ----
+                elif type_choice == "3":
+                    plane_type_str = plane_types_list[2]
+                    new_airplane.set_type_id(plane_type_str)
+                    new_airplane.set_capacity("100")
+
+            # ---- Get confirmation from user ----
             self.header("-", " CREATE AIRPLANE ")
-            new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
-            print(new_info_str)
-            yes_or_no = input("\nIs all the information correct? (y/n): ")
-            if yes_or_no == "y":
+            print(new_airplane)
+            confirmation = input("Is all the information correct? (y/n): ")
+            if confirmation == "y":
                 print("You did it! The new airplane has been stored in the database!")
-                return self.llAPI.create_new_airplane(new_airplane)
+                self.llAPI.create_new_airplane(new_airplane)
+
+                back_option = input("To go home enter h, to go back enter b: ")
+                if back_option == "b":
+                    return 0
+                elif back_option == "h":
+                    return "*"
 
             # ------- Give the option of going back or home ------------
             back_option = input("To go home enter h, to go back enter b: ")
