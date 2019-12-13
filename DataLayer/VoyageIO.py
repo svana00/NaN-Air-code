@@ -45,7 +45,7 @@ class VoyageIO():
     def store_new_voyage(self, new_voyage):
         ''' Stores a new voyages to the database '''
 
-        voyage_csv_str = new_voyage.instance_to_csv_string()
+        voyage_csv_str = new_voyage.instance_to_csv_string() + "\n"
         voyage_file = open("csv_files/Voyages.csv", "a")
         voyage_file.write(voyage_csv_str)
         voyage_file.write("\n")

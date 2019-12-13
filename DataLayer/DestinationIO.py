@@ -29,7 +29,7 @@ class DestinationIO:
     def store_new_destination(self, new_destination):
         ''' Stores new destination to the existing file '''
 
-        destination_csv_str = new_destination.instance_to_csv_string()
+        destination_csv_str = new_destination.instance_to_csv_string() + "\n"
         dest_file = open("csv_files/Destinations.csv", "a+")
         dest_file.write(destination_csv_str)
         dest_file.close()

@@ -28,7 +28,7 @@ class StaffMemberIO:
     def store_new_staff_member(self, new_staff_member):
         ''' Stores new staff member to existing file '''
 
-        staff_member_csv_str = new_staff_member.instance_to_csv_string()
+        staff_member_csv_str = new_staff_member.instance_to_csv_string() + "\n"
         staff_member_file = open("csv_files/Staff_Members.csv", "a+")
         staff_member_file.write(staff_member_csv_str)
         staff_member_file.close()
