@@ -45,5 +45,6 @@ class Airplane():
         my_str += "NAME: {}\n".format(self.__name)
         my_str += "ID: {}\n".format(self.__plane_id)
         my_str += "TYPE: {}\n".format(self.__type_id)
+        my_str += "CAPACITY: {}\n".format(self.__capacity)
 
         return my_str
