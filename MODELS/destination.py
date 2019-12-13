@@ -63,6 +63,9 @@ class Destination():
     def set_new_emergency_number(self, new_emergency_number):
         self.__emergency_number = new_emergency_number
 
+    def set_new_flight_num_id(self, new_flight_num_id):
+        self.__flight_number_id = new_flight_num_id
+
     def instance_to_csv_string(self):
         ''' Makes a csv string from destination instance '''
         csv_list = [self.__id, self.__city, self.__country,self.__airport, self.__flight_time, \
@@ -75,9 +78,9 @@ class Destination():
     #------- string function -----------
     def __str__(self):
         my_str = ""
-        my_str += "DESTINATION ID: {}\n".format(self.__id)
         my_str += "COUNTRY: {}\n".format(self.__country)
         my_str += "CITY: {}\n".format(self.__city)
+        my_str += "DESTINATION ID: {}\n".format(self.__id)
         my_str += "AIRPORT: {}\n".format(self.__airport)
         my_str += "FLIGHT TIME: {} hours\n".format(self.__flight_time)
         my_str += "DISTANCE FROM KEF: {} km\n".format(self.__distance)
