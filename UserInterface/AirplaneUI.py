@@ -110,7 +110,7 @@ class AirplaneUI():
             new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
             print(new_info_str)
 
-            name_str = input("\Please enter new airplane name: ")
+            name_str = input("\nPlease enter new airplane name: ")
 
             while not self.validation.validate_name(name_str):
                 name_str = input("The name you entered is invalid. Please  a new one using only letters: ")
@@ -131,7 +131,7 @@ class AirplaneUI():
             print(new_info_str)
             type_list = ["NABAE146", "NAFokkerF28", "NAFokkerF100"]
             print("\n1. {}\n2. {}\n3. {}".format(type_list[0], type_list[1], type_list[2]))
-            type_choice = input("\Please enter the number for airplane type: ")
+            type_choice = input("\nPlease enter the number for airplane type: ")
 
             if type_choice == "1":
                 plane_type_str = "NABAE146"
@@ -146,7 +146,7 @@ class AirplaneUI():
                 new_airplane.set_type_id(plane_type_str)
 
                 # ---- Get confirmation from user ----
-            self.header("-", " ADD AIRPLANE ")
+            self.header("-", " CREATE AIRPLANE ")
             new_info_str = "1. Name: {}\n2. ID: {}\n3. TYPE: {}".format(name_str, plane_id_str, plane_type_str)
             print(new_info_str)
             yes_or_no = input("\nIs all the information correct? (y/n): ")

@@ -309,7 +309,7 @@ class StaffMemberUI():
                     staff_member = self.llAPI.get_staff_member_info(staff_id)
                     name = staff_member.get_name()
                     dest_city = destination.get_city()
-                    print("\t{:>3} {} is going to {}".format("-", name, dest_city))
+                    print("{:>3} {} is going to {}".format("-", name, dest_city))
                     
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
@@ -336,7 +336,7 @@ class StaffMemberUI():
             for staff_member_id in staff_not_working_list:
                 staff_member = self.llAPI.get_staff_member_info(staff_member_id)
                 name = staff_member.get_name()
-                print("\t{:>3} {}".format("-", name))
+                print("{:>3} {}".format("-", name))
 
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
