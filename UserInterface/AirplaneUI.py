@@ -24,24 +24,18 @@ class AirplaneUI():
             user_choice = input("Input a command: ")
 
             # Displays a sub-sub-menu depending on the user input
-            _ = True
-            while _:
-                if user_choice == "1":
-                    _ = False
-                    self.overview_of_airplanes()
-                elif user_choice == "2":
-                    _ = False
-                    self.state_of_airplanes()
-                elif user_choice == "3":
-                    _ = False
-                    self.create_airplane()
-                elif user_choice == "b":
-                    _ = False
-                    return 0
-                elif user_choice == "h":
-                    return "*"
-                else:
-                    user_choice = input("Invalid command. Please try again: ")
+            if user_choice == "1":
+                return_val = self.overview_of_airplanes()
+            elif user_choice == "2":
+                return_val = self.state_of_airplanes()
+            elif user_choice == "3":
+                return_val = self.create_airplane()
+            elif user_choice == "b":
+                return 0
+            elif user_choice == "h":
+                return "*"
+            else:
+                user_choice = input("Invalid command. Please try again: ")
 
     def overview_of_airplanes(self):
         ''' Shows a listing of all airplanes and lets you choose an airplane to see more info about '''

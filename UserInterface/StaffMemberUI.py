@@ -509,6 +509,7 @@ class StaffMemberUI():
             new_staff_member.set_new_email(email_str)
 
             # ---- Get confirmation from user ----
+            self.header("=", " CONFIRM CHANGES ")
             print(new_staff_member)
             yes_or_no = input("Is all the information correct? (y/n): ")
             if yes_or_no == "y":
