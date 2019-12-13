@@ -256,11 +256,10 @@ class StaffMemberUI():
                     self.header("-", " {} ".format(airplane_type_id))
                     pilots_info_list = self.llAPI.get_pilots_by_one_licence(airplane_type_id)
 
-            counter = 0
+
             for pilot in pilots_info_list:
                 name = pilot.get_name()
-                counter += 1
-                print("{:>3}. {}".format(counter, name))
+                print("{:>3}. {}".format("-", name))
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
@@ -276,12 +275,11 @@ class StaffMemberUI():
 
             pilots_by_licences_dict = self.llAPI.get_pilots_by_all_licences()
             for airplane_type, pilots_list in pilots_by_licences_dict.items():
-                print("\n{}".format(airplane_type))
-                counter = 0
+                print("\n  {} pilots have a licence for {}. They are:".format(len(pilots_list), airplane_type))
+            
                 for pilot in pilots_list:
                     name = pilot.get_name()
-                    counter += 1
-                    print("\t{:>3}. {}".format(counter, name))
+                    print("\t{:>3}. {}".format("-", name))
             back_option = input("\nTo go back enter b, to go home enter h: ")
             if back_option == "b":
                 return 0
