@@ -2,4 +2,4 @@
 Help us
 No help
 Everyone going to DIE
-We hate everyone
+also, plz give good grade

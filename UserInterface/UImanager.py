@@ -17,17 +17,28 @@ class UIManager():
         self.mainLoop()
         
     def mainLoop(self):
+        # constants make the rest of the program easier to write and change 
+        white = "\033[1;37;40m"
+        cyan = "\033[1;36;40m"
+        magenta = "\033[1;35;40m"
+        blue ="\033[1;34;40m"
+        yellow = "\033[1;33;40m"
+        green =  "\033[1;32;40m"
+        red = "\033[1;31;40m"
+        dark_gray = "\033[1;30;40m"
+        #black  = "\033[0;30;47m"   
+        #red yellow green cyan blue magenta
         return_val = 0
         while return_val == 0 or return_val == "*":
             
-            print("\n\n             /**   /**           /**   /**        /******  /****** /******* ")
-            print("            | *** | **          | *** | **       /**__  **|_  **_/| **__  **")
-            print("            | ****| **  /****** | ****| **      | **  \ **  | **  | **  \ **")
-            print("            | ** ** ** |____  **| ** ** **      | ********  | **  | *******/")
-            print("            | **  ****  /*******| **  ****      | **__  **  | **  | **__  **")
-            print("            | **\  *** /**__  **| **\  ***      | **  | **  | **  | **  \ **")
-            print("            | ** \  **|  *******| ** \  **      | **  | ** /******| **  | **")
-            print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/\n\n")
+            print(red + "\n\n             /**   /**           /**   /**        /******  /****** /******* "+ white + "TM"+ red +"                                               ")
+            print("            | *** | **          | *** | **       /**__  **|_  **_/| **__  **"+ white + "   *  *                                          " + red)               
+            print(yellow + "            | ****| **  /****** | ****| **      | **  \ **  | **  | **  \ **"+ dark_gray + "           *         "+ white + "Where every number"+ red + "          ")
+            print(yellow + "            | ** ** ** |____  **| ** ** **      | ********  | **  | *******/"+ white + "                 *       is divisible by zero    " + green)
+            print("            | **  ****  /*******| **  ****      | **__  **  | **  | **__  **"+ dark_gray + "                       *                         " + cyan)       
+            print("            | **\  *** /**__  **| **\  ***      | **  | **  | **  | **  \ **"+ dark_gray + "               *                                 " + blue)            
+            print(magenta + "            | ** \  **|  *******| ** \  **      | **  | ** /******| **  | **"+ white + "                     *                           "+ magenta)
+            print("            |__/  \__/ \_______/|__/  \__/      |__/  |__/|______/|__/  |__/                                                 \n\n" + "\033[0m")
 
             # font = bigmoney-ne : by nathan bloomfield (xzovik@gmail.com)
             print("\n\n"+"*"*56 + "\n"+" "*int((56-len(" MAIN MENU "))/2)+" MAIN MENU "+" "*int((56-len(" MAIN MENU "))/2)+"\n"+"*"*56)
