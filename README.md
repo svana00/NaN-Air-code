@@ -1,5 +1,3 @@
-# NaN-Air-code
-Help us
-No help
-Everyone going to DIE
-also, plz give good grade
+# NaN-Air
+
+Large project in the first 3 week course in Reykjavík University Computer Science
